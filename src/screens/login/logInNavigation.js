@@ -9,6 +9,10 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import StudentCard from '../student/studentCard';
+import StudentDashBoard from '../student/studentDashBoard';
+import AttendenceMonth from '../student/attendence/attendenceMonth';
+import AttendenceYear from '../student/attendence/attendenceYear';
 // import HomePage from '../homepage/userProfile';
 
 // import type {Node} from 'react';
@@ -44,6 +48,26 @@ const LoginNavigation = () =>{
         name="HomePage"
         component={HomePage}
         options={{ headerShown: false, title: 'Welcome' }}
+      />
+      <Stack.Screen
+        name="StudentCard"
+        component={StudentCard}
+        options={{ headerShown: false, title: 'Home' }}
+      />
+      <Stack.Screen
+        name="StudentDashBoard"
+        component={StudentDashBoard}
+        options={{ headerShown: false, title: 'Home' }}
+      />
+      <Stack.Screen
+        name="AttendenceMonth"
+        component={AttendenceMonth}
+        options={{ headerShown: false, title: 'Home' }}
+      />
+      <Stack.Screen
+        name="AttendenceYear"
+        component={AttendenceYear}
+        options={{ headerShown: false, title: 'Home' }}
       />
       {/* <Stack.Screen name="loginOTP" component={LoginOTPPage} options={{ headerShown: false, title: 'Welcome' }} />
       <Stack.Screen name="loginUserDetail" component={LoginUserDetailPage} options={{ headerShown: false, title: 'Welcome' }} />
