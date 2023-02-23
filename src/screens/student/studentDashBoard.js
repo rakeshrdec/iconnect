@@ -73,7 +73,8 @@ const StudentDashBoard = ({navigation}) =>{
               <View style={{flexDirection:'row',height:100}}>
                   <Pressable
                     onPress={()=>{
-                      Alert.alert('work in prgres')
+                      // Alert.alert('work in prgres')
+                      navigation.navigate('TimeTable')
                     }}
                     style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}>
                       <Image source={require('../../../assets/logo/timetable.png')} style={{height:50,width:50}} />

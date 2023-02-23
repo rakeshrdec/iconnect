@@ -15,7 +15,7 @@ import CustomSidebarMenu from './customSideBarMenu';
 
 import AttendenceMonth from '../student/attendence/attendenceMonth';
 import AttendenceYear from '../student/attendence/attendenceYear';
-
+import TimeTable from '../student/timeTable/timeTable';
 
 
 import {    
@@ -233,6 +233,16 @@ const HomePage = () =>{
       }}
       />
       <Drawer.Screen name="AttendenceYear" component={AttendenceYear} />
+      <Drawer.Screen name="TimeTable" component={TimeTable}      
+        options={{
+          headerTintColor:'white',
+          headerShown:'false',
+          headerStyle: {
+            backgroundColor:'#0c123b',
+          },
+          // headerTintColor:'red'
+        }}
+        />
 
     </Drawer.Navigator>
     </NavigationContainer>
