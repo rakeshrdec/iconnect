@@ -41,12 +41,12 @@ const AttendenceMonth = ({navigation}) =>{
         {showYearWiseAtt?
             // <View style={{flex:1}}><AttendenceYear />
             <View style={{flex:1}}><AttendenceUpload />
-             <Pressable 
+             {/* <Pressable 
                 onPress={()=>{setShowYearWiseAtt(false)}}
                 style={{elevation:20, backgroundColor:'lightyellow',margin:20, height:40,justifyContent:'center',borderRadius:25, flexDirection:'row'}}>
                 <Text style={{color:'darkblue', textAlign:'center',alignSelf:'center'}}>check attendence monthwise</Text>
                 <Icon name="rightcircle" size={35} color="#0c123b" style={{position:'absolute',right:0, alignSelf:'center'}} />
-            </Pressable>
+            </Pressable> */}
             </View>:
             <View>
                 <View style={{height:95, backgroundColor:'#0c123b', borderBottomEndRadius:25, borderBottomStartRadius:25}}>
@@ -116,12 +116,12 @@ const AttendenceMonth = ({navigation}) =>{
             </View>
         </View>
 {/* yearly component */}
-        <Pressable 
+        {/* <Pressable 
         onPress={()=>{setShowYearWiseAtt(true)}}
         style={{elevation:20, backgroundColor:'lightyellow',margin:20, height:40,justifyContent:'center',borderRadius:25, flexDirection:'row'}}>
             <Text style={{color:'darkblue', textAlign:'center',alignSelf:'center'}}>check attendence yearwise</Text>
             <Icon name="rightcircle" size={35} color="#0c123b" style={{position:'absolute',right:0, alignSelf:'center'}} />
-        </Pressable>
+        </Pressable> */}
             </View>
         }
     </SafeAreaView>

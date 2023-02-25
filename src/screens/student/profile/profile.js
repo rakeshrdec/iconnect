@@ -6,7 +6,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Calendar } from "react-native-calendars";
 import Icon from 'react-native-vector-icons/AntDesign';
 
-import AttendenceYear from "./attendenceYear";
+// import AttendenceYear from "./attendenceYear";
 import { Divider } from "@rneui/themed";
 import { getTimestamp } from "react-native-reanimated/lib/reanimated2/core";
 // import  Calendar from "react-native-calendars/src/calendar/index.js";
@@ -15,7 +15,7 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
 
 
-const AttendenceUpload = ({navigation}) =>{
+const StudentProfile = ({navigation}) =>{
 
     const studentList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,1];
     const infoList = ['personal','parents','other']
@@ -33,17 +33,15 @@ const AttendenceUpload = ({navigation}) =>{
             }}>
                 
             </View> */}
-            <View style={{ flex:1}}>
-                {/* UPPER SECTION */}
+            {/* <View style={{ flex:1}}>
                     <View style={{ flex:1, flexDirection:"row",width:'100%',justifyContent:'space-around',backgroundColor:'lightgray',alignItems:'center'}}>
                         <Pressable style={{backgroundColor:"lightgray"}}><Text style={{color:'orange'}}>Class VI - A</Text></Pressable>
                         <Divider width={2}  orientation="vertical" />
                         <Pressable style={{backgroundColor:"lightgray"}}>
                             <Text style={{color:'orange'}}>Date</Text>
-                            <Text>{Date().toString().slice(0,15)}</Text>
+                            <Text>{Date()}</Text>
                         </Pressable>
                     </View>
-                    {/* LOWER SECTION */}
                     <View style={{ flex:7, width:'100%',backgroundColor:'lightgray',padding:10}}>
                         <View style={{flexDirection:'row',width:'100%',backgroundColor:'gray',justifyContent:'space-between',paddingHorizontal:15}}>
                             <Text style={{color:'black'}}>Roll No</Text>
@@ -74,11 +72,11 @@ const AttendenceUpload = ({navigation}) =>{
                         }}
                         style={{backgroundColor:"orange",height:40,borderRadius:25,width:'100%',alignItems:'center',justifyContent:'center'}}><Text style={{color:'white',textAlign:'center'}}>SUBMIT ATTENDENCE</Text></Pressable>
                     </View>
-            </View>
+            </View> */}
             {/* ATTENDENCE UPLOAD PAGE CODE  */}
 
             {/* USER PROFILE */}
-            {/* <View style={{flex:1,backgroundColor:'lightgray',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
+            <View style={{flex:1,backgroundColor:'lightgray',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
                 <Image source={require('../../../../assets/profile/studentProfile.jpg')} style={{height:80,width:80,borderRadius:190}} />
                 <View style={{}}>
                     <Text style={{color:'black'}}>Rakesh Mishra</Text>
@@ -86,8 +84,8 @@ const AttendenceUpload = ({navigation}) =>{
                     <Text style={{color:'black'}}>Adm no. 132434</Text>
                     <Text style={{color:'black'}}>Roll No. 74343441</Text>
                 </View>
-            </View> */}
-            {/* <View style={{flex:6,backgroundColor:'white'}}>
+            </View>
+            <View style={{flex:6,backgroundColor:'white'}}>
                 <View style={{flexDirection:'row',width:'100%',justifyContent:'space-around'}}>
                     <Pressable
                         onPress={()=>{
@@ -111,14 +109,15 @@ const AttendenceUpload = ({navigation}) =>{
                         <Text style={{color:'black'}}>OTHERS</Text>
                     </Pressable>
                 </View>
+                {/*DETAILS   */}
                 {infoOf=='personal'?<View style={{justifyContent:"center",alignItems:'center'}}><Text>These are information of student</Text></View>:<View />}
                 {infoOf=='parents'?<View style={{justifyContent:"center",alignItems:'center'}}><Text>These are information of parents</Text></View>:<View />}
                 {infoOf=='others'?<View style={{justifyContent:"center",alignItems:'center'}}><Text> others inormation</Text></View>:<View />}
             </View>
-            */}
+           
             
     </SafeAreaView>
     );
 }
 
-export default AttendenceUpload;
+export default StudentProfile;

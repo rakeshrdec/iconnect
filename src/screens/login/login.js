@@ -41,6 +41,7 @@ const Login = ({ navigation }) => {
       navigation.navigate('StudentCard')
       }
       else{
+        navigation.navigate('StudentCard')
         setLoginId('');
         setPassword('');
         Alert.alert('please enter coreect login credentials')

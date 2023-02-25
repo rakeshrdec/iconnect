@@ -30,6 +30,8 @@ import {
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import StudentDashBoard from '../student/studentDashBoard';
+import StudentProfile from '../student/profile/profile';
+import AttendenceIndex from '../student/attendence/attendenceIndex';
 
 
 
@@ -222,7 +224,16 @@ const HomePage = () =>{
           },
       }}/>
       <Drawer.Screen name="Notifications" component={NotificationsScreen} />
-      <Drawer.Screen name="Attendence" component={AttendenceMonth}      
+      <Drawer.Screen name="Attendence" component={AttendenceIndex}
+        options={{
+          headerTintColor:'white',
+          headerShown:'false',
+          headerStyle: {
+            backgroundColor:'#0c123b',
+          },
+        }} />
+
+      <Drawer.Screen name="AttendenceMonth" component={AttendenceMonth}      
       options={{
         headerTintColor:'white',
         headerShown:'false',
@@ -243,6 +254,16 @@ const HomePage = () =>{
           // headerTintColor:'red'
         }}
         />
+         <Drawer.Screen name="StudentProfile" component={StudentProfile}      
+            options={{
+              headerTintColor:'white',
+              headerShown:'false',
+              headerStyle: {
+                backgroundColor:'#0c123b',
+              },
+              // headerTintColor:'red'
+            }}
+            />
 
     </Drawer.Navigator>
     </NavigationContainer>
