@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 
 import AttendenceYear from "./attendenceYear";
 // import  Calendar from "react-native-calendars/src/calendar/index.js";
+import AttendenceUpload from "./attendenceUpload";
 
 
 
@@ -38,7 +39,8 @@ const AttendenceMonth = ({navigation}) =>{
     return(
     <SafeAreaView style={{flex:1}}>            
         {showYearWiseAtt?
-            <View style={{flex:1}}><AttendenceYear />
+            // <View style={{flex:1}}><AttendenceYear />
+            <View style={{flex:1}}><AttendenceUpload />
              <Pressable 
                 onPress={()=>{setShowYearWiseAtt(false)}}
                 style={{elevation:20, backgroundColor:'lightyellow',margin:20, height:40,justifyContent:'center',borderRadius:25, flexDirection:'row'}}>
