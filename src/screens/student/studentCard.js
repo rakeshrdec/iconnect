@@ -27,7 +27,7 @@ const StudentCard = ({navigation}) =>{
                 <Text style={{color:'white', fontSize:25, alignSelf:'center'}}>Home</Text>
             </View> */}
                 <View style={{height:55,backgroundColor:'#2D48A1',justifyContent:'center',position:'absolute',width:'100%'}}>
-                    <Text style={{color:'white', fontSize:25, alignSelf:'center'}}>Home</Text>
+                    <Text style={{color:'white', fontSize:20, alignSelf:'center'}}>Student List</Text>
                 </View>
                 <ScrollView style={{position:'absolute',width:'100%',marginTop:70}}>
                     {studentList.map((e,i)=>(

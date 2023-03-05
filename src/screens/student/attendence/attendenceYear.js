@@ -15,7 +15,7 @@ const AttendenceYear = ({navigation}) =>{
         {/* <View style={{flex:1,backgroundColor:'red',justifyContent:'center'}}>
             <Text style={{color:'white', fontSize:26, fontWeight:'bold',alignSelf:'center'}}>Home</Text>
         </View> */}
-             <View style={{height:95, backgroundColor:'#0c123b', borderBottomEndRadius:25, borderBottomStartRadius:25}}>
+             <View style={{height:95, backgroundColor:'#2D48A1', borderBottomEndRadius:25, borderBottomStartRadius:25}}>
                 {/* <Text style={{alignSelf:'center', color:'white', fontWeight:'bold'}}>Attendence</Text> */}
             </View> 
             {/* <View style={{height:45, backgroundColor:'white', borderRadius:15,marginTop:-25, width:'90%', alignSelf:'center',justifyContent:'center'}}>
@@ -26,7 +26,7 @@ const AttendenceYear = ({navigation}) =>{
             <View style={{flex:0.8, marginHorizontal:20, borderRadius:15,backgroundColor:'white',}}>
                 <View style={{flex:1, backgroundColor:'lightgray', borderBottomWidth:1,borderTopEndRadius:15,borderTopStartRadius:15, justifyContent:'space-between', flexDirection:'row',paddingHorizontal:20, alignItems:'center'}}>
                     <Text style={{color:'darkblue'}}>Year of {year}</Text>
-                    <Icon name="dots-three-horizontal" size={30} color='darkblue' onPress={()=>{setYearToggle(!yearToggle)}}/>
+                    <Icon name="dots-three-horizontal" size={30} color='#2D48A1' onPress={()=>{setYearToggle(!yearToggle)}}/>
                 </View>
                 <View style={{flex:1, backgroundColor:'lightgray', borderBottomWidth:1, flexDirection:'row',justifyContent:'space-between', alignItems:'center', paddingHorizontal:10}}>
                     <Text style={{color:'darkblue'}}>Month</Text>
@@ -119,9 +119,9 @@ const AttendenceYear = ({navigation}) =>{
                     <Text style={{color:'red', marginHorizontal:5,  width:50, textAlign:'center'}}>{absentCount[11]}</Text>
                     </View>
                 </View>
-                {yearToggle?<View  style={{height:200,width:150,backgroundColor:'midnightblue', position:'absolute', top:30, right:10, borderRadius:15}}>
-                    <ScrollView style={{backgroundColor:'white', height:130,width:100, margin:10}}>
-                        <Pressable style={{justifyContent:'center', backgroundColor:'midnightblue', padding:10,borderRadius:15}}
+                {yearToggle?<View  style={{height:90,width:150,backgroundColor:'#2D48A1', position:'absolute', top:30, right:10, borderRadius:15}}>
+                    {/* <ScrollView style={{backgroundColor:'white', height:130,width:100, margin:10}}> */}
+                        {/* <Pressable style={{justifyContent:'center', backgroundColor:'midnightblue', padding:10,borderRadius:15}}
                             onPress={()=>{setYearToggle(false)
                                          setYear('2022-2023')
                                     }}
@@ -134,17 +134,15 @@ const AttendenceYear = ({navigation}) =>{
                                     }}
                         >
                             <Text style={{color:'white'}}>2021-2022</Text>
-                        </Pressable>
-                        {/* <Pressable style={{justifyContent:'center', backgroundColor:'midnightblue', padding:10,borderRadius:15}}>
-                            <Text style={{color:'white'}}>2018-1019</Text>
-                        </Pressable>
-                        <Pressable style={{justifyContent:'center', backgroundColor:'midnightblue', padding:10,borderRadius:15}}>
-                            <Text style={{color:'white'}}>2018-1019</Text>
-                        </Pressable>
-                        <Pressable style={{justifyContent:'center', backgroundColor:'midnightblue', padding:10,borderRadius:15}}>
-                            <Text style={{color:'white'}}>2018-1019</Text>
                         </Pressable> */}
-                    </ScrollView>
+                       <Pressable style={{backgroundColor:'white',borderRadius:25,margin:10}}
+                        onPress={()=>{
+                            //download pdf
+                        }}
+                       >
+                        <Text style={{textAlign:'center',color:'black'}}>Download Attendence</Text>
+                       </Pressable>
+                    {/* </ScrollView> */}
                 </View>:<View/>}
 
             </View>

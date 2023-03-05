@@ -49,7 +49,7 @@ const AttendenceMonth = ({navigation}) =>{
             </Pressable> */}
             </View>:
             <View>
-                <View style={{height:95, backgroundColor:'#0c123b', borderBottomEndRadius:25, borderBottomStartRadius:25}}>
+                <View style={{height:95, backgroundColor:'#2D48A1', borderBottomEndRadius:25, borderBottomStartRadius:25}}>
                 {/* <Text style={{alignSelf:'center', color:'white', fontWeight:'bold'}}>Attendence</Text> */}
             </View> 
             <View style={{height:45, backgroundColor:'white', borderRadius:15,marginTop:-25, width:'90%', alignSelf:'center',justifyContent:'center'}}>
