@@ -25,19 +25,25 @@ import {
   Alert,
 } from 'react-native';
 // import { Icon } from 'react-native-vector-icons/Icon';
-import Icon from 'react-native-vector-icons/AntDesign';
+// import Icon from 'react-native-vector-icons/AntDesign';
+import { Icon } from 'react-native-elements';
+import { Input } from 'react-native-elements';
+
+// import { Icon, Input } from '@ui-kitten/components';
 
 
 const Stack = createNativeStackNavigator();
 
 const Login = ({ navigation }) => {
+  const [hidePassword,setHidePassword] = useState(true);
   const [loginFor, setLoginFor] = useState('Student')
  const [loginId,setLoginId] = useState()
  const [password,setPassword] = useState()
   const onLogin = () =>{
     if(loginFor=='Student') {
       // Alert.alert('student Login');
-      if(loginId==12345678&&password==12345678) {
+      if(loginId==12345678&&password==12345678) 
+      {
       navigation.navigate('StudentCard')
       }
       else{
@@ -54,73 +60,110 @@ const Login = ({ navigation }) => {
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: '#0c123b', justifyContent: 'center',  }}>
-      {/* <View style={{ borderWidth: 1, width: '95%', backgroundColor: 'yellow', borderRadius: 25, padding: 20,height:350 ,justifyContent:'space-around'}}>
-        <Text style={{ color: 'black', textAlign: 'center', justifyContent: 'center', fontWeight: 'bold' }}>iNi Labs SCHOOL</Text>
-        <Text style={{ textAlign: 'left', color: 'black', fontWeight: 'bold' }}>Username</Text>
-        <TextInput style={{ width: '100%', borderWidth: 1, color: 'black', textAlign: 'center', justifyContent: 'center', fontWeight: 'bold', placeholder: 'Username', borderRadius: 25, height: 40 }}
-          placeholder='Enter Username'
-          placeholderTextColor='black'></TextInput>
-        <Text style={{ textAlign: 'left', color: 'black', fontWeight: 'bold' }}>Password</Text>
-        <TextInput style={{ width: '100%', borderWidth: 1, color: 'black', textAlign: 'center', justifyContent: 'center', fontWeight: 'bold', placeholder: 'Username', borderRadius: 25, height: 40 }}
-          placeholder='Enter Password'
-          placeholderTextColor='black'></TextInput>
-        <Pressable
-          onPress={() => { 
-            navigation.navigate('StudentCard');
-            // navigation.navigate("HomePage")
-           }}
-          style={{ backgroundColor: 'white', borderRadius: 25, width: '100%', height: 40, elevation: 10, marginVertical: 10, justifyContent: 'center' }}>
-          <Text style={{ color: 'black', textAlign: 'center', fontWeight: 'bold' }}>Login</Text>
-        </Pressable>        
-      </View> */}
-      {/* logo section */}
-      <View>
-        <Image source={require('../../../assets/logo/applogo.jpeg')} style={{width:100,height:100, borderRadius:15, resizeMode:'stretch', alignSelf:'center'}}/>
-        <Text style={{color:'white', fontWeight:'bold',textAlign:'center', fontSize:20}}>i-Class</Text>
-      </View>
-      {/* login section */}
-      <View style={{ borderColor:'yellow', width:'100%', justifyContent:'center',padding:20, borderRadius:20,}}>
-        <View style={{flexDirection:'row', justifyContent:'space-around'}}>
+    <View style={{ flex: 1, backgroundColor: '#2D48A1', justifyContent: 'center',  }}>
+      <View style={{backgroundColor:'white',width:'95%',alignSelf:'center',borderRadius:15,minHeight:450}}>
+          {/* logo section */}
+          <View>
+            <Image source={require('../../../assets/logo/applogo.jpeg')} style={{width:70,height:70, borderRadius:15, resizeMode:'stretch', alignSelf:'center'}}/>
+            <Text style={{color:'#2D48A1', fontWeight:'bold',textAlign:'center', }}>i-Class</Text>
+          </View>
+          {/* login section */}
+          <View style={{ borderColor:'#F0BA1A', width:'100%', justifyContent:'center',padding:20, borderRadius:20,}}>
+            <View style={{flexDirection:'row', justifyContent:'space-around'}}>
+                <Pressable
+                onPress={()=>{
+                      setLoginFor('Staff')
+                  }} 
+                  style={loginFor=='Staff'?{elevation:10,backgroundColor:'#F0BA1A', borderRadius:5, width:'35%', height:40, alignItems:'center', justifyContent:'center'}:{borderWidth:1,backgroundColor:'white', borderRadius:5, width:'35%', height:40, alignItems:'center', justifyContent:'center'}}>
+                  <Text style={{color:'blue',fontWeight:'bold'}}>staff</Text>
+                </Pressable>
+                <Pressable
+                onPress={()=>{
+                      setLoginFor('Student')
+                  }} 
+                  // value={loginId}
+                  style={loginFor=='Student'?{elevation:10,backgroundColor:'#F0BA1A', borderRadius:5, width:'35%', height:40, alignItems:'center', justifyContent:'center'}:{borderWidth:1,backgroundColor:'white', borderRadius:5, width:'35%', height:40, alignItems:'center', justifyContent:'center'}}>
+                  <Text style={{color:'blue',fontWeight:'bold'}}>student</Text>
+                </Pressable>
+            </View>
+              <Text style={{color:'black', fontWeight:'bold', textAlign:'center',  marginTop:10, borderRadius:5, height:40}}>{loginFor} Login</Text>
+              {/* <Text style={{color:'black'}}>Mobile</Text> */}
+                <Input
+                  inputStyle={{color:'black',fontSize:15,height:40}}
+                  placeholder='Enter User Id'
+                  placeholderTextColor='black'
+                  rightIcon={
+                    <Icon
+                      type='ant-design'
+                      name='user'
+                      size={20}
+                      color='black'
+                    />
+                    }
+                  />
+
+                  {/* uiKITTEN */}
+                  {/* <Input
+                      value={loginId}
+                      label='Password'
+                      placeholder='Place your Text'
+                      // caption={renderCaption}
+                      // accessoryRight={renderIcon}
+                      // secureTextEntry={secureTextEntry}
+                      onChangeText={nextValue => setLoginId(nextValue)}
+                    /> */}
+              {/* <TextInput
+                onChangeText={(e)=>{
+                  console.log(e)
+                    setLoginId(e)
+                  }}
+                  // value={password}
+                style={{borderBottomWidth:1, width:'100%', borderRadius:5 , color:'midnightblue',height:40}}/> */}
+              {/* <Text style={{color:'black'}}>Password</Text> */}
+              {/* <TextInput
+                placeholder='Enter Password'
+                secure={true}
+                secureTextEntry={true}
+                caretHidden={true}
+                onChangeText={(e)=>{
+                    setPassword(e)
+                  }}
+                style={{borderBottomWidth:1, width:'100%', borderRadius:5 , color:'midnightblue',height:40}}>
+              </TextInput> */}
+
+                <Input
+                  inputStyle={{color:'black',fontSize:15,height:40}}
+                  placeholder='Enter Password'
+                  placeholderTextColor='black'
+                  secureTextEntry={hidePassword}
+                  rightIcon={
+                    hidePassword?
+                        <Icon
+                        onPress={()=>{setHidePassword(!hidePassword)}}
+                        type='entypo'
+                        name='eye-with-line'
+                        size={20}
+                        color='black'
+                        />:
+                        <Icon
+                          onPress={()=>{setHidePassword(!hidePassword)}}
+                          type='entypo'
+                          name='eye'
+                          size={20}
+                          color='black'
+                        />
+                    }
+                  />
+
             <Pressable
-             onPress={()=>{
-                  setLoginFor('Staff')
-              }} 
-              style={{backgroundColor:'yellow', borderRadius:5, width:'25%', height:40, alignItems:'center', justifyContent:'center'}}>
-              <Text style={{color:'blue'}}>staff</Text>
+                onPress={onLogin}
+                style={{flexDirection:'row',justifyContent:'space-around', backgroundColor:'#F0BA1A', marginTop:10,  borderRadius:150,height:40,alignItems:'center'}}>
+                <Text style={{color:'white', fontWeight:'bold',textAlign:'center', alignSelf:'center', fontSize:18}}>Login</Text>
+                {/* <Icon name="rightcircle" size={27} color="darkblue" /> */}
             </Pressable>
-            <Pressable
-             onPress={()=>{
-                  setLoginFor('Student')
-              }} 
-              // value={loginId}
-              style={{backgroundColor:'yellow', borderRadius:5, width:'25%', height:40, alignItems:'center', justifyContent:'center'}}>
-              <Text style={{color:'blue'}}>student</Text>
-            </Pressable>
-        </View>
-          <Text style={{color:'white', fontWeight:'bold', textAlign:'center', fontSize:20, marginTop:20, borderRadius:5, height:40}}>{loginFor} Login</Text>
-          <Text style={{color:'white'}}>Mobile</Text>
-          <TextInput
-            onChangeText={(e)=>{
-              console.log(e)
-                setLoginId(e)
-              }}
-              // value={password}
-             style={{backgroundColor:'lightyellow',width:'100%',  borderWidth:1, borderRadius:5 , color:'midnightblue'}}/>
-          <Text style={{color:'white'}}>Password</Text>
-          <TextInput
-            onChangeText={(e)=>{
-                setPassword(e)
-              }}
-             style={{backgroundColor:'lightyellow',width:'100%',  borderWidth:1, borderRadius:5 , color:'midnightblue'}}/>
-        <Pressable
-            onPress={onLogin}
-             style={{flexDirection:'row',justifyContent:'space-around', backgroundColor:'yellow', marginTop:10, padding:8, borderRadius:5}}>
-            <Text style={{color:'darkblue', fontWeight:'bold',textAlign:'center', alignSelf:'center', fontSize:25}}>Login</Text>
-            <Icon name="rightcircle" size={30} color="darkblue" />
-        </Pressable>
+          </View>          
       </View>
-      <Text></Text>
+      <Text style={{color:'white', fontWeight:'bold', textAlign:'center'}}>powered by i-class</Text>
     </View>
   );
 };

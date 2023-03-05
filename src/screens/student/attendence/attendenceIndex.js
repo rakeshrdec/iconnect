@@ -28,16 +28,17 @@ const AttendenceIndex = ({navigation}) =>{
 
     return(
      <>
-    {selecComponent=='index'?<SafeAreaView style={{flex:1}}> 
-        <View style={{
-            width: SCREEN_WIDTH,
-            height: 0,
-            borderTopColor: "#0c123b",
-            borderTopWidth: SCREEN_HEIGHT ,
-            borderRightWidth: SCREEN_WIDTH,
-            borderRightColor: 'yellow'
-            }}>
-            </View>
+    {selecComponent=='index'?
+        <SafeAreaView style={{flex:1}}> 
+            <View style={{
+                    width: SCREEN_WIDTH,
+                    height: 0,
+                    borderTopColor: "#0c123b",
+                    borderTopWidth: SCREEN_HEIGHT ,
+                    borderRightWidth: SCREEN_WIDTH,
+                    borderRightColor: 'yellow'
+                }}>
+                </View>
                 <Pressable
                      onPress={()=>{
                         setSelectComponent('attendenceMonth')
