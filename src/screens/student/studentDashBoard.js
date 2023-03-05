@@ -73,11 +73,21 @@ const StudentDashBoard = ({navigation}) =>{
               <View style={{flexDirection:'row',height:100}}>
                   <Pressable
                     onPress={()=>{
-                      Alert.alert('work in prgres')
+                      // Alert.alert('work in prgres')
+                      navigation.navigate('TimeTable')
                     }}
                     style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}>
                       <Image source={require('../../../assets/logo/timetable.png')} style={{height:50,width:50}} />
                       <Text>Time Table</Text>
+                  </Pressable>
+                  <Pressable
+                    onPress={()=>{
+                      // Alert.alert('work in prgres')
+                      navigation.navigate('StudentProfile')
+                    }}
+                    style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}>
+                      <Image source={require('../../../assets/profile/studentProfile.jpg')} style={{height:50,width:50}} />
+                      <Text>Profile</Text>
                   </Pressable>
                   {/* <Pressable
                     onPress={()=>{
@@ -96,6 +106,7 @@ const StudentDashBoard = ({navigation}) =>{
                       <Text>Holidays</Text>
                   </Pressable> */}
               </View>
+              
         
               <View style={{flex:0.4,marginTop:5, backgroundColor:'lightgray',padding:10}}>
                 <Text style={{color:'black'}}>ACTIVITIES</Text>

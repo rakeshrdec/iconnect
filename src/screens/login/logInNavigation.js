@@ -13,6 +13,8 @@ import StudentCard from '../student/studentCard';
 import StudentDashBoard from '../student/studentDashBoard';
 import AttendenceMonth from '../student/attendence/attendenceMonth';
 import AttendenceYear from '../student/attendence/attendenceYear';
+import TimeTable from '../student/timeTable/timeTable';
+import studentProfile from '../student/profile/profile';
 // import HomePage from '../homepage/userProfile';
 
 // import type {Node} from 'react';
@@ -69,6 +71,15 @@ const LoginNavigation = () =>{
         component={AttendenceYear}
         options={{ headerShown: false, title: 'Home' }}
       />
+      <Stack.Screen
+        name="TimeTable"
+        component={TimeTable}
+        options={{ headerShown: false, title: 'Home' }}
+      />
+      <Stack.Screen
+        name='StudentProfile'
+        component={studentProfile}
+        />
       {/* <Stack.Screen name="loginOTP" component={LoginOTPPage} options={{ headerShown: false, title: 'Welcome' }} />
       <Stack.Screen name="loginUserDetail" component={LoginUserDetailPage} options={{ headerShown: false, title: 'Welcome' }} />
       <Stack.Screen name="userProfile" component={UserProfile} options={{ headerShown: false, title: 'Welcome' }} />
