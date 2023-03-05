@@ -29,7 +29,7 @@ const TimeTable = ({navigation}) =>{
             :
             <View style={{flex:1,justifyContent:"space-between"}}>
                 {/* background circular design */}
-                <View style={{flex:1, backgroundColor:'#0c123b', borderBottomEndRadius:25, borderBottomStartRadius:25}} >
+                <View style={{flex:1, backgroundColor:'#2D48A1', borderBottomEndRadius:25, borderBottomStartRadius:25}} >
                     <View style={{height:45, backgroundColor:'white', borderRadius:15, width:'90%', alignSelf:'center',justifyContent:'center',position:'absolute',bottom:-20}}>
                         <Text style={{textAlign:'center', color:'#0c123b', fontWeight:'bold', alignItems:'center',justifyContent:'center',alignSelf:'center'}}>Class - 9A</Text>
                     </View>

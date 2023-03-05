@@ -28,31 +28,32 @@ const AttendenceIndex = ({navigation}) =>{
 
     return(
      <>
-    {selecComponent=='index'?<SafeAreaView style={{flex:1}}> 
-        <View style={{
-            width: SCREEN_WIDTH,
-            height: 0,
-            borderTopColor: "#0c123b",
-            borderTopWidth: SCREEN_HEIGHT ,
-            borderRightWidth: SCREEN_WIDTH,
-            borderRightColor: 'yellow'
-            }}>
-            </View>
+    {selecComponent=='index'?
+        <SafeAreaView style={{flex:1}}> 
+            <View style={{
+                    width: SCREEN_WIDTH,
+                    height: 0,
+                    borderTopColor: "#2D48A1",
+                    borderTopWidth: SCREEN_HEIGHT ,
+                    borderRightWidth: SCREEN_WIDTH,
+                    borderRightColor: '#F0BA1A'
+                }}>
+                </View>
                 <Pressable
                      onPress={()=>{
                         setSelectComponent('attendenceMonth')
                      }}
-                     style={{borderRadius:15,alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'lightgray', height:80,width:'90%',position:'absolute',top:15}}><Text style={{color:'black'}}>View This Month Attendence</Text></Pressable>
+                     style={{borderRadius:15,alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'white', height:80,width:'90%',position:'absolute',top:15}}><Text style={{color:'black'}}>View This Month Attendence</Text></Pressable>
                 <Pressable
                      onPress={()=>{
                         setSelectComponent('attendenceYear')
                      }}
-                     style={{borderRadius:15,alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'lightgray', height:80,width:'90%',position:'absolute',top:115}}><Text style={{color:'black'}}>View This Year Attendence</Text></Pressable>
+                     style={{borderRadius:15,alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'white', height:80,width:'90%',position:'absolute',top:115}}><Text style={{color:'black'}}>View This Year Attendence</Text></Pressable>
                 <Pressable
                      onPress={()=>{
                         setSelectComponent('attendenceUpload')
                      }}
-                     style={{borderRadius:15,alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'lightgray', height:80,width:'90%',position:'absolute',top:215}}><Text style={{color:'black'}}>Upload Attendence</Text></Pressable>
+                     style={{borderRadius:15,alignSelf:'center',justifyContent:'center',alignItems:'center',backgroundColor:'white', height:80,width:'90%',position:'absolute',top:215}}><Text style={{color:'black'}}>Upload Attendence</Text></Pressable>
     </SafeAreaView>:<View></View>}
     {/* components */}
     {selecComponent=='attendenceMonth'?<View style={{flex:1}}>
