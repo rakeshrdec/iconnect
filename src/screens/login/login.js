@@ -159,7 +159,7 @@ const Login = ({ navigation }) => {
             <Pressable
                 onPress={onLogin}
                 style={{flexDirection:'row',justifyContent:'space-around', backgroundColor:'#F0BA1A', marginTop:10,  borderRadius:150,height:40,alignItems:'center'}}>
-                <Text style={{color:'white', fontWeight:'bold',textAlign:'center', alignSelf:'center', fontSize:18}}>Login</Text>
+                <Text style={{color:'white', fontWeight:'bold',textAlign:'center', alignSelf:'center', fontSize:18}}>Login123</Text>
                 {/* <Icon name="rightcircle" size={27} color="darkblue" /> */}
             </Pressable>
           </View>          
