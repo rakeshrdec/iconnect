@@ -35,7 +35,7 @@ const CustomSidebarMenu = (props) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {/*Top Large Image RED SECTION */}
-      <View style={{ backgroundColor: 'red', height: '25%', justifyContent: 'center' }}>
+      <View style={{ backgroundColor: '#2E4AA0', height: '25%', justifyContent: 'center' }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
           <Avatar
             size={85}
@@ -45,13 +45,18 @@ const CustomSidebarMenu = (props) => {
             }} />
           <View>
             <View style={{ flexDirection: 'row' }}>
-              <Icon name="account" size={20} color="white" />
+             
               <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Rakesh Mishra</Text>
             </View>
             <View style={{ flexDirection: 'row' }}>
-              <Icon name="account" size={20} color="white" />
+              
               <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>
                 Student
+              </Text>
+            </View>
+            <View style={{ flexDirection: 'row' }}>
+              <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>
+                Class-1 Section-1
               </Text>
             </View>
           </View>
@@ -60,7 +65,6 @@ const CustomSidebarMenu = (props) => {
           source={{ uri: BASE_PATH + proileImage }}
           style={styles.sideMenuProfileIcon}
         /> */}
-        <Text style={{ color: 'white', fontWeight: 'bold', position: 'absolute', bottom: 5, alignSelf: 'center' }}>Dashboard</Text>
       </View>
 
       {/* LIST ITEMS */}
@@ -69,7 +73,7 @@ const CustomSidebarMenu = (props) => {
         <View style={{ display: 'flex', flexDirection: 'row',  alignItems: 'center' }}>
           {/* <Icon name="account" size={20} /> */}
           <DrawerItem
-            style={{ width: 200 }}
+            style={{ width: 200}}
             label="Student"
             onPress={() => {
               // Linking.openURL('https://aboutreact.com/')

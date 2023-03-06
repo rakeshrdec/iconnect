@@ -37,7 +37,8 @@ const AttendenceMonth = ({navigation}) =>{
     //   };
     //   LocaleConfig.defaultLocale = 'fr';
     return(
-    <SafeAreaView style={{flex:1}}>            
+    <SafeAreaView style={{flex:1}}>    
+            
         {showYearWiseAtt?
             // <View style={{flex:1}}><AttendenceYear />
             <View style={{flex:1}}><AttendenceUpload />
@@ -49,12 +50,12 @@ const AttendenceMonth = ({navigation}) =>{
             </Pressable> */}
             </View>:
             <View>
-                <View style={{height:95, backgroundColor:'#2D48A1', borderBottomEndRadius:25, borderBottomStartRadius:25}}>
-                {/* <Text style={{alignSelf:'center', color:'white', fontWeight:'bold'}}>Attendence</Text> */}
-            </View> 
-            <View style={{height:45, backgroundColor:'white', borderRadius:15,marginTop:-25, width:'90%', alignSelf:'center',justifyContent:'center'}}>
+                {/* <View style={{height:95, backgroundColor:'#0c123b', borderBottomEndRadius:25, borderBottomStartRadius:25}}>
+               
+            </View>  */}
+            {/* <View style={{height:45, backgroundColor:'white', borderRadius:15,marginTop:-25, width:'90%', alignSelf:'center',justifyContent:'center'}}>
                 <Text style={{textAlign:'center', color:'#0c123b', fontWeight:'bold', alignItems:'center',justifyContent:'center',alignSelf:'center'}}>Attendence</Text>                
-            </View> 
+            </View>  */}
         {/* <View> */}
             {/* <Calendar></Calendar> */}
             <Calendar 
@@ -67,6 +68,8 @@ const AttendenceMonth = ({navigation}) =>{
                 '2023-02-01': {selected: true, marked: true, selectedColor: 'red'},
                 '2023-02-02': {selected: true, marked: true, selectedColor: 'red'},
                 '2023-02-07': {selected: true, marked: true, selectedColor: 'red'},
+                '2023-02-05': {selected: true, marked: true, selectedColor: '#b942f5'},
+                '2023-03-08': {selected: true, marked: true, selectedColor: '#f58a42'},
                 '2023-05-17': {marked: true},
                 '2023-05-18': {marked: true, dotColor: 'red', activeOpacity: 0},
                 '2023-05-19': {disabled: true, disableTouchEvent: true}
@@ -100,7 +103,7 @@ const AttendenceMonth = ({navigation}) =>{
               />
         {/* </View> */}
 {/* present absent box */}
-        <View style={{flexDirection:'row',height:130, justifyContent:'space-around'}}>
+        <View style={{flexDirection:'row',height:90, justifyContent:'space-around'}}>
             <View style={{flex:1,borderRadius:20,margin:10, backgroundColor:'lightgreen',justifyContent:'space-around' }}>
                 <Text style={{textAlign:'center',color:'white'}}>Total Present</Text>
                 <View style={{height:40,width:40,backgroundColor:'white',  alignSelf:'center', borderRadius:150,  justifyContent:'center', alignItems:'center'}}>
@@ -110,6 +113,22 @@ const AttendenceMonth = ({navigation}) =>{
             </View>
             <View style={{flex:1,borderRadius:20,margin:10, backgroundColor:'red',justifyContent:'space-around' }}>
                 <Text style={{textAlign:'center',color:'white'}}>Total Absent</Text>
+                <View style={{height:40,width:40,backgroundColor:'white',  alignSelf:'center', borderRadius:150,  justifyContent:'center', alignItems:'center'}}>
+                        <Text style={{color:'red'}}>3</Text>
+                </View>                
+            </View>
+        </View>
+
+        <View style={{flexDirection:'row',height:90, justifyContent:'space-around'}}>
+            <View style={{flex:1,borderRadius:20,margin:10, backgroundColor:'#f58a42',justifyContent:'space-around' }}>
+                <Text style={{textAlign:'center',color:'white'}}>Total Holidays</Text>
+                <View style={{height:40,width:40,backgroundColor:'white',  alignSelf:'center', borderRadius:150,  justifyContent:'center', alignItems:'center'}}>
+                        <Text style={{color:'green'}}>3</Text>
+                </View>
+                
+            </View>
+            <View style={{flex:1,borderRadius:20,margin:10, backgroundColor:'#b942f5',justifyContent:'space-around' }}>
+                <Text style={{textAlign:'center',color:'white'}}>Total W/F</Text>
                 <View style={{height:40,width:40,backgroundColor:'white',  alignSelf:'center', borderRadius:150,  justifyContent:'center', alignItems:'center'}}>
                         <Text style={{color:'red'}}>3</Text>
                 </View>                

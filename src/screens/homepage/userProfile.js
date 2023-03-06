@@ -220,7 +220,7 @@ const HomePage = () =>{
         headerTintColor: 'white',
         headerShown:'false',
           headerStyle: {
-            backgroundColor: '#2D48A1',            
+            backgroundColor: '#2E4AA0',            
           },
       }}/>
       <Drawer.Screen name="Notifications" component={NotificationsScreen} />
@@ -229,7 +229,7 @@ const HomePage = () =>{
           headerTintColor:'white',
           headerShown:'false',
           headerStyle: {
-            backgroundColor:'#2D48A1',
+            backgroundColor:'#2E4AA0',
           },
         }} />
 
@@ -238,7 +238,7 @@ const HomePage = () =>{
         headerTintColor:'white',
         headerShown:'false',
         headerStyle: {
-          backgroundColor:'#2D48A1',
+          backgroundColor:'#2E4AA0',
         },
         // headerTintColor:'red'
       }}
@@ -249,7 +249,7 @@ const HomePage = () =>{
           headerTintColor:'white',
           headerShown:'false',
           headerStyle: {
-            backgroundColor:'#2D48A1',
+            backgroundColor:'#2E4AA0',
           },
           // headerTintColor:'red'
         }}
@@ -259,7 +259,7 @@ const HomePage = () =>{
               headerTintColor:'white',
               headerShown:'false',
               headerStyle: {
-                backgroundColor:'#2D48A1',
+                backgroundColor:'#2E4AA0',
               },
               // headerTintColor:'red'
             }}

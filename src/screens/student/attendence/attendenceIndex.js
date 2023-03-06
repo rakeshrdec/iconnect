@@ -33,10 +33,10 @@ const AttendenceIndex = ({navigation}) =>{
             <View style={{
                     width: SCREEN_WIDTH,
                     height: 0,
-                    borderTopColor: "#2D48A1",
+                    borderTopColor: "#2E4AA0",
                     borderTopWidth: SCREEN_HEIGHT ,
                     borderRightWidth: SCREEN_WIDTH,
-                    borderRightColor: '#F0BA1A'
+                    borderRightColor: '#F0BA19'
                 }}>
                 </View>
                 <Pressable

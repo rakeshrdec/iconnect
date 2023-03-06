@@ -20,7 +20,6 @@
     "@ui-kitten/components": "^5.1.2",
     "cache": "^3.0.0",
     "clean": "^4.0.2",
-    "npm": "^9.5.0",
     "react": "18.1.0",
     "react-native": "0.70.1",
     "react-native-calendars": "^1.1293.0",
