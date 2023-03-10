@@ -39,7 +39,26 @@ const Login = ({ navigation }) => {
   const [loginFor, setLoginFor] = useState('Student')
  const [loginId,setLoginId] = useState()
  const [password,setPassword] = useState()
-  const onLogin = () =>{
+  const onLogin = async () =>{
+    console.log("Now will hit api")
+  // fetch('http://13.127.128.192:8081/auth/validateStudentLogin', {
+  //     method: 'POST',
+  //     headers: {
+  //       Accept: 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify({
+  //       "createdAt": "string",
+  //       "expiredAt": "string",
+  //       "password": "7669991129",
+  //       "tokenType": 0,
+  //       "userName": "7669991129"
+  //     })
+  //   }).then((res)=>{ res.json().then(data=>{
+  //     console.log("student Details :",data.students)
+  //   })})
+
+
     if(loginFor=='Student') {
       // Alert.alert('student Login');
       if(loginId==12345678&&password==12345678) 

@@ -22,7 +22,7 @@ const StudentDashBoard = ({ navigation }) => {
         <View style={{ backgroundColor: 'transparent', flex: 0.3, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', minHeight: 140 }}>
           {/* <View style={{height:85,width:85, backgroundColor:'white', borderRadius:150}}></View> */}
           <Image source={require('../../../assets/profile/studentProfile.jpg')} style={{ height: 90, width: 90, borderRadius: 150, resizeMode: 'stretch' }} />
-          <Text style={{ color: 'white', textAlign: 'left', fontSize: 20,fontWeight:'bold' }}>Rakesh Mishra</Text>
+          <Text style={{ color: 'white', textAlign: 'left', fontSize: 20,fontWeight:'bold' }}>Rakesh Mishra </Text>
           {/* <Text>kjjlk</Text> */}
         </View>
         {/* <Button
