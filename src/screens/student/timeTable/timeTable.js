@@ -1,5 +1,5 @@
 import { Avatar } from "@rneui/base";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable,Dimensions, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 // import {Calendar, CalendarList, Agenda, LocaleConfig} from 'react-native-calendars';
@@ -13,34 +13,31 @@ import AttendenceYear from "../attendence/attendenceYear";
 
 
 const TimeTable = ({ navigation }) => {
-    const [showYearWiseAtt, setShowYearWiseAtt] = useState(false);
-    const studentList = [1, 2, 3];
+    useEffect(()=>{
+        getStudentTimeTable(2)
+    },[])
+
+    getStudentTimeTable = (sectionIdVal) =>{
+        const sectionId = sectionIdVal
+        fetch(`http://13.127.128.192:8081/class/getAllClassTimetableDetails?sectionId=${sectionId}`).then((res)=>{
+            res.json().then((data)=>{
+                console.log("data from api is ", (data))
+                if ( data != '') {
+                //    var  holidaysDates = {}
+                //     data.map((d,i)=>{
+                //         const holiday = {[d.holidayDate]:{selected: true, marked: true, selectedColor: '#f58a42'}};
+                //         holidaysDates = {...holidaysDates,...holiday};
+                //     })
+                //     setHolidaysDates(holidaysDates);
+                }
+            })
+        })
+       
+    }
     const [selectedDay, setSelectedDay] = useState('Sun');
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-
-
-            {showYearWiseAtt ?
-                <View style={{ flex: 1 }}><AttendenceYear />
-                    <Pressable
-                        onPress={() => { setShowYearWiseAtt(false) }}
-                        style={{ elevation: 20, backgroundColor: 'lightyellow', margin: 20, height: 40, justifyContent: 'center', borderRadius: 25, flexDirection: 'row' }}>
-                        <Text style={{ color: 'darkblue', textAlign: 'center', alignSelf: 'center' }}>check attendence monthwise</Text>
-                        <Icon name="rightcircle" size={35} color="#0c123b" style={{ position: 'absolute', right: 0, alignSelf: 'center' }} />
-                    </Pressable>
-                </View>
-                :
+        <SafeAreaView style={{ flex: 1 }}>            
                 <View style={{ flex: 1, justifyContent: "space-between" }}>
-                    
-                    {/* background circular design */}
-                    {/* <View style={{flex:1, backgroundColor:'#0c123b', borderBottomEndRadius:25, borderBottomStartRadius:25}} >
-                    <View style={{height:45, backgroundColor:'white', borderRadius:15, width:'90%', alignSelf:'center',justifyContent:'center',position:'absolute',bottom:-20}}>
-                        <Text style={{textAlign:'center', color:'#0c123b', fontWeight:'bold', alignItems:'center',justifyContent:'center',alignSelf:'center'}}>Class - 9A</Text>
-                    </View>
-                </View>            */}
-                    {/* <View style={{height:45, backgroundColor:'white', borderRadius:15,marginTop:-25, width:'90%', alignSelf:'center',justifyContent:'center'}}>
-                    <Text style={{textAlign:'center', color:'#0c123b', fontWeight:'bold', alignItems:'center',justifyContent:'center',alignSelf:'center'}}>Class - 9A</Text>
-                </View>  */}
                     <View style={{ flex: 6, justifyContent: "space-between" }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '90%', alignSelf: 'center', marginVertical: 40 }}>
                             <Pressable style={selectedDay == 'Mon' ? { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#2E4AA0' } : { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#F0BA19' }} onPress={() => { setSelectedDay('Mon') }}><Text style={selectedDay == 'Mon' ? { color: 'white', fontWeight: 'bold' } : { color: 'blue' }}>Mon</Text></Pressable>
@@ -53,7 +50,7 @@ const TimeTable = ({ navigation }) => {
                         </View>
                         {/* subjects */}
                         <ScrollView>
-                            <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
+                            <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>   
                                 <Image source={require('../../../../assets/logo/document.png')} style={{ height: 50, width: 50, resizeMode: 'stretch' }} />
                                 <View style={{ marginHorizontal: 40 }}>
                                     <Text style={{ color: 'black', fontWeight: 'bold' }}>8:00 Am -9:00 Am</Text>
@@ -114,7 +111,6 @@ const TimeTable = ({ navigation }) => {
 
 
                 </View>
-            }
             
         </SafeAreaView>
     );

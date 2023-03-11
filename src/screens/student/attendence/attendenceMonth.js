@@ -139,7 +139,6 @@ const AttendenceMonth = ({navigation}) =>{
         var presentDates = {}
         fetch(`http://13.127.128.192:8081/student/getStudentApprovedAttendances?studentId=${studentId}&startDate=${startDate}&endDate=${endDate}`).then((res)=>{
             res.json().then((data)=>{
-                // console.log("data from api is ", (data))
                 data.map((e,i)=>{
                     const presentDate = {[e.attendanceDate]:{selected: true, marked: true, selectedColor: 'lightgreen'}};
                     presentDates = {...presentDates,...presentDate};

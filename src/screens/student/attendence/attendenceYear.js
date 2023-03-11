@@ -1,10 +1,13 @@
 import Icon from 'react-native-vector-icons/Entypo';
 import { Avatar } from "@rneui/base";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable,Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
 const AttendenceYear = ({navigation}) =>{
+    useEffect(()=>{
+        
+    },[])
     const [yearToggle,setYearToggle] = useState(false);
     const studentList = [1,2,3]
     const presentCount = [9,19,12,19,12,12,12,12,13,12,11,9]
@@ -12,14 +15,7 @@ const AttendenceYear = ({navigation}) =>{
     const [year,setYear] = useState('2022-2023')
     return(
     <SafeAreaView style={{flex:1}}>
-        {/* <View style={{flex:1,backgroundColor:'red',justifyContent:'center'}}>
-            <Text style={{color:'white', fontSize:26, fontWeight:'bold',alignSelf:'center'}}>Home</Text>
-        </View> */}
-            
-            {/* <View style={{height:45, backgroundColor:'white', borderRadius:15,marginTop:-25, width:'90%', alignSelf:'center',justifyContent:'center'}}>
-                <Text style={{textAlign:'center', color:'darkblue', fontWeight:'bold', alignItems:'center',justifyContent:'center',alignSelf:'center'}}>Attendence</Text>                
-            </View>  */}
-        <View style={{flex:3,justifyContent:'center',marginTop:-40}}>
+            <View style={{flex:3,justifyContent:'center',marginTop:-40}}>
             {/* <Text style={{color:'white', fontSize:26, fontWeight:'bold',alignSelf:'center'}}>Home</Text> */}
             <View style={{flex:0.8, marginHorizontal:20, borderRadius:15,backgroundColor:'white',}}>
                 <View style={{flex:1, backgroundColor:'white', borderBottomWidth:1,borderTopEndRadius:15,borderTopStartRadius:15, justifyContent:'space-between', flexDirection:'row',paddingHorizontal:20, alignItems:'center'}}>

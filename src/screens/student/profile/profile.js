@@ -1,5 +1,5 @@
 import { Avatar } from "@rneui/base";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable,Image,Dimensions,Alert } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 // import {Calendar, CalendarList, Agenda, LocaleConfig} from 'react-native-calendars';
@@ -17,6 +17,32 @@ import OthersInfo from "./othersInfo";
 
 
 const StudentProfile = ({navigation}) =>{
+    const [name,setName] = useState('name');
+    const [Class,setClass] = useState('class');
+    const [rollno,setRollno] = useState('roll no');
+    const [enroll, setEnroll] = useState('enroll')
+
+    useEffect(()=>{
+        // http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=2&studentId=1
+        // http://13.127.128.192:8081/class/getClassById?classId=2
+        // http://13.127.128.192:8081/utils/getGenders
+        // http://13.127.128.192:8081/utils/getCategory
+        const studentId = 1;
+        const sessionYear = 2;
+        fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${sessionYear}&studentId=${studentId}`)
+        .then((res)=>{
+            res.json().then((data)=>{
+                // console.log("student basic details", data)
+                setName(data.student.name);
+                setRollno(data.student.id);
+                setEnroll(data.student.enroll)
+                // setClass
+                if(data.studentActivityModel.classId=='2'){
+                    setClass('UKG')
+                }
+            })
+        })
+    },[])
 
     const studentList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,1];
     const infoList = ['personal','parents','other']
@@ -28,10 +54,10 @@ const StudentProfile = ({navigation}) =>{
             <View style={{flex:1,backgroundColor:'lightgray',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
                 <Image source={require('../../../../assets/profile/studentProfile.jpg')} style={{height:80,width:80,borderRadius:190}} />
                 <View style={{}}>
-                    <Text style={{color:'black'}}>Rakesh Mishra</Text>
-                    <Text style={{color:'black'}}>Class 1 - A</Text>
-                    <Text style={{color:'black'}}>Adm no. 132434</Text>
-                    <Text style={{color:'black'}}>Roll No. 74343441</Text>
+                    <Text style={{color:'black'}}>{name}</Text>
+                    <Text style={{color:'black'}}>Class {Class}</Text>
+                    <Text style={{color:'black'}}>Enroll no. {enroll}</Text>
+                    <Text style={{color:'black'}}>Roll No. {rollno}</Text>
                 </View>
             </View>
             <View style={{flex:6,backgroundColor:'white'}}>
