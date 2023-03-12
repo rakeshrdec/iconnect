@@ -1,0 +1,3 @@
+export default{
+    USER_INFORMATION:'USER_INFORMATION',
+}

@@ -8,6 +8,9 @@
 
 import React from 'react';
 import * as eva from '@eva-design/eva';
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
+
 
 // import type {Node} from 'react';
 import {
@@ -64,6 +67,7 @@ const App: () => Node = () => {
   };
 
   return (
+    <Provider store={store}>
     <ApplicationProvider {...eva} >
       <SafeAreaView style={backgroundStyle}>
         <StatusBar
@@ -96,6 +100,7 @@ const App: () => Node = () => {
         </ScrollView>
       </SafeAreaView>
     </ApplicationProvider>
+    </Provider>
   );
 };
 
