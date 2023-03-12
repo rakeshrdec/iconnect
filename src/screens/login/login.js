@@ -28,6 +28,8 @@ import {
 // import Icon from 'react-native-vector-icons/AntDesign';
 import { Icon } from 'react-native-elements';
 import { Input } from 'react-native-elements';
+import actions from '../../redux/actions';
+import {useSelector,useDispatch} from 'react-redux';
 
 // import { Icon, Input } from '@ui-kitten/components';
 
@@ -39,43 +41,54 @@ const Login = ({ navigation }) => {
   const [loginFor, setLoginFor] = useState('Student')
  const [loginId,setLoginId] = useState()
  const [password,setPassword] = useState()
+
+ const data = useSelector((state)=>state)        
+ // console.log('number from state',num);
+ const userData = data.userInformation;
+ console.log('this is user data',userData);
+
   const onLogin = async () =>{
+    actions.userInformation({name:'rakesh mishra', mob:'008977779',comapny :'varaisys', });
     console.log("Now will hit api")
-  // fetch('http://13.127.128.192:8081/auth/validateStudentLogin', {
-  //     method: 'POST',
-  //     headers: {
-  //       Accept: 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({
-  //       "createdAt": "string",
-  //       "expiredAt": "string",
-  //       "password": "7669991129",
-  //       "tokenType": 0,
-  //       "userName": "7669991129"
-  //     })
-  //   }).then((res)=>{ res.json().then(data=>{
-  //     console.log("student Details :",data.students)
-  //   })})
+    fetch('http://13.127.128.192:8081/auth/validateStudentLogin', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              "createdAt": "string",
+              "expiredAt": "string",
+              "password": "7669991129",
+              "tokenType": 0,
+              "userName": "7669991129"
+            })
+          }).then((res)=>{ 
+            // console.log("response",res.status)
+            if (res.status == 200 ){
+            res.json().then(data=>{
+            // console.log("student Details :",data)
+            // setStudentList(data.students)
+          })}})
 
 
-    if(loginFor=='Student') {
-      // Alert.alert('student Login');
-      if(loginId==12345678&&password==12345678) 
-      {
-      navigation.navigate('StudentCard')
-      }
-      else{
-        navigation.navigate('StudentCard')
-        setLoginId('');
-        setPassword('');
-        Alert.alert('please enter coreect login credentials')
-      }
-    }
+    // if(loginFor=='Student') {
+    //   // Alert.alert('student Login');
+    //   if(loginId==12345678&&password==12345678) 
+    //   {
+    //   navigation.navigate('StudentCard')
+    //   }
+    //   else{
+    //     navigation.navigate('StudentCard')
+    //     setLoginId('');
+    //     setPassword('');
+    //     Alert.alert('please enter coreect login credentials')
+    //   }
+    // }
     
-    if(loginFor=='Staff') {
-      Alert.alert('staff Login is in development mode')
-    }
+    // if(loginFor=='Staff') {
+    //   Alert.alert('staff Login is in development mode')
+    // }
   }
 
   return (

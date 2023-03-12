@@ -32,12 +32,15 @@ import {
 
 import Login from './login';
 import HomePage from '../homepage/userProfile';
+import { Provider } from 'react-redux';
+import store from '../../redux/store'
 
 const Stack = createNativeStackNavigator();
 
 const LoginNavigation = () =>{
 
   return (
+    <Provider store={store}>
     <NavigationContainer>
     <Stack.Navigator initialRouteName={'Login'}>
       <Stack.Screen
@@ -107,6 +110,7 @@ const LoginNavigation = () =>{
       /> */}
     </Stack.Navigator>
   </NavigationContainer>
+  </Provider>
   );
 };
 
