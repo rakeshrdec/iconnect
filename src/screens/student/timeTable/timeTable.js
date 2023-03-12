@@ -10,30 +10,89 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 import AttendenceYear from "../attendence/attendenceYear";
 // import  Calendar from "react-native-calendars/src/calendar/index.js";
 
+const classSubjectMap= new Map();
+const timeTableData = new Map();
+const timeTablemap= new Map();
 
 
 const TimeTable = ({ navigation }) => {
     useEffect(()=>{
-        getStudentTimeTable(2)
+        getClassSubjects(2);
+        
     },[])
 
-    getStudentTimeTable = (sectionIdVal) =>{
+    getClassSubjects = (sectionIdVal) =>{
         const sectionId = sectionIdVal
-        fetch(`http://13.127.128.192:8081/class/getAllClassTimetableDetails?sectionId=${sectionId}`).then((res)=>{
+        fetch(`http://13.127.128.192:8081/class/getClassById?classId=${sectionId}`).then((res)=>{
             res.json().then((data)=>{
-                console.log("data from api is ", (data))
+                // console.log("data from api is ", (data))
                 if ( data != '') {
-                //    var  holidaysDates = {}
-                //     data.map((d,i)=>{
-                //         const holiday = {[d.holidayDate]:{selected: true, marked: true, selectedColor: '#f58a42'}};
-                //         holidaysDates = {...holidaysDates,...holiday};
-                //     })
-                //     setHolidaysDates(holidaysDates);
+                    for (const subjects of data.subjects) {
+                        classSubjectMap.set(subjects.subjectId, subjects);
+                      }
+                    getTimeTable(2);
                 }
             })
         })
+    }
+
+    getTimeTable = (sectionIdVal) =>{
+        const sectionId = sectionIdVal
+        fetch(`http://13.127.128.192:8081/timeTable/getAllTimeTable`).then((res)=>{
+            res.json().then((data)=>{
+                // console.log("data from api is ", (data))
+                if ( data != '') {
+                    data.forEach(element => {
+                        timeTablemap.set(element.id, element);
+                      });
+                    getStudentTimeTable(2);
+                }
+            })
+        })
+    }
+
+    
+    getStudentTimeTable = (sectionIdVal) =>{
+        const sectionId = sectionIdVal
+        console.log("data from api is =======>>> ", (timeTablemap))
+        fetch(`http://13.127.128.192:8081/class/getAllClassTimetableDetails?sectionId=${sectionId}`).then((res)=>{
+            res.json().then((data)=>{
+               
+                if ( data != '') {
+
+                    data.map((element,i)=>{
+                        console.log("element======>> ", (element));
+                        console.log("element======>> ", (timeTablemap.get(element.timetableId)))
+
+                        var array= timeTableData.get(element.weekDaysNumber);
+
+                        if(array == undefined) {
+                            array = [];
+                        }
+                        console.log("element======>> ", (array));
+                        array.push({
+                            summerStartTime: timeTablemap.get(element.timetableId).summerStartTime,
+                            summerEndTime: timeTablemap.get(element.timetableId).summerEndTime,
+            
+                            winterStartTime: timeTablemap.get(element.timetableId).winterStartTime,
+                            winterEndTime: timeTablemap.get(element.timetableId).winterEndTime,
+            
+                            theoryTitle: element.isPractical ? "Practical" : 'Theory',
+                            subjectId: element.subjectId,
+                            staffId: element.staffId,
+                            practical: classSubjectMap.get(element.subjectId).isPractical
+            
+                          });
+                        timeTableData.set(element.weekDaysNumber, array);
+                    })
+					console.log("data from api is =======>>> ", (timeTableData))
+                }
+            })
+
+        })
        
     }
+
     const [selectedDay, setSelectedDay] = useState('Sun');
     return (
         <SafeAreaView style={{ flex: 1 }}>            
