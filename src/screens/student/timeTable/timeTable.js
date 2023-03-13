@@ -171,7 +171,6 @@ const TimeTable = ({ navigation }) => {
                         </ScrollView>
                 </View>
             </View>
-
         </SafeAreaView>
     );
 }
