@@ -67,6 +67,7 @@ const Login = ({ navigation }) => {
             // console.log("response",res.status)
             if (res.status == 200 ){
             res.json().then(data=>{
+              navigation.navigate('StudentCard')
             // console.log("student Details :",data)
             // setStudentList(data.students)
           })}})

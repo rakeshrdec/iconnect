@@ -14,13 +14,19 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 import PersonalInfo from "./personalInfo";
 import ParentsInfo from "./parentsInfo";
 import OthersInfo from "./othersInfo";
+import { StudentModel } from "../studentModel";
 
 
 const StudentProfile = ({navigation}) =>{
-    const [name,setName] = useState('name');
-    const [Class,setClass] = useState('class');
-    const [rollno,setRollno] = useState('roll no');
-    const [enroll, setEnroll] = useState('enroll')
+    const [className,setClassName] = useState('Section');
+
+    const [sectionName,setSectionName] = useState('Section');
+
+    const [student, setStudent] = useState({
+        student: {},
+        studentActivityModel: {},
+        studentLoginModel: {}
+    });
 
     useEffect(()=>{
         // http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=2&studentId=1
@@ -29,22 +35,37 @@ const StudentProfile = ({navigation}) =>{
         // http://13.127.128.192:8081/utils/getCategory
         const studentId = 1;
         const sessionYear = 2;
+
+        getStudentDetails(studentId,sessionYear );
+        
+    },[])
+
+    getStudentDetails = (studentId,sessionYear ) =>{
         fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${sessionYear}&studentId=${studentId}`)
         .then((res)=>{
             res.json().then((data)=>{
-                // console.log("student basic details", data)
-                setName(data.student.name);
-                setRollno(data.student.id);
-                setEnroll(data.student.enroll)
-                // setClass
-                if(data.studentActivityModel.classId=='2'){
-                    setClass('UKG')
-                }
+                console.log("student basic details", data)
+                setStudent(data);
+                getStudentClassDetails();
             })
         })
-    },[])
+    }
 
-    const studentList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,1];
+    getStudentClassDetails = ( ) =>{
+        fetch(`http://13.127.128.192:8081/class/getClassById?classId=${student.studentActivityModel.classId}`)
+        .then((res)=>{
+            res.json().then((data)=>{
+                setClassName(data.classDetails.name);
+        for (const section of data.sections) {
+          if (section.id === student.studentActivityModel.sectionId) {
+            setSectionName(section.name);
+            break;
+          }
+        }
+            })
+        })
+    }
+
     const infoList = ['personal','parents','other']
     const [infoOf,setInfoOf] = useState('personal')
 
@@ -54,10 +75,12 @@ const StudentProfile = ({navigation}) =>{
             <View style={{flex:1,backgroundColor:'lightgray',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
                 <Image source={require('../../../../assets/profile/studentProfile.jpg')} style={{height:80,width:80,borderRadius:190}} />
                 <View style={{}}>
-                    <Text style={{color:'black'}}>{name}</Text>
-                    <Text style={{color:'black'}}>Class {Class}</Text>
-                    <Text style={{color:'black'}}>Enroll no. {enroll}</Text>
-                    <Text style={{color:'black'}}>Roll No. {rollno}</Text>
+                {/* <Text style={{color:'black'}}>{name}</Text> */}
+
+                   <Text style={{color:'black'}}>{student.student.name}</Text>
+                    <Text style={{color:'black'}}>{className}</Text>
+                    <Text style={{color:'black'}}>{sectionName}</Text>
+                    
                 </View>
             </View>
             <View style={{flex:6,backgroundColor:'white'}}>
