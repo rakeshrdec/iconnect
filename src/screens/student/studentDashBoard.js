@@ -3,10 +3,14 @@ import React from "react";
 import { ScrollView, View, Text, Pressable, Image, Alert, Dimensions } from "react-native";
 // import { ScrollView } from "react-native-gesture-handler";
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
+import { useSelector } from "react-redux";
 
 
 const StudentDashBoard = ({ navigation }) => {
   const studentList = [1, 2, 3]
+  const data = useSelector((state)=>state)        
+  const userData = data;
+  console.log("USER DATA SELECTED STUDENT LISTS ",userData)
   return (
     <>
       <View style={{

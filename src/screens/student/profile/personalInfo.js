@@ -65,47 +65,47 @@ const PersonalInfo = () =>{
 
     return(<SafeAreaView style={{flex:1}}>
                 <Text style={{color:'black',fontWeight:'bold',textAlign:'center'}}>Personal Information</Text>
-            <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+            <View style={{flexDirection:'row',justifyContent:'space-evenly',flex:1, borderWidth:1,margin:3,borderRadius:32, alignItems:'center'}}>
                 <Text style={{color:'black'}}>Name :</Text>
                 <Text style={{color:'black'}}>{student.student.name}</Text>
             </View>
-            <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+            <View style={{flexDirection:'row',justifyContent:'space-evenly',flex:1, borderWidth:1,margin:3,borderRadius:32, alignItems:'center'}}>
                 <Text style={{color:'black'}}>Father Name :</Text>
                 <Text style={{color:'black'}}>{student.student.fatherName}</Text>
             </View>
-            <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+            <View style={{flexDirection:'row',justifyContent:'space-evenly',flex:1, borderWidth:1,margin:3,borderRadius:32, alignItems:'center'}}>
                 <Text style={{color:'black'}}>Mother Name :</Text>
                 <Text style={{color:'black'}}>{student.student.motherName}</Text>
             </View>
-            <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+            <View style={{flexDirection:'row',justifyContent:'space-evenly',flex:1, borderWidth:1,margin:3,borderRadius:32, alignItems:'center'}}>
                 <Text style={{color:'black'}}>Gender :</Text>
                 <Text style={{color:'black'}}>{genderName}</Text>
             </View>
-            <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+            <View style={{flexDirection:'row',justifyContent:'space-evenly',flex:1, borderWidth:1,margin:3,borderRadius:32, alignItems:'center'}}>
                 <Text style={{color:'black'}}>Category :</Text>
                 <Text style={{color:'black'}}>{categoryName}</Text>
             </View>
-            <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+            <View style={{flexDirection:'row',justifyContent:'space-evenly',flex:1, borderWidth:1,margin:3,borderRadius:32, alignItems:'center'}}>
                 <Text style={{color:'black'}}>Roll No. :</Text>
                 <Text style={{color:'black'}}>{student.studentActivityModel.rollNo}</Text>
             </View>
-            <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+            <View style={{flexDirection:'row',justifyContent:'space-evenly',flex:1, borderWidth:1,margin:3,borderRadius:32, alignItems:'center'}}>
                 <Text style={{color:'black'}}>SR. No. :</Text>
                 <Text style={{color:'black'}}>{student.student.srNo}</Text>
             </View>
-            <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+            <View style={{flexDirection:'row',justifyContent:'space-evenly',flex:1, borderWidth:1,margin:3,borderRadius:32, alignItems:'center'}}>
                 <Text style={{color:'black'}}>Registration No. :</Text>
                 <Text style={{color:'black'}}>{student.student.enroll}</Text>
             </View>
-            <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+            <View style={{flexDirection:'row',justifyContent:'space-evenly',flex:1, borderWidth:1,margin:3,borderRadius:32, alignItems:'center'}}>
                 <Text style={{color:'black'}}>Mobile :</Text>
                 <Text style={{color:'black'}}>{student.studentLoginModel.mobile}</Text>
             </View>
-            <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+            <View style={{flexDirection:'row',justifyContent:'space-evenly',flex:1, borderWidth:1,margin:3,borderRadius:32, alignItems:'center'}}>
                 <Text style={{color:'black'}}>Emergency Mobile :</Text>
                 <Text style={{color:'black'}}>{student.student.emergencyMobile}</Text>
             </View>
-            <View style={{flexDirection:'row',justifyContent:'space-around'}}>
+            <View style={{flexDirection:'row',justifyContent:'space-evenly',flex:1, borderWidth:1,margin:3,borderRadius:32, alignItems:'center'}}>
                 <Text style={{color:'black'}}>Email :</Text>
                 <Text style={{color:'black'}}>{student.student.email}</Text>
             </View>

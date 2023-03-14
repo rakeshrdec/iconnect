@@ -45,10 +45,10 @@ const Login = ({ navigation }) => {
  const data = useSelector((state)=>state)        
  // console.log('number from state',num);
  const userData = data.userInformation;
- console.log('this is user data',userData);
+//  console.log('this is user data',data.selectedStudentDetails);
 
   const onLogin = async () =>{
-    actions.userInformation({name:'rakesh mishra', mob:'008977779',comapny :'varaisys', });
+    // actions.userInformation({name:'rakesh mishra', mob:'008977779',comapny :'varaisys', });
     console.log("Now will hit api")
     fetch('http://13.127.128.192:8081/auth/validateStudentLogin', {
             method: 'POST',
@@ -67,6 +67,8 @@ const Login = ({ navigation }) => {
             // console.log("response",res.status)
             if (res.status == 200 ){
             res.json().then(data=>{
+              console.log("API DTA IS !!!!!!!!!!!!!!!",data.students);
+              actions.studentList(data.students)
               navigation.navigate('StudentCard')
             // console.log("student Details :",data)
             // setStudentList(data.students)
