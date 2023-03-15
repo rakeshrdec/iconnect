@@ -87,8 +87,7 @@ const AttendenceMonth = ({ navigation }) => {
             const weekOffDate = { [d]: { selected: true, marked: true, selectedColor: '#b942f5' } };
             WeekelyOffDates = { ...WeekelyOffDates, ...weekOffDate };
         });
-        setTotalWeekend('0');
-        setTotalWeekend(allWeekelyOffDate.length);
+
         setWeeklyOffDates(WeekelyOffDates);
 
     }
@@ -98,7 +97,6 @@ const AttendenceMonth = ({ navigation }) => {
     getWeeklyOffFromServer = (month, year) => {
         fetch(`http://13.127.128.192:8081/utils/getAllWeeklyOff`).then((res) => {
             res.json().then((data) => {
-                // console.log("data from api is ", (data))
                 if (data != '') {
                     var weeklyOffMap = new Map();
                     data.map((element, i) => {
@@ -115,18 +113,12 @@ const AttendenceMonth = ({ navigation }) => {
     getAllHoliDays = (monthVal, year) => {
         fetch(`http://13.127.128.192:8081/holiday/findAllHolidaysByMonthAndYear?month=${monthVal}&year=${year}`).then((res) => {
             res.json().then((data) => {
-                // console.log("data from api is ", (data))
                 if (data != '') {
                     var holidaysDates = {}
                     data.map((d, i) => {
                         const holiday = { [d.holidayDate]: { selected: true, marked: true, selectedColor: '#f58a42' } };
                         holidaysDates = { ...holidaysDates, ...holiday };
                     });
-                    console.log(data.length);
-                    console.log(holidaysDates);
-
-                    setTotalHoliDays('0');
-                    setTotalHoliDays(data.length);
                     setHolidaysDates(holidaysDates);
                 }
             })
@@ -160,15 +152,13 @@ const AttendenceMonth = ({ navigation }) => {
     };
 
     const getStudentAttendenceByMonth = (monthVal, selectedYear, studentIdVal, sessionYearVal) => {
-        // console.log("function ais ready to trigerr");
-
         var studentId = studentIdVal
         var sessionYear = sessionYearVal
 
         setTotalPresent('0');
         setTotalAbsent('0');
-
-
+        setTotalHoliDays('0');
+        setTotalWeekend('0');
         const daysInMonth = getDays(selectedYear, monthVal);
 
         var startDate = selectedYear + '-' + (monthVal < 10 ? '0' + monthVal : monthVal) + '-01';
@@ -176,9 +166,9 @@ const AttendenceMonth = ({ navigation }) => {
 
         fetch(`http://13.127.128.192:8081/student/getStudentAttendancesByStudentAndSession?studentId=${studentId}&startDate=${startDate}&endDate=${endDate}&sessionYear=${sessionYear}`).then((res) => {
             res.json().then((data) => {
-                // console.log("data from api is ", typeof(data))
                 if (data != '') {
-                    // console.log("we hvae some data hitting api")
+                    setTotalWeekend(data[0].totalWeekend);
+                    setTotalHoliDays(data[0].totalHolidays);
                     setTotalPresent(data[0].present);
                     setTotalAbsent(data[0].absent);
                 }

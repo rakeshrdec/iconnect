@@ -11,9 +11,7 @@ import { useSelector } from "react-redux";
 const StudentCard = ({navigation}) =>{
     const data = useSelector((state)=>state)        
     const userData = data.studentList;
-    // console.log("USER DATA STUDENT LISTS ",userData)
     useEffect(()=>{
-        console.log("useData ", userData.data)
         setStudentList(userData.data)
         // getStudentsList();
     },[])
@@ -33,7 +31,6 @@ const StudentCard = ({navigation}) =>{
     //           "userName": "7669991129"
     //         })
     //       }).then((res)=>{ res.json().then(data=>{
-    //         console.log("student Details :",data.students)
     //         setStudentList(data.students)
     //       })})
     // }
@@ -43,7 +40,6 @@ const StudentCard = ({navigation}) =>{
     const [studentList,setStudentList] = useState([]);
 
     const gotoNextPage = (e) =>{
-        // console.log("*************************8")
         actions.selectedStudentDetails(e)
         navigation.navigate('HomePage');
     }

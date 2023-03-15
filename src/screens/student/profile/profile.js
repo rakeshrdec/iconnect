@@ -44,7 +44,6 @@ const StudentProfile = ({navigation}) =>{
         fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${sessionYear}&studentId=${studentId}`)
         .then((res)=>{
             res.json().then((data)=>{
-                console.log("student basic details", data)
                 setStudent(data);
                 getStudentClassDetails();
             })
