@@ -92,15 +92,6 @@ const AttendenceYear = ({ navigation }) => {
                             >
                                 <Text style={{ color: 'white' }}>2021-2022</Text>
                             </Pressable>
-                            {/* <Pressable style={{justifyContent:'center', backgroundColor:'midnightblue', padding:10,borderRadius:15}}>
-                            <Text style={{color:'white'}}>2018-1019</Text>
-                        </Pressable>
-                        <Pressable style={{justifyContent:'center', backgroundColor:'midnightblue', padding:10,borderRadius:15}}>
-                            <Text style={{color:'white'}}>2018-1019</Text>
-                        </Pressable>
-                        <Pressable style={{justifyContent:'center', backgroundColor:'midnightblue', padding:10,borderRadius:15}}>
-                            <Text style={{color:'white'}}>2018-1019</Text>
-                        </Pressable> */}
                         </ScrollView>
                     </View> : <View />}
 

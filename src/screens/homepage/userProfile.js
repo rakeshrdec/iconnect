@@ -16,13 +16,14 @@ import CustomSidebarMenu from './customSideBarMenu';
 import AttendenceMonth from '../student/attendence/attendenceMonth';
 import AttendenceYear from '../student/attendence/attendenceYear';
 import TimeTable from '../student/timeTable/timeTable';
+import Holidays from '../holidays/holidays';
+import FeeStatus from '../student/fees/FeeStatus';
 
-
-import {    
+import {
   Image,
   TouchableOpacity,
   Text,
-  StyleSheet,  
+  StyleSheet,
   View,
   Button,
   Pressable,
@@ -39,77 +40,77 @@ import AttendenceIndex from '../student/attendence/attendenceIndex';
 function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1 }}>
-      <View style={{backgroundColor:'#0c123b',flex:0.3,flexDirection:'row',justifyContent:'space-around',alignItems:'center'}}>
-        <View style={{height:85,width:85, backgroundColor:'white', borderRadius:150}}></View>
-        <Text style={{color:'white'}}>Rakesh Mishra</Text>
+      <View style={{ backgroundColor: '#0c123b', flex: 0.3, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
+        <View style={{ height: 85, width: 85, backgroundColor: 'white', borderRadius: 150 }}></View>
+        <Text style={{ color: 'white' }}>Rakesh Mishra</Text>
       </View>
       {/* <Button
         onPress={() => navigation.navigate('Notifications')}
         title="Go to notifications"
       /> */}
-      <View style={{flexDirection:'row',height:100}}>
-          <Pressable
-            onPress={()=>{
-              // Alert.alert('work in prgres')
-              navigation.navigate('AttendenceMonth')
-            }}
-            style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}>
-                <Image source={require('../../../assets/logo/attendance.png')} style={{height:50,width:50}} />
-                <Text>attendence</Text>
-          </Pressable>
-          <Pressable
-            onPress={()=>{
-              Alert.alert('work in prgres')
-            }}
-            style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}>
-              <Image source={require('../../../assets/logo/notification.png')} style={{height:50,width:50}} />
-              <Text>messages</Text>
-          </Pressable>
-          <Pressable
-            onPress={()=>{
-              Alert.alert('work in prgres')
-            }}
-            style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}>
-            <Image source={require('../../../assets/logo/fee.png')} style={{height:50,width:50}} />
-              <Text>Fees</Text>
-          </Pressable>
+      <View style={{ flexDirection: 'row', height: 100 }}>
+        <Pressable
+          onPress={() => {
+            // Alert.alert('work in prgres')
+            navigation.navigate('AttendenceMonth')
+          }}
+          style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
+          <Image source={require('../../../assets/logo/attendance.png')} style={{ height: 50, width: 50 }} />
+          <Text>attendence</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            Alert.alert('work in prgres')
+          }}
+          style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
+          <Image source={require('../../../assets/logo/notification.png')} style={{ height: 50, width: 50 }} />
+          <Text>messages</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            Alert.alert('work in prgres')
+          }}
+          style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
+          <Image source={require('../../../assets/logo/fee.png')} style={{ height: 50, width: 50 }} />
+          <Text>Fees</Text>
+        </Pressable>
       </View>
-      <View style={{flexDirection:'row',height:100}}>
-          <Pressable
-            onPress={()=>{
-              Alert.alert('work in prgres')
-            }}
-            style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}>
-              <Image source={require('../../../assets/logo/award.png')} style={{height:50,width:50}} />
-              <Text>Exam Marks</Text>
-          </Pressable>
-          <Pressable
-            onPress={()=>{
-              Alert.alert('work in prgres')
-            }}
-            style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}>
-              <Image source={require('../../../assets/logo/document.png')} style={{height:50,width:50}} />
-              <Text>Document</Text>
-          </Pressable>
-          <Pressable
-            onPress={()=>{
-              Alert.alert('work in prgres')
-            }}
-            style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}>
-              <Image source={require('../../../assets/logo/holidays.png')} style={{height:50,width:50}} />
-              <Text>Holidays</Text>
-          </Pressable>
+      <View style={{ flexDirection: 'row', height: 100 }}>
+        <Pressable
+          onPress={() => {
+            Alert.alert('work in prgres')
+          }}
+          style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
+          <Image source={require('../../../assets/logo/award.png')} style={{ height: 50, width: 50 }} />
+          <Text>Exam Marks</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            Alert.alert('work in prgres')
+          }}
+          style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
+          <Image source={require('../../../assets/logo/document.png')} style={{ height: 50, width: 50 }} />
+          <Text>Document</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => {
+            Alert.alert('work in prgres')
+          }}
+          style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
+          <Image source={require('../../../assets/logo/holidays.png')} style={{ height: 50, width: 50 }} />
+          <Text>Holidays</Text>
+        </Pressable>
       </View>
-      <View style={{flexDirection:'row',height:100}}>
-          <Pressable
-            onPress={()=>{
-              Alert.alert('work in prgres')
-            }}
-            style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}>
-              <Image source={require('../../../assets/logo/timetable.png')} style={{height:50,width:50}} />
-              <Text>Time Table</Text>
-          </Pressable>
-          {/* <Pressable
+      <View style={{ flexDirection: 'row', height: 100 }}>
+        <Pressable
+          onPress={() => {
+            Alert.alert('work in prgres')
+          }}
+          style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
+          <Image source={require('../../../assets/logo/timetable.png')} style={{ height: 50, width: 50 }} />
+          <Text>Time Table</Text>
+        </Pressable>
+        {/* <Pressable
             onPress={()=>{
               Alert.alert('work in prgres')
             }}
@@ -127,8 +128,8 @@ function HomeScreen({ navigation }) {
           </Pressable> */}
       </View>
 
-      <View style={{flex:0.3,marginTop:5, backgroundColor:'lightgray',padding:10}}>
-        <Text style={{color:'black'}}>Activities</Text>
+      <View style={{ flex: 0.3, marginTop: 5, backgroundColor: 'lightgray', padding: 10 }}>
+        <Text style={{ color: 'black' }}>Activities</Text>
         {/* <ScrollView style={{height:100, flexDirection:'row', backgroundColor:'darkblue'}}>
         <Pressable
             onPress={()=>{
@@ -199,75 +200,96 @@ function NotificationsScreen({ navigation }) {
 
 const Drawer = createDrawerNavigator();
 
-const HomePage = () =>{
+const HomePage = () => {
 
   return (
-     <NavigationContainer independent={true}>
-    <Drawer.Navigator initialRouteName="Home" style={{borderWidth:'1'}}
-       screenOptions={{
-        activeTintColor: 'red',
-        itemStyle: {marginVertical: 5},
-      }}
-      drawerContent={props => <CustomSidebarMenu {...props} />}
+    <NavigationContainer independent={true}>
+      <Drawer.Navigator initialRouteName="Home" style={{ borderWidth: '1' }}
+        screenOptions={{
+          activeTintColor: 'red',
+          itemStyle: { marginVertical: 5 },
+        }}
+        drawerContent={props => <CustomSidebarMenu {...props} />}
       >
-      {/* <Drawer.Screen name="Home" component={HomeScreen} options={{
+        {/* <Drawer.Screen name="Home" component={HomeScreen} options={{
         headerTintColor: 'white',
           headerStyle: {
             backgroundColor: '#0c123b',            
           },
       }}/> */}
-      <Drawer.Screen name="Home" component={StudentDashBoard} options={{
-        headerTintColor: 'white',
-        headerShown:'false',
+        <Drawer.Screen name="Home" component={StudentDashBoard} options={{
+          headerTintColor: 'white',
+          headerShown: 'false',
           headerStyle: {
-            backgroundColor: '#2E4AA0',            
-          },
-      }}/>
-      <Drawer.Screen name="Notifications" component={NotificationsScreen} />
-      <Drawer.Screen name="Attendence" component={AttendenceIndex}
-        options={{
-          headerTintColor:'white',
-          headerShown:'false',
-          headerStyle: {
-            backgroundColor:'#2E4AA0',
+            backgroundColor: '#2E4AA0',
           },
         }} />
+        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+        <Drawer.Screen name="Attendence" component={AttendenceIndex}
+          options={{
+            headerTintColor: 'white',
+            headerShown: 'false',
+            headerStyle: {
+              backgroundColor: '#2E4AA0',
+            },
+          }} />
 
-      <Drawer.Screen name="AttendenceMonth" component={AttendenceMonth}      
-      options={{
-        headerTintColor:'white',
-        headerShown:'false',
-        headerStyle: {
-          backgroundColor:'#2E4AA0',
-        },
-        // headerTintColor:'red'
-      }}
-      />
-      <Drawer.Screen name="AttendenceYear" component={AttendenceYear} />
-      <Drawer.Screen name="TimeTable" component={TimeTable}      
-        options={{
-          headerTintColor:'white',
-          headerShown:'false',
-          headerStyle: {
-            backgroundColor:'#2E4AA0',
-          },
-          // headerTintColor:'red'
-        }}
+        <Drawer.Screen name="AttendenceMonth" component={AttendenceMonth}
+          options={{
+            headerTintColor: 'white',
+            headerShown: 'false',
+            headerStyle: {
+              backgroundColor: '#2E4AA0',
+            },
+            // headerTintColor:'red'
+          }}
         />
-         <Drawer.Screen name="StudentProfile" component={StudentProfile}      
-            options={{
-              headerTintColor:'white',
-              headerShown:'false',
-              headerStyle: {
-                backgroundColor:'#2E4AA0',
-              },
-              // headerTintColor:'red'
-            }}
-            />
+        <Drawer.Screen name="AttendenceYear" component={AttendenceYear} />
+        <Drawer.Screen name="TimeTable" component={TimeTable}
+          options={{
+            headerTintColor: 'white',
+            headerShown: 'false',
+            headerStyle: {
+              backgroundColor: '#2E4AA0',
+            },
+            // headerTintColor:'red'
+          }}
+        />
+        <Drawer.Screen name="Holidays" component={Holidays}
+          options={{
+            headerTintColor: 'white',
+            headerShown: 'false',
+            headerStyle: {
+              backgroundColor: '#2E4AA0',
+            },
+            // headerTintColor:'red'
+          }}
+        />
 
-    </Drawer.Navigator>
+        <Drawer.Screen name="FeeStatus" component={FeeStatus}
+          options={{
+            headerTintColor: 'white',
+            headerShown: 'false',
+            headerStyle: {
+              backgroundColor: '#2E4AA0',
+            },
+            // headerTintColor:'red'
+          }}
+        />
+        <Drawer.Screen name="StudentProfile" component={StudentProfile}
+          options={{
+            headerTintColor: 'white',
+            headerShown: 'false',
+            headerStyle: {
+              backgroundColor: '#2E4AA0',
+            },
+            // headerTintColor:'red'
+          }}
+        />
+
+      </Drawer.Navigator>
     </NavigationContainer>
- 
+
 
     // <View>
     //    <MenuDrawer
@@ -284,11 +306,11 @@ const HomePage = () =>{
     //       </TouchableOpacity>
     //     </MenuDrawer>
     // </View>
-    );
+  );
 };
 
 const styles = StyleSheet.create({
-  
+
 });
 
 export default HomePage;

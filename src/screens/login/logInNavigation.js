@@ -15,6 +15,9 @@ import AttendenceMonth from '../student/attendence/attendenceMonth';
 import AttendenceYear from '../student/attendence/attendenceYear';
 import TimeTable from '../student/timeTable/timeTable';
 import studentProfile from '../student/profile/profile';
+import Holidays from '../holidays/holidays';
+import FeeStatus from '../student/fees/FeeStatus';
+
 // import HomePage from '../homepage/userProfile';
 
 // import type {Node} from 'react';
@@ -77,6 +80,16 @@ const LoginNavigation = () =>{
       <Stack.Screen
         name="TimeTable"
         component={TimeTable}
+        options={{ headerShown: false, title: 'Home' }}
+      />
+      <Stack.Screen
+        name="Holidays"
+        component={Holidays}
+        options={{ headerShown: false, title: 'Home' }}
+      />
+       <Stack.Screen
+        name="FeeStatus"
+        component={FeeStatus}
         options={{ headerShown: false, title: 'Home' }}
       />
       <Stack.Screen

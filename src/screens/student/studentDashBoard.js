@@ -52,7 +52,8 @@ const StudentDashBoard = ({ navigation }) => {
           </Pressable>
           <Pressable
             onPress={() => {
-              Alert.alert('work in prgres')
+              // Alert.alert('work in prgres')
+              navigation.navigate('FeeStatus')
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/fee.png')} style={{ height: 50, width: 50 }} />
@@ -78,7 +79,8 @@ const StudentDashBoard = ({ navigation }) => {
           </Pressable>
           <Pressable
             onPress={() => {
-              Alert.alert('work in prgres')
+              // Alert.alert('work in prgres')
+              navigation.navigate('Holidays')
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/holidays.png')} style={{ height: 50, width: 50 }} />
