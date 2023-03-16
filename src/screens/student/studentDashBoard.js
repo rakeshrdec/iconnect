@@ -9,7 +9,8 @@ import { useSelector } from "react-redux";
 const StudentDashBoard = ({ navigation }) => {
   const studentList = [1, 2, 3]
   const data = useSelector((state)=>state)        
-  const userData = data;
+  const userData = data.selectedStudentDetails.data;
+  // console.log(userData.selectedStudentDetails)
   return (
     <>
       <View style={{
@@ -24,8 +25,9 @@ const StudentDashBoard = ({ navigation }) => {
       <View style={{ flex: 1, position: 'absolute', width: '100%' }}>
         <View style={{ backgroundColor: 'transparent', flex: 0.3, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', minHeight: 140 }}>
           {/* <View style={{height:85,width:85, backgroundColor:'white', borderRadius:150}}></View> */}
-          <Image source={require('../../../assets/profile/studentProfile.jpg')} style={{ height: 90, width: 90, borderRadius: 150, resizeMode: 'stretch' }} />
-          <Text style={{ color: 'white', textAlign: 'left', fontSize: 20,fontWeight:'bold' }}>Rakesh Mishra </Text>
+          {userData.uploadImg===null?<Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />:<Image source={{ uri: 'http://13.127.128.192:8081/' + userData.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
+          {/* <Image source={require('../../../assets/profile/studentProfile.jpg')} style={{ height: 90, width: 90, borderRadius: 150, resizeMode: 'stretch' }} /> */}
+          <Text style={{ color: 'white', textAlign: 'left', fontSize: 20,fontWeight:'bold' }}>{userData.name}</Text>
           {/* <Text>kjjlk</Text> */}
         </View>
         {/* <Button
