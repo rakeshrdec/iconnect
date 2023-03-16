@@ -44,7 +44,7 @@ const StudentDashBoard = ({ navigation }) => {
           </Pressable>
           <Pressable
             onPress={() => {
-              Alert.alert('work in prgres')
+              navigation.navigate('Notifications')
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/notification.png')} style={{ height: 50, width: 50 }} />
@@ -63,7 +63,7 @@ const StudentDashBoard = ({ navigation }) => {
         <View style={{ flexDirection: 'row', height: 100 }}>
           <Pressable
             onPress={() => {
-              Alert.alert('work in prgres')
+              navigation.navigate('ExamMarks')
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/award.png')} style={{ height: 50, width: 50 }} />
@@ -71,7 +71,7 @@ const StudentDashBoard = ({ navigation }) => {
           </Pressable>
           <Pressable
             onPress={() => {
-              Alert.alert('work in prgres')
+              navigation.navigate('ViewDocuments')
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/document.png')} style={{ height: 50, width: 50 }} />
@@ -109,7 +109,7 @@ const StudentDashBoard = ({ navigation }) => {
           <Pressable
             onPress={() => {
               // Alert.alert('work in prgres')
-              navigation.navigate('StudentProfile')
+              navigation.navigate('Announcement')
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/megaphone.png')} style={{ height: 50, width: 50 }} />

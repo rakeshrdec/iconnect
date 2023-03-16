@@ -17,12 +17,16 @@ import TimeTable from '../student/timeTable/timeTable';
 import studentProfile from '../student/profile/profile';
 import Holidays from '../holidays/holidays';
 import FeeStatus from '../student/fees/FeeStatus';
+import Announcement from '../announcement/announcement';
+import ViewDocuments from '../student/viewDocuments/viewDocuments';
+import Notifications from '../notifications/notifications';
+import ExamMarks from '../student/examMarks/examMarks';
 
 // import HomePage from '../homepage/userProfile';
 
 // import type {Node} from 'react';
 import {
-    Pressable,
+  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -40,63 +44,85 @@ import store from '../../redux/store'
 
 const Stack = createNativeStackNavigator();
 
-const LoginNavigation = () =>{
+const LoginNavigation = () => {
 
   return (
     <Provider store={store}>
-    <NavigationContainer>
-    <Stack.Navigator initialRouteName={'Login'}>
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={{ headerShown: false, title: 'Welcome' }}
-      />
-        {/* <Stack.Navigator initialRouteName={'homePage'}> */}
-      <Stack.Screen
-        name="HomePage"
-        component={HomePage}
-        options={{ headerShown: false, title: 'Welcome' }}
-      />
-      <Stack.Screen
-        name="StudentCard"
-        component={StudentCard}
-        options={{ headerShown: false, title: 'Home' }}
-      />
-      <Stack.Screen
-        name="StudentDashBoard"
-        component={StudentDashBoard}
-        options={{ headerShown: false, title: 'Home' }}
-      />
-      <Stack.Screen
-        name="AttendenceMonth"
-        component={AttendenceMonth}
-        options={{ headerShown: false, title: 'Home' }}
-      />
-      <Stack.Screen
-        name="AttendenceYear"
-        component={AttendenceYear}
-        options={{ headerShown: false, title: 'Home' }}
-      />
-      <Stack.Screen
-        name="TimeTable"
-        component={TimeTable}
-        options={{ headerShown: false, title: 'Home' }}
-      />
-      <Stack.Screen
-        name="Holidays"
-        component={Holidays}
-        options={{ headerShown: false, title: 'Home' }}
-      />
-       <Stack.Screen
-        name="FeeStatus"
-        component={FeeStatus}
-        options={{ headerShown: false, title: 'Home' }}
-      />
-      <Stack.Screen
-        name='StudentProfile'
-        component={studentProfile}
-        />
-      {/* <Stack.Screen name="loginOTP" component={LoginOTPPage} options={{ headerShown: false, title: 'Welcome' }} />
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName={'Login'}>
+          <Stack.Screen
+            name="Login"
+            component={Login}
+            options={{ headerShown: false, title: 'Welcome' }}
+          />
+          {/* <Stack.Navigator initialRouteName={'homePage'}> */}
+          <Stack.Screen
+            name="HomePage"
+            component={HomePage}
+            options={{ headerShown: false, title: 'Welcome' }}
+          />
+          <Stack.Screen
+            name="StudentCard"
+            component={StudentCard}
+            options={{ headerShown: false, title: 'Home' }}
+          />
+          <Stack.Screen
+            name="StudentDashBoard"
+            component={StudentDashBoard}
+            options={{ headerShown: false, title: 'Home' }}
+          />
+          <Stack.Screen
+            name="AttendenceMonth"
+            component={AttendenceMonth}
+            options={{ headerShown: false, title: 'Home' }}
+          />
+          <Stack.Screen
+            name="AttendenceYear"
+            component={AttendenceYear}
+            options={{ headerShown: false, title: 'Home' }}
+          />
+          <Stack.Screen
+            name="TimeTable"
+            component={TimeTable}
+            options={{ headerShown: false, title: 'Home' }}
+          />
+          <Stack.Screen
+            name="Holidays"
+            component={Holidays}
+            options={{ headerShown: false, title: 'Home' }}
+          />
+
+          <Stack.Screen
+            name="Announcement"
+            component={Announcement}
+            options={{ headerShown: false, title: 'Home' }}
+          />
+          <Stack.Screen
+            name="Notifications"
+            component={Notifications}
+            options={{ headerShown: false, title: 'Home' }}
+          />
+          <Stack.Screen
+            name="ExamMarks"
+            component={ExamMarks}
+            options={{ headerShown: false, title: 'Home' }}
+          />
+          <Stack.Screen
+            name="ViewDocuments"
+            component={ViewDocuments}
+            options={{ headerShown: false, title: 'Home' }}
+          />
+
+          <Stack.Screen
+            name="FeeStatus"
+            component={FeeStatus}
+            options={{ headerShown: false, title: 'Home' }}
+          />
+          <Stack.Screen
+            name='StudentProfile'
+            component={studentProfile}
+          />
+          {/* <Stack.Screen name="loginOTP" component={LoginOTPPage} options={{ headerShown: false, title: 'Welcome' }} />
       <Stack.Screen name="loginUserDetail" component={LoginUserDetailPage} options={{ headerShown: false, title: 'Welcome' }} />
       <Stack.Screen name="userProfile" component={UserProfile} options={{ headerShown: false, title: 'Welcome' }} />
       <Stack.Screen name="EmployeeOnBoardingNavigations" component={EmployeeOnBoardingNavigations} options={{
@@ -121,14 +147,14 @@ const LoginNavigation = () =>{
         // ),
       }}
       /> */}
-    </Stack.Navigator>
-  </NavigationContainer>
-  </Provider>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 };
 
 const styles = StyleSheet.create({
-  
+
 });
 
 export default LoginNavigation;

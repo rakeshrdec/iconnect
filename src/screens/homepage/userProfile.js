@@ -18,6 +18,10 @@ import AttendenceYear from '../student/attendence/attendenceYear';
 import TimeTable from '../student/timeTable/timeTable';
 import Holidays from '../holidays/holidays';
 import FeeStatus from '../student/fees/FeeStatus';
+import Announcement from '../announcement/announcement';
+import ViewDocuments from '../student/viewDocuments/viewDocuments';
+import Notifications from '../notifications/notifications';
+import ExamMarks from '../student/examMarks/examMarks';
 
 import {
   Image,
@@ -224,7 +228,7 @@ const HomePage = () => {
             backgroundColor: '#2E4AA0',
           },
         }} />
-        <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+        {/* <Drawer.Screen name="Notifications" component={NotificationsScreen} /> */}
         <Drawer.Screen name="Attendence" component={AttendenceIndex}
           options={{
             headerTintColor: 'white',
@@ -256,6 +260,50 @@ const HomePage = () => {
           }}
         />
         <Drawer.Screen name="Holidays" component={Holidays}
+          options={{
+            headerTintColor: 'white',
+            headerShown: 'false',
+            headerStyle: {
+              backgroundColor: '#2E4AA0',
+            },
+            // headerTintColor:'red'
+          }}
+        />
+
+        <Drawer.Screen name="Announcement" component={Announcement}
+          options={{
+            headerTintColor: 'white',
+            headerShown: 'false',
+            headerStyle: {
+              backgroundColor: '#2E4AA0',
+            },
+            // headerTintColor:'red'
+          }}
+        />
+
+        <Drawer.Screen name="ExamMarks" component={ExamMarks}
+          options={{
+            headerTintColor: 'white',
+            headerShown: 'false',
+            headerStyle: {
+              backgroundColor: '#2E4AA0',
+            },
+            // headerTintColor:'red'
+          }}
+        />
+
+        <Drawer.Screen name="Notifications" component={Notifications}
+          options={{
+            headerTintColor: 'white',
+            headerShown: 'false',
+            headerStyle: {
+              backgroundColor: '#2E4AA0',
+            },
+            // headerTintColor:'red'
+          }}
+        />
+
+        <Drawer.Screen name="ViewDocuments" component={ViewDocuments}
           options={{
             headerTintColor: 'white',
             headerShown: 'false',
