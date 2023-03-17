@@ -2,12 +2,10 @@ import { Avatar } from "@rneui/base";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-// import {Calendar, CalendarList, Agenda, LocaleConfig} from 'react-native-calendars';
 import { Calendar } from "react-native-calendars";
 import Icon from 'react-native-vector-icons/AntDesign';
 
 import AttendenceYear from "./attendenceYear";
-// import  Calendar from "react-native-calendars/src/calendar/index.js";
 import AttendenceUpload from "./attendenceUpload";
 import { useSelector } from "react-redux";
 
@@ -23,31 +21,16 @@ const AttendenceMonth = ({ navigation }) => {
     const [holidaysDates, setHolidaysDates] = useState('')
     const [weeklyOff, setWeeklyOff] = useState(new Map());
 
-
-
     var [DateColor, setDateColor] = useState({
-        // '2023-05-16': {selected: true, marked: true, selectedColor: 'lightgreen'},
-        // '2023-02-16': {selected: true, marked: true, selectedColor: 'lightgreen'},
-        // '2023-02-17': {selected: true, marked: true, selectedColor: 'lightgreen'},
-        // '2023-02-11': {selected: true, marked: true, selectedColor: 'lightgreen'},
-        // '2023-02-01': {selected: true, marked: true, selectedColor: 'red'},
-        // '2023-02-02': {selected: true, marked: true, selectedColor: 'red'},
-        // '2023-02-07': {selected: true, marked: true, selectedColor: 'red'},
-        // '2023-02-05': {selected: true, marked: true, selectedColor: '#b942f5'},
-        // '2023-03-08': {selected: true, marked: true, selectedColor: '#f58a42'},
-        // '2023-05-17': {marked: true},
-        // '2023-05-18': {marked: true, dotColor: 'red', activeOpacity: 0},
-        // '2023-05-19': {disabled: true, disableTouchEvent: true}
     })
 
-    const data = useSelector((state)=>state)        
+    const data = useSelector((state) => state)
     const sessionData = data.session;
     const [session, setSession] = useState(sessionData.data);
     const selectedStudentData = data.selectedStudentDetails;
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
 
     useEffect(() => {
-        console.log("selectedStudent===>",selectedStudent);
         const month = new Date().getMonth() + 1;
         const year = new Date().getFullYear()
         getWeeklyOffFromServer(month, year);

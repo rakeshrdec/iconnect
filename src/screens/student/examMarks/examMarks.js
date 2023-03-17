@@ -12,16 +12,11 @@ const ExamMarks = ({ navigation }) => {
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
 
     useEffect(() => {
-        getStudentFullDetails(session.id);
+        getClassById(data.studentActivityModel.classId);
+        getAllSubjects();
+        getAllExams();
+        getMarksGrades();
     }, [])
-
-    const [student, setStudent] = useState({
-        student: {},
-        studentActivityModel: {},
-        studentLoginModel: {}
-    });
-
-
 
     const subjectMap = new Map();
     const classSubjectMap = new Map();
@@ -31,21 +26,6 @@ const ExamMarks = ({ navigation }) => {
 
     const [exams, setExams] = useState([]);
     const examSubjectMap = new Map();
-
-
-
-    const getStudentFullDetails = () => {
-        fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`)
-            .then((res) => {
-                res.json().then((data) => {
-                    setStudent(data);
-                    getClassById(data.studentActivityModel.classId);
-                    getAllSubjects();
-                    getAllExams(2);
-                    getMarksGrades();
-                })
-            })
-    }
 
     const getClassById = (classId) => {
         fetch(`http://13.127.128.192:8081/class/getClassById?classId=${classId}`).then((res) => {
@@ -64,7 +44,7 @@ const ExamMarks = ({ navigation }) => {
         fetch(`http://13.127.128.192:8081/subject/getAllSubjects`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
-                    console.log("getAllSubjects===>",data);
+                    console.log("getAllSubjects===>", data);
                     data.forEach(element => subjectMap.set(element.id, element.name))
                 }
             })
@@ -75,13 +55,13 @@ const ExamMarks = ({ navigation }) => {
         fetch(`http://13.127.128.192:8081/exams/getAllExams?sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
-                    console.log("getAllExams===>",data);
+                    console.log("getAllExams===>", data);
                     setExams(data);
                     data.forEach(exam => {
                         const subjectList = [];
                         for (const examSchedule of exam.examSchedule) {
 
-                            if (student.studentActivityModel.classId == examSchedule.classId) {
+                            if (selectedStudent.classId == examSchedule.classId) {
                                 subjectList.push(classSubjectMap.get(examSchedule.subjectId));
                             }
                         }
@@ -96,7 +76,7 @@ const ExamMarks = ({ navigation }) => {
         fetch(`http://13.127.128.192:8081/utils/getMarksGrades`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
-                    console.log("getMarksGrades===>",data);
+                    console.log("getMarksGrades===>", data);
                     getStudentExamsMarks(data);
                 }
             })

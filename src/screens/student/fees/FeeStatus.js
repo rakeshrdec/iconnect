@@ -13,7 +13,7 @@ const FeeStatus = ({ navigation }) => {
 
 
     useEffect(() => {
-        getAllExams(session.id);
+        getAllExams();
         getAllFeesType();
     }, [])
 
@@ -34,7 +34,11 @@ const FeeStatus = ({ navigation }) => {
         fetch(`http://13.127.128.192:8081/exams/getAllExams?sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
-                    examMap.set(exam.examsDetails.id, exam.examsDetails.name);
+
+                    data.forEach(exam => {
+                        examMap.set(exam.examsDetails.id, exam.examsDetails.name);
+                    });
+                   
                 }
             })
         })
@@ -46,31 +50,18 @@ const FeeStatus = ({ navigation }) => {
             res.json().then((data) => {
                 if (data != '') {
                     data.forEach(feeType => allFeesTypeMap.set(feeType.id, feeType));
-                    getStudentFullDetails(session.id);
+                    getAllClassFees();
                 }
             })
         })
     }
 
-    const getStudentFullDetails = () => {
-        fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`)
-            .then((res) => {
-                res.json().then((data) => {
-                    console.log(data.studentActivityModel.classId);
-                    getAllClassFees(data.studentActivityModel.classId);
-                })
-            })
-    }
 
-    const getAllClassFees = (classId) => {
-        fetch(`http://13.127.128.192:8081/class/getClassFeesDetails?classId=${classId}`).then((res) => {
+    const getAllClassFees = () => {
+        fetch(`http://13.127.128.192:8081/class/getClassFeesDetails?classId=${selectedStudent.classId}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
-                    console.log("data===>>>", data);
-
-
                     var amount = 0;
-                    console.log("totalAmount===>>>", totalAmount);
                     data.forEach(feeType => {
                         classfeeTypeMap.set(feeType.feesTypeId, feeType);
                         if (allFeesTypeMap.get(feeType.feesTypeId).isMonthly) {
@@ -87,7 +78,7 @@ const FeeStatus = ({ navigation }) => {
                     });
 
                     setTotalAmount(amount);
-                    console.log("amount===>>>", amount);
+                   
                     fetchFeesRecord(session.id);
                 }
             })
@@ -108,7 +99,6 @@ const FeeStatus = ({ navigation }) => {
                 row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? "Paid" : 'UnPaid');
                 recordData.push(row);
             });
-
             return recordData;
         }
 
@@ -146,11 +136,9 @@ const FeeStatus = ({ navigation }) => {
             return recordData;
         }
 
-
         fetch(`http://13.127.128.192:8081/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
-
                     var tempTotalPaidAmount =0;
                     data.forEach(fee => {
                         fee.feesDetails.forEach(feesDetail => {
@@ -171,6 +159,7 @@ const FeeStatus = ({ navigation }) => {
                             }
                         });
                     });
+                   
                     setTotalPaidAmount(tempTotalPaidAmount);
                     let tempRecordData = [];
                     feeTypeMap.forEach((value, key) => {
@@ -196,6 +185,7 @@ const FeeStatus = ({ navigation }) => {
                             tempRecordData.push(row);
                         }
                     });
+                    console.log("amount=================================>>>");
                     setRecordData(tempRecordData);
                 }
             })

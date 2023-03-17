@@ -12,9 +12,6 @@ import { getTimestamp } from "react-native-reanimated/lib/reanimated2/core";
 // import  Calendar from "react-native-calendars/src/calendar/index.js";
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
-
-
-
 const AttendenceUpload = ({navigation}) =>{
 
     const studentList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,1];
@@ -23,16 +20,7 @@ const AttendenceUpload = ({navigation}) =>{
 
     return(
     <SafeAreaView style={{flex:1}}> 
-        {/* <View style={{
-            width: SCREEN_WIDTH,
-            height: 0,
-            borderTopColor: "#0c123b",
-            borderTopWidth: SCREEN_HEIGHT ,
-            borderRightWidth: SCREEN_WIDTH,
-            borderRightColor: 'yellow'
-            }}>
-                
-            </View> */}
+        
             <View style={{ flex:1}}>
                 {/* UPPER SECTION */}
                     <View style={{ flex:1, flexDirection:"row",width:'100%',justifyContent:'space-around',backgroundColor:'lightgray',alignItems:'center'}}>
@@ -75,47 +63,8 @@ const AttendenceUpload = ({navigation}) =>{
                         style={{backgroundColor:"orange",height:40,borderRadius:25,width:'100%',alignItems:'center',justifyContent:'center'}}><Text style={{color:'white',textAlign:'center'}}>SUBMIT ATTENDENCE</Text></Pressable>
                     </View>
             </View>
-            {/* ATTENDENCE UPLOAD PAGE CODE  */}
-
-            {/* USER PROFILE */}
-            {/* <View style={{flex:1,backgroundColor:'lightgray',flexDirection:'row',alignItems:'center',justifyContent:'space-around'}}>
-                <Image source={require('../../../../assets/profile/studentProfile.jpg')} style={{height:80,width:80,borderRadius:190}} />
-                <View style={{}}>
-                    <Text style={{color:'black'}}>Rakesh Mishra</Text>
-                    <Text style={{color:'black'}}>Class 1 - A</Text>
-                    <Text style={{color:'black'}}>Adm no. 132434</Text>
-                    <Text style={{color:'black'}}>Roll No. 74343441</Text>
-                </View>
-            </View> */}
-            {/* <View style={{flex:6,backgroundColor:'white'}}>
-                <View style={{flexDirection:'row',width:'100%',justifyContent:'space-around'}}>
-                    <Pressable
-                        onPress={()=>{
-                            setInfoOf('personal')
-                        }}
-                         style={infoOf=='personal'?{borderBottomWidth:2,flex:1,justifyContent:'center',alignItems:'center',padding:3}:{flex:1,justifyContent:'center',alignItems:'center',padding:3}}>
-                        <Text style={{color:'black'}}>PERSONAL</Text>
-                    </Pressable>
-                    <Pressable
-                        onPress={()=>{
-                            setInfoOf('parents')
-                        }}
-                         style={infoOf=='parents'?{borderBottomWidth:2,flex:1,justifyContent:'center',alignItems:'center',padding:3}:{flex:1,justifyContent:'center',alignItems:'center',padding:3}}>
-                        <Text style={{color:'black'}}>PARENTS</Text>
-                    </Pressable>
-                    <Pressable
-                        onPress={()=>{
-                            setInfoOf('others')
-                        }}
-                         style={infoOf=='others'?{borderBottomWidth:2,flex:1,justifyContent:'center',alignItems:'center',padding:3}:{flex:1,justifyContent:'center',alignItems:'center',padding:3}}>
-                        <Text style={{color:'black'}}>OTHERS</Text>
-                    </Pressable>
-                </View>
-                {infoOf=='personal'?<View style={{justifyContent:"center",alignItems:'center'}}><Text>These are information of student</Text></View>:<View />}
-                {infoOf=='parents'?<View style={{justifyContent:"center",alignItems:'center'}}><Text>These are information of parents</Text></View>:<View />}
-                {infoOf=='others'?<View style={{justifyContent:"center",alignItems:'center'}}><Text> others inormation</Text></View>:<View />}
-            </View>
-            */}
+           
+           
             
     </SafeAreaView>
     );

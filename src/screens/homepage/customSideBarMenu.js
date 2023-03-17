@@ -31,35 +31,11 @@ import { useSelector } from "react-redux";
 const CustomSidebarMenu = (props) => {
 
   const data = useSelector((state) => state)
-  const sessionData = data.session;
-  const [session, setSession] = useState(sessionData.data);
   const selectedStudentData = data.selectedStudentDetails;
   const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
-  const [student, setStudent] = useState({
-    student: {},
-    studentActivityModel: {},
-    studentLoginModel: {}
-});
-
-  console.log(selectedStudent);
   useEffect(() => {
-    getStudentDetails();
   }, [])
 
-  getStudentDetails = () => {
-    fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`)
-      .then((res) => {
-        res.json().then((data) => {
-          console.log(data)
-          setStudent(data);
-        })
-      })
-  }
-
-
-  const BASE_PATH =
-    'https://raw.githubusercontent.com/AboutReact/sampleresource/master/';
-  const proileImage = 'react_logo.png';
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -78,14 +54,8 @@ const CustomSidebarMenu = (props) => {
               <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>{selectedStudent.name}</Text>
             </View>
             <View style={{ flexDirection: 'row' }}>
-
               <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>
-                Student
-              </Text>
-            </View>
-            <View style={{ flexDirection: 'row' }}>
-              <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>
-                {student.studentActivityModel.classId} {student.studentActivityModel.sectionId}
+                {selectedStudent.className} {selectedStudent.sectionName}
               </Text>
             </View>
           </View>
