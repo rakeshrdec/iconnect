@@ -4,13 +4,16 @@ import { combineReducers }  from "redux";
 import userInformation from "./userInformation";
 import studentList from "./studentList";
 import selectedStudentDetails from "./selectedStdentDetails";
+import session from "./session";
+
 // import empDataFromParentApp from "./empDataFromParentApp";
 // import enablePopUp from "./enablePopup";
 
 const appReducer = combineReducers({
     userInformation,
     studentList,
-    selectedStudentDetails
+    selectedStudentDetails,
+    session
     // screenSize,
     // empDataFromParentApp,
     // enablePopUp

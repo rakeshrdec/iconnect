@@ -10,7 +10,6 @@ const StudentDashBoard = ({ navigation }) => {
   const studentList = [1, 2, 3]
   const data = useSelector((state)=>state)        
   const userData = data.selectedStudentDetails.data;
-  // console.log(userData.selectedStudentDetails)
   return (
     <>
       <View style={{

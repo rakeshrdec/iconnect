@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import AttendenceYear from "./attendenceYear";
 // import  Calendar from "react-native-calendars/src/calendar/index.js";
 import AttendenceUpload from "./attendenceUpload";
+import { useSelector } from "react-redux";
 
 const AttendenceMonth = ({ navigation }) => {
     const [showYearWiseAtt, setShowYearWiseAtt] = useState(false);
@@ -39,18 +40,21 @@ const AttendenceMonth = ({ navigation }) => {
         // '2023-05-19': {disabled: true, disableTouchEvent: true}
     })
 
+    const data = useSelector((state)=>state)        
+    const sessionData = data.session;
+    const [session, setSession] = useState(sessionData.data);
+    const selectedStudentData = data.selectedStudentDetails;
+    const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
 
-    // const studentList = [1,2,3];
     useEffect(() => {
+        console.log("selectedStudent===>",selectedStudent);
         const month = new Date().getMonth() + 1;
-        const studentId = 1;
-        const sessionYear = 2;
         const year = new Date().getFullYear()
         getWeeklyOffFromServer(month, year);
 
         getAllHoliDays(month, year);
-        getStudentAttendenceByMonth(month, year, studentId, sessionYear);
-        getStudentPresentAttendence(month, year, studentId)
+        getStudentAttendenceByMonth(month, year);
+        getStudentPresentAttendence(month, year)
     }, []);
 
     useEffect(() => {
@@ -126,8 +130,7 @@ const AttendenceMonth = ({ navigation }) => {
 
     }
 
-    const getStudentPresentAttendence = (monthVal, selectedYear, studentIdVal) => {
-        var studentId = studentIdVal;
+    const getStudentPresentAttendence = (monthVal, selectedYear) => {
         const daysInMonth = getDays(selectedYear, monthVal);
 
         var startDate = selectedYear + '-' + (monthVal < 10 ? '0' + monthVal : monthVal) + '-01';
@@ -135,7 +138,7 @@ const AttendenceMonth = ({ navigation }) => {
 
 
         var presentDates = {}
-        fetch(`http://13.127.128.192:8081/student/getStudentApprovedAttendances?studentId=${studentId}&startDate=${startDate}&endDate=${endDate}`).then((res) => {
+        fetch(`http://13.127.128.192:8081/student/getStudentApprovedAttendances?studentId=${selectedStudent.id}&startDate=${startDate}&endDate=${endDate}`).then((res) => {
             res.json().then((data) => {
                 data.map((e, i) => {
                     const presentDate = { [e.attendanceDate]: { selected: true, marked: true, selectedColor: 'lightgreen' } };
@@ -151,9 +154,7 @@ const AttendenceMonth = ({ navigation }) => {
         return new Date(year, month, 0).getDate();
     };
 
-    const getStudentAttendenceByMonth = (monthVal, selectedYear, studentIdVal, sessionYearVal) => {
-        var studentId = studentIdVal
-        var sessionYear = sessionYearVal
+    const getStudentAttendenceByMonth = (monthVal, selectedYear) => {
 
         setTotalPresent('0');
         setTotalAbsent('0');
@@ -164,7 +165,7 @@ const AttendenceMonth = ({ navigation }) => {
         var startDate = selectedYear + '-' + (monthVal < 10 ? '0' + monthVal : monthVal) + '-01';
         var endDate = selectedYear + '-' + (monthVal < 10 ? '0' + monthVal : monthVal) + '-' + daysInMonth;
 
-        fetch(`http://13.127.128.192:8081/student/getStudentAttendancesByStudentAndSession?studentId=${studentId}&startDate=${startDate}&endDate=${endDate}&sessionYear=${sessionYear}`).then((res) => {
+        fetch(`http://13.127.128.192:8081/student/getStudentAttendancesByStudentAndSession?studentId=${selectedStudent.id}&startDate=${startDate}&endDate=${endDate}&sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     setTotalWeekend(data[0].totalWeekend);
@@ -188,13 +189,11 @@ const AttendenceMonth = ({ navigation }) => {
                     {/* <Calendar></Calendar> */}
                     <Calendar
                         onMonthChange={(e) => {
-                            var studentId = 1
-                            var sessionYear = 2
                             setDateColor({})
-                            getStudentAttendenceByMonth(e.month, e.year, studentId, sessionYear);
+                            getStudentAttendenceByMonth(e.month, e.year);
                             getWeeklyOffCalculation(e.month - 1, e.year);
                             getAllHoliDays(e.month, e.year);
-                            getStudentPresentAttendence(e.month, e.year, studentId)
+                            getStudentPresentAttendence(e.month, e.year)
                         }}
                         style={{ margin: 20, borderRadius: 15 }}
                         markedDates={DateColor}

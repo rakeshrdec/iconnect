@@ -15,6 +15,7 @@ import PersonalInfo from "./personalInfo";
 import ParentsInfo from "./parentsInfo";
 import OthersInfo from "./othersInfo";
 import { StudentModel } from "../studentModel";
+import { useSelector } from "react-redux";
 
 
 const StudentProfile = ({navigation}) =>{
@@ -28,20 +29,21 @@ const StudentProfile = ({navigation}) =>{
         studentLoginModel: {}
     });
 
-    useEffect(()=>{
-        // http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=2&studentId=1
-        // http://13.127.128.192:8081/class/getClassById?classId=2
-        // http://13.127.128.192:8081/utils/getGenders
-        // http://13.127.128.192:8081/utils/getCategory
-        const studentId = 1;
-        const sessionYear = 2;
+    const data = useSelector((state) => state)
+    const sessionData = data.session;
+    const [session, setSession] = useState(sessionData.data);
+    const selectedStudentData = data.selectedStudentDetails;
+    const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
 
-        getStudentDetails(studentId,sessionYear );
+    useEffect(()=>{
+      
+
+        getStudentDetails( );
         
     },[])
 
-    getStudentDetails = (studentId,sessionYear ) =>{
-        fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${sessionYear}&studentId=${studentId}`)
+    getStudentDetails = ( ) =>{
+        fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`)
         .then((res)=>{
             res.json().then((data)=>{
                 setStudent(data);
@@ -96,7 +98,7 @@ const StudentProfile = ({navigation}) =>{
                             setInfoOf('parents')
                         }}
                          style={infoOf=='parents'?{borderBottomWidth:2,flex:1,justifyContent:'center',alignItems:'center',padding:3}:{flex:1,justifyContent:'center',alignItems:'center',padding:3}}>
-                        <Text style={{color:'black'}}>PARENTS</Text>
+                        <Text style={{color:'black'}}>Academic</Text>
                     </Pressable>
                     <Pressable
                         onPress={()=>{

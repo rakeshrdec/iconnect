@@ -46,7 +46,6 @@ const Login = ({ navigation }) => {
  const userData = data.userInformation;
 
   const onLogin = async () =>{
-    // actions.userInformation({name:'rakesh mishra', mob:'008977779',comapny :'varaisys', });
     fetch('http://13.127.128.192:8081/auth/validateStudentLogin', {
             method: 'POST',
             headers: {
@@ -64,8 +63,8 @@ const Login = ({ navigation }) => {
             if (res.status == 200 ){
             res.json().then(data=>{
               actions.studentList(data.students)
+              actions.session(data.session)
               navigation.navigate('StudentCard')
-            // setStudentList(data.students)
           })}})
 
 

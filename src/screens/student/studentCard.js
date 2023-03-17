@@ -13,35 +13,13 @@ const StudentCard = ({navigation}) =>{
     const userData = data.studentList;
     useEffect(()=>{
         setStudentList(userData.data)
-        console.log(studentList)
-
-
-        // getStudentsList();
     },[])
 
-    // const getStudentsList = () =>{
-    //     fetch('http://13.127.128.192:8081/auth/validateStudentLogin', {
-    //         method: 'POST',
-    //         headers: {
-    //           Accept: 'application/json',
-    //           'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //           "createdAt": "string",
-    //           "expiredAt": "string",
-    //           "password": "7669991129",
-    //           "tokenType": 0,
-    //           "userName": "7669991129"
-    //         })
-    //       }).then((res)=>{ res.json().then(data=>{
-    //         setStudentList(data.students)
-    //       })})
-    // }
-    // const studentList = [1,2,3]
+ 
     const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
-    // const studentList = [{name:'rakesh kumar mishra', rollno:'12', class:'One(A)', mobile:'9891979411'},{name:'Ayansh', rollno:'12', class:'Six(A)', mobile:'9891979411'},{name:'sonu kumar', rollno:'2', class:'One(A)', mobile:'9891979411'}]
     const [studentList, setStudentList] = useState([]);
 
+    
     const gotoNextPage = (e) => {
         actions.selectedStudentDetails(e)
         navigation.navigate('HomePage');

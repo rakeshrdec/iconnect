@@ -4,31 +4,37 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { monthMap } from '../../../models/data';
+import { useSelector } from "react-redux";
 
 const AttendenceYear = ({ navigation }) => {
+    const data = useSelector((state) => state)
+    const sessionData = data.session;
+    const [session, setSession] = useState(sessionData.data);
+    const selectedStudentData = data.selectedStudentDetails;
+    const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
+
+
     useEffect(() => {
         getStudentAttendenceByMonth();
     }, [])
 
     const getStudentAttendenceByMonth = () => {
-        fetch(`http://13.127.128.192:8081/student/getStudentAttendancesByStudentAndSession?studentId=1&startDate=2022-04-01&endDate=2023-03-31&sessionYear=2`).then((res) => {
 
-            // fetch(`http://13.127.128.192:8081/student/getStudentAttendancesByStudentAndSession?studentId=${studentId}&startDate=${startDate}&endDate=${endDate}&sessionYear=${sessionYear}`).then((res) => {
+        fetch(`http://13.127.128.192:8081/student/getStudentAttendancesByStudentAndSession?studentId=${selectedStudent.id}&startDate=${session.fromDate}&endDate=${session.toDate}&sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     var atendanceDataMap = new Map();
 
-                    console.log(monthMap);
                     data.map((d, i) => {
                         atendanceDataMap.set(d.month, {
                             absent: d.absent,
                             present: d.present,
                             totalWeekend: d.totalWeekend,
                             totalHolidays: d.totalHolidays,
-                            month: monthMap.get(d.month).short +'-'+d.year,
+                            month: monthMap.get(d.month).short + '-' + d.year,
                             year: d.year
                         });
-                        
+
                     })
                     setAttendanceDataMap(atendanceDataMap);
                     setMonths([3, 2, 1, 12, 11, 10, 9, 8, 7, 6, 5, 4]);

@@ -2,10 +2,18 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { monthMap,settings } from '../../../models/data';
+import { useSelector } from "react-redux";
 
 const FeeStatus = ({ navigation }) => {
+    const data = useSelector((state) => state)
+    const sessionData = data.session;
+    const [session, setSession] = useState(sessionData.data);
+    const selectedStudentData = data.selectedStudentDetails;
+    const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
+
+
     useEffect(() => {
-        getAllExams(2);
+        getAllExams(session.id);
         getAllFeesType();
     }, [])
 
@@ -22,8 +30,8 @@ const FeeStatus = ({ navigation }) => {
     const [recordData, setRecordData] = useState([]);
 
 
-    const getAllExams = (sessionYear) => {
-        fetch(`http://13.127.128.192:8081/exams/getAllExams?sessionYear=${sessionYear}`).then((res) => {
+    const getAllExams = () => {
+        fetch(`http://13.127.128.192:8081/exams/getAllExams?sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     examMap.set(exam.examsDetails.id, exam.examsDetails.name);
@@ -38,14 +46,14 @@ const FeeStatus = ({ navigation }) => {
             res.json().then((data) => {
                 if (data != '') {
                     data.forEach(feeType => allFeesTypeMap.set(feeType.id, feeType));
-                    getStudentFullDetails(2, 1);
+                    getStudentFullDetails(session.id);
                 }
             })
         })
     }
 
-    const getStudentFullDetails = (sessionYear, studentId) => {
-        fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${sessionYear}&studentId=${studentId}`)
+    const getStudentFullDetails = () => {
+        fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`)
             .then((res) => {
                 res.json().then((data) => {
                     console.log(data.studentActivityModel.classId);
@@ -80,13 +88,13 @@ const FeeStatus = ({ navigation }) => {
 
                     setTotalAmount(amount);
                     console.log("amount===>>>", amount);
-                    fetchFeesRecord(2, 1);
+                    fetchFeesRecord(session.id);
                 }
             })
         })
     }
 
-    const fetchFeesRecord = (sessionYear, studentId) => {
+    const fetchFeesRecord = () => {
         function getMonthsList(feeType) {
             let recordData = [];
             monthMap.forEach((value, key) => {
@@ -139,7 +147,7 @@ const FeeStatus = ({ navigation }) => {
         }
 
 
-        fetch(`http://13.127.128.192:8081/fees/getAllFeesDetails?sessionYear=${sessionYear}&studentId=${studentId}`).then((res) => {
+        fetch(`http://13.127.128.192:8081/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
 

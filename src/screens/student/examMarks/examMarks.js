@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import { useSelector } from "react-redux";
 
 const ExamMarks = ({ navigation }) => {
+
+    const data = useSelector((state) => state)
+    const sessionData = data.session;
+    const [session, setSession] = useState(sessionData.data);
+    const selectedStudentData = data.selectedStudentDetails;
+    const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
+
     useEffect(() => {
-        getStudentFullDetails(2, 1);
+        getStudentFullDetails(session.id);
     }, [])
 
     const [student, setStudent] = useState({
@@ -26,12 +34,11 @@ const ExamMarks = ({ navigation }) => {
 
 
 
-    const getStudentFullDetails = (sessionYear, studentId) => {
-        fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${sessionYear}&studentId=${studentId}`)
+    const getStudentFullDetails = () => {
+        fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`)
             .then((res) => {
                 res.json().then((data) => {
                     setStudent(data);
-                    console.log(data.studentActivityModel.classId);
                     getClassById(data.studentActivityModel.classId);
                     getAllSubjects();
                     getAllExams(2);
@@ -44,7 +51,6 @@ const ExamMarks = ({ navigation }) => {
         fetch(`http://13.127.128.192:8081/class/getClassById?classId=${classId}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
-                    console.log("getClassById===>",data);
                     for (const subjects of data.subjects) {
                         classSubjectMap.set(subjects.subjectId, subjects);
                     }
@@ -65,8 +71,8 @@ const ExamMarks = ({ navigation }) => {
         })
     }
 
-    const getAllExams = (sessionYear) => {
-        fetch(`http://13.127.128.192:8081/exams/getAllExams?sessionYear=${sessionYear}`).then((res) => {
+    const getAllExams = () => {
+        fetch(`http://13.127.128.192:8081/exams/getAllExams?sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     console.log("getAllExams===>",data);
@@ -91,14 +97,14 @@ const ExamMarks = ({ navigation }) => {
             res.json().then((data) => {
                 if (data != '') {
                     console.log("getMarksGrades===>",data);
-                    getStudentExamsMarks(data, 2, 1);
+                    getStudentExamsMarks(data);
                 }
             })
         })
     }
 
-    const getStudentExamsMarks = (gradeList, sessionYear, studentId) => {
-        fetch(`http://13.127.128.192:8081/student/getStudentExamsMarks?sessionYear=${sessionYear}&studentId=${studentId}`).then((res) => {
+    const getStudentExamsMarks = (gradeList) => {
+        fetch(`http://13.127.128.192:8081/student/getStudentExamsMarks?sessionYear=${session.id}&studentId=${selectedStudent.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     console.log("getStudentExamsMarks===>", data);

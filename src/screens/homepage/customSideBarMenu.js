@@ -1,7 +1,7 @@
 // Custom Navigation Drawer / Sidebar with Image and Icon in Menu Options
 // https://aboutreact.com/custom-navigation-drawer-sidebar-with-image-and-icon-in-menu-options/
 
-import React from 'react';
+import React, { useEffect, useState } from "react";
 import {
   SafeAreaView,
   View,
@@ -23,11 +23,40 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 // import { Avatar } from '@react-native-material/core';
 import { Avatar } from '@rneui/themed';
 
+import { useSelector } from "react-redux";
 
 
 
 
 const CustomSidebarMenu = (props) => {
+
+  const data = useSelector((state) => state)
+  const sessionData = data.session;
+  const [session, setSession] = useState(sessionData.data);
+  const selectedStudentData = data.selectedStudentDetails;
+  const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
+  const [student, setStudent] = useState({
+    student: {},
+    studentActivityModel: {},
+    studentLoginModel: {}
+});
+
+  console.log(selectedStudent);
+  useEffect(() => {
+    getStudentDetails();
+  }, [])
+
+  getStudentDetails = () => {
+    fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`)
+      .then((res) => {
+        res.json().then((data) => {
+          console.log(data)
+          setStudent(data);
+        })
+      })
+  }
+
+
   const BASE_PATH =
     'https://raw.githubusercontent.com/AboutReact/sampleresource/master/';
   const proileImage = 'react_logo.png';
@@ -45,18 +74,18 @@ const CustomSidebarMenu = (props) => {
             }} />
           <View>
             <View style={{ flexDirection: 'row' }}>
-             
-              <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>Rakesh Mishra</Text>
+
+              <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>{selectedStudent.name}</Text>
             </View>
             <View style={{ flexDirection: 'row' }}>
-              
+
               <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>
                 Student
               </Text>
             </View>
             <View style={{ flexDirection: 'row' }}>
               <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>
-                Class-1 Section-1
+                {student.studentActivityModel.classId} {student.studentActivityModel.sectionId}
               </Text>
             </View>
           </View>
@@ -70,15 +99,15 @@ const CustomSidebarMenu = (props) => {
       {/* LIST ITEMS */}
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
-        <View style={{ display: 'flex', flexDirection: 'row',  alignItems: 'center' }}>
+        <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
           {/* <Icon name="account" size={20} /> */}
           <DrawerItem
-            style={{ width: 200}}
+            style={{ width: 200 }}
             label="Student"
             onPress={() => {
               // Linking.openURL('https://aboutreact.com/')
               Alert.alert('this section is in development mode')
-          }}
+            }}
           />
         </View>
         <DrawerItem
@@ -86,63 +115,63 @@ const CustomSidebarMenu = (props) => {
           onPress={() => {
             // Linking.openURL('https://aboutreact.com/')
             Alert.alert('this section is in development mode')
-        }}
+          }}
         />
         <DrawerItem
           label="Academic"
           onPress={() => {
             // Linking.openURL('https://aboutreact.com/')
             Alert.alert('this section is in development mode')
-        }}
+          }}
         />
         <DrawerItem
           label="Student Attendence"
           onPress={() => {
             // Linking.openURL('https://aboutreact.com/')
             Alert.alert('this section is in development mode')
-        }}
+          }}
         />
         <DrawerItem
           label="Exam Schedule"
           onPress={() => {
             // Linking.openURL('https://aboutreact.com/')
             Alert.alert('this section is in development mode')
-        }}
+          }}
         />
         <DrawerItem
           label="Mark"
           onPress={() => {
             // Linking.openURL('https://aboutreact.com/')
             Alert.alert('this section is in development mode')
-        }}
+          }}
         />
         <DrawerItem
           label="Leave Apply"
           onPress={() => {
             // Linking.openURL('https://aboutreact.com/')
             Alert.alert('this section is in development mode')
-        }}
+          }}
         />
         <DrawerItem
           label="Activities"
           onPress={() => {
             // Linking.openURL('https://aboutreact.com/')
             Alert.alert('this section is in development mode')
-        }}
+          }}
         />
         <DrawerItem
           label="Library"
           onPress={() => {
             // Linking.openURL('https://aboutreact.com/')
             Alert.alert('this section is in development mode')
-        }}
+          }}
         />
         <DrawerItem
           label="Transport"
           onPress={() => {
             // Linking.openURL('https://aboutreact.com/')
             Alert.alert('this section is in development mode')
-        }}
+          }}
         />
         {/* <View style={styles.customItem}>
           <Text

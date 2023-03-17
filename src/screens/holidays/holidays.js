@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import { useSelector } from "react-redux";
 
 const Holidays = ({ navigation }) => {
+    const data = useSelector((state)=>state)        
+    const userData = data.session;
+    const [session, setSession] = useState(userData.data);
+
     useEffect(() => {
         getStudentAttendenceByMonth();
     }, [])
@@ -10,7 +15,7 @@ const Holidays = ({ navigation }) => {
     const [holidayList, setHolidayList] = useState([]);
 
     const getStudentAttendenceByMonth = () => {
-        fetch(`http://13.127.128.192:8081/holiday/getAllHolidays?sessionYear=2`).then((res) => {
+        fetch(`http://13.127.128.192:8081/holiday/getAllHolidays?sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     setHolidayList(data);

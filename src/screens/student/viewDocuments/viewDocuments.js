@@ -2,15 +2,28 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
+
+
+
+
 const ViewDocuments = ({ navigation }) => {
-    useEffect(() => {
-        getStudentAttendenceByMonth(1);
-    }, [])
 
     const [studentDocuments, setStudentDocuments] = useState([]);
+    const data = useSelector((state) => state)
+    const sessionData = data.session;
+    const [session, setSession] = useState(sessionData.data);
+    const selectedStudentData = data.selectedStudentDetails;
+    const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
 
-    const getStudentAttendenceByMonth = (studentId) => {
-        fetch(`http://13.127.128.192:8081/student/getStudentDocuments?studentId=${studentId}`).then((res) => {
+
+    useEffect(() => {
+        getStudentAttendenceByMonth();
+    }, [])
+
+
+
+    const getStudentAttendenceByMonth = () => {
+        fetch(`http://13.127.128.192:8081/student/getStudentDocuments?studentId=${selectedStudent.id}`).then((res) => {
             res.json().then((data) => {
                 console.log(data);
                 if (data != '') {

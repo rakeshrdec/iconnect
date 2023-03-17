@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { View,Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useSelector } from "react-redux";
 
 const PersonalInfo = () =>{
     const [genderName,setGenderName] = useState('Gender');
     const [categoryName,setCategoryName] = useState('Category');
+
+    const data = useSelector((state) => state)
+    const sessionData = data.session;
+    const [session, setSession] = useState(sessionData.data);
+    const selectedStudentData = data.selectedStudentDetails;
+    const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
 
     const [student, setStudent] = useState({
         student: {},
@@ -12,17 +19,11 @@ const PersonalInfo = () =>{
         studentLoginModel: {}
     });
     useEffect(()=>{
-        // http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=2&studentId=1
-        // http://13.127.128.192:8081/class/getClassById?classId=2
-        // http://13.127.128.192:8081/utils/getGenders
-        // http://13.127.128.192:8081/utils/getCategory
-        const studentId = 1;
-        const sessionYear = 2;
-        getStudentDetails1(studentId,sessionYear );
+        getStudentDetails1( );
     },[])
 
-    getStudentDetails1 = (studentId,sessionYear ) =>{
-        fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${sessionYear}&studentId=${studentId}`)
+    getStudentDetails1 = ( ) =>{
+        fetch(`http://13.127.128.192:8081/student/getStudentFullDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`)
         .then((res)=>{
             res.json().then((data)=>{
                 setStudent(data);

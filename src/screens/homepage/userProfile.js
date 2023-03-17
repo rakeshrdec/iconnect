@@ -194,16 +194,7 @@ function NotificationsScreen({ navigation }) {
   );
 }
 
-// drawerContent = () => {
-//   return (
-//     <TouchableOpacity style={{backgroundColor:'black', flex:1}} onPress={()=>{console.log('rakesh mkumart mishra is ')}}>
-//       <Text style={{backgroundColor:'red'}}>Close</Text>
-//     </TouchableOpacity>
-//   );
-// };
-
 const Drawer = createDrawerNavigator();
-
 const HomePage = () => {
 
   return (

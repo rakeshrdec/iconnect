@@ -2,17 +2,28 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
+import { useSelector } from "react-redux";
+
+
+
+
 const Notifications = ({ navigation }) => {
+
+    const data = useSelector((state) => state)
+    const sessionData = data.session;
+    const [session, setSession] = useState(sessionData.data);
+    const selectedStudentData = data.selectedStudentDetails;
+    const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
+
     useEffect(() => {
-        getStudentAttendenceByMonth(1);
+        getStudentAttendenceByMonth();
     }, [])
 
     const [notifications, setNotifications] = useState([]);
 
-    const getStudentAttendenceByMonth = (studentId) => {
-        fetch(`http://13.127.128.192:8081/notification/getNotificationDetails?studentId=${studentId}`).then((res) => {
+    const getStudentAttendenceByMonth = () => {
+        fetch(`http://13.127.128.192:8081/notification/getNotificationDetails?studentId=${selectedStudent.id}`).then((res) => {
             res.json().then((data) => {
-                console.log(data);
                 if (data != '') {
                     setNotifications(data);
                 }
