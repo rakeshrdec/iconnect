@@ -12,7 +12,7 @@ const ExamMarks = ({ navigation }) => {
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
 
     useEffect(() => {
-        getClassById(data.studentActivityModel.classId);
+        getClassById(selectedStudent.classId);
         getAllSubjects();
         getAllExams();
         getMarksGrades();
