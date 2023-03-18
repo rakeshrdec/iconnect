@@ -46,13 +46,7 @@ const Login = ({ navigation }) => {
  const userData = data.userInformation;
 
   const onLogin = async () =>{
-  
-
-    if(loginFor=='Student') {
-      // if(verify) 
-      {
-      // navigation.navigate('StudentCard')
-       await fetch('http://13.127.128.192:8081/auth/validateStudentLogin', {
+    fetch('http://13.127.128.192:8081/auth/validateStudentLogin', {
             method: 'POST',
             headers: {
               Accept: 'application/json',
@@ -70,20 +64,27 @@ const Login = ({ navigation }) => {
             res.json().then(data=>{
               actions.studentList(data.students)
               actions.session(data.session)
-              verify = true
               navigation.navigate('StudentCard')
-            })
-          }
-      else {
-        Alert.alert("please enter valid credentials")
-      }
-        })
-      }
-    }
+          })}})
+
+
+    // if(loginFor=='Student') {
+    //   // Alert.alert('student Login');
+    //   if(loginId==12345678&&password==12345678) 
+    //   {
+    //   navigation.navigate('StudentCard')
+    //   }
+    //   else{
+    //     navigation.navigate('StudentCard')
+    //     setLoginId('');
+    //     setPassword('');
+    //     Alert.alert('please enter coreect login credentials')
+    //   }
+    // }
     
-    if(loginFor=='Staff') {
-      Alert.alert('you are not eligible for staff login')
-    }
+    // if(loginFor=='Staff') {
+    //   Alert.alert('staff Login is in development mode')
+    // }
   }
 
   return (

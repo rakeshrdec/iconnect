@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, Dimensions, Pressable, Image } from "react-native";
+import { SafeAreaView, View, Text, Pressable, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { monthMap, settings } from '../../../models/data';
+import { monthMap,settings } from '../../../models/data';
 import { useSelector } from "react-redux";
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
-
 
 const FeeStatus = ({ navigation }) => {
     const data = useSelector((state) => state)
@@ -40,7 +38,7 @@ const FeeStatus = ({ navigation }) => {
                     data.forEach(exam => {
                         examMap.set(exam.examsDetails.id, exam.examsDetails.name);
                     });
-
+                   
                 }
             })
         })
@@ -80,7 +78,7 @@ const FeeStatus = ({ navigation }) => {
                     });
 
                     setTotalAmount(amount);
-
+                   
                     fetchFeesRecord(session.id);
                 }
             })
@@ -94,10 +92,10 @@ const FeeStatus = ({ navigation }) => {
                 let row = [];
                 row.push('');
                 row.push(value.short);
-                row.push(settings.CURRENCY + ' ' + classfeeTypeMap.get(feeType).amount.toString() + '/-');
-                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? settings.CURRENCY + ' ' + studentMonthFeeStatus.get(feeType + '_' + key).amount.toString() + '/-' : '--');
-                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? studentMonthFeeStatus.get(feeType + '_' + key).discountAmount.toString() + '/-' : '--');
-                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? studentMonthFeeStatus.get(feeType + '_' + key).lateFeeAmount.toString() + '/-' : '--');
+                row.push(settings.CURRENCY + ' ' +classfeeTypeMap.get(feeType).amount.toString()+ '/-');
+                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? settings.CURRENCY + ' ' +studentMonthFeeStatus.get(feeType + '_' + key).amount.toString()+ '/-' : '--');
+                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? studentMonthFeeStatus.get(feeType + '_' + key).discountAmount.toString()+ '/-' : '--');
+                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? studentMonthFeeStatus.get(feeType + '_' + key).lateFeeAmount.toString()+ '/-' : '--');
                 row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? "Paid" : 'UnPaid');
                 recordData.push(row);
             });
@@ -110,10 +108,10 @@ const FeeStatus = ({ navigation }) => {
                 let row = [];
                 row.push('');
                 row.push(value.short);
-                row.push(settings.CURRENCY + ' ' + classfeeTypeMap.get(feeType).amount.toString() + '/-');
-                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? settings.CURRENCY + ' ' + studentMonthFeeStatus.get(feeType + '_' + key).amount.toString() + '/-' : '--');
-                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? studentMonthFeeStatus.get(feeType + '_' + key).discountAmount.toString() + '/-' : '--');
-                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? studentMonthFeeStatus.get(feeType + '_' + key).lateFeeAmount.toString() + '/-' : '--');
+                row.push(settings.CURRENCY + ' ' +classfeeTypeMap.get(feeType).amount.toString()+ '/-');
+                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? settings.CURRENCY + ' ' +studentMonthFeeStatus.get(feeType + '_' + key).amount.toString()+ '/-' : '--');
+                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? studentMonthFeeStatus.get(feeType + '_' + key).discountAmount.toString()+ '/-' : '--');
+                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? studentMonthFeeStatus.get(feeType + '_' + key).lateFeeAmount.toString()+ '/-' : '--');
                 row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? "Paid" : 'UnPaid');
                 recordData.push(row);
             });
@@ -127,10 +125,10 @@ const FeeStatus = ({ navigation }) => {
                 let row = [];
                 row.push('');
                 row.push(value);
-                row.push(settings.CURRENCY + ' ' + classfeeTypeMap.get(feeType).amount.toString() + '/-');
-                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? settings.CURRENCY + ' ' + studentMonthFeeStatus.get(feeType + '_' + key).amount.toString() + '/-' : '--');
-                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? studentMonthFeeStatus.get(feeType + '_' + key).discountAmount.toString() + '/-' : '--');
-                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? studentMonthFeeStatus.get(feeType + '_' + key).lateFeeAmount.toString() + '/-' : '--');
+                row.push(settings.CURRENCY + ' ' +classfeeTypeMap.get(feeType).amount.toString()+ '/-');
+                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? settings.CURRENCY + ' ' +studentMonthFeeStatus.get(feeType + '_' + key).amount.toString()+ '/-' : '--');
+                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? studentMonthFeeStatus.get(feeType + '_' + key).discountAmount.toString()+ '/-' : '--');
+                row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? studentMonthFeeStatus.get(feeType + '_' + key).lateFeeAmount.toString() + '/-': '--');
                 row.push(studentMonthFeeStatus.get(feeType + '_' + key) ? "Paid" : 'UnPaid');
                 recordData.push(row);
             });
@@ -141,12 +139,12 @@ const FeeStatus = ({ navigation }) => {
         fetch(`http://13.127.128.192:8081/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
-                    var tempTotalPaidAmount = 0;
+                    var tempTotalPaidAmount =0;
                     data.forEach(fee => {
                         fee.feesDetails.forEach(feesDetail => {
 
                             tempTotalPaidAmount += feesDetail.amount;
-
+                            
                             // setTotalLateAmount(totalLateAmount + feesDetail.lateFeeAmount);
                             // setTotalDiscountAmount(totalDiscountAmount + feesDetail.discountAmount);
 
@@ -161,7 +159,7 @@ const FeeStatus = ({ navigation }) => {
                             }
                         });
                     });
-
+                   
                     setTotalPaidAmount(tempTotalPaidAmount);
                     let tempRecordData = [];
                     feeTypeMap.forEach((value, key) => {
@@ -179,10 +177,10 @@ const FeeStatus = ({ navigation }) => {
                             tempRecordData = tempRecordData.concat(getExamsList(value.id));
                         } else {
                             row.push('');
-                            row.push(settings.CURRENCY + ' ' + classfeeTypeMap.get(value.id).amount.toString() + '/-');
+                            row.push(settings.CURRENCY + ' ' +classfeeTypeMap.get(value.id).amount.toString()+ '/-');
                             row.push(paidFees.get(value.id) ? settings.CURRENCY + ' ' + paidFees.get(value.id).amount.toString() + '/-' : '--');
-                            row.push(paidFees.get(value.id) ? paidFees.get(value.id).discountAmount.toString() + '/-' : '--');
-                            row.push(paidFees.get(value.id) ? paidFees.get(value.id).lateFeeAmount.toString() + '/-' : '--');
+                            row.push(paidFees.get(value.id) ? paidFees.get(value.id).discountAmount.toString()+ '/-' : '--');
+                            row.push(paidFees.get(value.id) ? paidFees.get(value.id).lateFeeAmount.toString()+ '/-' : '--');
                             row.push(paidFees.get(value.id) ? "Paid" : 'UnPaid');
                             tempRecordData.push(row);
                         }
@@ -200,60 +198,49 @@ const FeeStatus = ({ navigation }) => {
 
 
     return (
-        <>
-            <View style={{
-                width: SCREEN_WIDTH,
-                height: 0,
-                borderTopColor: "#2E4AA0",
-                borderTopWidth: SCREEN_HEIGHT,
-                borderRightWidth: SCREEN_WIDTH,
-                borderRightColor: '#F0BA19'
-            }}>
-            </View>
-            <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
-                <View style={{ flex: 1, justifyContent: "space-between" }}>
-                    <View style={{ flex: 6, justifyContent: "space-between" }}>
-                        <ScrollView>
-                            <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 10 }}>
-                                <Text style={{ color: 'green', marginHorizontal: 5, textAlign: 'center' }}>Fee Type</Text>
-                                <View style={{ position: 'absolute', right: 5, flexDirection: 'row', }}>
-                                    <Text style={{ color: '#b942f5', marginHorizontal: 5, textAlign: 'center' }}>M/Q/E</Text>
-                                    <Text style={{ color: '#f58a42', marginHorizontal: 5, textAlign: 'center' }}>Amount</Text>
-                                    <Text style={{ color: 'red', marginHorizontal: 5, textAlign: 'center' }}>Paid Amount</Text>
-                                    <Text style={{ color: 'red', marginHorizontal: 5, textAlign: 'center' }}>Status</Text>
-                                </View>
+        <SafeAreaView style={{ flex: 1 }}>
+            <View style={{ flex: 1, justifyContent: "space-between" }}>
+                <View style={{ flex: 6, justifyContent: "space-between" }}>
+                    <ScrollView>
+                        <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 10 }}>
+                            <Text style={{ color: 'green', marginHorizontal: 5, textAlign: 'center' }}>Fee Type</Text>
+                            <View style={{ position: 'absolute', right: 5, flexDirection: 'row', }}>
+                                <Text style={{ color: '#b942f5', marginHorizontal: 5, textAlign: 'center' }}>M/Q/E</Text>
+                                <Text style={{ color: '#f58a42', marginHorizontal: 5, textAlign: 'center' }}>Amount</Text>
+                                <Text style={{ color: 'red', marginHorizontal: 5, textAlign: 'center' }}>Paid Amount</Text>
+                                <Text style={{ color: 'red', marginHorizontal: 5, textAlign: 'center' }}>Status</Text>
                             </View>
+                        </View>
 
-                            {recordData.map((record, i) => (
+                        {recordData.map((record, i) => (
 
-                                <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
-                                    <Text style={{ color: 'darkblue' }}>{record[0]}</Text>
-
-                                    <View style={{ position: 'absolute', right: 5, flexDirection: 'row', }}>
-                                        <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{record.length > 0 ? record[1] : ''}</Text>
-                                        <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{record.length > 0 ? record[2] : ''}</Text>
-                                        <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{record.length > 0 ? record[3] : ''}</Text>
-                                        <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{record.length > 0 ? record[6] : ''}</Text>
-                                    </View>
-
-                                </View>
-                            ))}
                             <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
-                                <Text style={{ color: 'darkblue' }}>Total</Text>
+                                <Text style={{ color: 'darkblue' }}>{record[0]}</Text>
 
                                 <View style={{ position: 'absolute', right: 5, flexDirection: 'row', }}>
-
-                                    <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{settings.CURRENCY}{totalAmount}/-</Text>
-                                    <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{settings.CURRENCY}{totalPaidAmount}/-</Text>
+                                    <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{record.length > 0 ? record[1] : ''}</Text>
+                                    <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{record.length > 0 ? record[2] : ''}</Text>
+                                    <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{record.length > 0 ? record[3] : ''}</Text>
+                                    <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{record.length > 0 ? record[6] : ''}</Text>
                                 </View>
 
                             </View>
+                        ))}
+                        <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
+                            <Text style={{ color: 'darkblue' }}>Total</Text>
 
-                        </ScrollView>
-                    </View>
-                </View >
-            </SafeAreaView >
-        </>
+                            <View style={{ position: 'absolute', right: 5, flexDirection: 'row', }}>
+                                
+                                <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{settings.CURRENCY}{totalAmount}/-</Text>
+                                <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{settings.CURRENCY}{totalPaidAmount}/-</Text>
+                            </View>
+
+                        </View>
+
+                    </ScrollView>
+                </View>
+            </View >
+        </SafeAreaView >
     );
 }
 
