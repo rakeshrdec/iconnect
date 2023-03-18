@@ -6,6 +6,8 @@ import { ScrollView } from "react-native-gesture-handler";
 import { Divider } from '@rneui/themed';
 import actions from "../../redux/actions";
 import { useSelector } from "react-redux";
+import { LogBox } from 'react-native';
+
 
 
 const StudentCard = ({ navigation }) => {
@@ -13,6 +15,12 @@ const StudentCard = ({ navigation }) => {
     const userData = data.studentList;
     const sessionData = data.session;
     const [session, setSession] = useState(sessionData.data);
+
+    // Ignore log notification by message
+    LogBox.ignoreLogs(['Warning: ...']);
+
+    //Ignore all log notifications
+    LogBox.ignoreAllLogs();
 
     useEffect(() => {
         setStudentList(userData.data)
