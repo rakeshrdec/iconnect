@@ -45,7 +45,6 @@ import store from '../../redux/store'
 const Stack = createNativeStackNavigator();
 
 const LoginNavigation = () => {
-  console.disableYellowBox = true;
 
   return (
     <Provider store={store}>
