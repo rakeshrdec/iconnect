@@ -94,7 +94,9 @@ const TimeTable = ({ navigation }) => {
 
             tempTimeTableDataMap.set(e.weekDaysNumber, timetableList);
         })
-
+        tempTimeTableDataMap.forEach((value) => {
+            value.sort((a, b) => a.summerStartTime.localeCompare(b.summerStartTime));
+          });
         var date = new Date();
         setSelectedDay(date.getDay());
         setListOfPeriods(tempTimeTableDataMap.get(date.getDay()));
