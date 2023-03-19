@@ -6,6 +6,7 @@ import {  Overlay } from '@rneui/themed';
 import actions from "../../redux/actions";
 import { useSelector } from "react-redux";
 import { LogBox } from 'react-native';
+import { Header } from "react-native-elements";
 
 
 
@@ -135,12 +136,17 @@ const StudentCard = ({ navigation }) => {
                     width: SCREEN_WIDTH,
                     height: 0,
                     borderTopColor: "#2E4AA0",
-                    borderTopWidth: SCREEN_HEIGHT,
+                    borderTopWidth: SCREEN_HEIGHT+30,
                     borderRightWidth: SCREEN_WIDTH + 30,
                     borderRightColor: '#F0BA19'
                 }}>
                 </View>
-                <View style={{ height: 55, backgroundColor: '#2E4AA0', justifyContent: 'center', position: 'absolute', width: '100%' }}>
+                <View style={{display:'none'}}>
+                    <Header 
+                    backgroundColor='#2E4AA0'
+                    />
+                </View>
+                <View style={{ height: 55, backgroundColor: '#2E4AA0', justifyContent: 'center', position: 'absolute', width: '100%' ,top:14}}>
                     <Text style={{ color: 'white', fontSize: 20, alignSelf: 'center' }}>Student List</Text>
                 </View>
                 <ScrollView style={{ position: 'absolute', width: '100%', marginTop: 70 }}>

@@ -32,6 +32,7 @@ import { Input } from 'react-native-elements';
 import actions from '../../redux/actions';
 import {useSelector,useDispatch} from 'react-redux';
 import { Overlay } from '@rneui/themed';
+import { Header } from 'react-native-elements';
 
 // import { Icon, Input } from '@ui-kitten/components';
 
@@ -98,98 +99,106 @@ const Login = ({ navigation }) => {
       Alert.alert('you are not eligible for staff login')
     }
   }
+  
 
   return (
+    <>
+    <View style={{display:'none'}}>
+    <Header 
+      backgroundColor='#2E4AA0'
+      />
+      </View>
     <View style={{ flex: 1, backgroundColor: '#2E4AA0', justifyContent: 'center',  }}>
-      <View style={{backgroundColor:'white',width:'95%',alignSelf:'center',borderRadius:15,minHeight:450}}>
-          {/* logo section */}
-          <View>
-            <Image source={require('../../../assets/logo/applogo.jpeg')} style={{width:70,height:70, borderRadius:15, resizeMode:'stretch', alignSelf:'center'}}/>
-            <Text style={{color:'#2E4AA0', fontWeight:'bold',textAlign:'center', fontSize: 25}}>i-class</Text>
-          </View>
-          {/* login section */}
-          <View style={{ borderColor:'#F0BA19', width:'100%', justifyContent:'center',padding:20, borderRadius:20,}}>
-            <View style={{flexDirection:'row', justifyContent:'space-around'}}>
-                <Pressable
-                onPress={()=>{
-                      setLoginFor('Staff')
-                  }} 
-                  style={loginFor=='Staff'?{elevation:10,backgroundColor:'#F0BA19', borderRadius:5, width:'35%', height:40, alignItems:'center', justifyContent:'center'}:{borderWidth:1,backgroundColor:'white', borderRadius:5, width:'35%', height:40, alignItems:'center', justifyContent:'center'}}>
-                  <Text style={{color:'blue',fontWeight:'bold', fontSize: 25}}>Staff</Text>
-                </Pressable>
-                <Pressable
-                onPress={()=>{
-                      setLoginFor('Student')
-                  }} 
-                  // value={loginId}
-                  style={loginFor=='Student'?{elevation:10,backgroundColor:'#F0BA19', borderRadius:5, width:'35%', height:40, alignItems:'center', justifyContent:'center'}:{borderWidth:1,backgroundColor:'white', borderRadius:5, width:'35%', height:40, alignItems:'center', justifyContent:'center'}}>
-                  <Text style={{color:'blue',fontWeight:'bold', fontSize: 25}}>Student</Text>
-                </Pressable>
+         <View style={{backgroundColor:'white',width:'95%',alignSelf:'center',borderRadius:15,minHeight:450}}>
+            {/* logo section */}
+            <View>
+              <Image source={require('../../../assets/logo/applogo.jpeg')} style={{width:70,height:70, borderRadius:15, resizeMode:'stretch', alignSelf:'center'}}/>
+              <Text style={{color:'#2E4AA0', fontWeight:'bold',textAlign:'center', fontSize: 25}}>i-class</Text>
             </View>
-              <Text style={{color:'black', fontWeight:'bold', textAlign:'center',  marginTop:10, borderRadius:5, height:40, fontSize: 2212345678}}>{loginFor} Login</Text>
-              {/* <Text style={{color:'black'}}>Mobile</Text> */}
-                <Input
-                  inputStyle={{color:'black',fontSize:15,height:40, fontSize: 18}}
-                  placeholder='Mobile No.'
-                  placeholderTextColor='black'
-                  rightIcon={
-                    <Icon
-                      type='ant-design'
-                      name='user'
-                      size={20}
-                      color='black'
-                    />
-                    }
-                  />
-                <Input
-                  inputStyle={{color:'black',fontSize:15,height:40, fontSize: 18}}
-                  placeholder='Enter Password'
-                  placeholderTextColor='black'
-                  secureTextEntry={hidePassword}
-                  rightIcon={
-                    hidePassword?
-                        <Icon
-                        onPress={()=>{setHidePassword(!hidePassword)}}
-                        type='entypo'
-                        name='eye-with-line'
+            {/* login section */}
+            <View style={{ borderColor:'#F0BA19', width:'100%', justifyContent:'center',padding:20, borderRadius:20,}}>
+              <View style={{flexDirection:'row', justifyContent:'space-around'}}>
+                  <Pressable
+                  onPress={()=>{
+                        setLoginFor('Staff')
+                    }} 
+                    style={loginFor=='Staff'?{elevation:10,backgroundColor:'#F0BA19', borderRadius:5, width:'35%', height:40, alignItems:'center', justifyContent:'center'}:{borderWidth:1,backgroundColor:'white', borderRadius:5, width:'35%', height:40, alignItems:'center', justifyContent:'center'}}>
+                    <Text style={{color:'blue',fontWeight:'bold', fontSize: 25}}>Staff</Text>
+                  </Pressable>
+                  <Pressable
+                  onPress={()=>{
+                        setLoginFor('Student')
+                    }} 
+                    // value={loginId}
+                    style={loginFor=='Student'?{elevation:10,backgroundColor:'#F0BA19', borderRadius:5, width:'35%', height:40, alignItems:'center', justifyContent:'center'}:{borderWidth:1,backgroundColor:'white', borderRadius:5, width:'35%', height:40, alignItems:'center', justifyContent:'center'}}>
+                    <Text style={{color:'blue',fontWeight:'bold', fontSize: 25}}>Student</Text>
+                  </Pressable>
+              </View>
+                <Text style={{color:'black', fontWeight:'bold', textAlign:'center',  marginTop:10, borderRadius:5, height:40, fontSize: 2212345678}}>{loginFor} Login</Text>
+                {/* <Text style={{color:'black'}}>Mobile</Text> */}
+                  <Input
+                    inputStyle={{color:'black',fontSize:15,height:40, fontSize: 18}}
+                    placeholder='Mobile No.'
+                    placeholderTextColor='black'
+                    rightIcon={
+                      <Icon
+                        type='ant-design'
+                        name='user'
                         size={20}
                         color='black'
-                        />:
-                        <Icon
+                      />
+                      }
+                    />
+                  <Input
+                    inputStyle={{color:'black',fontSize:15,height:40, fontSize: 18}}
+                    placeholder='Enter Password'
+                    placeholderTextColor='black'
+                    secureTextEntry={hidePassword}
+                    rightIcon={
+                      hidePassword?
+                          <Icon
                           onPress={()=>{setHidePassword(!hidePassword)}}
                           type='entypo'
-                          name='eye'
+                          name='eye-with-line'
                           size={20}
                           color='black'
-                        />
-                    }
-                  />
+                          />:
+                          <Icon
+                            onPress={()=>{setHidePassword(!hidePassword)}}
+                            type='entypo'
+                            name='eye'
+                            size={20}
+                            color='black'
+                          />
+                      }
+                    />
 
-            <Pressable
-                onPress={onLogin}
-                style={{flexDirection:'row',justifyContent:'space-around', backgroundColor:'#F0BA19', marginTop:10,  borderRadius:150,height:40,alignItems:'center'}}>
-                <Text style={{color:'white', fontWeight:'bold',textAlign:'center', alignSelf:'center', fontSize:25}}>Login</Text>
-               
-                {/* <Icon name="rightcircle" size={27} color="darkblue" /> */}
-            </Pressable>
-            <Overlay
-              isVisible={showLoader}
-              overlayStyle={{
-                backgroundColor:'transparent',
-                borderWidth:0,
-                opacity:1,
-                flex:1,
-                width:'100%',
-                height:'100%',
-                justifyContent:'center'
-              }}
-              >
-              <ActivityIndicator size='large'/>
-            </Overlay>
-          </View>          
-      </View>
-      <Text style={{color:'white', fontWeight:'bold', textAlign:'center'}}>powered by i-class</Text>
+              <Pressable
+                  onPress={onLogin}
+                  style={{flexDirection:'row',justifyContent:'space-around', backgroundColor:'#F0BA19', marginTop:10,  borderRadius:150,height:40,alignItems:'center'}}>
+                  <Text style={{color:'white', fontWeight:'bold',textAlign:'center', alignSelf:'center', fontSize:25}}>Login</Text>
+                
+                  {/* <Icon name="rightcircle" size={27} color="darkblue" /> */}
+              </Pressable>
+              <Overlay
+                isVisible={showLoader}
+                overlayStyle={{
+                  backgroundColor:'transparent',
+                  borderWidth:0,
+                  opacity:1,
+                  flex:1,
+                  width:'100%',
+                  height:'100%',
+                  justifyContent:'center'
+                }}
+                >
+                <ActivityIndicator size='large'/>
+              </Overlay>
+            </View>          
+         </View>
+         <Text style={{color:'white', fontWeight:'bold', textAlign:'center'}}>powered by i-class</Text>
     </View>
+    </>
   );
 };
 
@@ -198,3 +207,4 @@ const styles = StyleSheet.create({
 });
 
 export default Login;
+ 

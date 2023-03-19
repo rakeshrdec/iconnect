@@ -37,184 +37,43 @@ import { ScrollView } from 'react-native-gesture-handler';
 import StudentDashBoard from '../student/studentDashBoard';
 import StudentProfile from '../student/profile/profile';
 import AttendenceIndex from '../student/attendence/attendenceIndex';
+import { Header, Icon } from 'react-native-elements';
 
 
 
-
-function HomeScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1 }}>
-      <View style={{ backgroundColor: '#0c123b', flex: 0.3, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center' }}>
-        <View style={{ height: 85, width: 85, backgroundColor: 'white', borderRadius: 150 }}></View>
-        <Text style={{ color: 'white' }}>Rakesh Mishra</Text>
-      </View>
-      {/* <Button
-        onPress={() => navigation.navigate('Notifications')}
-        title="Go to notifications"
-      /> */}
-      <View style={{ flexDirection: 'row', height: 100 }}>
-        <Pressable
-          onPress={() => {
-            // Alert.alert('work in prgres')
-            navigation.navigate('AttendenceMonth')
-          }}
-          style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
-          <Image source={require('../../../assets/logo/attendance.png')} style={{ height: 50, width: 50 }} />
-          <Text>attendence</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => {
-            Alert.alert('work in prgres')
-          }}
-          style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
-          <Image source={require('../../../assets/logo/notification.png')} style={{ height: 50, width: 50 }} />
-          <Text>messages</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => {
-            Alert.alert('work in prgres')
-          }}
-          style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
-          <Image source={require('../../../assets/logo/fee.png')} style={{ height: 50, width: 50 }} />
-          <Text>Fees</Text>
-        </Pressable>
-      </View>
-      <View style={{ flexDirection: 'row', height: 100 }}>
-        <Pressable
-          onPress={() => {
-            Alert.alert('work in prgres')
-          }}
-          style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
-          <Image source={require('../../../assets/logo/award.png')} style={{ height: 50, width: 50 }} />
-          <Text>Exam Marks</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => {
-            Alert.alert('work in prgres')
-          }}
-          style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
-          <Image source={require('../../../assets/logo/document.png')} style={{ height: 50, width: 50 }} />
-          <Text>Document</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => {
-            Alert.alert('work in prgres')
-          }}
-          style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
-          <Image source={require('../../../assets/logo/holidays.png')} style={{ height: 50, width: 50 }} />
-          <Text>Holidays</Text>
-        </Pressable>
-      </View>
-      <View style={{ flexDirection: 'row', height: 100 }}>
-        <Pressable
-          onPress={() => {
-            Alert.alert('work in prgres')
-          }}
-          style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
-          <Image source={require('../../../assets/logo/timetable.png')} style={{ height: 50, width: 50 }} />
-          <Text>Time Table</Text>
-        </Pressable>
-        {/* <Pressable
-            onPress={()=>{
-              Alert.alert('work in prgres')
-            }}
-            style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}>
-              <Image source={require('../../../assets/logo/document.png')} style={{height:50,width:50}} />
-              <Text>Document</Text>
-          </Pressable>
-          <Pressable
-            onPress={()=>{
-              Alert.alert('work in prgres')
-            }}
-            style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}>
-              <Image source={require('../../../assets/logo/holidays.png')} style={{height:50,width:50}} />
-              <Text>Holidays</Text>
-          </Pressable> */}
-      </View>
-
-      <View style={{ flex: 0.3, marginTop: 5, backgroundColor: 'lightgray', padding: 10 }}>
-        <Text style={{ color: 'black' }}>Activities</Text>
-        {/* <ScrollView style={{height:100, flexDirection:'row', backgroundColor:'darkblue'}}>
-        <Pressable
-            onPress={()=>{
-              Alert.alert('work in prgres')
-            }}
-            // style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}
-            >
-              <Image source={require('../../../assets/logo/timetable.png')} style={{height:50,width:50}} />
-              <Text>Time Table</Text>
-          </Pressable>
-          <Pressable
-            onPress={()=>{
-              Alert.alert('work in prgres')
-            }}
-            // style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}
-            >
-              <Image source={require('../../../assets/logo/timetable.png')} style={{height:50,width:50}} />
-              <Text>Time Table</Text>
-          </Pressable>
-          <Pressable
-            onPress={()=>{
-              Alert.alert('work in prgres')
-            }}
-            // style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}
-            >
-              <Image source={require('../../../assets/logo/timetable.png')} style={{height:50,width:50}} />
-              <Text>Time Table</Text>
-          </Pressable>
-          <Pressable
-            onPress={()=>{
-              Alert.alert('work in prgres')
-            }}
-            // style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}
-            >
-              <Image source={require('../../../assets/logo/timetable.png')} style={{height:50,width:50}} />
-              <Text>Time Table</Text>
-          </Pressable>
-          <Pressable
-            onPress={()=>{
-              Alert.alert('work in prgres')
-            }}
-            // style={{borderRadius:5,margin:5, flex:1,borderWidth:1, backgroundColor:'lightgray',alignItems:'center', justifyContent:'center'}}
-            >
-              <Image source={require('../../../assets/logo/timetable.png')} style={{height:50,width:50}} />
-              <Text>Time Table</Text>
-          </Pressable>
-        </ScrollView> */}
-      </View>
-    </View>
-  );
-}
-
-function NotificationsScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button onPress={() => navigation.goBack()} title="Go back home" />
-    </View>
-  );
-}
+const GradientHeader = props => (
+  <View style={{ backgroundColor:'green'  }}>
+    <Header {...props}
+    backgroundColor='#2E4AA0'
+    />
+  </View>
+)
 
 const Drawer = createDrawerNavigator();
 const HomePage = () => {
+
 
   return (
     <NavigationContainer independent={true}>
       <Drawer.Navigator initialRouteName="Home" style={{ borderWidth: '1' }}
         screenOptions={{
-          activeTintColor: 'red',
           itemStyle: { marginVertical: 5 },
         }}
         drawerContent={props => <CustomSidebarMenu {...props} />}
       >
-        {/* <Drawer.Screen name="Home" component={HomeScreen} options={{
-        headerTintColor: 'white',
-          headerStyle: {
-            backgroundColor: '#0c123b',            
-          },
-      }}/> */}
+       
         <Drawer.Screen name="Home" component={StudentDashBoard} options={{
           headerTintColor: 'white',
           headerShown: 'false',
+          // title: 'Home',
+          // drawerIcon: ({focused, size}) => (
+          //    <Icon
+          //       name="eye"
+          //       size={size}
+          //       color={focused ? 'green' : 'red'}
+          //    />
+          // ),
+          header: props => <GradientHeader {...props} />,
           headerStyle: {
             backgroundColor: '#2E4AA0',
           },
@@ -228,18 +87,6 @@ const HomePage = () => {
               backgroundColor: '#2E4AA0',
             },
           }} />
-
-        <Drawer.Screen name="AttendenceMonth" component={AttendenceMonth}
-          options={{
-            headerTintColor: 'white',
-            headerShown: 'false',
-            headerStyle: {
-              backgroundColor: '#2E4AA0',
-            },
-            // headerTintColor:'red'
-          }}
-        />
-        <Drawer.Screen name="AttendenceYear" component={AttendenceYear} />
         <Drawer.Screen name="TimeTable" component={TimeTable}
           options={{
             headerTintColor: 'white',
