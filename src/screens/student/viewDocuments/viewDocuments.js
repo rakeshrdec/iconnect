@@ -4,7 +4,6 @@ import { ScrollView } from "react-native-gesture-handler";
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 import { useSelector } from "react-redux";
 
-import { useSelector } from "react-redux";
 
 const ViewDocuments = ({ navigation }) => {
 

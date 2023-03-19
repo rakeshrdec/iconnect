@@ -112,7 +112,17 @@ const TimeTable = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
+        <>
+        <View style={{
+            width: SCREEN_WIDTH,
+            height: 0,
+            borderTopColor: "#2E4AA0",
+            borderTopWidth: SCREEN_HEIGHT,
+            borderRightWidth: SCREEN_WIDTH,
+            borderRightColor: '#F0BA19'
+        }}>
+        </View>
+        <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
             <View style={{ flex: 1, justifyContent: "space-between" }}>
                 <View style={{ flex: 6, justifyContent: "space-between" }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '90%', alignSelf: 'center', marginVertical: 40 }}>
@@ -143,6 +153,7 @@ const TimeTable = ({ navigation }) => {
                 </View>
             </View>
         </SafeAreaView>
+        </>
     );
 }
 
