@@ -23,6 +23,7 @@ import {
   useColorScheme,
   View,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 // import { Icon } from 'react-native-vector-icons/Icon';
 // import Icon from 'react-native-vector-icons/AntDesign';
@@ -30,6 +31,7 @@ import { Icon } from 'react-native-elements';
 import { Input } from 'react-native-elements';
 import actions from '../../redux/actions';
 import {useSelector,useDispatch} from 'react-redux';
+import { Overlay } from '@rneui/themed';
 
 // import { Icon, Input } from '@ui-kitten/components';
 
@@ -41,12 +43,13 @@ const Login = ({ navigation }) => {
   const [loginFor, setLoginFor] = useState('Student')
  const [loginId,setLoginId] = useState()
  const [password,setPassword] = useState()
+ const [showLoader,setShowLoader] = useState(false)
 
  const data = useSelector((state)=>state)        
  const userData = data.userInformation;
 
   const onLogin = async () =>{
-  
+    setShowLoader(true)
 
     if(loginFor=='Student') {
       // if(verify) 
@@ -58,16 +61,21 @@ const Login = ({ navigation }) => {
               Accept: 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-              "createdAt": "string",
-              "expiredAt": "string",
-              "password": "7669991129",
-              "tokenType": 1,
-              "userName": "7669991129"
-            })
+            body: JSON.stringify(
+              {
+                "userName": "7669991129",
+                "password": "7669991129",
+                "tokenType":1,
+                "createdAt":"createdAt",
+                "expiredAt":"expiredAt"
+            }
+            )
           }).then((res)=>{ 
+            // console.log(res)
             if (res.status == 200 ){
+              setShowLoader(false)
             res.json().then(data=>{
+              console.log("DATA IS",data)
               actions.studentList(data.students)
               actions.session(data.session)
               verify = true
@@ -75,13 +83,18 @@ const Login = ({ navigation }) => {
             })
           }
       else {
+        setShowLoader(false)
         Alert.alert("please enter valid credentials")
       }
-        })
+        }).catch(function(error) {
+          setShowLoader(false)
+          console.log('There has been a problem with your fetch operation: ' + error.message);
+          });
       }
     }
     
     if(loginFor=='Staff') {
+      setShowLoader(false)
       Alert.alert('you are not eligible for staff login')
     }
   }
@@ -128,36 +141,6 @@ const Login = ({ navigation }) => {
                     />
                     }
                   />
-
-
-                  {/* uiKITTEN */}
-                  {/* <Input
-                      value={loginId}
-                      label='Password'
-                      placeholder='Place your Text'
-                      // caption={renderCaption}
-                      // accessoryRight={renderIcon}
-                      // secureTextEntry={secureTextEntry}
-                      onChangeText={nextValue => setLoginId(nextValue)}
-                    /> */}
-              {/* <TextInput
-                onChangeText={(e)=>{
-                    setLoginId(e)
-                  }}
-                  // value={password}
-                style={{borderBottomWidth:1, width:'100%', borderRadius:5 , color:'midnightblue',height:40}}/> */}
-              {/* <Text style={{color:'black'}}>Password</Text> */}
-              {/* <TextInput
-                placeholder='Enter Password'
-                secure={true}
-                secureTextEntry={true}
-                caretHidden={true}
-                onChangeText={(e)=>{
-                    setPassword(e)
-                  }}
-                style={{borderBottomWidth:1, width:'100%', borderRadius:5 , color:'midnightblue',height:40}}>
-              </TextInput> */}
-
                 <Input
                   inputStyle={{color:'black',fontSize:15,height:40, fontSize: 18}}
                   placeholder='Enter Password'
@@ -189,6 +172,20 @@ const Login = ({ navigation }) => {
                
                 {/* <Icon name="rightcircle" size={27} color="darkblue" /> */}
             </Pressable>
+            <Overlay
+              isVisible={showLoader}
+              overlayStyle={{
+                backgroundColor:'transparent',
+                borderWidth:0,
+                opacity:1,
+                flex:1,
+                width:'100%',
+                height:'100%',
+                justifyContent:'center'
+              }}
+              >
+              <ActivityIndicator size='large'/>
+            </Overlay>
           </View>          
       </View>
       <Text style={{color:'white', fontWeight:'bold', textAlign:'center'}}>powered by i-class</Text>

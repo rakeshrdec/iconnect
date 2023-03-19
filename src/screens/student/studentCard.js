@@ -1,9 +1,8 @@
 import { Avatar } from "@rneui/base";
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, Pressable, Image, Dimensions } from "react-native";
+import { SafeAreaView, View, Text, Pressable, Image, Dimensions, ActivityIndicator } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-// import { Divider } from 'react-native-elements';
-import { Divider } from '@rneui/themed';
+import {  Overlay } from '@rneui/themed';
 import actions from "../../redux/actions";
 import { useSelector } from "react-redux";
 import { LogBox } from 'react-native';
@@ -11,6 +10,7 @@ import { LogBox } from 'react-native';
 
 
 const StudentCard = ({ navigation }) => {
+    const [showLoader,setShowLoader] = useState(true)
     const data = useSelector((state) => state)
     const userData = data.studentList;
     const sessionData = data.session;
@@ -22,8 +22,10 @@ const StudentCard = ({ navigation }) => {
     //Ignore all log notifications
     LogBox.ignoreAllLogs();
 
-    useEffect(() => {
+    useEffect( () => {
         setStudentList(userData.data)
+        getGender()
+        setShowLoader(false)
     }, [])
 
 
@@ -48,8 +50,6 @@ const StudentCard = ({ navigation }) => {
                 })
             })
     }
-
-
 
     getCategory = (studentModel) => {
         fetch(`http://13.127.128.192:8081/utils/getCategory`)
@@ -82,7 +82,6 @@ const StudentCard = ({ navigation }) => {
                 })
             })
     }
-
 
     getStudentDetails = (studentId, sessionId) => {
 
@@ -164,6 +163,17 @@ const StudentCard = ({ navigation }) => {
                         </Pressable>
                     ))}
                 </ScrollView>
+                <Overlay
+                    isVisible={showLoader}
+                    overlayStyle={{
+                        backgroundColor:'transparent',
+                        width:'100%',
+                        height:'100%',
+                        justifyContent:'center'
+                    }}
+                    >
+                    <ActivityIndicator size='large' />
+                </Overlay>
             </SafeAreaView>
         </>
     );

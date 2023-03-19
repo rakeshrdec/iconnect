@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, Dimensions, Pressable, Image } from "react-native";
+import { SafeAreaView, View, Text, Dimensions, Pressable, Image, ActivityIndicator } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { monthMap, settings } from '../../../models/data';
 import { useSelector } from "react-redux";
+import { Overlay } from "@rneui/themed";
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
 
@@ -12,6 +13,7 @@ const FeeStatus = ({ navigation }) => {
     const [session, setSession] = useState(sessionData.data);
     const selectedStudentData = data.selectedStudentDetails;
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
+    const [showLoader,setShowLoader] = useState(true)
 
 
     useEffect(() => {
@@ -188,7 +190,9 @@ const FeeStatus = ({ navigation }) => {
                         }
                     });
                     console.log("amount=================================>>>");
+                    setShowLoader(false)
                     setRecordData(tempRecordData);
+                    // console.log("temp data",tempRecordData)
                 }
             })
         })
@@ -228,7 +232,6 @@ const FeeStatus = ({ navigation }) => {
 
                                 <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
                                     <Text style={{ color: 'darkblue' }}>{record[0]}</Text>
-
                                     <View style={{ position: 'absolute', right: 5, flexDirection: 'row', }}>
                                         <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{record.length > 0 ? record[1] : ''}</Text>
                                         <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{record.length > 0 ? record[2] : ''}</Text>
@@ -250,6 +253,12 @@ const FeeStatus = ({ navigation }) => {
                             </View>
 
                         </ScrollView>
+                        <Overlay
+                            isVisible={showLoader}
+                            overlayStyle={{backgroundColor:'transparent',height:'100%',width:'100%',justifyContent:'center'}}
+                        >
+                            <ActivityIndicator size='large' />
+                        </Overlay>
                     </View>
                 </View >
             </SafeAreaView >
