@@ -86,7 +86,7 @@ function HomeScreen({ navigation }) {
           }}
           style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
           <Image source={require('../../../assets/logo/award.png')} style={{ height: 50, width: 50 }} />
-          <Text>Exam Marks</Text>
+          <Text>Exams</Text>
         </Pressable>
         <Pressable
           onPress={() => {

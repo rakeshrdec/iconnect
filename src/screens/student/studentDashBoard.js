@@ -7,8 +7,7 @@ import { useSelector } from "react-redux";
 
 
 const StudentDashBoard = ({ navigation }) => {
-  const studentList = [1, 2, 3]
-  const data = useSelector((state)=>state)        
+  const data = useSelector((state) => state)
   const userData = data.selectedStudentDetails.data;
   return (
     <>
@@ -22,17 +21,16 @@ const StudentDashBoard = ({ navigation }) => {
       }}>
       </View>
       <View style={{ flex: 1, position: 'absolute', width: '100%' }}>
-        <View style={{ backgroundColor: 'transparent', flex: 0.3, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', minHeight: 140 }}>
-          {/* <View style={{height:85,width:85, backgroundColor:'white', borderRadius:150}}></View> */}
-          {userData.uploadImg===null?<Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />:<Image source={{ uri: 'http://13.127.128.192:8081/' + userData.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
-          {/* <Image source={require('../../../assets/profile/studentProfile.jpg')} style={{ height: 90, width: 90, borderRadius: 150, resizeMode: 'stretch' }} /> */}
-          <Text style={{ color: 'white', textAlign: 'left', fontSize: 20,fontWeight:'bold' }}>{userData.name}</Text>
-          {/* <Text>kjjlk</Text> */}
-        </View>
-        {/* <Button
-                onPress={() => navigation.navigate('Notifications')}
-                title="Go to notifications"
-              /> */}
+         <View style={{ flex: 1, backgroundColor: 'transparent', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
+         {userData.uploadImg === null ? <Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} /> : <Image source={{ uri: 'http://13.127.128.192:8081/' + userData.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
+
+                <View style={{}}>
+                    <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>{userData.name}</Text>
+                    <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>{userData.className}</Text>
+                    <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>{userData.sectionName}</Text>
+
+                </View>
+            </View>
         <View style={{ flexDirection: 'row', height: 100 }}>
           <Pressable
             onPress={() => {
@@ -41,7 +39,7 @@ const StudentDashBoard = ({ navigation }) => {
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/attendance.png')} style={{ height: 50, width: 50 }} />
-            <Text style={{ color: '#2E4AA0', fontSize: 20,fontWeight:'bold' }}>Attendence</Text>
+            <Text style={{ color: '#2E4AA0', fontSize: 20, fontWeight: 'bold' }}>Attendence</Text>
           </Pressable>
           <Pressable
             onPress={() => {
@@ -49,7 +47,7 @@ const StudentDashBoard = ({ navigation }) => {
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/notification.png')} style={{ height: 50, width: 50 }} />
-            <Text style={{ color: '#2E4AA0', fontSize: 20,fontWeight:'bold' }}>Messages</Text>
+            <Text style={{ color: '#2E4AA0', fontSize: 20, fontWeight: 'bold' }}>Messages</Text>
           </Pressable>
           <Pressable
             onPress={() => {
@@ -58,7 +56,7 @@ const StudentDashBoard = ({ navigation }) => {
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/fee.png')} style={{ height: 50, width: 50 }} />
-            <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center',fontWeight:'bold' }}>Fees</Text>
+            <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center', fontWeight: 'bold' }}>Fees</Text>
           </Pressable>
         </View>
         <View style={{ flexDirection: 'row', height: 100 }}>
@@ -68,7 +66,7 @@ const StudentDashBoard = ({ navigation }) => {
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/award.png')} style={{ height: 50, width: 50 }} />
-            <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center',fontWeight:'bold' }}>Exam Marks</Text>
+            <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center', fontWeight: 'bold' }}>Exams</Text>
           </Pressable>
           <Pressable
             onPress={() => {
@@ -76,7 +74,7 @@ const StudentDashBoard = ({ navigation }) => {
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/document.png')} style={{ height: 50, width: 50 }} />
-            <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center',fontWeight:'bold' }}>Document</Text>
+            <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center', fontWeight: 'bold' }}>Document</Text>
           </Pressable>
           <Pressable
             onPress={() => {
@@ -85,7 +83,7 @@ const StudentDashBoard = ({ navigation }) => {
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/holidays.png')} style={{ height: 50, width: 50 }} />
-            <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center',fontWeight:'bold' }}>Holidays</Text>
+            <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center', fontWeight: 'bold' }}>Holidays</Text>
           </Pressable>
         </View>
         <View style={{ flexDirection: 'row', height: 100 }}>
@@ -96,7 +94,7 @@ const StudentDashBoard = ({ navigation }) => {
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/timetable.png')} style={{ height: 50, width: 50 }} />
-            <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center',fontWeight:'bold' }}>Time Table</Text>
+            <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center', fontWeight: 'bold' }}>Time Table</Text>
           </Pressable>
           <Pressable
             onPress={() => {
@@ -105,7 +103,7 @@ const StudentDashBoard = ({ navigation }) => {
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/resume.png')} style={{ height: 50, width: 50 }} />
-            <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center',fontWeight:'bold' }}>Profile</Text>
+            <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center', fontWeight: 'bold' }}>Profile</Text>
           </Pressable>
           <Pressable
             onPress={() => {
@@ -114,7 +112,7 @@ const StudentDashBoard = ({ navigation }) => {
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/megaphone.png')} style={{ height: 50, width: 50 }} />
-            <Text style={{ color: '#2E4AA0', fontSize: 16, alignSelf: 'center',fontWeight:'bold' }}>Announcement</Text>
+            <Text style={{ color: '#2E4AA0', fontSize: 16, alignSelf: 'center', fontWeight: 'bold' }}>Announcement</Text>
           </Pressable>
           {/* <Pressable
                     onPress={()=>{

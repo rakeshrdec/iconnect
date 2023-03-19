@@ -42,11 +42,12 @@ const AttendenceIndex = ({ navigation }) => {
                             setSelectComponent('attendenceYear')
                         }}
                         style={{ borderRadius: 15, alignSelf: 'center', justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', height: 80, width: '90%', position: 'absolute', top: 115 }}><Text style={{ color: 'black' }}>View This Year Attendence</Text></Pressable>
-                    <Pressable
+                    {/* <Pressable
                         onPress={() => {
                             setSelectComponent('attendenceUpload')
                         }}
-                        style={{ borderRadius: 15, alignSelf: 'center', justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', height: 80, width: '90%', position: 'absolute', top: 215 }}><Text style={{ color: 'black' }}>Upload Attendence</Text></Pressable>
+                        style={{ borderRadius: 15, alignSelf: 'center', justifyContent: 'center', alignItems: 'center', backgroundColor: 'white', height: 80, width: '90%', position: 'absolute', top: 215 }}><Text style={{ color: 'black' }}>Upload Attendence</Text>
+                        </Pressable> */}
                 </SafeAreaView> : <View></View>}
             {/* components */}
             {selecComponent == 'attendenceMonth' ?
