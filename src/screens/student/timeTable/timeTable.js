@@ -49,12 +49,12 @@ const TimeTable = ({ navigation }) => {
         const weeklyOffResponse = await fetch(`http://13.127.128.192:8081/utils/getAllWeeklyOff`);
         const weeklyOffData = await weeklyOffResponse.json();
         const weeklyOffMap = new Map();
-        var even = days;
+        var daysWithoutOff = days;
         weeklyOffData.forEach(element => {
             weeklyOffMap.set(element.weekDaysNumber, element.active);
             if (element.active) {
-                even = even.filter((value) => value !== element.weekDaysNumber);
-                setDays(even)
+                daysWithoutOff = daysWithoutOff.filter((value) => value !== element.weekDaysNumber);
+                setDays(daysWithoutOff)
             }
         });
 
@@ -69,7 +69,7 @@ const TimeTable = ({ navigation }) => {
         const classTimeTableData = await classTimeTableResponse.json();
 
         var tempTimeTableDataMap = new Map();
-        even.forEach(e => {
+        daysWithoutOff.forEach(e => {
             tempTimeTableDataMap.set(e, []);
         })
 
@@ -97,9 +97,17 @@ const TimeTable = ({ navigation }) => {
         tempTimeTableDataMap.forEach((value) => {
             value.sort((a, b) => a.summerStartTime.localeCompare(b.summerStartTime));
           });
+
+
         var date = new Date();
-        setSelectedDay(date.getDay());
-        setListOfPeriods(tempTimeTableDataMap.get(date.getDay()));
+        
+        if(daysWithoutOff.indexOf(date.getDay()) !== -1) {
+            setSelectedDay(date.getDay());
+            setListOfPeriods(tempTimeTableDataMap.get(date.getDay()));
+        } else {
+            setSelectedDay(daysWithoutOff[0]);
+            setListOfPeriods(tempTimeTableDataMap.get(daysWithoutOff[0]));
+        }
         setTimeTableDataMap(tempTimeTableDataMap);
     }
 

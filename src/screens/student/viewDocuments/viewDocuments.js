@@ -2,25 +2,19 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
-
-
-
+import { useSelector } from "react-redux";
 
 const ViewDocuments = ({ navigation }) => {
 
     const [studentDocuments, setStudentDocuments] = useState([]);
     const data = useSelector((state) => state)
-    const sessionData = data.session;
-    const [session, setSession] = useState(sessionData.data);
+   
     const selectedStudentData = data.selectedStudentDetails;
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
-
 
     useEffect(() => {
         getStudentAttendenceByMonth();
     }, [])
-
-
 
     const getStudentAttendenceByMonth = () => {
         fetch(`http://13.127.128.192:8081/student/getStudentDocuments?studentId=${selectedStudent.id}`).then((res) => {

@@ -56,7 +56,7 @@ const Login = ({ navigation }) => {
               "createdAt": "string",
               "expiredAt": "string",
               "password": "7669991129",
-              "tokenType": 0,
+              "tokenType": 1,
               "userName": "7669991129"
             })
           }).then((res)=>{ 
