@@ -6,12 +6,12 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
 const Announcement = ({ navigation }) => {
     useEffect(() => {
-        getStudentAttendenceByMonth();
+        getStudentAttendanceByMonth();
     }, [])
 
     const [announcementList, setAnnouncementList] = useState([]);
 
-    const getStudentAttendenceByMonth = () => {
+    const getStudentAttendanceByMonth = () => {
         fetch(`http://13.127.128.192:8081/announcement/getAllAnnouncement`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
@@ -39,7 +39,7 @@ const Announcement = ({ navigation }) => {
                             {announcementList.map((announcement, i) => (
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                     <View style={{ marginHorizontal: 40 }}>
-                                        <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 20 }}>{announcement.name}</Text>
+                                        <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 16 }}>{announcement.name}</Text>
                                         <Text style={{ color: 'green', fontWeight: 'bold', marginLeft: 15}}>{announcement.message}</Text>
                                         <Text style={{ color: 'black', marginLeft: 15}}>{announcement.expiryDate}</Text>
 

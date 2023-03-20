@@ -18,11 +18,6 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-// import { Avatar } from '@react-native-material/core';
-import { Avatar } from '@rneui/themed';
-
 import { useSelector } from "react-redux";
 
 const CustomSidebarMenu = (props) => {
@@ -141,6 +136,7 @@ const CustomSidebarMenu = (props) => {
             // Linking.openURL('https://aboutreact.com/')
             Alert.alert('this section is in development mode')
           }}
+        />
         /> */}
       </DrawerContentScrollView>
     </SafeAreaView>

@@ -13,8 +13,6 @@ import { NavigationContainer } from '@react-navigation/native';
 // import MenuDrawer from 'react-native-side-drawer';
 import CustomSidebarMenu from './customSideBarMenu';
 
-import AttendenceMonth from '../student/attendence/attendenceMonth';
-import AttendenceYear from '../student/attendence/attendenceYear';
 import TimeTable from '../student/timeTable/timeTable';
 import Holidays from '../holidays/holidays';
 import FeeStatus from '../student/fees/FeeStatus';
@@ -22,6 +20,8 @@ import Announcement from '../announcement/announcement';
 import ViewDocuments from '../student/viewDocuments/viewDocuments';
 import Notifications from '../notifications/notifications';
 import ExamMarks from '../student/examMarks/examMarks';
+import AttendanceMonth from '../student/attendance/attendanceMonth';
+import AttendanceYear from '../student/attendance/attendanceYear';
 
 import {
   Image,
@@ -79,7 +79,7 @@ const HomePage = () => {
           },
         }} />
         {/* <Drawer.Screen name="Notifications" component={NotificationsScreen} /> */}
-        <Drawer.Screen name="Attendence" component={AttendenceIndex}
+        <Drawer.Screen name="Attendance" component={AttendanceIndex}
           options={{
             headerTintColor: 'white',
             headerShown: 'false',

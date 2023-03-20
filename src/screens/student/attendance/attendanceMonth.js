@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable, Image } from "react-native";
 import { Calendar } from "react-native-calendars";
-import AttendenceUpload from "./attendenceUpload";
 import { useSelector } from "react-redux";
 
-const AttendenceMonth = ({ navigation }) => {
+const AttendanceMonth = ({ navigation }) => {
     const [showYearWiseAtt, setShowYearWiseAtt] = useState(false);
     const [totalPresent, setTotalPresent] = useState('0');
     const [totalAbsent, setTotalAbsent] = useState('0');
@@ -31,11 +30,13 @@ const AttendenceMonth = ({ navigation }) => {
         getWeeklyOffFromServer(month, year);
 
         getAllHoliDays(month, year);
-        getStudentAttendenceByMonth(month, year);
-        getStudentPresentAttendence(month, year)
+        getStudentAttendanceByMonth(month, year);
+        getStudentPresentAttendance(month, year)
     }, []);
 
+
     useEffect(() => {
+      
         setDateColor({ ...presentDates, ...holidaysDates, ...weekelyOffDates })
     }, [presentDates, weekelyOffDates, holidaysDates]);
 
@@ -108,7 +109,7 @@ const AttendenceMonth = ({ navigation }) => {
 
     }
 
-    const getStudentPresentAttendence = (monthVal, selectedYear) => {
+    const getStudentPresentAttendance = (monthVal, selectedYear) => {
         const daysInMonth = getDays(selectedYear, monthVal);
 
         var startDate = selectedYear + '-' + (monthVal < 10 ? '0' + monthVal : monthVal) + '-01';
@@ -132,7 +133,7 @@ const AttendenceMonth = ({ navigation }) => {
         return new Date(year, month, 0).getDate();
     };
 
-    const getStudentAttendenceByMonth = (monthVal, selectedYear) => {
+    const getStudentAttendanceByMonth = (monthVal, selectedYear) => {
 
         setTotalPresent('0');
         setTotalAbsent('0');
@@ -160,18 +161,18 @@ const AttendenceMonth = ({ navigation }) => {
         <SafeAreaView style={{ flex: 1 }}>
 
             {showYearWiseAtt ?
-                // <View style={{flex:1}}><AttendenceYear />
-                <View style={{ flex: 1 }}><AttendenceUpload />
+                // <View style={{flex:1}}><AttendanceYear />
+                <View style={{ flex: 1 }}><AttendanceUpload />
                 </View> :
                 <View>
                     {/* <Calendar></Calendar> */}
                     <Calendar
                         onMonthChange={(e) => {
                             setDateColor({})
-                            getStudentAttendenceByMonth(e.month, e.year);
+                            getStudentAttendanceByMonth(e.month, e.year);
                             getWeeklyOffCalculation(e.month - 1, e.year);
                             getAllHoliDays(e.month, e.year);
-                            getStudentPresentAttendence(e.month, e.year)
+                            getStudentPresentAttendance(e.month, e.year)
                         }}
                         style={{ margin: 20, borderRadius: 15 }}
                         markedDates={DateColor}
@@ -213,7 +214,7 @@ const AttendenceMonth = ({ navigation }) => {
                     {/* <Pressable 
         onPress={()=>{setShowYearWiseAtt(true)}}
         style={{elevation:20, backgroundColor:'lightyellow',margin:20, height:40,justifyContent:'center',borderRadius:25, flexDirection:'row'}}>
-            <Text style={{color:'darkblue', textAlign:'center',alignSelf:'center'}}>check attendence yearwise</Text>
+            <Text style={{color:'darkblue', textAlign:'center',alignSelf:'center'}}>check attendance yearwise</Text>
             <Icon name="rightcircle" size={35} color="#0c123b" style={{position:'absolute',right:0, alignSelf:'center'}} />
         </Pressable> */}
                 </View>
@@ -222,4 +223,4 @@ const AttendenceMonth = ({ navigation }) => {
     );
 }
 
-export default AttendenceMonth;
+export default AttendanceMonth;

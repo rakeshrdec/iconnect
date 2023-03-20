@@ -10,12 +10,12 @@ const Holidays = ({ navigation }) => {
     const [session, setSession] = useState(userData.data);
 
     useEffect(() => {
-        getStudentAttendenceByMonth();
+        getHolidays();
     }, [])
 
     const [holidayList, setHolidayList] = useState([]);
 
-    const getStudentAttendenceByMonth = () => {
+    const getHolidays = () => {
         fetch(`http://13.127.128.192:8081/holiday/getAllHolidays?sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
@@ -43,8 +43,8 @@ const Holidays = ({ navigation }) => {
                             {holidayList.map((holiday, i) => (
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                     <View style={{ marginHorizontal: 40 }}>
-                                        <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 20 }}>{holiday.name}</Text>
-                                        <Text style={{ color: 'black', fontSize: 15, marginLeft: 15 }}>{holiday.holidayDate}</Text>
+                                        <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 16 }}>{holiday.name}</Text>
+                                        <Text style={{ color: 'black', fontSize: 12, marginLeft: 15 }}>{holiday.holidayDate}</Text>
                                     </View>
                                 </Pressable>
                             ))}

@@ -7,7 +7,7 @@ import { monthMap } from '../../../models/data';
 import { useSelector } from "react-redux";
 import StudentHeader from "../../homepage/studentHeader";
 
-const AttendenceYear = ({ navigation }) => {
+const AttendanceYear = ({ navigation }) => {
     const data = useSelector((state) => state)
     const sessionData = data.session;
     const [session, setSession] = useState(sessionData.data);
@@ -16,10 +16,10 @@ const AttendenceYear = ({ navigation }) => {
 
 
     useEffect(() => {
-        getStudentAttendenceByMonth();
+        getStudentAttendanceByMonth();
     }, [])
 
-    const getStudentAttendenceByMonth = () => {
+    const getStudentAttendanceByMonth = () => {
 
         fetch(`http://13.127.128.192:8081/student/getStudentAttendancesByStudentAndSession?studentId=${selectedStudent.id}&startDate=${session.fromDate}&endDate=${session.toDate}&sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
@@ -49,7 +49,7 @@ const AttendenceYear = ({ navigation }) => {
     const [months, setMonths] = useState([]);
     const [attendanceDataMap, setAttendanceDataMap] = useState({});
 
-    const [year, setYear] = useState('2022-2023')
+    const [year, setYear] = useState(session.name)
     return (
         <SafeAreaView style={{ flex: 1 }}>
             {/* USER PROFILE */}
@@ -111,4 +111,4 @@ const AttendenceYear = ({ navigation }) => {
     );
 }
 
-export default AttendenceYear;
+export default AttendanceYear;
