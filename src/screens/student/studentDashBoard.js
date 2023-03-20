@@ -4,6 +4,7 @@ import { ScrollView, View, Text, Pressable, Image, Alert, Dimensions } from "rea
 // import { ScrollView } from "react-native-gesture-handler";
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 import { useSelector } from "react-redux";
+import StudentHeader from "../homepage/studentHeader";
 
 
 const StudentDashBoard = ({ navigation }) => {
@@ -21,14 +22,8 @@ const StudentDashBoard = ({ navigation }) => {
       }}>
       </View>
       <View style={{ flex: 1, position: 'absolute', width: '100%' }}>
-        <View style={{ flex: 1, backgroundColor: 'lightgray', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
-          {selectedStudent.uploadImg === null ? <Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} /> : <Image source={{ uri: 'http://13.127.128.192:8081/' + selectedStudent.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
-          <View style={{}}>
-            <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{selectedStudent.name}</Text>
-            <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{selectedStudent.className}</Text>
-            <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{selectedStudent.sectionName}</Text>
-          </View>
-        </View>
+      <View style={{ flex: 1 }}><StudentHeader /></View>
+
 
         <View style={{ flexDirection: 'row', height: 100 }}>
           <Pressable

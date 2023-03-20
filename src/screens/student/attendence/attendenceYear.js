@@ -5,6 +5,7 @@ import { SafeAreaView, View, Text, Pressable, Image } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { monthMap } from '../../../models/data';
 import { useSelector } from "react-redux";
+import StudentHeader from "../../homepage/studentHeader";
 
 const AttendenceYear = ({ navigation }) => {
     const data = useSelector((state) => state)
@@ -51,14 +52,8 @@ const AttendenceYear = ({ navigation }) => {
     const [year, setYear] = useState('2022-2023')
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 1, backgroundColor: 'lightgray', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
-                {selectedStudent.uploadImg === null ? <Image source={require('../../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} /> : <Image source={{ uri: 'http://13.127.128.192:8081/' + selectedStudent.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
-                <View style={{}}>
-                    <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{selectedStudent.name}</Text>
-                    <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{selectedStudent.className}</Text>
-                    <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{selectedStudent.sectionName}</Text>
-                </View>
-            </View>
+            {/* USER PROFILE */}
+            <View style={{ flex: 1 }}><StudentHeader /></View>
             <View style={{ flex: 6, justifyContent: 'center', marginTop: -40 }}>
                 {/* <Text style={{color:'white', fontSize:26, fontWeight:'bold',alignSelf:'center'}}>Home</Text> */}
                 <View style={{ flex: 0.8, marginHorizontal: 20, borderRadius: 15, backgroundColor: 'white', }}>
