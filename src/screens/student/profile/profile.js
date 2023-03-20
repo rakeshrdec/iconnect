@@ -47,14 +47,14 @@ const StudentProfile = ({ navigation }) => {
                             setInfoOf('personal')
                         }}
                         style={infoOf == 'personal' ? { borderBottomWidth: 2, flex: 1, justifyContent: 'center', alignItems: 'center', padding: 3 } : { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 3 }}>
-                        <Text style={{ color: 'black' }}>PERSONAL</Text>
+                        <Text style={{ color: 'black', fontSize: 15, fontWeight: "bold" }}>PERSONAL</Text>
                     </Pressable>
                     <Pressable
                         onPress={() => {
                             setInfoOf('academic')
                         }}
                         style={infoOf == 'academic' ? { borderBottomWidth: 2, flex: 1, justifyContent: 'center', alignItems: 'center', padding: 3 } : { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 3 }}>
-                        <Text style={{ color: 'black' }}>Academic</Text>
+                        <Text style={{ color: 'black', fontSize: 15, fontWeight: "bold" }}>ACADEMIC</Text>
                     </Pressable>
 
                 </View>

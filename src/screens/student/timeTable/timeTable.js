@@ -133,10 +133,10 @@ const TimeTable = ({ navigation }) => {
                         </View>
                     </View>
                     <View style={{ flex: 6, justifyContent: "space-between" }}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '90%', alignSelf: 'center', marginVertical: 40 }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '90%', alignSelf: 'center', marginVertical: 10 }}>
 
                             {days.map((e, i) => (
-                                <Pressable style={selectedDay == e ? { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#2E4AA0' } : { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#F0BA19' }} onPress={() => { setSelectedDay(e); setListOfPeriods(timeTableDataMap.get(e)) }}><Text style={selectedDay == e ? { color: 'white', fontWeight: 'bold' } : { color: 'blue' }}>{daysName.get(e).short}</Text></Pressable>
+                                <Pressable style={selectedDay == e ? { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#2E4AA0' } : { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#F0BA19' }} onPress={() => { setSelectedDay(e); setListOfPeriods(timeTableDataMap.get(e)) }}><Text style={selectedDay == e ? { color: 'white', fontWeight: 'bold' } : { color: 'blue', fontWeight: 'bold'  }}>{daysName.get(e).short}</Text></Pressable>
                             ))
                             }
 
@@ -147,9 +147,9 @@ const TimeTable = ({ navigation }) => {
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                     <Image source={require('../../../../assets/logo/document.png')} style={{ height: 50, width: 50, resizeMode: 'stretch' }} />
                                     <View style={{ marginHorizontal: 40 }}>
-                                        <Text style={{ color: 'black' }}>{e.subject_name}</Text>
+                                        <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{e.subject_name}</Text>
                                         <Text style={{ color: 'black' }}>{e.theoryTitle}</Text>
-                                        <Text style={{ color: 'black' }}>{e.teacher_name}</Text>
+                                        <Text style={{ color: 'blue', fontWeight: 'bold' }}>{e.teacher_name}</Text>
                                         <Text style={{ color: 'black', fontWeight: 'bold' }}>S.T. :- {e.summerStartTime}-{e.summerEndTime}</Text>
                                         <Text style={{ color: 'black', fontWeight: 'bold' }}>W.T. :-  {e.winterStartTime}-{e.winterEndTime}</Text>
                                     </View>

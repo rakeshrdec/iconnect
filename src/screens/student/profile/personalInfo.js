@@ -24,53 +24,55 @@ const PersonalInfo = () => {
                 borderTopColor: "#2E4AA0",
                 borderTopWidth: SCREEN_HEIGHT,
                 borderRightWidth: SCREEN_WIDTH,
-                borderRightColor: '#F0BA19'
+                borderRightColor: '#F0BA19',
+               
             }}>
             </View>
             <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
-                <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>Personal Information</Text>
+                <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', fontSize: 20 }}>Personal Information</Text>
 
                 <ScrollView>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
-                        <Text style={{ color: 'white' }}>Name :</Text>
-                        <Text style={{ color: 'white' }}>{selectedStudent.name}</Text>
+                    <View style={{ flexDirection: 'row', backgroundColor: "white", justifyContent: 'flex-start', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
+                        <Text style={{ color: 'black', fontSize: 20, fontWeight: "bold", textAlign: 'left', marginLeft: 10 }}>Name :  </Text>
+                        <Text style={{ color: 'black', fontSize: 20, fontWeight: "bold", textAlign: 'right', 
+                         marginRight: 10 }}>{selectedStudent.name}</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
-                        <Text style={{ color: 'white' }}>DOB :</Text>
-                        <Text style={{ color: 'white' }}>{selectedStudent.dob}</Text>
+                    <View style={{ flexDirection: 'row',backgroundColor: "white", justifyContent: 'flex-start', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold", marginLeft: 10 }}>DOB :  </Text>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold", marginLeft: 0, marginRight: 5 }}>{selectedStudent.dob}</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
-                        <Text style={{ color: 'white' }}>Father Name :</Text>
-                        <Text style={{ color: 'white' }}>{selectedStudent.fatherName}</Text>
+                    <View style={{ flexDirection: 'row',backgroundColor: "white", justifyContent: 'flex-start', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold", marginLeft: 10 }}>Father Name :  </Text>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold", marginRight: 5 }}>{selectedStudent.fatherName}</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
-                        <Text style={{ color: 'white' }}>Mother Name :</Text>
-                        <Text style={{ color: 'white' }}>{selectedStudent.motherName}</Text>
+                    <View style={{ flexDirection: 'row',backgroundColor: "white", justifyContent: 'flex-start', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold", marginLeft: 10}}>Mother Name :  </Text>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold", marginRight: 5}}>{selectedStudent.motherName}</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
-                        <Text style={{ color: 'white' }}>Gender :</Text>
-                        <Text style={{ color: 'white' }}>{selectedStudent.genderName}</Text>
+                    <View style={{ flexDirection: 'row',backgroundColor: "white", justifyContent: 'flex-start', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold", marginLeft: 10}}>Gender :  </Text>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold",  marginRight: 5}}>{selectedStudent.genderName}</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
-                        <Text style={{ color: 'white' }}>Category :</Text>
-                        <Text style={{ color: 'white' }}>{selectedStudent.categoryName}</Text>
+                    <View style={{ flexDirection: 'row',backgroundColor: "white", justifyContent: 'flex-start', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold", marginLeft: 10 }}>Category :  </Text>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold", marginRight: 5 }}>{selectedStudent.categoryName}</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
-                        <Text style={{ color: 'white' }}>Mobile :</Text>
-                        <Text style={{ color: 'white' }}>{selectedStudent.mobile}</Text>
+                    <View style={{ flexDirection: 'row',backgroundColor: "white", justifyContent: 'flex-start', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
+                        <Text style={{color: 'black',fontSize: 20, fontWeight: "bold", marginLeft: 10 }}>Mobile :  </Text>
+                        <Text style={{color: 'black',fontSize: 20, fontWeight: "bold",marginRight: 5 }}>{selectedStudent.mobile}</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
-                        <Text style={{ color: 'white' }}>Emergency Mobile :</Text>
-                        <Text style={{ color: 'white' }}>{selectedStudent.emergencyMobile}</Text>
+                    <View style={{ flexDirection: 'row',backgroundColor: "white", justifyContent: 'flex-start', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold", marginLeft: 10,  }}>Emergency Mobile :  </Text>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold",  marginRight: 5 }}>{selectedStudent.emergencyMobile}</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
-                        <Text style={{ color: 'white' }}>Email :</Text>
-                        <Text style={{ color: 'white' }}>{selectedStudent.email}</Text>
+                    <View style={{ flexDirection: 'row',backgroundColor: "white", justifyContent: 'flex-start', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold", marginLeft: 10 }}>Email :  </Text>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold",  marginRight: 5 }}>{selectedStudent.email}</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
-                        <Text style={{ color: 'white' }}>Address :</Text>
-                        <Text style={{ color: 'white' }}>{selectedStudent.address}</Text>
+                    <View style={{ flexDirection: 'row', backgroundColor: "white", justifyContent: 'flex-start', height: 120, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold", marginLeft: 10 }}>Address :</Text>
+                        <Text style={{ color: 'black',fontSize: 20, fontWeight: "bold", marginLeft: 35, marginRight: 5 }}>{selectedStudent.address}</Text>
                     </View>
                 </ScrollView>
             </SafeAreaView>

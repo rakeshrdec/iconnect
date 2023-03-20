@@ -139,27 +139,28 @@ const PaidFees = () => {
                             {paidFeesData.map((fee, i) => (
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                     <View style={{ marginHorizontal: 40 }}>
-                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>{fee.feesType}</Text>
-                                        {fee.month ? < Text style={{ color: 'black', fontWeight: 'bold' }}>Month:- {fee.month}</Text> : ''}
-                                        {fee.quarter ? < Text style={{ color: 'black', fontWeight: 'bold' }}>Quarter:- {fee.quarter}</Text> : ''}
-                                        {fee.examId ? < Text style={{ color: 'black', fontWeight: 'bold' }}>Exams:- {fee.examId}</Text> : ''}
+                                        <Text style={{ color: 'blue', fontWeight: 'bold', fontSize: 20 }}>{fee.feesType}</Text>
+                                        {fee.month ? < Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 20 }}>Month:- {fee.month}</Text> : ''}
+                                        {fee.quarter ? < Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 20 }}>Quarter:- {fee.quarter}</Text> : ''}
+                                        {fee.examId ? < Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 20 }}>Exams:- {fee.examId}</Text> : ''}
+                                        <Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 20 }}>Submission Date:- {fee.submissionDate}</Text>
+                                        <Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 20 }}>Payment Mode:- {fee.paymentMode}</Text>
+                                        
+                                        <Text style={{ color: 'green', fontWeight: 'bold', marginLeft: 20 }}>Amount:- {settings.CURRENCY + ' ' + fee.amount}/-</Text>
+                                        <Text style={{ color: 'green', fontWeight: 'bold', marginLeft: 20 }}>Discount Amount:- {settings.CURRENCY + ' ' + fee.discountAmount}/-</Text>
+                                        <Text style={{ color: 'red', fontWeight: 'bold', marginLeft: 20 }}>Late Fee Amount:- {settings.CURRENCY + ' ' + fee.lateFeeAmount}/-</Text>
+                                        <Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 20, fontSize: 15 }}>Total Amount:- {settings.CURRENCY + ' '} {fee.amount - fee.discountAmount + fee.lateFeeAmount}/-</Text>
 
-                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>Amount:- {settings.CURRENCY + ' ' + fee.amount}/-</Text>
-                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>Discount Amount:- {settings.CURRENCY + ' ' + fee.discountAmount}/-</Text>
-                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>Late Fee Amount:- {settings.CURRENCY + ' ' + fee.lateFeeAmount}/-</Text>
-                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>Total Amount:- {settings.CURRENCY + ' '} {fee.amount - fee.discountAmount + fee.lateFeeAmount}/-</Text>
-
-                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>Submission Date:- {fee.submissionDate}</Text>
-                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>Payment Mode:- {fee.paymentMode}</Text>
+                                        
                                     </View>
                                 </Pressable>
                             ))}
 
                             <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                 <View style={{ marginHorizontal: 40 }}>
-                                    <Text style={{ color: 'red', fontWeight: 'bold' }}>Total Discount Amount:- {settings.CURRENCY + ' ' + totalDiscountAmount}/-</Text>
-                                    <Text style={{ color: 'red', fontWeight: 'bold' }}>Total Late Fee Amount:- {settings.CURRENCY + ' ' + totalLateAmount}/-</Text>
-                                    <Text style={{ color: 'red', fontWeight: 'bold' }}>Total Paid Amount:- {settings.CURRENCY + ' ' + totalPaidAmount}/-</Text>
+                                    <Text style={{ color: 'green', fontWeight: 'bold', fontSize: 20 }}>Total Discount Amount:- {settings.CURRENCY + ' ' + totalDiscountAmount}/-</Text>
+                                    <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 20 }}>Total Late Fee Amount:- {settings.CURRENCY + ' ' + totalLateAmount}/-</Text>
+                                    <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 20 }}>Total Paid Amount:- {settings.CURRENCY + ' ' + totalPaidAmount}/-</Text>
                                 </View>
                             </Pressable>
 

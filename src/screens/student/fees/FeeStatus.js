@@ -35,14 +35,14 @@ const FeeStatus = ({ navigation }) => {
                             setInfoOf('paid')
                         }}
                         style={infoOf == 'paid' ? { borderBottomWidth: 2, flex: 1, justifyContent: 'center', alignItems: 'center', padding: 3 } : { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 3 }}>
-                        <Text style={{ color: 'black' }}>Paid Fees</Text>
+                        <Text style={{ color: 'green', fontSize: 15, fontWeight: "bold" }}>Paid Fees</Text>
                     </Pressable>
                     <Pressable
                         onPress={() => {
                             setInfoOf('unpaid')
                         }}
                         style={infoOf == 'unpaid' ? { borderBottomWidth: 2, flex: 1, justifyContent: 'center', alignItems: 'center', padding: 3 } : { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 3 }}>
-                        <Text style={{ color: 'black' }}>Unpaid Fees</Text>
+                        <Text style={{ color: 'red', fontSize: 15, fontWeight: "bold" }}>Unpaid Fees</Text>
                     </Pressable>
 
                 </View>

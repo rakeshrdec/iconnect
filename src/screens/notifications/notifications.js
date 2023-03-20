@@ -24,6 +24,9 @@ const Notifications = ({ navigation }) => {
     const [notifications, setNotifications] = useState([]);
 
     const getStudentAttendenceByMonth = () => {
+
+        
+
         fetch(`http://13.127.128.192:8081/notification/getNotificationDetails?studentId=${selectedStudent.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
@@ -31,6 +34,23 @@ const Notifications = ({ navigation }) => {
                 }
             })
         })
+    }
+
+    async function getTimeTables() {
+        const response = await fetch(`http://13.127.128.192:8081/user/getAllActiveUsers?sessionYear=${session.id}&userType=3`);
+        const data = await response.json();
+        const staffsMap = new Map();
+        data.forEach((staff, i) => {
+            staffsMap.set(staff.id, staff.name);
+        })
+
+        const classResponse = await fetch(`http://13.127.128.192:8081/notification/getNotificationDetails?studentId=${selectedStudent.id}`);
+        const classData = await classResponse.json();
+        const classSubjectMap = new Map();
+        for (const subjects of classData.subjects) {
+            classSubjectMap.set(subjects.subjectId, subjects);
+        }
+
     }
 
     return (
@@ -61,7 +81,7 @@ const Notifications = ({ navigation }) => {
                             {notifications.map((notification, i) => (
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                     <View style={{ marginHorizontal: 40 }}>
-                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>{notification.notification.notificationName}</Text>
+                                        <Text style={{ color: 'black', fontWeight: 'bold',fontSize: 17 }}>{notification.notification.notificationName}</Text>
                                         <Text style={{ color: 'black' }}>{notification.notification.createdBy}</Text>
                                         <Text style={{ color: 'black' }}>{notification.notification.publishedOn}</Text>
 

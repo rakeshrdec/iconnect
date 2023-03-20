@@ -55,8 +55,10 @@ const ViewDocuments = ({ navigation }) => {
                             {studentDocuments.map((studentDocument, i) => (
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                     <View style={{ marginHorizontal: 40 }}>
-                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>{studentDocument.documentName}</Text>
-                                        <Text style={{ color: 'black' }}>{studentDocument.uploadDocument}</Text>
+                                        <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{i + 1}. {studentDocument.documentName}</Text>
+                                        {/* <Text style={{ color: 'black' }}>{studentDocument.uploadDocument}</Text> */}
+                                        <Image source={require('../../../../assets/logo/download.png')} style={{ height: 50, width: 50 }} />
+
                                     </View>
                                 </Pressable>
                             ))}

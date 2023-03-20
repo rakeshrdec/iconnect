@@ -51,26 +51,40 @@ const AttendenceYear = ({ navigation }) => {
     const [year, setYear] = useState('2022-2023')
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <View style={{ flex: 3, justifyContent: 'center', marginTop: -40 }}>
+            <View style={{ flex: 1, backgroundColor: 'lightgray', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
+                {selectedStudent.uploadImg === null ? <Image source={require('../../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} /> : <Image source={{ uri: 'http://13.127.128.192:8081/' + selectedStudent.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
+                <View style={{}}>
+                    <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{selectedStudent.name}</Text>
+                    <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{selectedStudent.className}</Text>
+                    <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{selectedStudent.sectionName}</Text>
+                </View>
+            </View>
+            <View style={{ flex: 6, justifyContent: 'center', marginTop: -40 }}>
                 {/* <Text style={{color:'white', fontSize:26, fontWeight:'bold',alignSelf:'center'}}>Home</Text> */}
                 <View style={{ flex: 0.8, marginHorizontal: 20, borderRadius: 15, backgroundColor: 'white', }}>
                     <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, borderTopEndRadius: 15, borderTopStartRadius: 15, justifyContent: 'space-between', flexDirection: 'row', paddingHorizontal: 20, alignItems: 'center' }}>
-                        <Text style={{ color: 'darkblue' }}>Year of {year}</Text>
+                        <Text style={{ color: 'darkblue', fontWeight: "bold" }}>Year of {year}</Text>
                         <Icon name="dots-three-horizontal" size={30} color='darkblue' onPress={() => { setYearToggle(!yearToggle) }} />
                     </View>
                     <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 10 }}>
-                        <Text style={{ color: 'darkblue' }}>Month</Text>
-                        <View style={{ position: 'absolute', right: 5, flexDirection: 'row', }}>
-                            <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>Present</Text>
-                            <Text style={{ color: '#b942f5', marginHorizontal: 5, width: 50, textAlign: 'center' }}>W/F</Text>
-                            <Text style={{ color: '#f58a42', marginHorizontal: 5, width: 50, textAlign: 'center' }}>P/H</Text>
-                            <Text style={{ color: 'red', marginHorizontal: 5, width: 50, textAlign: 'center' }}>Absent</Text>
-                        </View>
+                        <Text style={{ color: 'darkblue', fontSize: 15, fontWeight: "bold" }}>Month</Text>
+                        <Text style={{ color: 'darkblue', fontSize: 15, fontWeight: "bold", textAlign: 'center', marginLeft: 40 }}>Present</Text>
+                        <Text style={{ color: 'darkblue', fontSize: 15, fontWeight: "bold" }}>W/F</Text>
+                        <Text style={{ color: 'darkblue', fontSize: 15, fontWeight: "bold" }}>P/H</Text>
+                        <Text style={{ color: 'darkblue', fontSize: 15, fontWeight: "bold" }}>Absent</Text>
+
+                        {/* <Text style={{ color: 'green',  width: 50, textAlign: 'center',fontSize: 15, fontWeight: "bold" }}>Present</Text> */}
+
+                        {/* <View style={{ position: 'absolute', right: 0, flexDirection: 'row', }}>
+                            <Text style={{ color: '#b942f5', marginHorizontal: 5, width: 50, textAlign: 'center',fontSize: 15, fontWeight: "bold" }}>W/F</Text>
+                            <Text style={{ color: '#f58a42', marginHorizontal: 5, width: 50, textAlign: 'center',fontSize: 15, fontWeight: "bold" }}>P/H</Text>
+                            <Text style={{ color: 'red', marginHorizontal: 5, width: 50, textAlign: 'center',fontSize: 15, fontWeight: "bold" }}>Absent</Text>
+                        </View> */}
                     </View>
 
                     {months.map((e, i) => (
-                        <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
-                            <Text style={{ color: 'darkblue' }}>{attendanceDataMap.get(e).month}</Text>
+                        <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, borderBottomLeftRadius: 15, borderBottomRightRadius: 15, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
+                            <Text style={{ color: 'darkblue', fontWeight: "bold" }}>{attendanceDataMap.get(e).month}</Text>
                             <View style={{ position: 'absolute', right: 5, flexDirection: 'row', }}>
                                 <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{attendanceDataMap.get(e).present}</Text>
                                 <Text style={{ color: '#b942f5', marginHorizontal: 5, width: 50, textAlign: 'center' }}>{attendanceDataMap.get(e).totalWeekend}</Text>

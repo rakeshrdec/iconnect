@@ -216,16 +216,16 @@ const UnpaidFees = () => {
 
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                     <View style={{ marginHorizontal: 40 }}>
-                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>{record[0]}</Text>
-                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>{record[1]}</Text>
-                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>{record[2]}</Text>
+                                        <Text style={{ color: 'blue', fontWeight: 'bold', fontSize: 20 }}>{record[0]}</Text>
+                                        <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 15, marginLeft: 20 }}>{record[1]}</Text>
+                                        <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 15, marginLeft: 20 }}>{record[2]}</Text>
                                     </View>
                                 </Pressable>
                             ))}
 
                             <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                 <View style={{ marginHorizontal: 40 }}>
-                                    <Text style={{ color: 'red', fontWeight: 'bold' }}>Total Amount:- {settings.CURRENCY + ' ' + totalAmount}/-</Text>
+                                    <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 20 }}>Total Amount:- {settings.CURRENCY + ' ' + totalAmount}/-</Text>
                                 </View>
                             </Pressable>
 
