@@ -25,7 +25,6 @@ const StudentCard = ({ navigation }) => {
 
     useEffect( () => {
         setStudentList(userData.data)
-        getGender()
         setShowLoader(false)
     }, [])
 

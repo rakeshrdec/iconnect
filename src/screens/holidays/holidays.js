@@ -43,8 +43,8 @@ const Holidays = ({ navigation }) => {
                             {holidayList.map((holiday, i) => (
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                     <View style={{ marginHorizontal: 40 }}>
-                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>{holiday.name}</Text>
-                                        <Text style={{ color: 'black' }}>{holiday.holidayDate}</Text>
+                                        <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 20 }}>{holiday.name}</Text>
+                                        <Text style={{ color: 'black', fontSize: 15, marginLeft: 15 }}>{holiday.holidayDate}</Text>
                                     </View>
                                 </Pressable>
                             ))}

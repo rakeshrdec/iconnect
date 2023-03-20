@@ -5,6 +5,7 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
 import { useSelector } from "react-redux";
 import { weekMap } from '../../../models/data';
+import StudentHeader from "../../homepage/studentHeader";
 
 const TimeTable = ({ navigation }) => {
 
@@ -96,12 +97,12 @@ const TimeTable = ({ navigation }) => {
         })
         tempTimeTableDataMap.forEach((value) => {
             value.sort((a, b) => a.summerStartTime.localeCompare(b.summerStartTime));
-          });
+        });
 
 
         var date = new Date();
-        
-        if(daysWithoutOff.indexOf(date.getDay()) !== -1) {
+
+        if (daysWithoutOff.indexOf(date.getDay()) !== -1) {
             setSelectedDay(date.getDay());
             setListOfPeriods(tempTimeTableDataMap.get(date.getDay()));
         } else {
@@ -113,46 +114,48 @@ const TimeTable = ({ navigation }) => {
 
     return (
         <>
-        <View style={{
-            width: SCREEN_WIDTH,
-            height: 0,
-            borderTopColor: "#2E4AA0",
-            borderTopWidth: SCREEN_HEIGHT,
-            borderRightWidth: SCREEN_WIDTH,
-            borderRightColor: '#F0BA19'
-        }}>
-        </View>
-        <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
-            <View style={{ flex: 1, justifyContent: "space-between" }}>
-                <View style={{ flex: 6, justifyContent: "space-between" }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '90%', alignSelf: 'center', marginVertical: 40 }}>
-
-                        {days.map((e, i) => (
-                            <Pressable style={selectedDay == e ? { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#2E4AA0' } : { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#F0BA19' }} onPress={() => { setSelectedDay(e); setListOfPeriods(timeTableDataMap.get(e)) }}><Text style={selectedDay == e ? { color: 'white', fontWeight: 'bold' } : { color: 'blue' }}>{daysName.get(e).short}</Text></Pressable>
-                        ))
-                        }
-
-                    </View>
-                    {/* subjects */}
-                    <ScrollView>
-                        {listOfPeriods.map((e, i) => (
-                            <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
-                                <Image source={require('../../../../assets/logo/document.png')} style={{ height: 50, width: 50, resizeMode: 'stretch' }} />
-                                <View style={{ marginHorizontal: 40 }}>
-                                    <Text style={{ color: 'black' }}>{e.subject_name}</Text>
-                                    <Text style={{ color: 'black' }}>{e.theoryTitle}</Text>
-                                    <Text style={{ color: 'black' }}>{e.teacher_name}</Text>
-                                    <Text style={{ color: 'black', fontWeight: 'bold' }}>S.T. :- {e.summerStartTime}-{e.summerEndTime}</Text>
-                                    <Text style={{ color: 'black', fontWeight: 'bold' }}>W.T. :-  {e.winterStartTime}-{e.winterEndTime}</Text>
-                                </View>
-                            </Pressable>
-                        ))
-                        }
-
-                    </ScrollView>
-                </View>
+            <View style={{
+                width: SCREEN_WIDTH,
+                height: 0,
+                borderTopColor: "#2E4AA0",
+                borderTopWidth: SCREEN_HEIGHT,
+                borderRightWidth: SCREEN_WIDTH,
+                borderRightColor: '#F0BA19'
+            }}>
             </View>
-        </SafeAreaView>
+            <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
+                <View style={{ flex: 1, justifyContent: "space-between" }}>
+                    {/* USER PROFILE */}
+                    <View style={{ flex: 1 }}><StudentHeader /></View>
+                    <View style={{ flex: 6, justifyContent: "space-between" }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '90%', alignSelf: 'center', marginVertical: 10 }}>
+
+                            {days.map((e, i) => (
+                                <Pressable style={selectedDay == e ? { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#2E4AA0' } : { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#F0BA19' }} onPress={() => { setSelectedDay(e); setListOfPeriods(timeTableDataMap.get(e)) }}><Text style={selectedDay == e ? { color: 'white', fontWeight: 'bold' } : { color: 'blue', fontWeight: 'bold' }}>{daysName.get(e).short}</Text></Pressable>
+                            ))
+                            }
+
+                        </View>
+                        {/* subjects */}
+                        <ScrollView>
+                            {listOfPeriods.map((e, i) => (
+                                <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
+                                    <Image source={require('../../../../assets/logo/document.png')} style={{ height: 50, width: 50, resizeMode: 'stretch' }} />
+                                    <View style={{ marginHorizontal: 40 }}>
+                                        <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{e.subject_name}</Text>
+                                        <Text style={{ color: 'black' }}>{e.theoryTitle}</Text>
+                                        <Text style={{ color: 'blue', fontWeight: 'bold' }}>{e.teacher_name}</Text>
+                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>S.T. :- {e.summerStartTime}-{e.summerEndTime}</Text>
+                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>W.T. :-  {e.winterStartTime}-{e.winterEndTime}</Text>
+                                    </View>
+                                </Pressable>
+                            ))
+                            }
+
+                        </ScrollView>
+                    </View>
+                </View>
+            </SafeAreaView>
         </>
     );
 }

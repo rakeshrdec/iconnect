@@ -39,9 +39,9 @@ const Announcement = ({ navigation }) => {
                             {announcementList.map((announcement, i) => (
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                     <View style={{ marginHorizontal: 40 }}>
-                                        <Text style={{ color: 'black', fontWeight: 'bold' }}>{announcement.name}</Text>
-                                        <Text style={{ color: 'black' }}>{announcement.message}</Text>
-                                        <Text style={{ color: 'black' }}>{announcement.expiryDate}</Text>
+                                        <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 20 }}>{announcement.name}</Text>
+                                        <Text style={{ color: 'green', fontWeight: 'bold', marginLeft: 15}}>{announcement.message}</Text>
+                                        <Text style={{ color: 'black', marginLeft: 15}}>{announcement.expiryDate}</Text>
 
                                     </View>
                                 </Pressable>
