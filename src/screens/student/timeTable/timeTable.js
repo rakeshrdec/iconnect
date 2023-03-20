@@ -136,7 +136,7 @@ const TimeTable = ({ navigation }) => {
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '90%', alignSelf: 'center', marginVertical: 10 }}>
 
                             {days.map((e, i) => (
-                                <Pressable style={selectedDay == e ? { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#2E4AA0' } : { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#F0BA19' }} onPress={() => { setSelectedDay(e); setListOfPeriods(timeTableDataMap.get(e)) }}><Text style={selectedDay == e ? { color: 'white', fontWeight: 'bold' } : { color: 'blue', fontWeight: 'bold'  }}>{daysName.get(e).short}</Text></Pressable>
+                                <Pressable style={selectedDay == e ? { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#2E4AA0' } : { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#F0BA19' }} onPress={() => { setSelectedDay(e); setListOfPeriods(timeTableDataMap.get(e)) }}><Text style={selectedDay == e ? { color: 'white', fontWeight: 'bold' } : { color: 'blue', fontWeight: 'bold' }}>{daysName.get(e).short}</Text></Pressable>
                             ))
                             }
 

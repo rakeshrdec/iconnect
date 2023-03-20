@@ -126,10 +126,10 @@ const Login = ({ navigation }) => {
                   <Text style={{color:'blue',fontWeight:'bold', fontSize: 25}}>Student</Text>
                 </Pressable>
             </View>
-              <Text style={{color:'black', fontWeight:'bold', textAlign:'center',  marginTop:10, borderRadius:5, height:40, fontSize: 2212345678}}>{loginFor} Login</Text>
+              <Text style={{color:'black', fontWeight:'bold', textAlign:'center',  marginTop:10, borderRadius:5, height:40, fontSize: 20}}>{loginFor} Login</Text>
               {/* <Text style={{color:'black'}}>Mobile</Text> */}
                 <Input
-                  inputStyle={{color:'black',fontSize:15,height:40, fontSize: 18}}
+                  inputStyle={{color:'black',fontSize:15,height:40}}
                   placeholder='Mobile No.'
                   placeholderTextColor='black'
                   rightIcon={
@@ -142,7 +142,7 @@ const Login = ({ navigation }) => {
                     }
                   />
                 <Input
-                  inputStyle={{color:'black',fontSize:15,height:40, fontSize: 18}}
+                  inputStyle={{color:'black',fontSize:15,height:40}}
                   placeholder='Enter Password'
                   placeholderTextColor='black'
                   secureTextEntry={hidePassword}
