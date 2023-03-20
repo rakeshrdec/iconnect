@@ -48,14 +48,18 @@ const ViewDocuments = ({ navigation }) => {
                     <View style={{ flex: 6, justifyContent: "space-between" }}>
                         <ScrollView>
                             {studentDocuments.map((studentDocument, i) => (
-                                <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
-                                    <View style={{ marginHorizontal: 40 }}>
-                                        <Text style={{ color: 'black', fontSize: 16, fontWeight: 'bold' }}>{i + 1}. {studentDocument.documentName}</Text>
-                                        {/* <Text style={{ color: 'black' }}>{studentDocument.uploadDocument}</Text> */}
-                                        <Image source={require('../../../../assets/logo/download.png')} style={{ height: 50, width: 50 }} />
+                              
+                                <Pressable
+                                    style={{ elevation: 15, width: '90%', alignSelf: 'center', borderRadius: 5, margin: 10, paddingTop: 5, paddingBottom: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-around' }}>
 
+                                    <View style={{}}>
+                                        <Text style={{ color: '#2E4AA0', fontSize: 16, fontWeight: 'bold', right: 0 }}>{i + 1}. {studentDocument.documentName}</Text>
                                     </View>
+                                    <Image source={require('../../../../assets/logo/download.png')} style={{ height: 50, width: 50 }} />
+
+                                    {/* <Text style={{ color: 'black' }}>{'http://13.127.128.192:8081/' + studentDocument.uploadDocument}</Text> */}
                                 </Pressable>
+
                             ))}
                         </ScrollView>
                     </View>

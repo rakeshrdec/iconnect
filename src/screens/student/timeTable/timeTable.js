@@ -142,7 +142,7 @@ const TimeTable = ({ navigation }) => {
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                     <Image source={require('../../../../assets/logo/document.png')} style={{ height: 50, width: 50, resizeMode: 'stretch' }} />
                                     <View style={{ marginHorizontal: 40 }}>
-                                        <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{e.subject_name}</Text>
+                                        <Text style={{ color: 'black', fontSize: 16, fontWeight: 'bold' }}>{e.subject_name}</Text>
                                         <Text style={{ color: 'black' }}>{e.theoryTitle}</Text>
                                         <Text style={{ color: 'blue', fontWeight: 'bold' }}>{e.teacher_name}</Text>
                                         <Text style={{ color: 'black', fontWeight: 'bold' }}>S.T. :- {e.summerStartTime}-{e.summerEndTime}</Text>
