@@ -1,6 +1,6 @@
 import { Avatar } from "@rneui/base";
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, Pressable, Image, Dimensions, ActivityIndicator } from "react-native";
+import { SafeAreaView, View, Text, Pressable, Image, Dimensions, ActivityIndicator, Alert } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import {  Overlay } from '@rneui/themed';
 import actions from "../../redux/actions";
@@ -48,6 +48,8 @@ const StudentCard = ({ navigation }) => {
                     }
                     getCategory(studentModel);
                 })
+            }).catch((e)=>{
+                Alert.alert("currently having issue with connecting server please try again after sometime")
             })
     }
 
@@ -63,6 +65,8 @@ const StudentCard = ({ navigation }) => {
                     }
                     getStudentClassDetails(studentModel);
                 })
+            }).catch((e)=>{
+                Alert.alert("currently having issue with connecting server please try again after sometime")
             })
     }
 
@@ -80,6 +84,8 @@ const StudentCard = ({ navigation }) => {
                     actions.selectedStudentDetails(studentModel)
                     navigation.navigate('HomePage');
                 })
+            }).catch((e)=>{
+                Alert.alert("currently having issue with connecting server please try again after sometime")
             })
     }
 
@@ -120,6 +126,8 @@ const StudentCard = ({ navigation }) => {
 
                     getGender(studentModel)
                 })
+            }).catch((e)=>{
+                Alert.alert("currently having issue with connecting server please try again after sometime")
             })
     }
 
@@ -136,7 +144,7 @@ const StudentCard = ({ navigation }) => {
                     height: 0,
                     borderTopColor: "#2E4AA0",
                     borderTopWidth: SCREEN_HEIGHT+30,
-                    borderRightWidth: SCREEN_WIDTH + 30,
+                    borderRightWidth: SCREEN_WIDTH + 40,
                     borderRightColor: '#F0BA19'
                 }}>
                 </View>
@@ -145,10 +153,10 @@ const StudentCard = ({ navigation }) => {
                     backgroundColor='#2E4AA0'
                     />
                 </View>
-                <View style={{ height: 55, backgroundColor: '#2E4AA0', justifyContent: 'center', position: 'absolute', width: '100%' ,top:14}}>
+                <View style={{ height: 55, backgroundColor: '#2E4AA0', justifyContent: 'center', position: 'absolute', width: '100%' ,top:24}}>
                     <Text style={{ color: 'white', fontSize: 20, alignSelf: 'center' }}>Student List</Text>
                 </View>
-                <ScrollView style={{ position: 'absolute', width: '100%', marginTop: 70 }}>
+                <ScrollView style={{ position: 'absolute', width: '100%', marginTop: 90 }}>
                     {studentList.map((e, i) => (
                         <Pressable
                             onPress={() => {

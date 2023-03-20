@@ -22,6 +22,7 @@ import Notifications from '../notifications/notifications';
 import ExamMarks from '../student/examMarks/examMarks';
 import AttendanceMonth from '../student/attendance/attendanceMonth';
 import AttendanceYear from '../student/attendance/attendanceYear';
+import AttendanceIndex from '../student/attendance/attendanceIndex';
 
 import {
   Image,
@@ -36,7 +37,6 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 import StudentDashBoard from '../student/studentDashBoard';
 import StudentProfile from '../student/profile/profile';
-import AttendenceIndex from '../student/attendence/attendenceIndex';
 import { Header, Icon } from 'react-native-elements';
 
 
