@@ -36,7 +36,6 @@ const UnpaidFees = () => {
         fetch(`http://13.127.128.192:8081/exams/getAllExams?sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
-
                     data.forEach(exam => {
                         examMap.set(exam.examsDetails.id, exam.examsDetails.name);
                     });
@@ -108,8 +107,7 @@ const UnpaidFees = () => {
 
         function getQuartersList(feeType) {
             let recordData = [];
-            quaterlyMap.forEach((value, key) => {
-
+            quartrlyMap.forEach((value, key) => {
                 if (!studentMonthFeeStatus.get(feeType.id + '_' + key)) {
                     let row = [];
                     row.push(feeType.name);
@@ -186,10 +184,7 @@ const UnpaidFees = () => {
                         }
 
                     });
-                    console.log("tempRecordData================>>", tempRecordData)
                     setRecordData(tempRecordData);
-
-
                 }
             })
         })
@@ -210,10 +205,7 @@ const UnpaidFees = () => {
                 <View style={{ flex: 1, justifyContent: "space-between" }}>
                     <View style={{ flex: 6, justifyContent: "space-between" }}>
                         <ScrollView>
-
-
                             {recordData.map((record, i) => (
-
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                     <View style={{ marginHorizontal: 40 }}>
                                         <Text style={{ color: 'blue', fontWeight: 'bold', fontSize: 20 }}>{record[0]}</Text>
@@ -225,7 +217,7 @@ const UnpaidFees = () => {
 
                             <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                 <View style={{ marginHorizontal: 40 }}>
-                                    <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 20 }}>Total Amount:- {settings.CURRENCY + ' ' + totalAmount}/-</Text>
+                                    <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 16 }}>Total Amount:- {settings.CURRENCY + ' ' + totalAmount}/-</Text>
                                 </View>
                             </Pressable>
 

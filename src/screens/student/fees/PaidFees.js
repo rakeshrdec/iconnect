@@ -158,9 +158,9 @@ const PaidFees = () => {
 
                             <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                 <View style={{ marginHorizontal: 40 }}>
-                                    <Text style={{ color: 'green', fontWeight: 'bold', fontSize: 20 }}>Total Discount Amount:- {settings.CURRENCY + ' ' + totalDiscountAmount}/-</Text>
-                                    <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 20 }}>Total Late Fee Amount:- {settings.CURRENCY + ' ' + totalLateAmount}/-</Text>
-                                    <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 20 }}>Total Paid Amount:- {settings.CURRENCY + ' ' + totalPaidAmount}/-</Text>
+                                    <Text style={{ color: 'green', fontWeight: 'bold', fontSize: 16 }}>Total Discount Amount:- {settings.CURRENCY + ' ' + totalDiscountAmount}/-</Text>
+                                    <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 16 }}>Total Late Fee Amount:- {settings.CURRENCY + ' ' + totalLateAmount}/-</Text>
+                                    <Text style={{ color: 'black', fontWeight: 'bold', fontSize: 16 }}>Total Paid Amount:- {settings.CURRENCY + ' ' + totalPaidAmount}/-</Text>
                                 </View>
                             </Pressable>
 

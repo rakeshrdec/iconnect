@@ -1,11 +1,6 @@
-import { Avatar } from "@rneui/base";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable, Image } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
 import { Calendar } from "react-native-calendars";
-import Icon from 'react-native-vector-icons/AntDesign';
-
-import AttendenceYear from "./attendenceYear";
 import AttendenceUpload from "./attendenceUpload";
 import { useSelector } from "react-redux";
 
@@ -185,32 +180,32 @@ const AttendenceMonth = ({ navigation }) => {
                     {/* present absent box */}
                     <View style={{ flexDirection: 'row', height: 90, justifyContent: 'space-around' }}>
                         <View style={{ flex: 1, borderRadius: 20, margin: 10, backgroundColor: 'lightgreen', justifyContent: 'space-around' }}>
-                            <Text style={{ textAlign: 'center', color: 'white' }}>Total Present</Text>
+                            <Text style={{ textAlign: 'center', color: 'white', fontWeight: "bold", fontSize: 14 }}>Total Present</Text>
                             <View style={{ height: 40, width: 40, backgroundColor: 'white', alignSelf: 'center', borderRadius: 150, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={{ color: 'green' }}>{totalPresent}</Text>
+                                <Text style={{ color: 'green', fontWeight: "bold" }}>{totalPresent}</Text>
                             </View>
 
                         </View>
                         <View style={{ flex: 1, borderRadius: 20, margin: 10, backgroundColor: 'red', justifyContent: 'space-around' }}>
-                            <Text style={{ textAlign: 'center', color: 'white' }}>Total Absent</Text>
+                            <Text style={{ textAlign: 'center', color: 'white', fontWeight: "bold", fontSize: 14 }}>Total Absent</Text>
                             <View style={{ height: 40, width: 40, backgroundColor: 'white', alignSelf: 'center', borderRadius: 150, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={{ color: 'red' }}>{totalAbsent}</Text>
+                                <Text style={{ color: 'red', fontWeight: "bold" }}>{totalAbsent}</Text>
                             </View>
                         </View>
                     </View>
 
                     <View style={{ flexDirection: 'row', height: 90, justifyContent: 'space-around' }}>
                         <View style={{ flex: 1, borderRadius: 20, margin: 10, backgroundColor: '#f58a42', justifyContent: 'space-around' }}>
-                            <Text style={{ textAlign: 'center', color: 'white' }}>Total Holidays</Text>
+                            <Text style={{ textAlign: 'center', color: 'white', fontWeight: "bold", fontSize: 14 }}>Total Holidays</Text>
                             <View style={{ height: 40, width: 40, backgroundColor: 'white', alignSelf: 'center', borderRadius: 150, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={{ color: 'green' }}>{totalHoliDays}</Text>
+                                <Text style={{ color: 'green', fontWeight: "bold" }}>{totalHoliDays}</Text>
                             </View>
 
                         </View>
                         <View style={{ flex: 1, borderRadius: 20, margin: 10, backgroundColor: '#b942f5', justifyContent: 'space-around' }}>
-                            <Text style={{ textAlign: 'center', color: 'white' }}>Total W/F</Text>
+                            <Text style={{ textAlign: 'center', color: 'white', fontWeight: "bold", fontSize: 14 }}>Total W/F</Text>
                             <View style={{ height: 40, width: 40, backgroundColor: 'white', alignSelf: 'center', borderRadius: 150, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={{ color: 'red' }}>{totalWeekend}</Text>
+                                <Text style={{ color: 'red', fontWeight: "bold" }}>{totalWeekend}</Text>
                             </View>
                         </View>
                     </View>

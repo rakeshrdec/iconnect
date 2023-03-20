@@ -55,26 +55,20 @@ const AttendenceYear = ({ navigation }) => {
             {/* USER PROFILE */}
             <View style={{ flex: 1 }}><StudentHeader /></View>
             <View style={{ flex: 6, justifyContent: 'center', marginTop: -40 }}>
-                {/* <Text style={{color:'white', fontSize:26, fontWeight:'bold',alignSelf:'center'}}>Home</Text> */}
-                <View style={{ flex: 0.8, marginHorizontal: 20, borderRadius: 15, backgroundColor: 'white', }}>
+                <View style={{ flex: 0.8, marginHorizontal: 5, borderRadius: 15, backgroundColor: 'white', }}>
                     <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, borderTopEndRadius: 15, borderTopStartRadius: 15, justifyContent: 'space-between', flexDirection: 'row', paddingHorizontal: 20, alignItems: 'center' }}>
                         <Text style={{ color: 'darkblue', fontWeight: "bold" }}>Year of {year}</Text>
-                        <Icon name="dots-three-horizontal" size={30} color='darkblue' onPress={() => { setYearToggle(!yearToggle) }} />
+                        {/* <Icon name="dots-three-horizontal" size={30} color='darkblue' onPress={() => { setYearToggle(!yearToggle) }} /> */}
                     </View>
                     <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 10 }}>
                         <Text style={{ color: 'darkblue', fontSize: 15, fontWeight: "bold" }}>Month</Text>
-                        <Text style={{ color: 'darkblue', fontSize: 15, fontWeight: "bold", textAlign: 'center', marginLeft: 40 }}>Present</Text>
-                        <Text style={{ color: 'darkblue', fontSize: 15, fontWeight: "bold" }}>W/F</Text>
-                        <Text style={{ color: 'darkblue', fontSize: 15, fontWeight: "bold" }}>P/H</Text>
-                        <Text style={{ color: 'darkblue', fontSize: 15, fontWeight: "bold" }}>Absent</Text>
 
-                        {/* <Text style={{ color: 'green',  width: 50, textAlign: 'center',fontSize: 15, fontWeight: "bold" }}>Present</Text> */}
-
-                        {/* <View style={{ position: 'absolute', right: 0, flexDirection: 'row', }}>
-                            <Text style={{ color: '#b942f5', marginHorizontal: 5, width: 50, textAlign: 'center',fontSize: 15, fontWeight: "bold" }}>W/F</Text>
-                            <Text style={{ color: '#f58a42', marginHorizontal: 5, width: 50, textAlign: 'center',fontSize: 15, fontWeight: "bold" }}>P/H</Text>
-                            <Text style={{ color: 'red', marginHorizontal: 5, width: 50, textAlign: 'center',fontSize: 15, fontWeight: "bold" }}>Absent</Text>
-                        </View> */}
+                        <View style={{ position: 'absolute', right: 5, flexDirection: 'row', }}>
+                            <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center', fontSize: 14, fontWeight: "bold" }}>Present</Text>
+                            <Text style={{ color: '#b942f5', marginHorizontal: 5, width: 50, textAlign: 'center', fontSize: 14, fontWeight: "bold" }}>W/F</Text>
+                            <Text style={{ color: '#f58a42', marginHorizontal: 5, width: 50, textAlign: 'center', fontSize: 14, fontWeight: "bold" }}>P/H</Text>
+                            <Text style={{ color: 'red', marginHorizontal: 5, width: 50, textAlign: 'center', fontSize: 14, fontWeight: "bold" }}>Absent</Text>
+                        </View>
                     </View>
 
                     {months.map((e, i) => (
