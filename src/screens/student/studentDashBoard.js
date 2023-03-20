@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 const StudentDashBoard = ({ navigation }) => {
   const data = useSelector((state) => state)
-  const userData = data.selectedStudentDetails.data;
+  const selectedStudent = data.selectedStudentDetails.data;
   return (
     <>
       <View style={{
@@ -21,16 +21,15 @@ const StudentDashBoard = ({ navigation }) => {
       }}>
       </View>
       <View style={{ flex: 1, position: 'absolute', width: '100%' }}>
-         <View style={{ flex: 1, backgroundColor: 'transparent', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
-         {userData.uploadImg === null ? <Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} /> : <Image source={{ uri: 'http://13.127.128.192:8081/' + userData.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
+        <View style={{ flex: 1, backgroundColor: 'lightgray', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around' }}>
+          {selectedStudent.uploadImg === null ? <Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} /> : <Image source={{ uri: 'http://13.127.128.192:8081/' + selectedStudent.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
+          <View style={{}}>
+            <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{selectedStudent.name}</Text>
+            <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{selectedStudent.className}</Text>
+            <Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold' }}>{selectedStudent.sectionName}</Text>
+          </View>
+        </View>
 
-                <View style={{}}>
-                    <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>{userData.name}</Text>
-                    <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>{userData.className}</Text>
-                    <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>{userData.sectionName}</Text>
-
-                </View>
-            </View>
         <View style={{ flexDirection: 'row', height: 100 }}>
           <Pressable
             onPress={() => {
