@@ -22,18 +22,18 @@ const StudentDashBoard = ({ navigation }) => {
       }}>
       </View>
       <View style={{ flex: 1, position: 'absolute', width: '100%' }}>
-      <View style={{ flex: 1 }}><StudentHeader /></View>
+        <View style={{ flex: 1 }}><StudentHeader /></View>
 
 
         <View style={{ flexDirection: 'row', height: 100 }}>
           <Pressable
             onPress={() => {
               // Alert.alert('work in prgres')
-              navigation.navigate('Attendence')
+              navigation.navigate('Attendance')
             }}
             style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/attendance.png')} style={{ height: 50, width: 50 }} />
-            <Text style={{ color: '#2E4AA0', fontSize: 20, fontWeight: 'bold' }}>Attendence</Text>
+            <Text style={{ color: '#2E4AA0', fontSize: 20, fontWeight: 'bold' }}>Attendance</Text>
           </Pressable>
           <Pressable
             onPress={() => {

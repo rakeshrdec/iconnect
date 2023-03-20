@@ -18,15 +18,7 @@ import {
   DrawerItem,
 } from '@react-navigation/drawer';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-// import { Avatar } from '@react-native-material/core';
-import { Avatar } from '@rneui/themed';
-
 import { useSelector } from "react-redux";
-
-
-
 
 const CustomSidebarMenu = (props) => {
 
@@ -42,12 +34,7 @@ const CustomSidebarMenu = (props) => {
       {/*Top Large Image RED SECTION */}
       <View style={{ backgroundColor: '#2E4AA0', height: '25%', justifyContent: 'center' }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
-          <Avatar
-            size={85}
-            rounded
-            source={{
-              uri: "https://fastly.picsum.photos/id/1045/200/200.jpg?hmac=NOMPYGOtm89-zlf7NNDG7qSjCOy3XpvrdQRBF4aUZgE"
-            }} />
+          {selectedStudent.uploadImg === null ? <Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} /> : <Image source={{ uri: 'http://13.127.128.192:8081/' + selectedStudent.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
           <View>
             <View style={{ flexDirection: 'row' }}>
 

@@ -13,8 +13,6 @@ import { NavigationContainer } from '@react-navigation/native';
 // import MenuDrawer from 'react-native-side-drawer';
 import CustomSidebarMenu from './customSideBarMenu';
 
-import AttendenceMonth from '../student/attendence/attendenceMonth';
-import AttendenceYear from '../student/attendence/attendenceYear';
 import TimeTable from '../student/timeTable/timeTable';
 import Holidays from '../holidays/holidays';
 import FeeStatus from '../student/fees/FeeStatus';
@@ -22,6 +20,8 @@ import Announcement from '../announcement/announcement';
 import ViewDocuments from '../student/viewDocuments/viewDocuments';
 import Notifications from '../notifications/notifications';
 import ExamMarks from '../student/examMarks/examMarks';
+import AttendanceMonth from '../student/attendance/attendanceMonth';
+import AttendanceYear from '../student/attendance/attendanceYear';
 
 import {
   Image,
@@ -36,7 +36,7 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 import StudentDashBoard from '../student/studentDashBoard';
 import StudentProfile from '../student/profile/profile';
-import AttendenceIndex from '../student/attendence/attendenceIndex';
+import AttendanceIndex from '../student/attendance/attendanceIndex';
 
 
 
@@ -56,11 +56,11 @@ function HomeScreen({ navigation }) {
         <Pressable
           onPress={() => {
             // Alert.alert('work in prgres')
-            navigation.navigate('AttendenceMonth')
+            navigation.navigate('AttendanceMonth')
           }}
           style={{ borderRadius: 5, margin: 5, flex: 1, borderWidth: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center' }}>
           <Image source={require('../../../assets/logo/attendance.png')} style={{ height: 50, width: 50 }} />
-          <Text>attendence</Text>
+          <Text>attendance</Text>
         </Pressable>
         <Pressable
           onPress={() => {
@@ -220,7 +220,7 @@ const HomePage = () => {
           },
         }} />
         {/* <Drawer.Screen name="Notifications" component={NotificationsScreen} /> */}
-        <Drawer.Screen name="Attendence" component={AttendenceIndex}
+        <Drawer.Screen name="Attendance" component={AttendanceIndex}
           options={{
             headerTintColor: 'white',
             headerShown: 'false',
@@ -229,7 +229,7 @@ const HomePage = () => {
             },
           }} />
 
-        <Drawer.Screen name="AttendenceMonth" component={AttendenceMonth}
+        <Drawer.Screen name="AttendanceMonth" component={AttendanceMonth}
           options={{
             headerTintColor: 'white',
             headerShown: 'false',
@@ -239,7 +239,7 @@ const HomePage = () => {
             // headerTintColor:'red'
           }}
         />
-        <Drawer.Screen name="AttendenceYear" component={AttendenceYear} />
+        <Drawer.Screen name="AttendanceYear" component={AttendanceYear} />
         <Drawer.Screen name="TimeTable" component={TimeTable}
           options={{
             headerTintColor: 'white',

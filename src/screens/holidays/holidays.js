@@ -10,12 +10,12 @@ const Holidays = ({ navigation }) => {
     const [session, setSession] = useState(userData.data);
 
     useEffect(() => {
-        getStudentAttendenceByMonth();
+        getHolidays();
     }, [])
 
     const [holidayList, setHolidayList] = useState([]);
 
-    const getStudentAttendenceByMonth = () => {
+    const getHolidays = () => {
         fetch(`http://13.127.128.192:8081/holiday/getAllHolidays?sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {

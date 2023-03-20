@@ -15,10 +15,10 @@ const ViewDocuments = ({ navigation }) => {
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
 
     useEffect(() => {
-        getStudentAttendenceByMonth();
+        getStudentAttendanceByMonth();
     }, [])
 
-    const getStudentAttendenceByMonth = () => {
+    const getStudentAttendanceByMonth = () => {
         fetch(`http://13.127.128.192:8081/student/getStudentDocuments?studentId=${selectedStudent.id}`).then((res) => {
             res.json().then((data) => {
                 console.log(data,);

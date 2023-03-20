@@ -6,12 +6,12 @@ const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
 const Announcement = ({ navigation }) => {
     useEffect(() => {
-        getStudentAttendenceByMonth();
+        getStudentAttendanceByMonth();
     }, [])
 
     const [announcementList, setAnnouncementList] = useState([]);
 
-    const getStudentAttendenceByMonth = () => {
+    const getStudentAttendanceByMonth = () => {
         fetch(`http://13.127.128.192:8081/announcement/getAllAnnouncement`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {

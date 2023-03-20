@@ -17,12 +17,12 @@ const Notifications = ({ navigation }) => {
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
 
     useEffect(() => {
-        getStudentAttendenceByMonth();
+        getStudentAttendanceByMonth();
     }, [])
 
     const [notifications, setNotifications] = useState([]);
 
-    const getStudentAttendenceByMonth = () => {
+    const getStudentAttendanceByMonth = () => {
 
 
 

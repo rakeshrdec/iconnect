@@ -11,8 +11,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import StudentCard from '../student/studentCard';
 import StudentDashBoard from '../student/studentDashBoard';
-import AttendenceMonth from '../student/attendence/attendenceMonth';
-import AttendenceYear from '../student/attendence/attendenceYear';
+import AttendanceMonth from '../student/attendance/attendanceMonth';
+import AttendanceYear from '../student/attendance/attendanceYear';
 import TimeTable from '../student/timeTable/timeTable';
 import studentProfile from '../student/profile/profile';
 import Holidays from '../holidays/holidays';
@@ -73,13 +73,13 @@ const LoginNavigation = () => {
             options={{ headerShown: false, title: 'Home' }}
           />
           <Stack.Screen
-            name="AttendenceMonth"
-            component={AttendenceMonth}
+            name="AttendanceMonth"
+            component={AttendanceMonth}
             options={{ headerShown: false, title: 'Home' }}
           />
           <Stack.Screen
-            name="AttendenceYear"
-            component={AttendenceYear}
+            name="AttendanceYear"
+            component={AttendanceYear}
             options={{ headerShown: false, title: 'Home' }}
           />
           <Stack.Screen
