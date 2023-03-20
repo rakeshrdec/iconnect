@@ -32,6 +32,11 @@ const AttendanceMonth = ({ navigation }) => {
         getAllHoliDays(month, year);
         getStudentAttendanceByMonth(month, year);
         getStudentPresentAttendance(month, year)
+    }, []);
+
+
+    useEffect(() => {
+      
         setDateColor({ ...presentDates, ...holidaysDates, ...weekelyOffDates })
     }, [presentDates, weekelyOffDates, holidaysDates]);
 
