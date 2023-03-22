@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Dimensions, Pressable } from "react-native";
+import { View, Text, Dimensions, Pressable, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 import { monthMap, quartrlyMap, settings } from '../../../models/data';
+import { Overlay } from '@rneui/themed';
 
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -14,6 +15,7 @@ const PaidFees = () => {
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
     const sessionData = data.session;
     const [session, setSession] = useState(sessionData.data);
+    const [showLoader, setShowLoader] = useState(true)
 
     useEffect(() => {
         getAllExams();
@@ -117,6 +119,7 @@ const PaidFees = () => {
                 }
             })
         })
+        setShowLoader(false);
     }
 
     return (
@@ -167,6 +170,12 @@ const PaidFees = () => {
                         </ScrollView>
                     </View>
                 </View>
+                {<Overlay isVisible={showLoader} overlayStyle={{ backgroundColor: "#2E4AA0", borderWidth: 0, opacity: 0.8, flex: 1, width: '100%', height: '100%', justifyContent: 'center' }}>
+                    <View style={{ justifyContent: 'center', width: '100%', height: '100%', fontWeight: "bold", color: "white" }}>
+                        <ActivityIndicator size="large" color="#00ff00" />
+                        <Text style={{ justifyContent: 'space-between', fontWeight: "bold", color: "white" }}>Loading Paid Fees .......</Text>
+                    </View>
+                </Overlay>}
             </SafeAreaView>
         </>
     );

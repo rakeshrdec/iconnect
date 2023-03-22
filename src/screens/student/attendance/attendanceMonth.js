@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, Pressable, Image } from "react-native";
+import { SafeAreaView, View, Text, ActivityIndicator } from "react-native";
 import { Calendar } from "react-native-calendars";
 import { useSelector } from "react-redux";
+import { Overlay } from '@rneui/themed';
 
 const AttendanceMonth = ({ navigation }) => {
-    const [showYearWiseAtt, setShowYearWiseAtt] = useState(false);
+
+    const [showLoader, setShowLoader] = useState(true)
+
     const [totalPresent, setTotalPresent] = useState('0');
     const [totalAbsent, setTotalAbsent] = useState('0');
     const [totalHoliDays, setTotalHoliDays] = useState('0');
@@ -25,20 +28,26 @@ const AttendanceMonth = ({ navigation }) => {
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
 
     useEffect(() => {
-        const month = new Date().getMonth() + 1;
-        const year = new Date().getFullYear()
-        getWeeklyOffFromServer(month, year);
-
-        getAllHoliDays(month, year);
-        getStudentAttendanceByMonth(month, year);
-        getStudentPresentAttendance(month, year)
+        var date = new Date();
+        getWeeklyOffFromServer(date.getMonth() + 1, date.getFullYear())
     }, []);
 
-
     useEffect(() => {
-      
+
         setDateColor({ ...presentDates, ...holidaysDates, ...weekelyOffDates })
     }, [presentDates, weekelyOffDates, holidaysDates]);
+
+    async function getWeeklyOffFromServer(month, year) {
+        const weeklyOffResponse = await fetch(`http://13.127.128.192:8081/utils/getAllWeeklyOff`);
+        const weeklyOffData = await weeklyOffResponse.json();
+        const weeklyOffMap = new Map();
+        weeklyOffData.forEach(element => {
+            weeklyOffMap.set(element.weekDaysNumber, element.active);
+        });
+        setWeeklyOff(weeklyOffMap);
+        getTimeTables(month, year);
+    }
+
 
     getWeeklyOffCalculation = (selectedMoth, selectedYear) => {
         var startdate = new Date(selectedYear, selectedMoth, 1);
@@ -64,161 +73,117 @@ const AttendanceMonth = ({ navigation }) => {
         }
 
         var WeekelyOffDates = {}
-
         const allWeekelyOffDate = getDefaultOffDays2(startdate, enddate)
         allWeekelyOffDate.map((d, i) => {
             const weekOffDate = { [d]: { selected: true, marked: true, selectedColor: '#b942f5' } };
             WeekelyOffDates = { ...WeekelyOffDates, ...weekOffDate };
         });
-
         setWeeklyOffDates(WeekelyOffDates);
-
     }
 
+    async function getTimeTables(month, year) {
+        getWeeklyOffCalculation(month - 1, year);
 
-
-    getWeeklyOffFromServer = (month, year) => {
-        fetch(`http://13.127.128.192:8081/utils/getAllWeeklyOff`).then((res) => {
-            res.json().then((data) => {
-                if (data != '') {
-                    var weeklyOffMap = new Map();
-                    data.map((element, i) => {
-                        weeklyOffMap.set(element.weekDaysNumber, element.active);
-                    })
-                    setWeeklyOff(weeklyOffMap);
-                    getWeeklyOffCalculation(month - 1, year);
-                }
-            })
-        })
-
-    }
-
-    getAllHoliDays = (monthVal, year) => {
-        fetch(`http://13.127.128.192:8081/holiday/findAllHolidaysByMonthAndYear?month=${monthVal}&year=${year}`).then((res) => {
-            res.json().then((data) => {
-                if (data != '') {
-                    var holidaysDates = {}
-                    data.map((d, i) => {
-                        const holiday = { [d.holidayDate]: { selected: true, marked: true, selectedColor: '#f58a42' } };
-                        holidaysDates = { ...holidaysDates, ...holiday };
-                    });
-                    setHolidaysDates(holidaysDates);
-                }
-            })
-        })
-
-    }
-
-    const getStudentPresentAttendance = (monthVal, selectedYear) => {
-        const daysInMonth = getDays(selectedYear, monthVal);
-
-        var startDate = selectedYear + '-' + (monthVal < 10 ? '0' + monthVal : monthVal) + '-01';
-        var endDate = selectedYear + '-' + (monthVal < 10 ? '0' + monthVal : monthVal) + '-' + daysInMonth;
-
-
-        var presentDates = {}
-        fetch(`http://13.127.128.192:8081/student/getStudentApprovedAttendances?studentId=${selectedStudent.id}&startDate=${startDate}&endDate=${endDate}`).then((res) => {
-            res.json().then((data) => {
-                data.map((e, i) => {
-                    const presentDate = { [e.attendanceDate]: { selected: true, marked: true, selectedColor: 'lightgreen' } };
-                    presentDates = { ...presentDates, ...presentDate };
-                })
-                setPresentDates(presentDates);
-            })
-        })
-    }
-
-
-    const getDays = (year, month) => {
-        return new Date(year, month, 0).getDate();
-    };
-
-    const getStudentAttendanceByMonth = (monthVal, selectedYear) => {
+        const holidaysResponse = await fetch(`http://13.127.128.192:8081/holiday/findAllHolidaysByMonthAndYear?month=${month}&year=${year}`);
+        const holidaysData = await holidaysResponse.json();
+        if (holidaysData != '') {
+            var holidaysDates = {}
+            holidaysData.map((d, i) => {
+                const holiday = { [d.holidayDate]: { selected: true, marked: true, selectedColor: '#f58a42' } };
+                holidaysDates = { ...holidaysDates, ...holiday };
+            });
+            setHolidaysDates(holidaysDates);
+        }
 
         setTotalPresent('0');
         setTotalAbsent('0');
         setTotalHoliDays('0');
         setTotalWeekend('0');
-        const daysInMonth = getDays(selectedYear, monthVal);
+        const daysInMonth = getDays(year, month);
 
-        var startDate = selectedYear + '-' + (monthVal < 10 ? '0' + monthVal : monthVal) + '-01';
-        var endDate = selectedYear + '-' + (monthVal < 10 ? '0' + monthVal : monthVal) + '-' + daysInMonth;
+        var startDate = year + '-' + (month < 10 ? '0' + month : month) + '-01';
+        var endDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + daysInMonth;
 
-        fetch(`http://13.127.128.192:8081/student/getStudentAttendancesByStudentAndSession?studentId=${selectedStudent.id}&startDate=${startDate}&endDate=${endDate}&sessionYear=${session.id}`).then((res) => {
-            res.json().then((data) => {
-                if (data != '') {
-                    setTotalWeekend(data[0].totalWeekend);
-                    setTotalHoliDays(data[0].totalHolidays);
-                    setTotalPresent(data[0].present);
-                    setTotalAbsent(data[0].absent);
-                }
-            })
+        const studentAttendanceResponse = await fetch(`http://13.127.128.192:8081/student/getStudentAttendancesByStudentAndSession?studentId=${selectedStudent.id}&startDate=${startDate}&endDate=${endDate}&sessionYear=${session.id}`);
+        const studentAttendanceData = await studentAttendanceResponse.json();
+        if (studentAttendanceData != '') {
+            setTotalWeekend(studentAttendanceData[0].totalWeekend);
+            setTotalHoliDays(studentAttendanceData[0].totalHolidays);
+            setTotalPresent(studentAttendanceData[0].present);
+            setTotalAbsent(studentAttendanceData[0].absent);
+        }
+
+        var presentDates = {}
+        const studentApprovedAttendanceResponse = await fetch(`http://13.127.128.192:8081/student/getStudentApprovedAttendances?studentId=${selectedStudent.id}&startDate=${startDate}&endDate=${endDate}`);
+        const studentApprovedAttendanceData = await studentApprovedAttendanceResponse.json();
+        studentApprovedAttendanceData.map((e, i) => {
+            var presentDate = { [e.attendanceDate]: { selected: true, marked: true, selectedColor: 'lightgreen' } };
+            presentDates = { ...presentDates, ...presentDate };
         })
-
+        setPresentDates(presentDates);
+        setShowLoader(false);
     }
+
+    const getDays = (year, month) => {
+        return new Date(year, month, 0).getDate();
+    };
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
 
-            {showYearWiseAtt ?
-                // <View style={{flex:1}}><AttendanceYear />
-                <View style={{ flex: 1 }}><AttendanceUpload />
-                </View> :
-                <View>
-                    {/* <Calendar></Calendar> */}
-                    <Calendar
-                        onMonthChange={(e) => {
-                            setDateColor({})
-                            getStudentAttendanceByMonth(e.month, e.year);
-                            getWeeklyOffCalculation(e.month - 1, e.year);
-                            getAllHoliDays(e.month, e.year);
-                            getStudentPresentAttendance(e.month, e.year)
-                        }}
-                        style={{ margin: 20, borderRadius: 15 }}
-                        markedDates={DateColor}
-                    />
-                    {/* </View> */}
-                    {/* present absent box */}
-                    <View style={{ flexDirection: 'row', height: 90, justifyContent: 'space-around' }}>
-                        <View style={{ flex: 1, borderRadius: 20, margin: 10, backgroundColor: 'lightgreen', justifyContent: 'space-around' }}>
-                            <Text style={{ textAlign: 'center', color: 'white', fontWeight: "bold", fontSize: 14 }}>Total Present</Text>
-                            <View style={{ height: 40, width: 40, backgroundColor: 'white', alignSelf: 'center', borderRadius: 150, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={{ color: 'green', fontWeight: "bold" }}>{totalPresent}</Text>
-                            </View>
+            <View>
+                <Calendar
+                    onMonthChange={(e) => {
+                        setShowLoader(true);
+                        setDateColor({})
+                        getTimeTables(e.month, e.year);
+                    }}
+                    style={{ margin: 20, borderRadius: 15 }}
+                    markedDates={DateColor}
+                />
 
+                {/* present absent box */}
+                <View style={{ flexDirection: 'row', height: 90, justifyContent: 'space-around' }}>
+                    <View style={{ flex: 1, borderRadius: 20, margin: 10, backgroundColor: 'lightgreen', justifyContent: 'space-around' }}>
+                        <Text style={{ textAlign: 'center', color: 'white', fontWeight: "bold", fontSize: 14 }}>Total Present</Text>
+                        <View style={{ height: 40, width: 40, backgroundColor: 'white', alignSelf: 'center', borderRadius: 150, justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ color: 'green', fontWeight: "bold" }}>{totalPresent}</Text>
                         </View>
-                        <View style={{ flex: 1, borderRadius: 20, margin: 10, backgroundColor: 'red', justifyContent: 'space-around' }}>
-                            <Text style={{ textAlign: 'center', color: 'white', fontWeight: "bold", fontSize: 14 }}>Total Absent</Text>
-                            <View style={{ height: 40, width: 40, backgroundColor: 'white', alignSelf: 'center', borderRadius: 150, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={{ color: 'red', fontWeight: "bold" }}>{totalAbsent}</Text>
-                            </View>
+
+                    </View>
+                    <View style={{ flex: 1, borderRadius: 20, margin: 10, backgroundColor: 'red', justifyContent: 'space-around' }}>
+                        <Text style={{ textAlign: 'center', color: 'white', fontWeight: "bold", fontSize: 14 }}>Total Absent</Text>
+                        <View style={{ height: 40, width: 40, backgroundColor: 'white', alignSelf: 'center', borderRadius: 150, justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ color: 'red', fontWeight: "bold" }}>{totalAbsent}</Text>
                         </View>
                     </View>
-
-                    <View style={{ flexDirection: 'row', height: 90, justifyContent: 'space-around' }}>
-                        <View style={{ flex: 1, borderRadius: 20, margin: 10, backgroundColor: '#f58a42', justifyContent: 'space-around' }}>
-                            <Text style={{ textAlign: 'center', color: 'white', fontWeight: "bold", fontSize: 14 }}>Total Holidays</Text>
-                            <View style={{ height: 40, width: 40, backgroundColor: 'white', alignSelf: 'center', borderRadius: 150, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={{ color: 'green', fontWeight: "bold" }}>{totalHoliDays}</Text>
-                            </View>
-
-                        </View>
-                        <View style={{ flex: 1, borderRadius: 20, margin: 10, backgroundColor: '#b942f5', justifyContent: 'space-around' }}>
-                            <Text style={{ textAlign: 'center', color: 'white', fontWeight: "bold", fontSize: 14 }}>Total W/F</Text>
-                            <View style={{ height: 40, width: 40, backgroundColor: 'white', alignSelf: 'center', borderRadius: 150, justifyContent: 'center', alignItems: 'center' }}>
-                                <Text style={{ color: 'red', fontWeight: "bold" }}>{totalWeekend}</Text>
-                            </View>
-                        </View>
-                    </View>
-                    {/* yearly component */}
-                    {/* <Pressable 
-        onPress={()=>{setShowYearWiseAtt(true)}}
-        style={{elevation:20, backgroundColor:'lightyellow',margin:20, height:40,justifyContent:'center',borderRadius:25, flexDirection:'row'}}>
-            <Text style={{color:'darkblue', textAlign:'center',alignSelf:'center'}}>check attendance yearwise</Text>
-            <Icon name="rightcircle" size={35} color="#0c123b" style={{position:'absolute',right:0, alignSelf:'center'}} />
-        </Pressable> */}
                 </View>
-            }
+
+                <View style={{ flexDirection: 'row', height: 90, justifyContent: 'space-around' }}>
+                    <View style={{ flex: 1, borderRadius: 20, margin: 10, backgroundColor: '#f58a42', justifyContent: 'space-around' }}>
+                        <Text style={{ textAlign: 'center', color: 'white', fontWeight: "bold", fontSize: 14 }}>Total Holidays</Text>
+                        <View style={{ height: 40, width: 40, backgroundColor: 'white', alignSelf: 'center', borderRadius: 150, justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ color: 'green', fontWeight: "bold" }}>{totalHoliDays}</Text>
+                        </View>
+
+                    </View>
+                    <View style={{ flex: 1, borderRadius: 20, margin: 10, backgroundColor: '#b942f5', justifyContent: 'space-around' }}>
+                        <Text style={{ textAlign: 'center', color: 'white', fontWeight: "bold", fontSize: 14 }}>Total W/F</Text>
+                        <View style={{ height: 40, width: 40, backgroundColor: 'white', alignSelf: 'center', borderRadius: 150, justifyContent: 'center', alignItems: 'center' }}>
+                            <Text style={{ color: 'red', fontWeight: "bold" }}>{totalWeekend}</Text>
+                        </View>
+                    </View>
+                </View>
+
+                {<Overlay isVisible={showLoader} overlayStyle={{ backgroundColor: "#2E4AA0", borderWidth: 0, opacity: 0.8, flex: 1, width: '100%', height: '100%', justifyContent: 'center' }}>
+                    <View style={{ justifyContent: 'center', width: '100%', height: '100%', fontWeight: "bold", color: "white" }}>
+                        <ActivityIndicator size="large" color="#00ff00" />
+                        <Text style={{ justifyContent: 'space-between', fontWeight: "bold", color: "white" }}>Loading Attendance .......</Text>
+                    </View>
+                </Overlay>}
+            </View>
+
+
         </SafeAreaView>
     );
 }

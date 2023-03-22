@@ -1,32 +1,13 @@
-/**
- * Sample React Native Login
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React, { useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-// import type {Node} from 'react';
-import {
-  Pressable,
-  StyleSheet,
-  Text,
-  Image,
-  View,
-  Alert,
-  ActivityIndicator,
-} from 'react-native';
+import { Pressable, StyleSheet, Text, Image, View, Alert, ActivityIndicator } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { Input } from 'react-native-elements';
 import actions from '../../redux/actions';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Overlay } from '@rneui/themed';
 import { Header } from 'react-native-elements';
-
 
 const Stack = createNativeStackNavigator();
 
@@ -37,16 +18,11 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState()
   const [showLoader, setShowLoader] = useState(false)
 
-  const data = useSelector((state) => state)
-  const userData = data.userInformation;
-
   const onLogin = async () => {
     setShowLoader(true)
 
     if (loginFor == 'Student') {
-      // if(verify) 
       {
-        // navigation.navigate('StudentCard')
         console.log(loginId, password)
         await fetch('http://13.127.128.192:8081/auth/validateStudentLogin', {
           method: 'POST',
@@ -56,21 +32,17 @@ const Login = ({ navigation }) => {
           },
           body: JSON.stringify(
             {
-              "userName": loginId,
-              "password": password,
+              "userName": "7669991129",
+              "password": "7669991129",
               "tokenType": 1,
               "createdAt": "createdAt",
               "expiredAt": "expiredAt"
             }
           )
         }).then((res) => {
-          // console.log(res)
-          // "userName": "7669991129",
-          //     "password": "7669991129",
           if (res.status == 200) {
             setShowLoader(false)
             res.json().then(data => {
-              // console.log("DATA IS",data)
               if (!(data.students == '')) {
                 actions.studentList(data.students)
                 actions.session(data.session)
@@ -98,7 +70,6 @@ const Login = ({ navigation }) => {
       Alert.alert('you are not eligible for staff login')
     }
   }
-
 
   return (
     <>
@@ -128,13 +99,11 @@ const Login = ({ navigation }) => {
                 onPress={() => {
                   setLoginFor('Student')
                 }}
-                // value={loginId}
                 style={loginFor == 'Student' ? { elevation: 10, backgroundColor: '#F0BA19', borderRadius: 5, width: '35%', height: 40, alignItems: 'center', justifyContent: 'center' } : { borderWidth: 1, backgroundColor: 'white', borderRadius: 5, width: '35%', height: 40, alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={{ color: 'blue', fontWeight: 'bold', fontSize: 25 }}>Student</Text>
               </Pressable>
             </View>
             <Text style={{ color: 'black', fontWeight: 'bold', textAlign: 'center', marginTop: 10, borderRadius: 5, height: 40, fontSize: 2212345678 }}>{loginFor} Login</Text>
-            {/* <Text style={{color:'black'}}>Mobile</Text> */}
             <Input
               onChangeText={(e) => {
                 setLoginId(e)
@@ -182,8 +151,6 @@ const Login = ({ navigation }) => {
               onPress={onLogin}
               style={{ flexDirection: 'row', justifyContent: 'space-around', backgroundColor: '#F0BA19', marginTop: 10, borderRadius: 150, height: 40, alignItems: 'center' }}>
               <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', alignSelf: 'center', fontSize: 25 }}>Login</Text>
-
-              {/* <Icon name="rightcircle" size={27} color="darkblue" /> */}
             </Pressable>
             <Overlay
               isVisible={showLoader}
@@ -206,9 +173,5 @@ const Login = ({ navigation }) => {
     </>
   );
 };
-
-const styles = StyleSheet.create({
-
-});
 
 export default Login;

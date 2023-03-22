@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, View, Dimensions, ScrollView } from "react-native";
+import { Text, View, Dimensions, ScrollView, ActivityIndicator } from "react-native";
 import { useSelector } from "react-redux";
+import { Overlay } from '@rneui/themed';
+
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
 
@@ -9,6 +11,7 @@ const AcademicInfo = () => {
     const data = useSelector((state) => state)
     const selectedStudentData = data.selectedStudentDetails;
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
+    const [showLoader, setShowLoader] = useState(true)
 
     useEffect(() => {
 
@@ -48,6 +51,7 @@ const AcademicInfo = () => {
                     <Text style={{color: 'black', fontSize: 15, fontWeight: "bold", textAlign: 'left', marginLeft: 10}}>Reg. No.:  </Text>
                     <Text style={{color: 'black', fontSize: 15, fontWeight: "bold", marginLeft: 0, marginRight: 5}}>{selectedStudent.enroll}</Text>
                 </View>
+              
             </ScrollView>
         </>);
 

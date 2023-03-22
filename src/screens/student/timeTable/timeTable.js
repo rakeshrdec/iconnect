@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, Pressable, Dimensions, Image } from "react-native";
+import { SafeAreaView, View, Text, Pressable, Dimensions, Image, ActivityIndicator } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
 import { useSelector } from "react-redux";
 import { weekMap } from '../../../models/data';
 import StudentHeader from "../../homepage/studentHeader";
+import { Overlay } from '@rneui/themed';
 
 const TimeTable = ({ navigation }) => {
+    const [showLoader, setShowLoader] = useState(true)
 
     const data = useSelector((state) => state)
     const sessionData = data.session;
@@ -110,6 +112,7 @@ const TimeTable = ({ navigation }) => {
             setListOfPeriods(tempTimeTableDataMap.get(daysWithoutOff[0]));
         }
         setTimeTableDataMap(tempTimeTableDataMap);
+        setShowLoader(false);
     }
 
     return (
@@ -129,7 +132,6 @@ const TimeTable = ({ navigation }) => {
                     <View style={{ flex: 1 }}><StudentHeader /></View>
                     <View style={{ flex: 6, justifyContent: "space-between" }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '90%', alignSelf: 'center', marginVertical: 10 }}>
-
                             {days.map((e, i) => (
                                 <Pressable style={selectedDay == e ? { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#2E4AA0' } : { borderWidth: 1, padding: 5, borderRadius: 5, backgroundColor: '#F0BA19' }} onPress={() => { setSelectedDay(e); setListOfPeriods(timeTableDataMap.get(e)) }}><Text style={selectedDay == e ? { color: 'white', fontWeight: 'bold' } : { color: 'blue', fontWeight: 'bold' }}>{daysName.get(e).short}</Text></Pressable>
                             ))
@@ -137,7 +139,7 @@ const TimeTable = ({ navigation }) => {
 
                         </View>
                         {/* subjects */}
-                        <ScrollView>
+                        <ScrollView isVisible={!showLoader}>
                             {listOfPeriods.map((e, i) => (
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                     <Image source={require('../../../../assets/logo/document.png')} style={{ height: 50, width: 50, resizeMode: 'stretch' }} />
@@ -155,6 +157,12 @@ const TimeTable = ({ navigation }) => {
                         </ScrollView>
                     </View>
                 </View>
+                {<Overlay isVisible={showLoader} overlayStyle={{ backgroundColor: "#2E4AA0", borderWidth: 0, opacity: 0.8, flex: 1, width: '100%', height: '100%', justifyContent: 'center' }}>
+                    <View style={{ justifyContent: 'center', width: '100%', height: '100%', fontWeight: "bold", color: "white" }}>
+                        <ActivityIndicator size="large" color="#00ff00" />
+                        <Text style={{ justifyContent: 'space-between', fontWeight: "bold", color: "white" }}>Loading Time Table .......</Text>
+                    </View>
+                </Overlay>}
             </SafeAreaView>
         </>
     );

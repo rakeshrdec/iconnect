@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, Pressable, Dimensions, Image } from "react-native";
+import { SafeAreaView, View, Text, Pressable, Dimensions, Image , ActivityIndicator} from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
 import { useSelector } from "react-redux";
 import StudentHeader from "../homepage/studentHeader";
+import { Overlay } from '@rneui/themed';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
@@ -15,6 +16,7 @@ const Notifications = ({ navigation }) => {
     const [session, setSession] = useState(sessionData.data);
     const selectedStudentData = data.selectedStudentDetails;
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
+    const [showLoader, setShowLoader] = useState(true)
 
     useEffect(() => {
         getNotifications();
@@ -43,6 +45,7 @@ const Notifications = ({ navigation }) => {
 
             });
             setNotifications(tempNotifications);
+            setShowLoader(false);
         }
 
     }
@@ -76,6 +79,12 @@ const Notifications = ({ navigation }) => {
                         </ScrollView>
                     </View>
                 </View>
+                {<Overlay isVisible={showLoader} overlayStyle={{ backgroundColor: "#2E4AA0", borderWidth: 0, opacity: 0.8, flex: 1, width: '100%', height: '100%', justifyContent: 'center' }}>
+                    <View style={{ justifyContent: 'center', width: '100%', height: '100%', fontWeight: "bold", color: "white" }}>
+                        <ActivityIndicator size="large" color="#00ff00" />
+                        <Text style={{ justifyContent: 'space-between', fontWeight: "bold", color: "white" }}>Loading Notifications .......</Text>
+                    </View>
+                </Overlay>}
             </SafeAreaView>
         </>
     );

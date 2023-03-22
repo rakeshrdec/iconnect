@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Dimensions } from "react-native";
+import { View, Text, Dimensions, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
+import { Overlay } from '@rneui/themed';
+
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
 import { ScrollView } from "react-native-gesture-handler";
@@ -11,6 +13,7 @@ const PersonalInfo = () => {
     const data = useSelector((state) => state)
     const selectedStudentData = data.selectedStudentDetails;
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
+    const [showLoader, setShowLoader] = useState(true)
 
     useEffect(() => {
 

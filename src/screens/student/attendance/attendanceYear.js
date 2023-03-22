@@ -1,11 +1,12 @@
 import Icon from 'react-native-vector-icons/Entypo';
 import { Avatar } from "@rneui/base";
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, Pressable, Image } from "react-native";
+import { SafeAreaView, View, Text, Pressable, Image, ActivityIndicator } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { monthMap } from '../../../models/data';
 import { useSelector } from "react-redux";
 import StudentHeader from "../../homepage/studentHeader";
+import { Overlay } from '@rneui/themed';
 
 const AttendanceYear = ({ navigation }) => {
     const data = useSelector((state) => state)
@@ -13,6 +14,7 @@ const AttendanceYear = ({ navigation }) => {
     const [session, setSession] = useState(sessionData.data);
     const selectedStudentData = data.selectedStudentDetails;
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
+    const [showLoader, setShowLoader] = useState(true)
 
 
     useEffect(() => {
@@ -39,6 +41,7 @@ const AttendanceYear = ({ navigation }) => {
                     })
                     setAttendanceDataMap(atendanceDataMap);
                     setMonths([3, 2, 1, 12, 11, 10, 9, 8, 7, 6, 5, 4]);
+                    setShowLoader(false);
                 }
             })
         })
@@ -106,7 +109,12 @@ const AttendanceYear = ({ navigation }) => {
 
                 </View>
             </View>
-
+            {<Overlay isVisible={showLoader} overlayStyle={{ backgroundColor: "#2E4AA0", borderWidth: 0, opacity: 0.8, flex: 1, width: '100%', height: '100%', justifyContent: 'center' }}>
+                    <View style={{ justifyContent: 'center', width: '100%', height: '100%', fontWeight: "bold", color: "white" }}>
+                        <ActivityIndicator size="large" color="#00ff00" />
+                        <Text style={{ justifyContent: 'space-between', fontWeight: "bold", color: "white" }}>Loading Attendance .......</Text>
+                    </View>
+                </Overlay>}
         </SafeAreaView>
     );
 }
