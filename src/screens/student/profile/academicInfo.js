@@ -13,9 +13,11 @@ const AcademicInfo = () => {
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
     const [showLoader, setShowLoader] = useState(true)
 
-    useEffect(() => {
+    
 
-    }, [])
+    setTimeout(() => {
+        setShowLoader(false)
+    }, 1400)
 
 
     return (
@@ -53,6 +55,12 @@ const AcademicInfo = () => {
                 </View>
               
             </ScrollView>
+            {<Overlay isVisible={showLoader} overlayStyle={{ backgroundColor: "#2E4AA0", borderWidth: 0, opacity: 0.8, flex: 1, width: '100%', height: '100%', justifyContent: 'center' }}>
+                    <View style={{ justifyContent: 'center', width: '100%', height: '100%', fontWeight: "bold", color: "white" }}>
+                        <ActivityIndicator size="large" color="#00ff00" />
+                        <Text style={{ textAlign:'center', fontWeight: "bold", color: "white" }}>Loading Student List .......</Text>
+                    </View>
+                </Overlay>}
         </>);
 
 

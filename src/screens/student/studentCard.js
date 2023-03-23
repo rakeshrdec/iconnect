@@ -179,7 +179,7 @@ const StudentCard = ({ navigation }) => {
                 {<Overlay isVisible={showLoader} overlayStyle={{ backgroundColor: "#2E4AA0", borderWidth: 0, opacity: 0.8, flex: 1, width: '100%', height: '100%', justifyContent: 'center' }}>
                     <View style={{ justifyContent: 'center', width: '100%', height: '100%', fontWeight: "bold", color: "white" }}>
                         <ActivityIndicator size="large" color="#00ff00" />
-                        <Text style={{ justifyContent: 'space-between', fontWeight: "bold", color: "white" }}>Loading Student List .......</Text>
+                        <Text style={{ textAlign:'center', fontWeight: "bold", color: "white" }}>Loading Student List .......</Text>
                     </View>
                 </Overlay>}
             </SafeAreaView>
