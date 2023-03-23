@@ -21,10 +21,8 @@ const StudentDashBoard = ({ navigation }) => {
         borderRightColor: '#F0BA19'
       }}>
       </View>
-      <View style={{ flex: 1, position: 'absolute', width: '100%' }}>
+      <View style={{ flex: 1, position: 'absolute', width: '100%',padding:10 }}>
         <View style={{ flex: 1 }}><StudentHeader /></View>
-
-
         <View style={{ flexDirection: 'row', height: 100 }}>
           <Pressable
             onPress={() => {

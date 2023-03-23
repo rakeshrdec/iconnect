@@ -10,6 +10,7 @@ import {
   Text,
   Linking,
   Alert,
+  BackHandler,
 } from 'react-native';
 
 import {
@@ -17,6 +18,8 @@ import {
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer';
+import RNExitApp from 'react-native-exit-app';
+
 
 import { useSelector } from "react-redux";
 
@@ -71,6 +74,23 @@ const CustomSidebarMenu = (props) => {
             onPress={() => {
               // Linking.openURL('https://aboutreact.com/')
               Alert.alert('this section is in development mode')
+            }}
+          />
+        </View>
+        <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+          <DrawerItem
+            style={{ width: 200 }}
+            label="LogOut"
+            onPress={() => {
+              Alert.alert('Hold on', 'do you want to exit from this app', [
+                {
+                  text: 'Cancel',
+                  // onPress: () => ,
+                  style: 'cancel',
+                },
+                {text: 'OK', onPress: () => RNExitApp.exitApp()},
+              ]);
+              // BackHandler.exitApp
             }}
           />
         </View>
