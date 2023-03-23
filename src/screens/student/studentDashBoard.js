@@ -5,6 +5,9 @@ import { ScrollView, View, Text, Pressable, Image, Alert, Dimensions } from "rea
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 import { useSelector } from "react-redux";
 import StudentHeader from "../homepage/studentHeader";
+import Icon from 'react-native-vector-icons/AntDesign';
+import RNExitApp from "react-native-exit-app";
+
 
 
 const StudentDashBoard = ({ navigation }) => {
@@ -107,7 +110,22 @@ const StudentDashBoard = ({ navigation }) => {
             <Text style={{ color: '#2E4AA0', fontSize: 16, alignSelf: 'center', fontWeight: 'bold' }}>Announcement</Text>
           </Pressable>
         </View>
-      </View>    
+      </View>
+      <Pressable
+            onPress={() => {
+              Alert.alert('Hold on', 'do you want to exit from this app', [
+                {
+                  text: 'Cancel',
+                  // onPress: () => ,
+                  style: 'cancel',
+                },
+                {text: 'OK', onPress: () => RNExitApp.exitApp()},
+              ]);
+             }}
+            style={{ elevation: 20, backgroundColor: 'lightyellow',  height: 40, justifyContent: 'center', borderRadius: 25, flexDirection: 'row',position:'absolute',bottom:20, width:'90%',alignSelf:'center' }}>
+            <Text style={{ color: 'darkblue', textAlign: 'center', alignSelf: 'center' }}>log out</Text>
+            <Icon name="rightcircle" size={35} color="#0c123b" style={{ position: 'absolute', right: 0, alignSelf: 'center' }} />
+        </Pressable>   
     </>
   );
 }
