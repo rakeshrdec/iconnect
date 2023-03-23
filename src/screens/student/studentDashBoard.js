@@ -113,7 +113,7 @@ const StudentDashBoard = ({ navigation }) => {
       </View>
       <Pressable
             onPress={() => {
-              Alert.alert('Hold on', 'do you want to exit from this app', [
+              Alert.alert('Hold on', 'Do you really want to exit?', [
                 {
                   text: 'Cancel',
                   // onPress: () => ,

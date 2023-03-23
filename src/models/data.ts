@@ -1,4 +1,12 @@
-import { FullName, FullNameWithDetail } from "./common-model";
+export class FullName {
+    short: string;
+    full: string;
+}
+
+export class FullNameWithDetail extends FullName {
+    value: string;
+}
+
 
 export let settings = {
     SAVE_DATE_FORMAT: 'yyyy-MM-dd',
