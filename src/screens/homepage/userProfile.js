@@ -81,6 +81,7 @@ const HomePage = () => {
         {/* <Drawer.Screen name="Notifications" component={NotificationsScreen} /> */}
         <Drawer.Screen name="Attendance" component={AttendanceIndex}
           options={{
+            title: 'Attendance',
             headerTintColor: 'white',
             headerShown: 'false',
             headerStyle: {
@@ -89,6 +90,7 @@ const HomePage = () => {
           }} />
         <Drawer.Screen name="TimeTable" component={TimeTable}
           options={{
+            title: 'Time Table',
             headerTintColor: 'white',
             headerShown: 'false',
             headerStyle: {
@@ -99,6 +101,7 @@ const HomePage = () => {
         />
         <Drawer.Screen name="Holidays" component={Holidays}
           options={{
+            title: 'Holidays',
             headerTintColor: 'white',
             headerShown: 'false',
             headerStyle: {
@@ -110,6 +113,7 @@ const HomePage = () => {
 
         <Drawer.Screen name="Announcement" component={Announcement}
           options={{
+            title: 'Announcement',
             headerTintColor: 'white',
             headerShown: 'false',
             headerStyle: {
@@ -121,6 +125,7 @@ const HomePage = () => {
 
         <Drawer.Screen name="ExamMarks" component={ExamMarks}
           options={{
+            title: 'Exams',
             headerTintColor: 'white',
             headerShown: 'false',
             headerStyle: {
@@ -132,6 +137,7 @@ const HomePage = () => {
 
         <Drawer.Screen name="Notifications" component={Notifications}
           options={{
+            title: 'Notifications',
             headerTintColor: 'white',
             headerShown: 'false',
             headerStyle: {
@@ -143,17 +149,18 @@ const HomePage = () => {
 
         <Drawer.Screen name="ViewDocuments" component={ViewDocuments}
           options={{
+            title: 'View Documents',
             headerTintColor: 'white',
             headerShown: 'false',
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
-            // headerTintColor:'red'
           }}
         />
 
         <Drawer.Screen name="FeeStatus" component={FeeStatus}
           options={{
+            title: 'Fee Status',
             headerTintColor: 'white',
             headerShown: 'false',
             headerStyle: {
@@ -164,6 +171,7 @@ const HomePage = () => {
         />
         <Drawer.Screen name="StudentProfile" component={StudentProfile}
           options={{
+            title: 'Student Profile',
             headerTintColor: 'white',
             headerShown: 'false',
             headerStyle: {

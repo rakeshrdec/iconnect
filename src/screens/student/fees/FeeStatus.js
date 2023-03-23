@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Dimensions, Pressable, Image, ActivityIndicator } from "react-native";
 import { useSelector } from "react-redux";
-import { Overlay } from "@rneui/themed";
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 import PaidFees from "./PaidFees";
 import UnpaidFees from "./UnpaidFees";

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable, Image, Dimensions, ActivityIndicator } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
-import { Overlay } from '@rneui/themed';
+import Loader from "../homepage/loader";
 
 
 const Announcement = ({ navigation }) => {
@@ -52,12 +52,7 @@ const Announcement = ({ navigation }) => {
                         </ScrollView>
                     </View>
                 </View>
-                {<Overlay isVisible={showLoader} overlayStyle={{ backgroundColor: "#2E4AA0", borderWidth: 0, opacity: 0.8, flex: 1, width: '100%', height: '100%', justifyContent: 'center' }}>
-                    <View style={{ justifyContent: 'center', width: '100%', height: '100%', fontWeight: "bold", color: "white" }}>
-                        <ActivityIndicator size="large" color="#00ff00" />
-                        <Text style={{ textAlign:'center', fontWeight: "bold", color: "white" }}>Loading Announcement .......</Text>
-                    </View>
-                </Overlay>}
+                <Loader message="Loading Announcement ......." showLoader={showLoader} />
             </SafeAreaView>
         </>
     );

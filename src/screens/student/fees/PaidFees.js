@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 import { monthMap, quartrlyMap, settings } from '../../../models/data';
-import { Overlay } from '@rneui/themed';
+import Loader from "../../homepage/loader";
 
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -170,12 +170,7 @@ const PaidFees = () => {
                         </ScrollView>
                     </View>
                 </View>
-                {<Overlay isVisible={showLoader} overlayStyle={{ backgroundColor: "#2E4AA0", borderWidth: 0, opacity: 0.8, flex: 1, width: '100%', height: '100%', justifyContent: 'center' }}>
-                    <View style={{ justifyContent: 'center', width: '100%', height: '100%', fontWeight: "bold", color: "white" }}>
-                        <ActivityIndicator size="large" color="#00ff00" />
-                        <Text style={{ textAlign:'center', fontWeight: "bold", color: "white" }}>Loading Paid Fees .......</Text>
-                    </View>
-                </Overlay>}
+                <Loader message="Loading Paid Fees ......." showLoader={showLoader} />
             </SafeAreaView>
         </>
     );

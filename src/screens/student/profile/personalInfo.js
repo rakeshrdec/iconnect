@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Dimensions, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
-import { Overlay } from '@rneui/themed';
+import Loader from "../../homepage/loader";
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
@@ -78,12 +78,7 @@ const PersonalInfo = () => {
                         <Text style={{ color: 'black',fontSize: 15, fontWeight: "bold", marginLeft: 35, marginRight: 5 }}>{selectedStudent.address}</Text>
                     </View>
                 </ScrollView>
-                {<Overlay isVisible={showLoader} overlayStyle={{ backgroundColor: "#2E4AA0", borderWidth: 0, opacity: 0.8, flex: 1, width: '100%', height: '100%', justifyContent: 'center' }}>
-                    <View style={{ justifyContent: 'center', width: '100%', height: '100%', fontWeight: "bold", color: "white" }}>
-                        <ActivityIndicator size="large" color="#00ff00" />
-                        <Text style={{ textAlign:'center', fontWeight: "bold", color: "white" }}>Loading Student List .......</Text>
-                    </View>
-                </Overlay>}
+                <Loader message="Loading Personal Info ......." showLoader={showLoader} />
             </SafeAreaView>
         </>
     );

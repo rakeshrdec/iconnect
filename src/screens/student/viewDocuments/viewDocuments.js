@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable, Dimensions, Image, ActivityIndicator } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { Overlay } from '@rneui/themed';
 
 const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 import { useSelector } from "react-redux";
 import StudentHeader from "../../homepage/studentHeader";
+import Loader from "../../homepage/loader";
 
 
 const ViewDocuments = ({ navigation }) => {
@@ -52,7 +52,7 @@ const ViewDocuments = ({ navigation }) => {
                     <View style={{ flex: 6, justifyContent: "space-between" }}>
                         <ScrollView>
                             {studentDocuments.map((studentDocument, i) => (
-                              
+
                                 <Pressable
                                     style={{ elevation: 15, width: '90%', alignSelf: 'center', borderRadius: 5, margin: 10, paddingTop: 5, paddingBottom: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', flexDirection: 'row', justifyContent: 'space-around' }}>
 
@@ -68,12 +68,9 @@ const ViewDocuments = ({ navigation }) => {
                         </ScrollView>
                     </View>
                 </View>
-                {<Overlay isVisible={showLoader} overlayStyle={{ backgroundColor: "#2E4AA0", borderWidth: 0, opacity: 0.8, flex: 1, width: '100%', height: '100%', justifyContent: 'center' }}>
-                    <View style={{ justifyContent: 'center', width: '100%', height: '100%', fontWeight: "bold", color: "white" }}>
-                        <ActivityIndicator size="large" color="#00ff00" />
-                        <Text style={{ textAlign:'center', fontWeight: "bold", color: "white" }}>Loading Documents .......</Text>
-                    </View>
-                </Overlay>}
+
+                <Loader message="Loading Documents ......." showLoader={showLoader} />
+               
             </SafeAreaView>
         </>
     );
