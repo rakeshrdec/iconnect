@@ -1,12 +1,11 @@
 import { Avatar } from "@rneui/base";
 import React from "react";
-import { ScrollView, View, Text, Pressable, Image, Alert, Dimensions } from "react-native";
-// import { ScrollView } from "react-native-gesture-handler";
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
+import { View, Text, Pressable, Image, Alert } from "react-native";
 import { useSelector } from "react-redux";
 import StudentHeader from "../homepage/studentHeader";
 import Icon from 'react-native-vector-icons/AntDesign';
 import RNExitApp from "react-native-exit-app";
+import BackgroundScreen from "../homepage/backgroundScreen";
 
 
 
@@ -15,15 +14,7 @@ const StudentDashBoard = ({ navigation }) => {
   const selectedStudent = data.selectedStudentDetails.data;
   return (
     <>
-      <View style={{
-        width: SCREEN_WIDTH,
-        height: 0,
-        borderTopColor: "#2E4AA0",
-        borderTopWidth: SCREEN_HEIGHT,
-        borderRightWidth: SCREEN_WIDTH,
-        borderRightColor: '#F0BA19'
-      }}>
-      </View>
+      <BackgroundScreen />
       <View style={{ flex: 1, position: 'absolute', width: '100%',padding:10 }}>
         <View style={{ flex: 1 }}><StudentHeader /></View>
         <View style={{ flexDirection: 'row', height: 100 }}>

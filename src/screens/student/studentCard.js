@@ -1,14 +1,12 @@
-import { Avatar } from "@rneui/base";
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, Pressable, Image, Dimensions, ActivityIndicator, Alert } from "react-native";
+import { SafeAreaView, View, Text, Pressable, Image, Alert } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import actions from "../../redux/actions";
 import { useSelector } from "react-redux";
 import { LogBox } from 'react-native';
 import { Header } from "react-native-elements";
 import Loader from "../homepage/loader";
-
-
+import BackgroundScreen from "../homepage/backgroundScreen";
 
 const StudentCard = ({ navigation }) => {
     const [showLoader,setShowLoader] = useState(true)
@@ -29,12 +27,7 @@ const StudentCard = ({ navigation }) => {
     }, [])
 
 
-    const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
     const [studentList, setStudentList] = useState([]);
-
-    // const [student1, setStudent1] = useState({});
-
-
 
     getGender = (studentModel) => {
         fetch(`http://13.127.128.192:8081/utils/getGenders`)
@@ -139,15 +132,7 @@ const StudentCard = ({ navigation }) => {
     return (
         <>
             <SafeAreaView style={{ flex: 1 }}>
-                <View style={{
-                    width: SCREEN_WIDTH,
-                    height: 0,
-                    borderTopColor: "#2E4AA0",
-                    borderTopWidth: SCREEN_HEIGHT+30,
-                    borderRightWidth: SCREEN_WIDTH + 40,
-                    borderRightColor: '#F0BA19'
-                }}>
-                </View>
+                <BackgroundScreen />
                 <View style={{display:'none'}}>
                     <Header 
                     backgroundColor='#2E4AA0'

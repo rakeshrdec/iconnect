@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, Pressable, Image, Dimensions, ActivityIndicator } from "react-native";
+import { SafeAreaView, View, Text, Pressable} from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 import Loader from "../homepage/loader";
+import BackgroundScreen from "../homepage/backgroundScreen";
 
 
 const Announcement = ({ navigation }) => {
@@ -26,15 +26,7 @@ const Announcement = ({ navigation }) => {
 
     return (
         <>
-            <View style={{
-                width: SCREEN_WIDTH,
-                height: 0,
-                borderTopColor: "#2E4AA0",
-                borderTopWidth: SCREEN_HEIGHT,
-                borderRightWidth: SCREEN_WIDTH,
-                borderRightColor: '#F0BA19'
-            }}>
-            </View>
+            <BackgroundScreen />
             <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
                 <View style={{ flex: 1, justifyContent: "space-between" }}>
                     <View style={{ flex: 6, justifyContent: "space-between" }}>

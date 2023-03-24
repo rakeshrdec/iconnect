@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, View, Dimensions, ScrollView, ActivityIndicator } from "react-native";
+import React, { useState } from "react";
+import { Text, View,  ScrollView } from "react-native";
 import { useSelector } from "react-redux";
 import Loader from "../../homepage/loader";
-
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
-
+import BackgroundScreen from "../../homepage/backgroundScreen";
 
 const AcademicInfo = () => {
     const data = useSelector((state) => state)
@@ -22,15 +19,7 @@ const AcademicInfo = () => {
 
     return (
         <>
-            <View style={{
-                width: SCREEN_WIDTH,
-                height: 0,
-                borderTopColor: "#2E4AA0",
-                borderTopWidth: SCREEN_HEIGHT,
-                borderRightWidth: SCREEN_WIDTH,
-                borderRightColor: '#F0BA19'
-            }}>
-            </View>
+            <BackgroundScreen />
             <ScrollView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
                 <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', fontSize: 20 }}>Academic Information</Text>
                 <View style={{ flexDirection: 'row',backgroundColor: "white", justifyContent: 'flex-start',height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>

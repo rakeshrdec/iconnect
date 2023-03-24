@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { SafeAreaView, View, Text, Pressable, Image, Dimensions, Alert } from "react-native";
+import { SafeAreaView, View, Text, Pressable } from "react-native";
 import Icon from 'react-native-vector-icons/AntDesign';
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
 
 import AttendanceMonth from "./attendanceMonth";
 import AttendanceYear from "./attendanceYear";
+import BackgroundScreen from "../../homepage/backgroundScreen";
 
 const AttendanceIndex = ({ navigation }) => {
     const [selecComponent, setSelectComponent] = useState('index');
@@ -13,15 +13,7 @@ const AttendanceIndex = ({ navigation }) => {
         <>
             {selecComponent == 'index' ?
                 <SafeAreaView style={{ flex: 1 }}>
-                    <View style={{
-                        width: SCREEN_WIDTH,
-                        height: 0,
-                        borderTopColor: "#2E4AA0",
-                        borderTopWidth: SCREEN_HEIGHT,
-                        borderRightWidth: SCREEN_WIDTH,
-                        borderRightColor: '#F0BA19'
-                    }}>
-                    </View>
+                    <BackgroundScreen />
                     <Pressable
                         onPress={() => {
                             setSelectComponent('attendanceMonth')
@@ -35,15 +27,7 @@ const AttendanceIndex = ({ navigation }) => {
                 </SafeAreaView> : <View></View>}
             {selecComponent == 'attendanceMonth' ?
                 <>
-                    <View style={{
-                        width: SCREEN_WIDTH,
-                        height: 0,
-                        borderTopColor: "#2E4AA0",
-                        borderTopWidth: SCREEN_HEIGHT,
-                        borderRightWidth: SCREEN_WIDTH,
-                        borderRightColor: '#F0BA19'
-                    }}>
-                    </View>
+                    <BackgroundScreen />
                     <View style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
                         <AttendanceMonth />
                         <Pressable
@@ -58,15 +42,7 @@ const AttendanceIndex = ({ navigation }) => {
                 <View></View>}
             {selecComponent == 'attendanceYear' ?
                 <>
-                    <View style={{
-                        width: SCREEN_WIDTH,
-                        height: 0,
-                        borderTopColor: "#2E4AA0",
-                        borderTopWidth: SCREEN_HEIGHT,
-                        borderRightWidth: SCREEN_WIDTH,
-                        borderRightColor: '#F0BA19'
-                    }}>
-                    </View>
+                   <BackgroundScreen />
                     <View style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
                         <AttendanceYear />
                         <Pressable
@@ -80,15 +56,7 @@ const AttendanceIndex = ({ navigation }) => {
                 : <View></View>}
             {selecComponent == 'attendanceUpload' ?
                 <>
-                    <View style={{
-                        width: SCREEN_WIDTH,
-                        height: 0,
-                        borderTopColor: "#2E4AA0",
-                        borderTopWidth: SCREEN_HEIGHT,
-                        borderRightWidth: SCREEN_WIDTH,
-                        borderRightColor: '#F0BA19'
-                    }}>
-                    </View>
+                    <BackgroundScreen />
                     <View style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
                         <AttendanceUpload />
                         <Pressable

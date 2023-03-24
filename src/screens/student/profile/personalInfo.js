@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, Dimensions, ActivityIndicator } from "react-native";
+import React, { useState } from "react";
+import { View, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import Loader from "../../homepage/loader";
-
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window')
+import BackgroundScreen from "../../homepage/backgroundScreen";
 
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -21,16 +20,7 @@ const PersonalInfo = () => {
 
     return (
         <>
-            <View style={{
-                width: SCREEN_WIDTH,
-                height: 0,
-                borderTopColor: "#2E4AA0",
-                borderTopWidth: SCREEN_HEIGHT,
-                borderRightWidth: SCREEN_WIDTH,
-                borderRightColor: '#F0BA19',
-               
-            }}>
-            </View>
+           <BackgroundScreen />
             <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
                 <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', fontSize: 20 }}>Personal Information</Text>
 

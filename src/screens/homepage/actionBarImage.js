@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import RNExitApp from "react-native-exit-app";
 
 
-const ActionBarImage = (navigation) => {
+const ActionBarImage = ({ navigation }) => {
     return (
         <View style={{ flexDirection: 'row' }}>
 
