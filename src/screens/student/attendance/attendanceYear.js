@@ -7,6 +7,9 @@ import { monthMap } from '../../../models/data';
 import { useSelector } from "react-redux";
 import StudentHeader from "../../homepage/studentHeader";
 import Loader from "../../homepage/loader";
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
+// import { Header, Icon } from 'react-native-elements';
+
 
 const AttendanceYear = ({ navigation }) => {
     const data = useSelector((state) => state)
@@ -15,6 +18,7 @@ const AttendanceYear = ({ navigation }) => {
     const selectedStudentData = data.selectedStudentDetails;
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
     const [showLoader, setShowLoader] = useState(true)
+    
 
 
     useEffect(() => {
@@ -53,6 +57,48 @@ const AttendanceYear = ({ navigation }) => {
     const [attendanceDataMap, setAttendanceDataMap] = useState({});
 
     const [year, setYear] = useState(session.name)
+
+
+    const createPDF = async (e) => {
+        let p = 101
+        // document.getElementById('junePresent').innerHTML = presentCount[0];
+        // document.getElementById('june').innerText  = "Rakesh kumar mishra";
+
+        // Alert.alert("clicked")
+                    let options = {
+                        html: `<html>\
+                    <style>\
+            th,td {\
+            border:1px solid black;\
+            }\
+            </style>\
+            <head><title>Page Title</title></head><body><h1 style="color:red">Attendence Of Compelte Year</h1><p></p>\
+                    <table>\
+            <tr>\
+                <th>Month</th>\
+                <th>Present</th>\
+                <th>Absent</th>\
+                <th>Public Holiday</th>\
+                <th>Weekly off</th>\
+            </tr>\
+            <tr>\
+                <td>June</td>\
+                <td></td>\
+                <td>${p}</td>\
+                <td></td>\
+                <td>${p}</td>\
+            </tr>\
+            </table>\
+            </body></html>`,
+                        fileName: 'test',
+                        directory: 'Documents',
+                    };
+
+        let file = await RNHTMLtoPDF.convert(options)
+        // console.log(file.filePath);
+        alert(file.filePath);
+    }
+
     return (
         <SafeAreaView style={{ flex: 1 }}>
             {/* USER PROFILE */}
@@ -61,11 +107,13 @@ const AttendanceYear = ({ navigation }) => {
                 <View style={{ flex: 0.8, marginHorizontal: 5, borderRadius: 15, backgroundColor: 'white', }}>
                     <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, borderTopEndRadius: 15, borderTopStartRadius: 15, justifyContent: 'space-between', flexDirection: 'row', paddingHorizontal: 20, alignItems: 'center' }}>
                         <Text style={{ color: 'darkblue', fontWeight: "bold" }}>Year of {year}</Text>
+                        <Icon name="download"  size={24} color="darkblue" onPress={() => {
+                                createPDF(1001)
+                            }}/>
                         {/* <Icon name="dots-three-horizontal" size={30} color='darkblue' onPress={() => { setYearToggle(!yearToggle) }} /> */}
                     </View>
                     <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 10 }}>
                         <Text style={{ color: 'darkblue', fontSize: 15, fontWeight: "bold" }}>Month</Text>
-
                         <View style={{ position: 'absolute', right: 5, flexDirection: 'row', }}>
                             <Text style={{ color: 'green', marginHorizontal: 5, width: 50, textAlign: 'center', fontSize: 14, fontWeight: "bold" }}>Present</Text>
                             <Text style={{ color: '#b942f5', marginHorizontal: 5, width: 50, textAlign: 'center', fontSize: 14, fontWeight: "bold" }}>W/F</Text>
