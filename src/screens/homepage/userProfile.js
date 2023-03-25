@@ -41,12 +41,33 @@ import ActionBarImage from './actionBarImage';
 import { Header, Icon } from 'react-native-elements';
 
 
-
 const GradientHeader = props => (
-  <View style={{ backgroundColor: 'green' }}>
-    <Header {...props}
+  <View style={{ backgroundColor: '#2E4AA0',paddingTop:30 }}>
+    {/* <Header {...props}
       backgroundColor='#2E4AA0'
-    />
+    /> */}
+    <View style={{ flexDirection: 'row',justifyContent:'space-between',alignItems:'center',margin:10 }}>
+
+    <Icon name="list" type="Ionicons" size={30} color="white" onPress={() => {
+            props.navigation.openDrawer()
+        }}/>
+        <Text style={{color:'white',fontWeight:'bold',fontSize:20}}>{props.route.name}</Text>
+
+        <Icon name="home" type="material" size={30} color="white" onPress={() => {
+            props.navigation.jumpTo('Home')
+        }}/>
+
+        <Icon name="logout" type="Ionicons" size={30} color="white" onPress={() => {
+            Alert.alert('Hold on', 'Do you really want to exit?', [
+                {
+                    text: 'Cancel',
+                    style: 'cancel',
+                },
+                { text: 'OK', onPress: () => RNExitApp.exitApp() },
+            ]);
+        }} />
+      </View>
+    
   </View>
 )
 
@@ -85,7 +106,8 @@ const HomePage = () => {
             title: 'Attendance',
             headerTintColor: 'white',
             headerShown: 'false',
-            headerRight: () => <ActionBarImage />,
+            // headerRight: props => <ActionBarImage {...props}/>,
+            header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
@@ -95,7 +117,8 @@ const HomePage = () => {
             title: 'Time Table',
             headerTintColor: 'white',
             headerShown: 'false',
-            headerRight: () => <ActionBarImage />,
+            // headerRight: () => <ActionBarImage />,
+            header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
@@ -107,7 +130,8 @@ const HomePage = () => {
             title: 'Holidays',
             headerTintColor: 'white',
             headerShown: 'false',
-            headerRight: () => <ActionBarImage />,
+            // headerRight: () => <ActionBarImage />,
+            header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
@@ -120,7 +144,8 @@ const HomePage = () => {
             title: 'Announcement',
             headerTintColor: 'white',
             headerShown: 'false',
-            headerRight: () => <ActionBarImage />,
+            // headerRight: () => <ActionBarImage />,
+            header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
@@ -133,7 +158,8 @@ const HomePage = () => {
             title: 'Exams',
             headerTintColor: 'white',
             headerShown: 'false',
-            headerRight: () => <ActionBarImage />,
+            // headerRight: () => <ActionBarImage />,
+            header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
@@ -146,7 +172,8 @@ const HomePage = () => {
             title: 'Notifications',
             headerTintColor: 'white',
             headerShown: 'false',
-            headerRight: () => <ActionBarImage />,
+            // headerRight: () => <ActionBarImage />,
+            header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
@@ -159,7 +186,8 @@ const HomePage = () => {
             title: 'View Documents',
             headerTintColor: 'white',
             headerShown: 'false',
-            headerRight: () => <ActionBarImage />,
+            // headerRight: () => <ActionBarImage />,
+            header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
@@ -171,7 +199,8 @@ const HomePage = () => {
             title: 'Fee Status',
             headerTintColor: 'white',
             headerShown: 'false',
-            headerRight: () => <ActionBarImage />,
+            // headerRight: () => <ActionBarImage />,
+            header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
@@ -183,7 +212,8 @@ const HomePage = () => {
             title: 'Student Profile',
             headerTintColor: 'white',
             headerShown: 'false',
-            headerRight: () => <ActionBarImage />,
+            // headerRight: () => <ActionBarImage />,
+            header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },

@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import StudentHeader from "../../homepage/studentHeader";
 import Loader from "../../homepage/loader";
 import BackgroundScreen from "../../homepage/backgroundScreen";
+import RNFetchBlob from 'rn-fetch-blob';
+
 
 
 const ViewDocuments = ({ navigation }) => {
@@ -29,7 +31,11 @@ const ViewDocuments = ({ navigation }) => {
                     setStudentDocuments(data);
                     setShowLoader(false);
                 }
+                setShowLoader(false);
             })
+        }).catch((e)=>{
+            setShowLoader(false);
+            console.error("error in api calling ",e)
         })
     }
 
@@ -37,7 +43,6 @@ const ViewDocuments = ({ navigation }) => {
         <>
             <BackgroundScreen />
             <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
-
                 <View style={{ flex: 1, justifyContent: "space-between" }}>
                     {/* USER PROFILE */}
                     <View style={{ flex: 1 }}><StudentHeader /></View>
@@ -51,7 +56,37 @@ const ViewDocuments = ({ navigation }) => {
                                     <View style={{}}>
                                         <Text style={{ color: '#2E4AA0', fontSize: 16, fontWeight: 'bold', right: 0 }}>{i + 1}. {studentDocument.documentName}</Text>
                                     </View>
-                                    <Image source={require('../../../../assets/logo/download.png')} style={{ height: 50, width: 50 }} />
+                                    <Pressable
+                                         onPress={()=>{
+                                            const { config, fs } = RNFetchBlob;
+                                            let PictureDir = fs.dirs.PictureDir;
+                                            let options = {
+                                            fileCache: true,
+                                            addAndroidDownloads: {
+                                                //Related to the Android only
+                                                useDownloadManager: true,
+                                                notification: true,
+                                                path:
+                                                PictureDir +
+                                                '/image_' +
+                                                Math.floor(Date.now() +
+                                                Date.now() / 2) + 'ext.jpg',
+                                                description: 'Image',
+                                            },
+                                            };
+                                            let image_URL = `http://13.127.128.192:8081${studentDocument.uploadDocument}`
+                                            config(options)
+                                            .fetch('GET', image_URL)
+                                            .then(res => {
+                                                //Showing alert after successful downloading
+                                                console.log('res -> ', JSON.stringify(res));
+                                                alert('Image Downloaded Successfully.');
+                                            });
+                                            // console.log("RAKESHKu:::http://13.127.128.192:8081/student/downloadFile/1/2cfadcaf-d773-4f0f-8fc9-020b2d97539cpexels-bess-hamiti-35537.jpg")
+                                        }}
+                                    >
+                                        <Image source={require('../../../../assets/logo/download.png')} style={{ height: 50, width: 50 }} />
+                                    </Pressable>
 
                                     {/* <Text style={{ color: 'black' }}>{'http://13.127.128.192:8081/' + studentDocument.uploadDocument}</Text> */}
                                 </Pressable>

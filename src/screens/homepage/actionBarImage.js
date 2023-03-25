@@ -9,12 +9,13 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import RNExitApp from "react-native-exit-app";
 
 
-const ActionBarImage = ({ navigation }) => {
+const ActionBarImage = ({ navigation,route }) => {
+    console.log("navigation",route)
     return (
         <View style={{ flexDirection: 'row' }}>
 
             <Icon name="home" type="material" size={40} color="white" onPress={() => {
-                navigation.navigate('HomePage');
+                // navigation.navigate('HomePage');
             }}/>
 
             <Icon name="setting" type="material" size={40} color="white" onPress={() => {
