@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text } from "react-native";
+import { SafeAreaView, View, Text, Pressable } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 import BackgroundScreen from "../../homepage/backgroundScreen";
@@ -27,6 +27,7 @@ const ExamMarks = ({ navigation }) => {
     const gradeMap = new Map();
 
     const [exams, setExams] = useState([]);
+    const [isExpanded, setIsExpanded] = useState();
     const examSubjectMap = new Map();
 
     const getClassById = (classId) => {
@@ -89,7 +90,7 @@ const ExamMarks = ({ navigation }) => {
         fetch(`http://13.127.128.192:8081/student/getStudentExamsMarks?sessionYear=${session.id}&studentId=${selectedStudent.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
-                    console.log("getStudentExamsMarks===>", data);
+                    console.log("******getStudentExamsMarks===>", data);
                     data.forEach(marks => {
                         let examMap = examsMarksMap.get(marks.examId);
                         let totalMarks = gradeMap.get(marks.examId);
@@ -124,19 +125,41 @@ const ExamMarks = ({ navigation }) => {
                 <View style={{ flex: 6, justifyContent: "space-between" }}>
                     <ScrollView>
                         {exams.map((exam, i) => (
-                            <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
-                                <Text style={{ color: 'darkblue' }}>{exam.examsDetails.name}</Text>
+                            <>
+                                <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, paddingHorizontal: 10, alignItems: 'center', justifyContent: 'space-between', flexDirection: 'row' }}>
+                                    <Text style={{ color: 'darkblue' }}>{exam.examsDetails.name}</Text>
 
-                                <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 10 }}>
-                                    <Text style={{ color: 'green', marginHorizontal: 5, textAlign: 'center' }}>Subject</Text>
-                                    <View style={{ position: 'absolute', right: 5, flexDirection: 'row', }}>
-                                        <Text style={{ color: '#b942f5', marginHorizontal: 5, textAlign: 'center' }}>Maximum</Text>
-                                        <Text style={{ color: '#f58a42', marginHorizontal: 5, textAlign: 'center' }}>Obtained</Text>
-                                        <Text style={{ color: 'red', marginHorizontal: 5, textAlign: 'center' }}>Total</Text>
-                                        <Text style={{ color: 'red', marginHorizontal: 5, textAlign: 'center' }}>Grade</Text>
+                                    <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 10 }}>
+                                        <Text style={{ color: 'green', marginHorizontal: 5, textAlign: 'center' }}>Subject</Text>
+                                        <View style={{ position: 'absolute', right: 5, flexDirection: 'row', }}>
+                                            <Text style={{ color: '#b942f5', marginHorizontal: 5, textAlign: 'center' }}>Maximum</Text>
+                                            <Text style={{ color: '#f58a42', marginHorizontal: 5, textAlign: 'center' }}>Obtained</Text>
+                                            <Text style={{ color: 'red', marginHorizontal: 5, textAlign: 'center' }}>Total</Text>
+                                            <Text style={{ color: 'red', marginHorizontal: 5, textAlign: 'center' }}>Grade</Text>
+                                        </View>
                                     </View>
+                                
                                 </View>
-                            </View>
+                                <Pressable 
+                                    style={isExpanded==i?{backgroundColor:'black',height:190,width:'97%', alignSelf:'center',borderRadius:3,justifyContent:'center',margin:10}:{backgroundColor:'darkblue',height:90,width:'97%', alignSelf:'center',borderRadius:3,justifyContent:'center',margin:10}}
+                                    >
+                                        {/* expanding button  */}
+                                        <Pressable
+                                            style={{justifyContent:'center'}}
+                                            onPress={()=>{
+                                                    if (isExpanded!=i) {
+                                                        setIsExpanded(i)
+                                                    } else {
+                                                        setIsExpanded('no')
+                                                    }
+                                                }
+                                            }
+                                            >
+                                            {isExpanded==i?<><Text style={{color:'white'}}>marks details</Text></>:<Text style={{color:'white',textAlign:'center'}}> Exam Name(Yearly exam)</Text>}
+                                            {isExpanded==i?<Text style={{position:'absolute',color:'white',right:20,fontSize:30}}>-</Text>:<Text style={{position:'absolute',color:'white',right:20,fontSize:30}}>+</Text>}
+                                        </Pressable>
+                                </Pressable>
+                             </>
                         ))}
 
 
