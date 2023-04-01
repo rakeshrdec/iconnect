@@ -133,15 +133,15 @@ const StudentCard = ({ navigation }) => {
         <>
             <SafeAreaView style={{ flex: 1 }}>
                 <BackgroundScreen />
-                <View style={{display:'none'}}>
+                {/* <View style={{display:'none'}}>
                     <Header 
                     backgroundColor='#2E4AA0'
                     />
-                </View>
-                <View style={{ height: 55, backgroundColor: '#2E4AA0', justifyContent: 'center', position: 'absolute', width: '100%' ,top:24}}>
+                </View> */}
+                {/* <View style={{ height: 55, backgroundColor: '#2E4AA0', justifyContent: 'center', position: 'absolute', width: '100%' ,top:24}}>
                     <Text style={{ color: 'white', fontSize: 20, alignSelf: 'center' }}>Student List</Text>
-                </View>
-                <ScrollView style={{ position: 'absolute', width: '100%', marginTop: 90 }}>
+                </View> */}
+                <ScrollView style={{ position: 'absolute', width: '100%', marginTop: 0 }}>
                     {studentList.map((e, i) => (
                         <Pressable
                             onPress={() => {

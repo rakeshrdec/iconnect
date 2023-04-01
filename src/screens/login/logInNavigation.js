@@ -65,7 +65,13 @@ const LoginNavigation = () => {
           <Stack.Screen
             name="StudentCard"
             component={StudentCard}
-            options={{ headerShown: false, title: 'Home' }}
+            options={{ headerShown: true, title: 'Student List',headerTintColor:'white',headerBackVisible:false,headerTitleAlign:'center',            
+            headerStyle: {
+              alignItems:'center',
+              backgroundColor:'#2E4AA0',
+              justifyContent:'center',
+            } }}
+            
           />
           <Stack.Screen
             name="StudentDashBoard"
