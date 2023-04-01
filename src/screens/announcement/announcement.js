@@ -20,7 +20,10 @@ const Announcement = ({ navigation }) => {
                     setAnnouncementList(data);
                     setShowLoader(false);
                 }
+                setShowLoader(false);
             })
+        }).catch((e)=>{
+            setShowLoader(false);
         })
     }
 
