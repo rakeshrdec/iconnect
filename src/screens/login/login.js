@@ -13,7 +13,7 @@ const Stack = createNativeStackNavigator();
 
 const Login = ({ navigation }) => {
   const [hidePassword, setHidePassword] = useState(true);
-  const [loginFor, setLoginFor] = useState('Student')
+  const [loginFor, setLoginFor] = useState('student')
   const [loginId, setLoginId] = useState()
   const [password, setPassword] = useState()
   const [showLoader, setShowLoader] = useState(false)
@@ -21,7 +21,7 @@ const Login = ({ navigation }) => {
   const onLogin = async () => {
     setShowLoader(true)
 
-    if (loginFor == 'Student') {
+    if (loginFor == 'student') {
       {
         console.log(loginId, password)
         await fetch('http://13.127.128.192:8081/auth/validateStudentLogin', {
@@ -65,7 +65,7 @@ const Login = ({ navigation }) => {
       }
     }
 
-    if (loginFor == 'Staff') {
+    if (loginFor == 'staff') {
       setShowLoader(false)
       Alert.alert('you are not eligible for staff login')
     }
@@ -81,53 +81,72 @@ const Login = ({ navigation }) => {
       <View style={{ flex: 1, backgroundColor: '#2E4AA0', justifyContent: 'center', }}>
         <View style={{ backgroundColor: 'white', width: '95%', alignSelf: 'center', borderRadius: 15, minHeight: 450 }}>
           {/* logo section */}
-          <View>
+          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
             <Image source={require('../../../assets/logo/applogo.jpeg')} style={{ width: 70, height: 70, borderRadius: 15, resizeMode: 'stretch', alignSelf: 'center' }} />
-            <Text style={{ color: '#2E4AA0', fontWeight: 'bold', textAlign: 'center', fontSize: 25 }}>i-class</Text>
+            <Text style={{ color: '#2E4AA0', fontWeight: 'bold', textAlign: 'center', fontSize: 25,margin:30 }}>i-class</Text>
           </View>
           {/* login section */}
           <View style={{ borderColor: '#F0BA19', width: '100%', justifyContent: 'center', padding: 20, borderRadius: 20, }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around',marginBottom:40 }}>
               <Pressable
                 onPress={() => {
-                  setLoginFor('Staff')
+                  setLoginFor('staff')
                 }}
-                style={loginFor == 'Staff' ? { elevation: 10, backgroundColor: '#F0BA19', borderRadius: 5, width: '35%', height: 40, alignItems: 'center', justifyContent: 'center' } : { borderWidth: 1, backgroundColor: 'white', borderRadius: 5, width: '35%', height: 40, alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ color: 'blue', fontWeight: 'bold', fontSize: 25 }}>Staff</Text>
+                style={loginFor == 'staff' ? { elevation: 10, backgroundColor: '#F0BA19', borderRadius: 5, width: '35%', height: 40, alignItems: 'center', justifyContent: 'center' } : { borderWidth: 1, backgroundColor: 'white', borderRadius: 5, width: '35%', height: 40, alignItems: 'center', justifyContent: 'center' }}>
+                <Text style={{ color: 'blue', fontSize: 25 }}>staff</Text>
               </Pressable>
               <Pressable
                 onPress={() => {
-                  setLoginFor('Student')
+                  setLoginFor('student')
                 }}
-                style={loginFor == 'Student' ? { elevation: 10, backgroundColor: '#F0BA19', borderRadius: 5, width: '35%', height: 40, alignItems: 'center', justifyContent: 'center' } : { borderWidth: 1, backgroundColor: 'white', borderRadius: 5, width: '35%', height: 40, alignItems: 'center', justifyContent: 'center' }}>
-                <Text style={{ color: 'blue', fontWeight: 'bold', fontSize: 25 }}>Student</Text>
+                style={loginFor == 'student' ? { elevation: 10, backgroundColor: '#F0BA19', borderRadius: 5, width: '35%', height: 40, alignItems: 'center', justifyContent: 'center' } : { borderWidth: 1, backgroundColor: 'white', borderRadius: 5, width: '35%', height: 40, alignItems: 'center', justifyContent: 'center' }}>
+                <Text style={{ color: 'blue', fontSize: 25 }}>student</Text>
               </Pressable>
             </View>
-            <Text style={{ color: 'black', fontWeight: 'bold', textAlign: 'center', marginTop: 10, borderRadius: 5, height: 40, fontSize: 2212345678 }}>{loginFor} Login</Text>
+            {/* <Text style={{ color: 'black', fontWeight: 'bold', textAlign: 'center', marginTop: 10, borderRadius: 5, height: 40, fontSize: 20 }}>{loginFor} Login</Text> */}
             <Input
               onChangeText={(e) => {
                 setLoginId(e)
               }}
-              inputStyle={{ color: 'black', fontSize: 15, height: 40, fontSize: 18 }}
-              placeholder='Mobile No.'
+              inputStyle={{ color: 'black', fontSize: 15, height: 30, fontSize: 18 }}
+              placeholder='Mobile Number'
               placeholderTextColor='black'
-              rightIcon={
+              leftIconContainerStyle={{borderWidth:0,marginRight:20}}
+              
+              leftIcon={
                 <Icon
-                  type='ant-design'
+                  type='entypo'
                   name='user'
                   size={20}
                   color='black'
                 />
               }
+              // rightIcon={
+              //   <Icon
+              //     type='ant-design'
+              //     name='user'
+              //     size={20}
+              //     color='black'
+              //   />
+              // }
             />
             <Input
               onChangeText={(e) => {
                 setPassword(e)
               }}
-              inputStyle={{ color: 'black', fontSize: 15, height: 40, fontSize: 18 }}
+              inputStyle={{ color: 'black', fontSize: 15, height: 30, fontSize: 18 }}
               placeholder='Enter Password'
               placeholderTextColor='black'
               secureTextEntry={hidePassword}
+              leftIconContainerStyle={{borderWidth:0,marginRight:20}}
+
+              leftIcon={
+                <Icon
+                  type='entypo'
+                  name='lock'
+                  size={20}
+                  color='black'
+                />}
               rightIcon={
                 hidePassword ?
                   <Icon
@@ -149,8 +168,8 @@ const Login = ({ navigation }) => {
 
             <Pressable
               onPress={onLogin}
-              style={{ flexDirection: 'row', justifyContent: 'space-around', backgroundColor: '#F0BA19', marginTop: 10, borderRadius: 150, height: 40, alignItems: 'center' }}>
-              <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', alignSelf: 'center', fontSize: 25 }}>Login</Text>
+              style={{ flexDirection: 'row', justifyContent: 'space-around', backgroundColor: '#F0BA19', marginTop: 10, borderRadius: 150, height: 40, alignItems: 'center',elevation:200 }}>
+              <Text style={{ color: 'white',  textAlign: 'center', alignSelf: 'center', fontSize: 25 }}>Login</Text>
             </Pressable>
             <Overlay
               isVisible={showLoader}
@@ -169,6 +188,7 @@ const Login = ({ navigation }) => {
           </View>
         </View>
         <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>powered by i-class</Text>
+        <Image source={require('../../../assets/logo/applogo.jpeg')} style={{ width: 20, height: 20, borderRadius: 15, resizeMode: 'stretch', alignSelf: 'center' }} />
       </View>
     </>
   );
