@@ -3,6 +3,8 @@ import { SafeAreaView, View, Text, Pressable } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 import BackgroundScreen from "../../homepage/backgroundScreen";
+import DropDownPicker from 'react-native-dropdown-picker';
+import StudentHeader from "../../homepage/studentHeader";
 
 
 const ExamMarks = ({ navigation }) => {
@@ -28,6 +30,22 @@ const ExamMarks = ({ navigation }) => {
 
     const [exams, setExams] = useState([]);
     const [isExpanded, setIsExpanded] = useState();
+    // const [selectedValue,setSelectedValue]= useState("firstDropDownvalue");
+    const [open, setOpen] = useState(false);
+    const [value, setValue] = useState('default');
+    const [items, setItems] = useState([
+        { label: 'Half year result', value: 'Half year result' },
+        // {label: 'Madrid', value: 'madrid', parent: 'spain'},
+        // {label: 'New', value: 'new', parent: 'spain'},
+        // {label: 'Barcelona', value: 'barcelona', parent: 'spain'},
+        { label: 'Mid term result', value: 'Mid term result' },
+        { label: 'Final resut', value: 'Final resut' },
+        // {label: 'Rome', value: 'rome', parent: 'italy'},
+        // {label: 'Rome1', value: 'new', parent: 'italy'},
+        // {label: 'Romeb', value: 'rome2', parent: 'italy'},
+
+    ]);
+
     const examSubjectMap = new Map();
 
     const getClassById = (classId) => {
@@ -111,18 +129,21 @@ const ExamMarks = ({ navigation }) => {
                         examMap.set(marks.subjectId, marks);
                         gradeMap.set(marks.examId, totalMarks);
                         examsMarksMap.set(marks.examId, examMap);
+                        console.log(examsMarksMap, "dhsbn");
                     });
                 }
             })
         })
     }
 
+    const result = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]   /* this array will contain the selecetd result {code , subject, theory ,practical , total , grade}*/
+
     return (
         <>
             <BackgroundScreen />
             <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
-            <View style={{ flex: 1, justifyContent: "space-between" }}>
-                <View style={{ flex: 6, justifyContent: "space-between" }}>
+                <View style={{ flex: 1, justifyContent: "space-between", margin: 5 }}>
+                    {/* <View style={{ flex: 6, justifyContent: "space-between" }}>
                     <ScrollView>
                         {exams.map((exam, i) => (
                             <>
@@ -141,9 +162,9 @@ const ExamMarks = ({ navigation }) => {
                                 
                                 </View>
                                 <Pressable 
-                                    style={isExpanded==i?{backgroundColor:'black',height:190,width:'97%', alignSelf:'center',borderRadius:3,justifyContent:'center',margin:10}:{backgroundColor:'darkblue',height:90,width:'97%', alignSelf:'center',borderRadius:3,justifyContent:'center',margin:10}}
+                                    style={isExpanded==i?{backgroundColor:'lightyellow',height:'100%',flex:1,position:'absolute',top:0, width:'97%', alignSelf:'center',borderRadius:3,justifyContent:'center',margin:10}:{backgroundColor:'lightyellow',height:90,width:'97%', alignSelf:'center',borderRadius:3,justifyContent:'center',margin:10}}
                                     >
-                                        {/* expanding button  */}
+                                        
                                         <Pressable
                                             style={{justifyContent:'center'}}
                                             onPress={()=>{
@@ -155,8 +176,8 @@ const ExamMarks = ({ navigation }) => {
                                                 }
                                             }
                                             >
-                                            {isExpanded==i?<><Text style={{color:'white'}}>marks details</Text></>:<Text style={{color:'white',textAlign:'center'}}> Exam Name(Yearly exam)</Text>}
-                                            {isExpanded==i?<Text style={{position:'absolute',color:'white',right:20,fontSize:30}}>-</Text>:<Text style={{position:'absolute',color:'white',right:20,fontSize:30}}>+</Text>}
+                                            {isExpanded==i?<><Text style={{color:'black'}}>marks details</Text></>:<Text style={{color:'black',textAlign:'center'}}> Exam Name(Yearly exam)</Text>}
+                                            {isExpanded==i?<Text style={{position:'absolute',color:'black',right:20,fontSize:30}}>-</Text>:<Text style={{position:'absolute',color:'black',right:20,fontSize:30}}>+</Text>}
                                         </Pressable>
                                 </Pressable>
                              </>
@@ -164,9 +185,64 @@ const ExamMarks = ({ navigation }) => {
 
 
                     </ScrollView>
-                </View>
-            </View >
-        </SafeAreaView >
+                </View> */}
+                    <View style={{
+                        // backgroundColor: '#171717',
+                        flex: 1,
+                        // alignItems: 'center',
+                        // justifyContent: 'center',
+                        paddingHorizontal: 1,
+
+                    }}>
+                        <DropDownPicker
+                            open={open}
+                            value={value}
+                            items={[...items, { label: 'Select an Exam', value: 'default' }]}
+                            setOpen={setOpen}
+                            setValue={setValue}
+                            setItems={setItems}
+
+                            // theme="DARK"
+                            // multiple={true}
+                            mode="BADGE"
+                            badgeDotColors={["#e76f51", "#00b4d8", "#e9c46a", "#e76f51", "#8ac926", "#00b4d8", "#e9c46a"]}
+                        />
+                        <ScrollView >
+                            <View style={{
+                                backgroundColor: 'white',
+                                borderRadius: 5, padding: 2, marginTop: 10
+                            }}>
+
+                                <StudentHeader style={{ backgroundColor: 'red' }} />
+
+                                <Text style={{ color: 'black', backgroundColor: 'lightblue', fontWeight: 'bold', textAlign: 'center', fontSize: 18, borderWidth: 1 }}>{value}</Text>
+                                <View style={{ color: 'black', flexDirection: 'row', backgroundColor: 'lightblue' }}>
+                                    <Text style={{ color: 'black', flex: 1, borderWidth: 1, textAlign: 'center', fontWeight: 'bold', fontSize: 15 }}>Code</Text>
+                                    <Text style={{ color: 'black', flex: 1, borderWidth: 1, textAlign: 'center', fontWeight: 'bold', fontSize: 15 }}>Subject</Text>
+                                    <Text style={{ color: 'black', flex: 1, borderWidth: 1, textAlign: 'center', fontWeight: 'bold', fontSize: 15 }}>Th</Text>
+                                    <Text style={{ color: 'black', flex: 1, borderWidth: 1, textAlign: 'center', fontWeight: 'bold', fontSize: 15 }}>Pr</Text>
+                                    <Text style={{ color: 'black', flex: 1, borderWidth: 1, textAlign: 'center', fontWeight: 'bold', fontSize: 15 }}>Total</Text>
+                                    <Text style={{ color: 'black', flex: 1, borderWidth: 1, textAlign: 'center', fontWeight: 'bold', fontSize: 15 }}>Grade</Text>
+                                </View>
+
+                                {result.map((e, i) => (
+                                    <View style={{ color: 'black', flexDirection: 'row', backgroundColor: 'lightblue' }}>
+                                        <Text style={{ color: 'black', flex: 1, borderWidth: 1, textAlign: 'center' }}>0{i}</Text>
+                                        <Text style={{ color: 'black', flex: 1, borderWidth: 1, textAlign: 'center' }}>Englishjhbnb</Text>
+                                        <Text style={{ color: 'black', flex: 1, borderWidth: 1, textAlign: 'center' }}>49</Text>
+                                        <Text style={{ color: 'black', flex: 1, borderWidth: 1, textAlign: 'center' }}>33</Text>
+                                        <Text style={{ color: 'black', flex: 1, borderWidth: 1, textAlign: 'center' }}>82</Text>
+                                        <Text style={{ color: 'black', flex: 1, borderWidth: 1, textAlign: 'center' }}>A</Text>
+                                    </View>))}
+                                <View>
+                                    <Text style={{ color: 'black', fontWeight: 'bold', backgroundColor: 'lightblue', borderWidth: 1 }}>Desclaimer:</Text>
+                                </View>
+                            </View>
+
+                        </ScrollView>
+                    </View>
+                </View >
+            </SafeAreaView >
         </>
     );
 }
