@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text,  Pressable } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import { monthMap, quartrlyMap, settings } from '../../../models/data';
@@ -16,186 +16,145 @@ const UnpaidFees = () => {
     const sessionData = data.session;
     const [session, setSession] = useState(sessionData.data);
     const [showLoader, setShowLoader] = useState(true)
+    const studentFeeStructureMap = new Map();
+    const studentSubmitFeeMap = new Map();
 
     useEffect(() => {
         getAllExams();
-        getAllFeesType();
     }, [])
 
     const examMap = new Map();
-
     const allFeesTypeMap = new Map();
-    const classfeeTypeMap = new Map();
-    const feeTypeMap = new Map();
-    const studentMonthFeeStatus = new Map();
-    const paidFees = new Map();
-
     const [totalAmount, setTotalAmount] = useState(0);
-
     const [recordData, setRecordData] = useState([]);
 
-    const getAllExams = () => {
-        fetch(`http://13.127.128.192:8081/exams/getAllExams?sessionYear=${session.id}`).then((res) => {
-            res.json().then((data) => {
-                if (data != '') {
-                    data.forEach(exam => {
-                        examMap.set(exam.examsDetails.id, exam.examsDetails.name);
-                    });
-
-                }
-            })
-        })
+    async function getAllExams() {
+        const examResponse = await fetch(`http://13.127.128.192:8081/exams/getAllExams?sessionYear=${session.id}`);
+        const examData = await examResponse.json();
+        examData.forEach(exam => {
+            examMap.set(exam.examsDetails.id, exam.examsDetails.name);
+        });
+        getAllFeesType();
     }
 
+    async function getAllFeesType() {
+        const feeTypeResponse = await fetch(`http://13.127.128.192:8081/utils/getFeeTypes`);
+        const feeTypeData = await feeTypeResponse.json();
+        feeTypeData.forEach(feeType => {
+            allFeesTypeMap.set(feeType.id, feeType);
+        });
 
-    const getAllFeesType = () => {
-        fetch(`http://13.127.128.192:8081/utils/getFeeTypes`).then((res) => {
-            res.json().then((data) => {
-                if (data != '') {
-                    data.forEach(feeType => allFeesTypeMap.set(feeType.id, feeType));
-                    getAllClassFees();
-                }
-            })
-        })
+        getAllPaidFees();
     }
 
+    async function getAllPaidFees() {
+        const paidFeeResponse = await fetch(`http://13.127.128.192:8081/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
+        const paidFeeData = await paidFeeResponse.json();
+        paidFeeData.forEach(paidFee => {
+            paidFee.feesDetails.forEach(feesDetail => {
 
-    const getAllClassFees = () => {
-        fetch(`http://13.127.128.192:8081/class/getClassFeesDetails?classId=${selectedStudent.classId}`).then((res) => {
-            res.json().then((data) => {
-                if (data != '') {
-                    var amount = 0;
-                    data.forEach(feeType => {
-                        classfeeTypeMap.set(feeType.feesTypeId, feeType);
-                        if (allFeesTypeMap.get(feeType.feesTypeId).isMonthly) {
+                let submitFee = studentSubmitFeeMap.get(feesDetail.feesType);
+                if (submitFee == null) {
+                    submitFee = [];
+                }
+                submitFee.push(feesDetail);
+                studentSubmitFeeMap.set(feesDetail.feesType, submitFee);
 
-                            amount += (feeType.amount * 12);
-                        } else if (allFeesTypeMap.get(feeType.feesTypeId).isQuarterly) {
-                            amount += (feeType.amount * 4);
-                        } else if (allFeesTypeMap.get(feeType.feesTypeId).isExamFee) {
-                            amount += (feeType.amount * (examMap.size > 0 ? examMap.size : 1));
-                        } else {
-                            amount += feeType.amount;
+            });
+        });
+        getStudentFeeStructure();
+    }
+
+    async function getStudentFeeStructure() {
+        const classFeeTypeResponse = await fetch(`http://13.127.128.192:8081/fees/getStudentFees?studentId=${selectedStudent.id}&sessionYear=${session.id}`);
+        const classFeeTypeData = await classFeeTypeResponse.json();
+        var amount = 0;
+
+        let tempRecordData = [];
+        classFeeTypeData.forEach(feeType => {
+            studentFeeStructureMap.set(feeType.feesTypeId, feeType);
+            let submitFee = studentSubmitFeeMap.get(feeType.feesTypeId);
+            if (submitFee == null) {
+                submitFee = [];
+            }
+            if (allFeesTypeMap.get(feeType.feesTypeId).isMonthly) {
+                monthMap.forEach((value, key) => {
+                    let paidAmount = 0;
+                    for (const tempFee of submitFee) {
+                        if (tempFee.month == key) {
+                            paidAmount += tempFee.amount;
                         }
-                        feeTypeMap.set(feeType.feesTypeId, allFeesTypeMap.get(feeType.feesTypeId));
-                    });
+                    }
+                    amount +=  (feeType.amount - paidAmount);
 
-                    setTotalAmount(amount);
+                    if ((feeType.amount - paidAmount) > 0) {
+                        let row = [];
+                        row.push(allFeesTypeMap.get(feeType.feesTypeId).name);
+                        row.push(value.short);
+                        row.push(settings.CURRENCY + ' ' + (feeType.amount - paidAmount) + '/-');
+                        tempRecordData.push(row);
+                    }
+                });
 
-                    fetchFeesRecord(session.id);
-                }
-            })
-        })
-    }
+            } else if (allFeesTypeMap.get(feeType.feesTypeId).isQuarterly) {
+                quartrlyMap.forEach((value, key) => {
 
-    const fetchFeesRecord = () => {
-        function getMonthsList(feeType) {
-            let recordData = [];
-            monthMap.forEach((value, key) => {
-                if (!studentMonthFeeStatus.get(feeType.id + '_' + key)) {
-                    let row = [];
-                    row.push(feeType.name);
-                    row.push(value.short);
-                    row.push(settings.CURRENCY + ' ' + classfeeTypeMap.get(feeType.id).amount.toString() + '/-');
-                    row.push(studentMonthFeeStatus.get(feeType.id + '_' + key) ? settings.CURRENCY + ' ' + studentMonthFeeStatus.get(feeType.id + '_' + key).amount.toString() + '/-' : '--');
-                    row.push(studentMonthFeeStatus.get(feeType.id + '_' + key) ? studentMonthFeeStatus.get(feeType.id + '_' + key).discountAmount.toString() + '/-' : '--');
-                    row.push(studentMonthFeeStatus.get(feeType.id + '_' + key) ? studentMonthFeeStatus.get(feeType.id + '_' + key).lateFeeAmount.toString() + '/-' : '--');
-                    row.push(studentMonthFeeStatus.get(feeType.id + '_' + key) ? "Paid" : 'UnPaid');
-                    recordData.push(row);
-                }
-            });
-            return recordData;
-        }
-
-        function getQuartersList(feeType) {
-            let recordData = [];
-            quartrlyMap.forEach((value, key) => {
-                if (!studentMonthFeeStatus.get(feeType.id + '_' + key)) {
-                    let row = [];
-                    row.push(feeType.name);
-                    row.push(value.short);
-                    row.push(settings.CURRENCY + ' ' + classfeeTypeMap.get(feeType.id).amount.toString() + '/-');
-                    row.push(studentMonthFeeStatus.get(feeType.id + '_' + key) ? settings.CURRENCY + ' ' + studentMonthFeeStatus.get(feeType.id + '_' + key).amount.toString() + '/-' : '--');
-                    row.push(studentMonthFeeStatus.get(feeType.id + '_' + key) ? studentMonthFeeStatus.get(feeType.id + '_' + key).discountAmount.toString() + '/-' : '--');
-                    row.push(studentMonthFeeStatus.get(feeType.id + '_' + key) ? studentMonthFeeStatus.get(feeType.id + '_' + key).lateFeeAmount.toString() + '/-' : '--');
-                    row.push(studentMonthFeeStatus.get(feeType.id + '_' + key) ? "Paid" : 'UnPaid');
-                    recordData.push(row);
-                }
-
-            });
-
-            return recordData;
-        }
-
-        function getExamsList(feeType) {
-            let recordData = [];
-            examMap.forEach((value, key) => {
-                if (!studentMonthFeeStatus.get(feeType.id + '_' + key)) {
-                    let row = [];
-                    row.push(feeType.name);
-                    row.push(value);
-                    row.push(settings.CURRENCY + ' ' + classfeeTypeMap.get(feeType.id).amount.toString() + '/-');
-                    row.push(studentMonthFeeStatus.get(feeType.id + '_' + key) ? settings.CURRENCY + ' ' + studentMonthFeeStatus.get(feeType.id + '_' + key).amount.toString() + '/-' : '--');
-                    row.push(studentMonthFeeStatus.get(feeType.id + '_' + key) ? studentMonthFeeStatus.get(feeType.id + '_' + key).discountAmount.toString() + '/-' : '--');
-                    row.push(studentMonthFeeStatus.get(feeType.id + '_' + key) ? studentMonthFeeStatus.get(feeType.id + '_' + key).lateFeeAmount.toString() + '/-' : '--');
-                    row.push(studentMonthFeeStatus.get(feeType.id + '_' + key) ? "Paid" : 'UnPaid');
-                    recordData.push(row);
-                }
-            });
-
-            return recordData;
-        }
-
-        fetch(`http://13.127.128.192:8081/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`).then((res) => {
-            res.json().then((data) => {
-                if (data != '') {
-
-                    data.forEach(fee => {
-                        fee.feesDetails.forEach(feesDetail => {
-                            if (feeTypeMap.get(feesDetail.feesType).isMonthly) {
-                                studentMonthFeeStatus.set(feesDetail.feesType + '_' + feesDetail.month, feesDetail);
-                            } else if (feeTypeMap.get(feesDetail.feesType).isQuarterly) {
-                                studentMonthFeeStatus.set(feesDetail.feesType + '_' + feesDetail.quarter, feesDetail);
-                            } else if (feeTypeMap.get(feesDetail.feesType).isExamFee) {
-                                studentMonthFeeStatus.set(feesDetail.feesType + '_' + feesDetail.examId, feesDetail);
-                            } else {
-                                paidFees.set(feesDetail.feesType, feesDetail);
-                            }
-                        });
-                    });
-
-                    let tempRecordData = [];
-                    feeTypeMap.forEach((value, key) => {
-                        if (!paidFees.get(value.id)) {
-                            if (value.isMonthly) {
-                                tempRecordData = tempRecordData.concat(getMonthsList(value));
-                            } else if (value.isQuarterly) {
-                                tempRecordData = tempRecordData.concat(getQuartersList(value));
-                            } else if (value.isExamFee) {
-                                tempRecordData = tempRecordData.concat(getExamsList(value));
-                            } else {
-                                let row = [];
-                                row.push(value.name);
-                                row.push(settings.CURRENCY + ' ' + classfeeTypeMap.get(value.id).amount.toString() + '/-');
-                                row.push(paidFees.get(value.id) ? settings.CURRENCY + ' ' + paidFees.get(value.id).amount.toString() + '/-' : '--');
-                                row.push(paidFees.get(value.id) ? paidFees.get(value.id).discountAmount.toString() + '/-' : '--');
-                                row.push(paidFees.get(value.id) ? paidFees.get(value.id).lateFeeAmount.toString() + '/-' : '--');
-                                row.push(paidFees.get(value.id) ? "Paid" : 'UnPaid');
-                                tempRecordData.push(row);
-                            }
+                    let paidAmount = 0;
+                    for (const tempFee of submitFee) {
+                        if (tempFee.quarter == key) {
+                            paidAmount += tempFee.amount;
                         }
+                    }
+                    amount +=  (feeType.amount - paidAmount);
+                    if ((feeType.amount - paidAmount) > 0) {
+                        let row = [];
+                        row.push(allFeesTypeMap.get(feeType.feesTypeId).name);
+                        row.push(value.short);
+                        row.push(settings.CURRENCY + ' ' + (feeType.amount - paidAmount) + '/-');
+                        tempRecordData.push(row);
+                    }
 
-                    });
-                    setRecordData(tempRecordData);
+                });
+            } else if (allFeesTypeMap.get(feeType.feesTypeId).isExamFee) {
+                examMap.forEach((value, key) => {
+                    let paidAmount = 0;
+                    for (const tempFee of submitFee) {
+                        if (tempFee.examId == key) {
+                            paidAmount += tempFee.amount;
+                        }
+                    }
+                    amount +=  (feeType.amount - paidAmount);
+                    if ((feeType.amount - paidAmount) > 0) {
+                        let row = [];
+                        row.push(allFeesTypeMap.get(feeType.feesTypeId).name);
+                        row.push(settings.CURRENCY + ' ' + (feeType.amount - paidAmount) + '/-');
+                        tempRecordData.push(row);
+                    }
+                });
+            } else {
+                let paidAmount = 0;
+                for (const tempFee of submitFee) {
+                    paidAmount += tempFee.amount;
                 }
-            })
-        })
+                amount +=  (feeType.amount - paidAmount);
+                if ((feeType.amount - paidAmount) > 0) {
+                    let row = [];
+                    row.push(allFeesTypeMap.get(feeType.feesTypeId).name);
+                    row.push(settings.CURRENCY + ' ' + (feeType.amount - paidAmount) + '/-');
+                    tempRecordData.push(row);
+                }
+            }
+
+        });
+        setTotalAmount(amount);
+        setRecordData(tempRecordData);
         setShowLoader(false);
     }
 
+
     return (
         <>
-           <BackgroundScreen />
+            <BackgroundScreen />
             <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
                 <View style={{ flex: 1, justifyContent: "space-between" }}>
                     <View style={{ flex: 6, justifyContent: "space-between" }}>
@@ -210,13 +169,14 @@ const UnpaidFees = () => {
                                 </Pressable>
                             ))}
 
-                            <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
-                                <View style={{ marginHorizontal: 40 }}>
-                                    <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 16 }}>Total Amount:- {settings.CURRENCY + ' ' + totalAmount}/-</Text>
-                                </View>
-                            </Pressable>
 
                         </ScrollView>
+                        <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
+                            <View style={{ marginHorizontal: 40 }}>
+                                <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 16 }}>Total Amount:- {settings.CURRENCY + ' ' + totalAmount}/-</Text>
+                            </View>
+                        </Pressable>
+
                     </View>
                 </View>
                 <Loader message="Loading Unpaid Fees ......." showLoader={showLoader} />

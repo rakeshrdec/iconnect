@@ -33,9 +33,9 @@ const ViewDocuments = ({ navigation }) => {
                 }
                 setShowLoader(false);
             })
-        }).catch((e)=>{
+        }).catch((e) => {
             setShowLoader(false);
-            console.error("error in api calling ",e)
+            console.error("error in api calling ", e)
         })
     }
 
@@ -57,32 +57,30 @@ const ViewDocuments = ({ navigation }) => {
                                         <Text style={{ color: '#2E4AA0', fontSize: 16, fontWeight: 'bold', right: 0 }}>{i + 1}. {studentDocument.documentName}</Text>
                                     </View>
                                     <Pressable
-                                         onPress={()=>{
+                                        onPress={() => {
                                             const { config, fs } = RNFetchBlob;
                                             let PictureDir = fs.dirs.PictureDir;
                                             let options = {
-                                            fileCache: true,
-                                            addAndroidDownloads: {
-                                                //Related to the Android only
-                                                useDownloadManager: true,
-                                                notification: true,
-                                                path:
-                                                PictureDir +
-                                                '/image_' +
-                                                Math.floor(Date.now() +
-                                                Date.now() / 2) + 'ext.jpg',
-                                                description: 'Image',
-                                            },
+                                                fileCache: true,
+                                                addAndroidDownloads: {
+                                                    //Related to the Android only
+                                                    useDownloadManager: true,
+                                                    notification: true,
+                                                    path:
+                                                        PictureDir +
+                                                        '/image_' +
+                                                        Math.floor(Date.now() +
+                                                            Date.now() / 2) + 'ext.jpg',
+                                                    description: 'Image',
+                                                },
                                             };
                                             let image_URL = `http://13.127.128.192:8081${studentDocument.uploadDocument}`
                                             config(options)
-                                            .fetch('GET', image_URL)
-                                            .then(res => {
-                                                //Showing alert after successful downloading
-                                                console.log('res -> ', JSON.stringify(res));
-                                                alert('Image Downloaded Successfully.');
-                                            });
-                                            // console.log("RAKESHKu:::http://13.127.128.192:8081/student/downloadFile/1/2cfadcaf-d773-4f0f-8fc9-020b2d97539cpexels-bess-hamiti-35537.jpg")
+                                                .fetch('GET', image_URL)
+                                                .then(res => {
+                                                    //Showing alert after successful downloading
+                                                    alert('Image Downloaded Successfully.');
+                                                });
                                         }}
                                     >
                                         <Image source={require('../../../../assets/logo/download.png')} style={{ height: 50, width: 50 }} />
@@ -97,7 +95,7 @@ const ViewDocuments = ({ navigation }) => {
                 </View>
 
                 <Loader message="Loading Documents ......." showLoader={showLoader} />
-               
+
             </SafeAreaView>
         </>
     );

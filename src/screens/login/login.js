@@ -32,8 +32,8 @@ const Login = ({ navigation }) => {
           },
           body: JSON.stringify(
             {
-              "userName": "7669991129",
-              "password": "7669991129",
+              "userName": loginId,
+              "password": password,
               "tokenType": 1,
               "createdAt": "createdAt",
               "expiredAt": "expiredAt"
@@ -81,13 +81,13 @@ const Login = ({ navigation }) => {
       <View style={{ flex: 1, backgroundColor: '#2E4AA0', justifyContent: 'center', }}>
         <View style={{ backgroundColor: 'white', width: '95%', alignSelf: 'center', borderRadius: 15, minHeight: 450 }}>
           {/* logo section */}
-          <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
             <Image source={require('../../../assets/logo/applogo.jpeg')} style={{ width: 70, height: 70, borderRadius: 15, resizeMode: 'stretch', alignSelf: 'center' }} />
-            <Text style={{ color: '#2E4AA0', fontWeight: 'bold', textAlign: 'center', fontSize: 25,margin:30 }}>i-class</Text>
+            <Text style={{ color: '#2E4AA0', fontWeight: 'bold', textAlign: 'center', fontSize: 25, margin: 30 }}>i-class</Text>
           </View>
           {/* login section */}
           <View style={{ borderColor: '#F0BA19', width: '100%', justifyContent: 'center', padding: 20, borderRadius: 20, }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-around',marginBottom:40 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginBottom: 40 }}>
               <Pressable
                 onPress={() => {
                   setLoginFor('staff')
@@ -111,8 +111,8 @@ const Login = ({ navigation }) => {
               inputStyle={{ color: 'black', fontSize: 15, height: 30, fontSize: 18 }}
               placeholder='Mobile Number'
               placeholderTextColor='black'
-              leftIconContainerStyle={{borderWidth:0,marginRight:20}}
-              
+              leftIconContainerStyle={{ borderWidth: 0, marginRight: 20 }}
+
               leftIcon={
                 <Icon
                   type='entypo'
@@ -121,14 +121,14 @@ const Login = ({ navigation }) => {
                   color='black'
                 />
               }
-              // rightIcon={
-              //   <Icon
-              //     type='ant-design'
-              //     name='user'
-              //     size={20}
-              //     color='black'
-              //   />
-              // }
+            // rightIcon={
+            //   <Icon
+            //     type='ant-design'
+            //     name='user'
+            //     size={20}
+            //     color='black'
+            //   />
+            // }
             />
             <Input
               onChangeText={(e) => {
@@ -138,7 +138,7 @@ const Login = ({ navigation }) => {
               placeholder='Enter Password'
               placeholderTextColor='black'
               secureTextEntry={hidePassword}
-              leftIconContainerStyle={{borderWidth:0,marginRight:20}}
+              leftIconContainerStyle={{ borderWidth: 0, marginRight: 20 }}
 
               leftIcon={
                 <Icon
@@ -168,8 +168,8 @@ const Login = ({ navigation }) => {
 
             <Pressable
               onPress={onLogin}
-              style={{ flexDirection: 'row', justifyContent: 'space-around', backgroundColor: '#F0BA19', marginTop: 10, borderRadius: 150, height: 40, alignItems: 'center',elevation:200 }}>
-              <Text style={{ color: 'white',  textAlign: 'center', alignSelf: 'center', fontSize: 25 }}>Login</Text>
+              style={{ flexDirection: 'row', justifyContent: 'space-around', backgroundColor: '#F0BA19', marginTop: 10, borderRadius: 150, height: 40, alignItems: 'center', elevation: 200 }}>
+              <Text style={{ color: 'white', textAlign: 'center', alignSelf: 'center', fontSize: 25 }}>Login</Text>
             </Pressable>
             <Overlay
               isVisible={showLoader}

@@ -9,7 +9,7 @@ import Loader from "../homepage/loader";
 import BackgroundScreen from "../homepage/backgroundScreen";
 
 const StudentCard = ({ navigation }) => {
-    const [showLoader,setShowLoader] = useState(true)
+    const [showLoader, setShowLoader] = useState(true)
     const data = useSelector((state) => state)
     const userData = data.studentList;
     const sessionData = data.session;
@@ -21,7 +21,7 @@ const StudentCard = ({ navigation }) => {
     //Ignore all log notifications
     LogBox.ignoreAllLogs();
 
-    useEffect( () => {
+    useEffect(() => {
         setStudentList(userData.data)
         setShowLoader(false)
     }, [])
@@ -41,7 +41,7 @@ const StudentCard = ({ navigation }) => {
                     }
                     getCategory(studentModel);
                 })
-            }).catch((e)=>{
+            }).catch((e) => {
                 Alert.alert("currently having issue with connecting server please try again after sometime")
             })
     }
@@ -58,7 +58,7 @@ const StudentCard = ({ navigation }) => {
                     }
                     getStudentClassDetails(studentModel);
                 })
-            }).catch((e)=>{
+            }).catch((e) => {
                 Alert.alert("currently having issue with connecting server please try again after sometime")
             })
     }
@@ -77,7 +77,7 @@ const StudentCard = ({ navigation }) => {
                     actions.selectedStudentDetails(studentModel)
                     navigation.navigate('HomePage');
                 })
-            }).catch((e)=>{
+            }).catch((e) => {
                 Alert.alert("currently having issue with connecting server please try again after sometime")
             })
     }
@@ -119,7 +119,7 @@ const StudentCard = ({ navigation }) => {
 
                     getGender(studentModel)
                 })
-            }).catch((e)=>{
+            }).catch((e) => {
                 Alert.alert("currently having issue with connecting server please try again after sometime")
             })
     }

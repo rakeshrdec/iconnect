@@ -28,7 +28,6 @@ const CustomSidebarMenu = (props) => {
   const data = useSelector((state) => state)
   const selectedStudentData = data.selectedStudentDetails;
   const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
-  console.log(selectedStudent)
   useEffect(() => {
   }, [])
 
@@ -44,7 +43,7 @@ const CustomSidebarMenu = (props) => {
             source={{
               uri: ""
             }} /> */}
-          {selectedStudent.uploadImg===null?<Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />:<Image source={{ uri: 'http://13.127.128.192:8081/' + selectedStudent.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
+          {selectedStudent.uploadImg === null ? <Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} /> : <Image source={{ uri: 'http://13.127.128.192:8081/' + selectedStudent.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
           <View>
             <View style={{ flexDirection: 'row' }}>
               <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>{selectedStudent.name}</Text>
@@ -55,11 +54,11 @@ const CustomSidebarMenu = (props) => {
               </Text>
             </View>
             <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>
-                Roll No  {selectedStudent.rollNo}
-              </Text>
-              <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>
-               {selectedStudent.fatherName}
-              </Text>
+              Roll No  {selectedStudent.rollNo}
+            </Text>
+            <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>
+              {selectedStudent.fatherName}
+            </Text>
           </View>
         </View>
       </View>
@@ -88,7 +87,7 @@ const CustomSidebarMenu = (props) => {
                   // onPress: () => ,
                   style: 'cancel',
                 },
-                {text: 'OK', onPress: () => RNExitApp.exitApp()},
+                { text: 'OK', onPress: () => RNExitApp.exitApp() },
               ]);
               // BackHandler.exitApp
             }}

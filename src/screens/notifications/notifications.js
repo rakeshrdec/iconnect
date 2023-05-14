@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, Pressable} from "react-native";
+import { SafeAreaView, View, Text, Pressable } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
 import { useSelector } from "react-redux";
@@ -52,7 +52,7 @@ const Notifications = ({ navigation }) => {
 
     return (
         <>
-           <BackgroundScreen />
+            <BackgroundScreen />
             <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
                 <View style={{ flex: 1, justifyContent: "space-between" }}>
                     {/* USER PROFILE */}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, View, Text, Pressable} from "react-native";
+import { SafeAreaView, View, Text, Pressable } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Loader from "../homepage/loader";
 import BackgroundScreen from "../homepage/backgroundScreen";
@@ -22,7 +22,7 @@ const Announcement = ({ navigation }) => {
                 }
                 setShowLoader(false);
             })
-        }).catch((e)=>{
+        }).catch((e) => {
             setShowLoader(false);
         })
     }

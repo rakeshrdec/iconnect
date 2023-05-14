@@ -65,7 +65,6 @@ const ExamMarks = ({ navigation }) => {
         fetch(`http://13.127.128.192:8081/subject/getAllSubjects`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
-                    console.log("getAllSubjects===>", data);
                     data.forEach(element => subjectMap.set(element.id, element.name))
                 }
             })
@@ -76,7 +75,6 @@ const ExamMarks = ({ navigation }) => {
         fetch(`http://13.127.128.192:8081/exams/getAllExams?sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
-                    console.log("getAllExams===>", data);
                     setExams(data);
                     data.forEach(exam => {
                         const subjectList = [];
@@ -97,7 +95,6 @@ const ExamMarks = ({ navigation }) => {
         fetch(`http://13.127.128.192:8081/utils/getMarksGrades`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
-                    console.log("getMarksGrades===>", data);
                     getStudentExamsMarks(data);
                 }
             })
@@ -108,7 +105,6 @@ const ExamMarks = ({ navigation }) => {
         fetch(`http://13.127.128.192:8081/student/getStudentExamsMarks?sessionYear=${session.id}&studentId=${selectedStudent.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
-                    console.log("******getStudentExamsMarks===>", data);
                     data.forEach(marks => {
                         let examMap = examsMarksMap.get(marks.examId);
                         let totalMarks = gradeMap.get(marks.examId);
@@ -129,7 +125,6 @@ const ExamMarks = ({ navigation }) => {
                         examMap.set(marks.subjectId, marks);
                         gradeMap.set(marks.examId, totalMarks);
                         examsMarksMap.set(marks.examId, examMap);
-                        console.log(examsMarksMap, "dhsbn");
                     });
                 }
             })
@@ -194,6 +189,7 @@ const ExamMarks = ({ navigation }) => {
                         paddingHorizontal: 1,
 
                     }}>
+                        <StudentHeader style={{ backgroundColor: 'red' }} />
                         <DropDownPicker
                             open={open}
                             value={value}
@@ -213,7 +209,7 @@ const ExamMarks = ({ navigation }) => {
                                 borderRadius: 5, padding: 2, marginTop: 10
                             }}>
 
-                                <StudentHeader style={{ backgroundColor: 'red' }} />
+                                
 
                                 <Text style={{ color: 'black', backgroundColor: 'lightblue', fontWeight: 'bold', textAlign: 'center', fontSize: 18, borderWidth: 1 }}>{value}</Text>
                                 <View style={{ color: 'black', flexDirection: 'row', backgroundColor: 'lightblue' }}>

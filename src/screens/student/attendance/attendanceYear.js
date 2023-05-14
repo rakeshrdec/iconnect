@@ -95,7 +95,6 @@ const AttendanceYear = ({ navigation }) => {
                     };
 
         let file = await RNHTMLtoPDF.convert(options)
-        // console.log(file.filePath);
         alert(file.filePath);
     }
 

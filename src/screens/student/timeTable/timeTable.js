@@ -117,7 +117,7 @@ const TimeTable = ({ navigation }) => {
 
     return (
         <>
-            
+
             <BackgroundScreen />
             <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
                 <View style={{ flex: 1, justifyContent: "space-between" }}>

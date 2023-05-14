@@ -10,7 +10,6 @@ import RNExitApp from "react-native-exit-app";
 
 
 const ActionBarImage = ({ navigation,route }) => {
-    console.log("navigation",route)
     return (
         <View style={{ flexDirection: 'row' }}>
 
