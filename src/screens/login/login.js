@@ -110,7 +110,7 @@ const Login = ({ navigation }) => {
               onChangeText={(e) => {
                 setLoginId(e)
               }}
-              inputStyle={{ color: 'black', fontSize: 15, height: 30, fontSize: 18 }}
+              inputStyle={{ color: 'black', height: 30, fontSize: 18 }}
               placeholder='Mobile Number'
               placeholderTextColor='black'
               leftIconContainerStyle={{ borderWidth: 0, marginRight: 20 }}
@@ -128,7 +128,7 @@ const Login = ({ navigation }) => {
               onChangeText={(e) => {
                 setPassword(e)
               }}
-              inputStyle={{ color: 'black', fontSize: 15, height: 30, fontSize: 18 }}
+              inputStyle={{ color: 'black', height: 30, fontSize: 18 }}
               placeholder='Enter Password'
               placeholderTextColor='black'
               secureTextEntry={hidePassword}

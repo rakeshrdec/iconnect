@@ -75,13 +75,11 @@ const UnpaidFees = () => {
             });
         });
         monthMap.forEach((value, key) => {
-
-
             const allFeeHeadIds = monthFeeHeadMap.get(key);
             if (allFeeHeadIds != null) {
 
                 let feeHeadRow = [];
-                let totalAmt = 0;
+                let totalMonthAmt = 0;
                 allFeeHeadIds.forEach(feeHeadId => {
                     if (studentFeeHeadMap.get(feeHeadId)) {
                         let amt = studentFeeHeadMap.get(feeHeadId).amount;
@@ -89,7 +87,7 @@ const UnpaidFees = () => {
                             amt -= (paidfee.get(key).get(feeHeadId).amount + paidfee.get(key).get(feeHeadId).discountAmount);
                         }
                         if (amt > 0) {
-                            totalAmt += amt;
+                            totalMonthAmt += amt;
                             feeHeadRow.push({
                                 feeHead: feeHeadMap.get(feeHeadId).name,
                                 amount: studentFeeHeadMap.get(feeHeadId).amount.toString()
@@ -100,9 +98,10 @@ const UnpaidFees = () => {
                 });
 
                 if (feeHeadRow.length > 0) {
+                    totalAmount += totalMonthAmt;
                     recordData.push({
                         month: value.full,
-                        totalAmt: totalAmt,
+                        totalMonthAmt: totalMonthAmt,
                         feeHeadRow: feeHeadRow
 
                     });
@@ -134,7 +133,7 @@ const UnpaidFees = () => {
 
                                             </View>
                                         ))}
-                                        <Text style={{ color: 'blue', fontWeight: 'bold', fontSize: 20 }}>Total Amt:- {record.totalAmt} </Text>
+                                        <Text style={{ color: 'blue', fontWeight: 'bold', fontSize: 20 }}>Total Amt:- {record.totalMonthAmt} </Text>
                                     </View>
                                 </Pressable>
                             ))}
@@ -143,7 +142,7 @@ const UnpaidFees = () => {
                         </ScrollView>
                         <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                             <View style={{ marginHorizontal: 40 }}>
-                                <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 16 }}>Total Amount:- {settings.CURRENCY + ' ' + totalAmount}/-</Text>
+                                <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 16 }}>Total Unpaid Amount:- {settings.CURRENCY + ' ' + totalAmount}/-</Text>
                             </View>
                         </Pressable>
 
