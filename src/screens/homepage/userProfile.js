@@ -20,60 +20,48 @@ import Announcement from '../announcement/announcement';
 import ViewDocuments from '../student/viewDocuments/viewDocuments';
 import Notifications from '../notifications/notifications';
 import ExamMarks from '../student/examMarks/examMarks';
-import AttendanceMonth from '../student/attendance/attendanceMonth';
-import AttendanceYear from '../student/attendance/attendanceYear';
 import AttendanceIndex from '../student/attendance/attendanceIndex';
 
 import {
-  Image,
-  TouchableOpacity,
   Text,
   StyleSheet,
   View,
-  Button,
-  Pressable,
   Alert,
 } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 import StudentDashBoard from '../student/studentDashBoard';
 import StudentProfile from '../student/profile/profile';
-import ActionBarImage from './actionBarImage';
-import { Header, Icon } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 
 
 const GradientHeader = props => (
-  <View style={{ backgroundColor: '#2E4AA0',paddingTop:30 }}>
-    {/* <Header {...props}
-      backgroundColor='#2E4AA0'
-    /> */}
-    <View style={{ flexDirection: 'row',justifyContent:'space-between',alignItems:'center',margin:10 }}>
+  <View style={{ backgroundColor: '#2E4AA0', paddingTop: 30 }}>
+    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', margin: 10 }}>
 
-    <Icon name="list" type="Ionicons" size={30} color="white" onPress={() => {
-            props.navigation.openDrawer()
-        }}/>
-        <Text style={{color:'white',fontWeight:'bold',fontSize:20}}>{props.route.name}</Text>
+      <Icon name="list" type="Ionicons" size={30} color="white" onPress={() => {
+        props.navigation.openDrawer()
+      }} />
+      <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20 }}>{props.route.name}</Text>
 
-        <Icon name="home" type="material" size={30} color="white" onPress={() => {
-            props.navigation.jumpTo('Home')
-        }}/>
+      <Icon name="home" type="material" size={30} color="white" onPress={() => {
+        props.navigation.jumpTo('Home')
+      }} />
 
-        <Icon name="logout" type="Ionicons" size={30} color="white" onPress={() => {
-            Alert.alert('Hold on', 'Do you really want to exit?', [
-                {
-                    text: 'Cancel',
-                    style: 'cancel',
-                },
-                { text: 'OK', onPress: () => RNExitApp.exitApp() },
-            ]);
-        }} />
-      </View>
-    
+      <Icon name="logout" type="Ionicons" size={30} color="white" onPress={() => {
+        Alert.alert('Hold on', 'Do you really want to exit?', [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+          },
+          { text: 'OK', onPress: () => RNExitApp.exitApp() },
+        ]);
+      }} />
+    </View>
+
   </View>
 )
 
 const Drawer = createDrawerNavigator();
 const HomePage = () => {
-
 
   return (
     <NavigationContainer independent={true}>
@@ -87,26 +75,16 @@ const HomePage = () => {
         <Drawer.Screen name="Home" component={StudentDashBoard} options={{
           headerTintColor: 'white',
           headerShown: 'false',
-          // title: 'Home',
-          // drawerIcon: ({focused, size}) => (
-          //    <Icon
-          //       name="eye"
-          //       size={size}
-          //       color={focused ? 'green' : 'red'}
-          //    />
-          // ),
           header: props => <GradientHeader {...props} />,
           headerStyle: {
             backgroundColor: '#2E4AA0',
           },
         }} />
-        {/* <Drawer.Screen name="Notifications" component={NotificationsScreen} /> */}
         <Drawer.Screen name="Attendance" component={AttendanceIndex}
           options={{
             title: 'Attendance',
             headerTintColor: 'white',
             headerShown: 'false',
-            // headerRight: props => <ActionBarImage {...props}/>,
             header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
@@ -117,12 +95,10 @@ const HomePage = () => {
             title: 'Time Table',
             headerTintColor: 'white',
             headerShown: 'false',
-            // headerRight: () => <ActionBarImage />,
             header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
-            // headerTintColor:'red'
           }}
         />
         <Drawer.Screen name="Holidays" component={Holidays}
@@ -130,12 +106,10 @@ const HomePage = () => {
             title: 'Holidays',
             headerTintColor: 'white',
             headerShown: 'false',
-            // headerRight: () => <ActionBarImage />,
             header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
-            // headerTintColor:'red'
           }}
         />
 
@@ -144,12 +118,10 @@ const HomePage = () => {
             title: 'Announcement',
             headerTintColor: 'white',
             headerShown: 'false',
-            // headerRight: () => <ActionBarImage />,
             header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
-            // headerTintColor:'red'
           }}
         />
 
@@ -158,12 +130,10 @@ const HomePage = () => {
             title: 'Exams',
             headerTintColor: 'white',
             headerShown: 'false',
-            // headerRight: () => <ActionBarImage />,
             header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
-            // headerTintColor:'red'
           }}
         />
 
@@ -172,12 +142,10 @@ const HomePage = () => {
             title: 'Notifications',
             headerTintColor: 'white',
             headerShown: 'false',
-            // headerRight: () => <ActionBarImage />,
             header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
-            // headerTintColor:'red'
           }}
         />
 
@@ -186,7 +154,6 @@ const HomePage = () => {
             title: 'View Documents',
             headerTintColor: 'white',
             headerShown: 'false',
-            // headerRight: () => <ActionBarImage />,
             header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
@@ -199,12 +166,10 @@ const HomePage = () => {
             title: 'Fee Status',
             headerTintColor: 'white',
             headerShown: 'false',
-            // headerRight: () => <ActionBarImage />,
             header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
-            // headerTintColor:'red'
           }}
         />
         <Drawer.Screen name="StudentProfile" component={StudentProfile}
@@ -212,12 +177,10 @@ const HomePage = () => {
             title: 'Student Profile',
             headerTintColor: 'white',
             headerShown: 'false',
-            // headerRight: () => <ActionBarImage />,
             header: props => <GradientHeader {...props} />,
             headerStyle: {
               backgroundColor: '#2E4AA0',
             },
-            // headerTintColor:'red'
           }}
         />
 
@@ -225,26 +188,8 @@ const HomePage = () => {
     </NavigationContainer>
 
 
-    // <View>
-    //    <MenuDrawer
-    //       open={true}
-    //       position={'left'}
-    //       drawerContent={drawerContent()}
-    //       drawerPercentage={45}
-    //       animationTime={250}
-    //       overlay={true}
-    //       opacity={0.4}
-    //     >
-    //       <TouchableOpacity onPress={console.log("this is callled")} style={styles.body}>
-    //         <Text>Open</Text>
-    //       </TouchableOpacity>
-    //     </MenuDrawer>
-    // </View>
+
   );
 };
-
-const styles = StyleSheet.create({
-
-});
 
 export default HomePage;

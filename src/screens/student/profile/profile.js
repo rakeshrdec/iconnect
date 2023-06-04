@@ -3,17 +3,8 @@ import { SafeAreaView, View, Text, Pressable } from "react-native";
 import PersonalInfo from "./personalInfo";
 import AcademicInfo from "./academicInfo";
 import StudentHeader from "../../homepage/studentHeader";
-import { useSelector } from "react-redux";
 
 const StudentProfile = ({ navigation }) => {
-
-    const data = useSelector((state) => state)
-
-    useEffect(() => {
-
-    }, [])
-
-
     const [infoOf, setInfoOf] = useState('personal')
 
     return (

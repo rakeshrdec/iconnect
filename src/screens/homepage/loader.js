@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, Image,ActivityIndicator } from "react-native";
-import { useSelector } from "react-redux";
+import React from "react";
+import { View, Text, ActivityIndicator } from "react-native";
 import { Overlay } from '@rneui/themed';
 
 const Loader = (props) => {

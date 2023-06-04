@@ -123,14 +123,11 @@ const PaidFees = () => {
                 <View style={{ flex: 1, justifyContent: "space-between" }}>
                     <View style={{ flex: 6, justifyContent: "space-between" }}>
                         <ScrollView>
-
                             {paidFeesData.map((fee, i) => (
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                     <View style={{ marginHorizontal: 40 }}>
                                         <Text style={{ fontWeight: 'bold', marginLeft: 0 }}>Payment Mode:- {fee.paymentMode}</Text>
                                         <Text style={{ fontWeight: 'bold', marginLeft: 0 }}>Submission Date:- {fee.submissionDate}</Text>
-
-
                                         {fee.feeDetails.map((feeDetails, i) => (
                                             <View style={{ marginHorizontal: 20 }}>
                                                 <Text style={{ color: 'black', fontWeight: 'bold'}}>{feeDetails.feeHead} [ {feeDetails.month} ]</Text>

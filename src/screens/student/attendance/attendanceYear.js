@@ -1,5 +1,4 @@
 import Icon from 'react-native-vector-icons/Entypo';
-import { Avatar } from "@rneui/base";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, View, Text, Pressable, Image, ActivityIndicator } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -8,8 +7,6 @@ import { useSelector } from "react-redux";
 import StudentHeader from "../../homepage/studentHeader";
 import Loader from "../../homepage/loader";
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
-// import { Header, Icon } from 'react-native-elements';
-
 
 const AttendanceYear = ({ navigation }) => {
     const data = useSelector((state) => state)
@@ -109,7 +106,6 @@ const AttendanceYear = ({ navigation }) => {
                         <Icon name="download"  size={24} color="darkblue" onPress={() => {
                                 createPDF(1001)
                             }}/>
-                        {/* <Icon name="dots-three-horizontal" size={30} color='darkblue' onPress={() => { setYearToggle(!yearToggle) }} /> */}
                     </View>
                     <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 10 }}>
                         <Text style={{ color: 'darkblue', fontSize: 15, fontWeight: "bold" }}>Month</Text>

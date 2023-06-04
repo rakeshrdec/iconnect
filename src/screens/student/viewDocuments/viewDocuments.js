@@ -8,8 +8,6 @@ import Loader from "../../homepage/loader";
 import BackgroundScreen from "../../homepage/backgroundScreen";
 import RNFetchBlob from 'rn-fetch-blob';
 
-
-
 const ViewDocuments = ({ navigation }) => {
 
     const [studentDocuments, setStudentDocuments] = useState([]);
@@ -86,7 +84,6 @@ const ViewDocuments = ({ navigation }) => {
                                         <Image source={require('../../../../assets/logo/download.png')} style={{ height: 50, width: 50 }} />
                                     </Pressable>
 
-                                    {/* <Text style={{ color: 'black' }}>{'http://13.127.128.192:8081/' + studentDocument.uploadDocument}</Text> */}
                                 </Pressable>
 
                             ))}

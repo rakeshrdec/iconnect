@@ -7,10 +7,7 @@ import StudentHeader from "../homepage/studentHeader";
 import Loader from "../homepage/loader";
 import BackgroundScreen from "../homepage/backgroundScreen";
 
-
-
 const Notifications = ({ navigation }) => {
-
     const data = useSelector((state) => state)
     const sessionData = data.session;
     const [session, setSession] = useState(sessionData.data);
@@ -45,9 +42,9 @@ const Notifications = ({ navigation }) => {
 
             });
             setNotifications(tempNotifications);
-            setShowLoader(false);
+           
         }
-
+        setShowLoader(false);
     }
 
     return (
@@ -55,7 +52,6 @@ const Notifications = ({ navigation }) => {
             <BackgroundScreen />
             <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
                 <View style={{ flex: 1, justifyContent: "space-between" }}>
-                    {/* USER PROFILE */}
                     <View style={{ flex: 1 }}><StudentHeader /></View>
                     <View style={{ flex: 6, justifyContent: "space-between" }}>
                         <ScrollView>

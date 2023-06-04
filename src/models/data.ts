@@ -19,14 +19,6 @@ export const feeStatus = {
 
 }
 
-export const quartrlyMap: Map<number, FullNameWithDetail> = new Map([
-    [1, { short: 'Q1', full: 'Quarter-1', value: '( April, May, June )' }],
-    [2, { short: 'Q2', full: 'Quarter-2', value: '( July, Aug, Sept )' }],
-    [3, { short: 'Q3', full: 'Quarter-3', value: '( Oct, Nov, Dec )' }],
-    [4, { short: 'Q4', full: 'Quarter-4', value: '( Jan, Feb, March )' }]
-]);
-
-
 export const weekMap: Map<number, FullName> = new Map([
     [0, { short: 'Sun', full: 'Sunday' }],
     [1, { short: 'Mon', full: 'Monday' }],
@@ -39,7 +31,6 @@ export const weekMap: Map<number, FullName> = new Map([
 
 
 export const monthMap: Map<number, FullName> = new Map([
-
     [4, { short: 'April', full: 'April' }],
     [5, { short: 'May', full: 'May' }],
     [6, { short: 'June', full: 'June' }],

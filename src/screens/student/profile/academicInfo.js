@@ -10,12 +10,9 @@ const AcademicInfo = () => {
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
     const [showLoader, setShowLoader] = useState(true)
 
-    
-
     setTimeout(() => {
         setShowLoader(false)
     }, 1400)
-
 
     return (
         <>

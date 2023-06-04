@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { Pressable, StyleSheet, Text, Image, View, Alert, ActivityIndicator } from 'react-native';
+import { Pressable, Text, Image, View, Alert, ActivityIndicator } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { Input } from 'react-native-elements';
 import actions from '../../redux/actions';
-import { useSelector } from 'react-redux';
 import { Overlay } from '@rneui/themed';
 import { Header } from 'react-native-elements';
 
@@ -32,8 +31,8 @@ const Login = ({ navigation }) => {
           },
           body: JSON.stringify(
             {
-              "userName": '8888888888',
-              "password": '8888888888',
+              "userName": loginId,
+              "password": password,
               "tokenType": 1,
               "createdAt": "createdAt",
               "expiredAt": "expiredAt"
@@ -79,16 +78,18 @@ const Login = ({ navigation }) => {
         />
       </View>
       <View style={{ flex: 1, backgroundColor: '#2E4AA0', justifyContent: 'center', }}>
-        <View style={{ backgroundColor: 'white', width: '95%', alignSelf: 'center', borderRadius: 15, minHeight: 450 }}>
+        <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', fontSize: 20, margin: 0 }}>IClass Public  School</Text>
+        <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', fontSize: 20, margin: 0, paddingBottom: 10 }}> Dariyaoganj</Text>
+
+        <View style={{ backgroundColor: 'white', width: '95%', alignSelf: 'center', borderRadius: 15, minHeight: 450, paddingTop: 5 }}>
           {/* logo section */}
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>
-            <Image source={require('../../../assets/logo/applogo.jpeg')} style={{ width: 70, height: 70, borderRadius: 15, resizeMode: 'stretch', alignSelf: 'center' }} />
-            <Text style={{ color: '#2E4AA0', fontWeight: 'bold', textAlign: 'center', fontSize: 25, margin: 30 }}>i-class</Text>
+            <Image source={require('../../../assets/logo/applogo.jpeg')} style={{ width: 100, height: 100, borderRadius: 15, resizeMode: 'stretch', alignSelf: 'center' }} />
           </View>
           {/* login section */}
-          <View style={{ borderColor: '#F0BA19', width: '100%', justifyContent: 'center', padding: 20, borderRadius: 20, }}>
+          <View style={{ borderColor: '#F0BA19', width: '100%', justifyContent: 'center', padding: 10, borderRadius: 20, }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginBottom: 40 }}>
-              <Pressable
+              {/* <Pressable
                 onPress={() => {
                   setLoginFor('staff')
                 }}
@@ -101,9 +102,10 @@ const Login = ({ navigation }) => {
                 }}
                 style={loginFor == 'student' ? { elevation: 10, backgroundColor: '#F0BA19', borderRadius: 5, width: '35%', height: 40, alignItems: 'center', justifyContent: 'center' } : { borderWidth: 1, backgroundColor: 'white', borderRadius: 5, width: '35%', height: 40, alignItems: 'center', justifyContent: 'center' }}>
                 <Text style={{ color: 'blue', fontSize: 25 }}>student</Text>
-              </Pressable>
+              </Pressable> */}
+
+              <Text style={{ color: '#2E4AA0', fontWeight: 'bold', textAlign: 'center', fontSize: 25, margin: 0 }}>Student Login</Text>
             </View>
-            {/* <Text style={{ color: 'black', fontWeight: 'bold', textAlign: 'center', marginTop: 10, borderRadius: 5, height: 40, fontSize: 20 }}>{loginFor} Login</Text> */}
             <Input
               onChangeText={(e) => {
                 setLoginId(e)
@@ -121,14 +123,6 @@ const Login = ({ navigation }) => {
                   color='black'
                 />
               }
-            // rightIcon={
-            //   <Icon
-            //     type='ant-design'
-            //     name='user'
-            //     size={20}
-            //     color='black'
-            //   />
-            // }
             />
             <Input
               onChangeText={(e) => {
@@ -187,7 +181,7 @@ const Login = ({ navigation }) => {
             </Overlay>
           </View>
         </View>
-        <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>powered by i-class</Text>
+        <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center' }}>Powered by i-class</Text>
         <Image source={require('../../../assets/logo/applogo.jpeg')} style={{ width: 20, height: 20, borderRadius: 15, resizeMode: 'stretch', alignSelf: 'center' }} />
       </View>
     </>
