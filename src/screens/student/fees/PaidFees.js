@@ -18,31 +18,21 @@ const PaidFees = () => {
     const [showLoader, setShowLoader] = useState(true)
 
     useEffect(() => {
-        getAllExams();
+
         getPaymentTypes();
-        getAllFeesType();
-        // getStudentFeeStructure();
-        
+        getAllFeeHeads();
     }, [])
 
-    const examMap = new Map();
     const paymentTypeMap = new Map();
-    const allFeesTypeMap = new Map();
-    // const studentFeeStructureMap = new Map();
-    // const feeTypeMap = new Map();
+    const feeHeadMap = new Map();
+    // const monthFeeHeadMap = new Map();
+    const studentFeeHeadMap = new Map();
+
     const [totalPaidAmount, setTotalPaidAmount] = useState(0);
     const [totalLateAmount, setTotalLateAmount] = useState(0);
     const [totalDiscountAmount, setTotalDiscountAmount] = useState(0);
 
     const [paidFeesData, setPaidFeesData] = useState([]);
-
-    async function getAllExams() {
-        const examResponse = await fetch(`http://13.127.128.192:8081/exams/getAllExams?sessionYear=${session.id}`);
-        const examData = await examResponse.json();
-        examData.forEach(exam => {
-            examMap.set(exam.examsDetails.id, exam.examsDetails.name);
-        });
-    }
 
 
     async function getPaymentTypes() {
@@ -52,44 +42,73 @@ const PaidFees = () => {
             paymentTypeMap.set(paymentType.id, paymentType.name);
         });
     }
-    async function getAllFeesType() {
-        const feeTypeResponse = await fetch(`http://13.127.128.192:8081/utils/getFeeTypes`);
-        const feeTypeData = await feeTypeResponse.json();
-        feeTypeData.forEach(feeType => {
-            allFeesTypeMap.set(feeType.id, feeType);
+    async function getAllFeeHeads() {
+        const feeHeadsResponse = await fetch(`http://13.127.128.192:8081/fees/getAllFeeHeads`);
+        const feeHeadData = await feeHeadsResponse.json();
+        feeHeadData.forEach(feeHead => {
+            feeHeadMap.set(feeHead.id, feeHead);
+            // const payMonths = feeHead.payMonths.split(',');
+            // payMonths.forEach(payMonth => {
+            //     let months = monthFeeHeadMap.get(parseInt(payMonth));
+            //     if (months == null) {
+            //         months = [];
+            //     }
+            //     months.push(feeHead.id);
+            //     monthFeeHeadMap.set(parseInt(payMonth), months);
+            // });
+
+        });
+        getStudentFeeStructure();
+    }
+
+    async function getStudentFeeStructure() {
+        const studentFeeResponse = await fetch(`http://13.127.128.192:8081/fees/getStudentFeesMonthWise?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
+        const studentfeeData = await studentFeeResponse.json();
+        studentfeeData.forEach(studentfee => {
+            studentFeeHeadMap.set(studentfee.feeHeadId, studentfee);
         });
         fetchFeesRecord();
     }
 
-    
+
     async function fetchFeesRecord() {
         const feeResponse = await fetch(`http://13.127.128.192:8081/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
         const feeData = await feeResponse.json();
+
         var tempTotalPaidAmount = 0;
         var tempTotalDiscountAmount = 0;
         var tempTotalLateAmount = 0;
 
         var tempPaidFeesData = [];
+
         feeData.forEach(fee => {
-            fee.feesDetails.forEach(feesDetail => {
-                // var feeType = allFeesTypeMap.get(feesDetail.feesType).name
-                tempPaidFeesData.push({
+
+            var tempFeesDetail = [];
+            fee.feeDetails.forEach(feesDetail => {
+                
+                tempFeesDetail.push({
                     amount: feesDetail.amount,
                     lateFeeAmount: feesDetail.lateFeeAmount,
                     discountAmount: feesDetail.discountAmount,
-                    examId: feesDetail.examId ? examMap.get(feesDetail.examId) : '',
-                    feesType: allFeesTypeMap.get(feesDetail.feesType).name,
-                    month: feesDetail.month ? monthMap.get(feesDetail.month).full : '',
-                    quarter: feesDetail.quarter ? quartrlyMap.get(feesDetail.quarter).full : '',
-                    submissionDate: fee.submissionDate,
-                    paymentMode: paymentTypeMap.get(fee.paymentMode)
+                    feeHead: feeHeadMap.get(feesDetail.feeHeadId).name,
+                    month: monthMap.get(feesDetail.month).full 
                 });
+
+
                 tempTotalPaidAmount += feesDetail.amount;
                 tempTotalDiscountAmount += feesDetail.lateFeeAmount;
                 tempTotalLateAmount += feesDetail.discountAmount;
             });
 
+            tempPaidFeesData.push({
+                amount: fee.amount,
+                paymentMode: paymentTypeMap.get(fee.paymentMode),
+                submissionDate: fee.submissionDate,
+                feeDetails: tempFeesDetail
+            });
+
         });
+
         setPaidFeesData(tempPaidFeesData);
         setTotalPaidAmount(tempTotalPaidAmount);
         setTotalLateAmount(tempTotalDiscountAmount);
@@ -105,30 +124,25 @@ const PaidFees = () => {
                     <View style={{ flex: 6, justifyContent: "space-between" }}>
                         <ScrollView>
 
-
                             {paidFeesData.map((fee, i) => (
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                     <View style={{ marginHorizontal: 40 }}>
-                                        <Text style={{ color: 'blue', fontWeight: 'bold', fontSize: 20 }}>{fee.feesType}</Text>
-                                        {fee.month ? < Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 20 }}>Month:- {fee.month}</Text> : ''}
-                                        {fee.quarter ? < Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 20 }}>Quarter:- {fee.quarter}</Text> : ''}
-                                        {fee.examId ? < Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 20 }}>Exams:- {fee.examId}</Text> : ''}
-                                        <Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 20 }}>Submission Date:- {fee.submissionDate}</Text>
-                                        <Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 20 }}>Payment Mode:- {fee.paymentMode}</Text>
-
-                                        <Text style={{ color: 'green', fontWeight: 'bold', marginLeft: 20 }}>Deposit Amount:- {settings.CURRENCY + ' ' + fee.amount}/-</Text>
-                                        {fee.discountAmount > 0 ? <Text style={{ color: 'green', fontWeight: 'bold', marginLeft: 20 }}>Discount Amount:- {settings.CURRENCY + ' ' + fee.discountAmount}/-</Text> : ''}
-                                        {fee.lateFeeAmount > 0 ? <Text style={{ color: 'red', fontWeight: 'bold', marginLeft: 20 }}>Late Fee Amount:- {settings.CURRENCY + ' ' + fee.lateFeeAmount}/-</Text> : ''}
-                                        {/* {fee.pendingAmount > 0 ? <Text style={{ color: 'red', fontWeight: 'bold', marginLeft: 20 }}>Pending Amount:- {settings.CURRENCY + ' ' + fee.pendingAmount}/-</Text> : ''} */}
-
-                                        <Text style={{ color: 'black', fontWeight: 'bold', marginLeft: 20, fontSize: 15 }}>Total Amount:- {settings.CURRENCY + ' '} {fee.amount - fee.discountAmount + fee.lateFeeAmount}/-</Text>
+                                        <Text style={{ fontWeight: 'bold', marginLeft: 0 }}>Payment Mode:- {fee.paymentMode}</Text>
+                                        <Text style={{ fontWeight: 'bold', marginLeft: 0 }}>Submission Date:- {fee.submissionDate}</Text>
 
 
+                                        {fee.feeDetails.map((feeDetails, i) => (
+                                            <View style={{ marginHorizontal: 20 }}>
+                                                <Text style={{ color: 'black', fontWeight: 'bold'}}>{feeDetails.feeHead} [ {feeDetails.month} ]</Text>
+                                                <Text style={{ color: 'black', fontWeight: 'bold' }}>Paid Amt:- {settings.CURRENCY + ' ' + feeDetails.amount}/-</Text>
+                                                {feeDetails.discountAmount > 0 ? <Text style={{ color: 'black', fontWeight: 'bold'}}>Discount Amt:- {settings.CURRENCY + ' ' + feeDetails.discountAmount}/-</Text> : ''}
+                                                {feeDetails.lateFeeAmount > 0 ? <Text style={{ color: 'red', fontWeight: 'bold'}}>Late Fee Amt:- {settings.CURRENCY + ' ' + feeDetails.lateFeeAmount}/-</Text> : ''}
+                                            </View>
+                                        ))}
+                                        <Text style={{ color: 'green', fontWeight: 'bold' }}>Total Paid Amt:- {settings.CURRENCY + ' ' + fee.amount}/-</Text>
                                     </View>
                                 </Pressable>
                             ))}
-
-
 
                         </ScrollView>
                         <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>

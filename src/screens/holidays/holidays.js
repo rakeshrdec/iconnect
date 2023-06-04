@@ -23,8 +23,9 @@ const Holidays = ({ navigation }) => {
             res.json().then((data) => {
                 if (data != '') {
                     setHolidayList(data);
-                    setShowLoader(false);
                 }
+
+                setShowLoader(false);
             })
         })
     }
