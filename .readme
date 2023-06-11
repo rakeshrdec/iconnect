@@ -1,2 +1,6 @@
 //#2D48A1  blue
 // #F0BA1A  yellow
+
+build .apk command
+./gradlew assembleDebug
+
