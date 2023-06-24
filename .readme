@@ -1,6 +1,19 @@
 //#2D48A1  blue
 // #F0BA1A  yellow
 
-build .apk command
+build .apk use command
 ./gradlew assembleDebug
 
+for maiking bundle use command 
+./gradlew bundleRelease
+
+for changing aap bundle name (package name ) , need to maitaine unique key for each aap acrross google
+
+Follow are the steps contain 
+step 1) cd android && .gradlew clean
+step 2) cd .. && npx react-native-rename "I Class" -b "com.school.iclass1"
+step 3) rebuild .apk and test it be confirmed that package name has been changed
+step 4) Once everything is good , create bundle file using command :
+        ./gradlew bundleRelease
+step 5) pick file from \android\app\build\outputs\bundle\release
+        with latest updated timestamp 
