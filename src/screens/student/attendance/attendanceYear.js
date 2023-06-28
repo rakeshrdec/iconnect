@@ -15,7 +15,7 @@ const AttendanceYear = ({ navigation }) => {
     const selectedStudentData = data.selectedStudentDetails;
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
     const [showLoader, setShowLoader] = useState(true)
-    
+
 
 
     useEffect(() => {
@@ -62,8 +62,8 @@ const AttendanceYear = ({ navigation }) => {
         // document.getElementById('june').innerText  = "Rakesh kumar mishra";
 
         // Alert.alert("clicked")
-                    let options = {
-                        html: `<html>\
+        let options = {
+            html: `<html>\
                     <style>\
             th,td {\
             border:1px solid black;\
@@ -87,9 +87,9 @@ const AttendanceYear = ({ navigation }) => {
             </tr>\
             </table>\
             </body></html>`,
-                        fileName: 'test',
-                        directory: 'Documents',
-                    };
+            fileName: 'test',
+            directory: 'Documents',
+        };
 
         let file = await RNHTMLtoPDF.convert(options)
         alert(file.filePath);
@@ -103,9 +103,9 @@ const AttendanceYear = ({ navigation }) => {
                 <View style={{ flex: 0.8, marginHorizontal: 5, borderRadius: 15, backgroundColor: 'white', }}>
                     <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, borderTopEndRadius: 15, borderTopStartRadius: 15, justifyContent: 'space-between', flexDirection: 'row', paddingHorizontal: 20, alignItems: 'center' }}>
                         <Text style={{ color: 'darkblue', fontWeight: "bold" }}>Year of {year}</Text>
-                        <Icon name="download"  size={24} color="darkblue" onPress={() => {
-                                createPDF(1001)
-                            }}/>
+                        <Icon name="download" size={24} color="darkblue" onPress={() => {
+                            createPDF(1001)
+                        }} />
                     </View>
                     <View style={{ flex: 1, backgroundColor: 'white', borderBottomWidth: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 10 }}>
                         <Text style={{ color: 'darkblue', fontSize: 15, fontWeight: "bold" }}>Month</Text>

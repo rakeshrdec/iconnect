@@ -85,13 +85,13 @@ const PaidFees = () => {
 
             var tempFeesDetail = [];
             fee.feeDetails.forEach(feesDetail => {
-                
+
                 tempFeesDetail.push({
                     amount: feesDetail.amount,
                     lateFeeAmount: feesDetail.lateFeeAmount,
                     discountAmount: feesDetail.discountAmount,
                     feeHead: feeHeadMap.get(feesDetail.feeHeadId).name,
-                    month: monthMap.get(feesDetail.month).full 
+                    month: monthMap.get(feesDetail.month).full
                 });
 
 
@@ -130,10 +130,10 @@ const PaidFees = () => {
                                         <Text style={{ fontWeight: 'bold', marginLeft: 0 }}>Submission Date:- {fee.submissionDate}</Text>
                                         {fee.feeDetails.map((feeDetails, i) => (
                                             <View style={{ marginHorizontal: 20 }}>
-                                                <Text style={{ color: 'black', fontWeight: 'bold'}}>{feeDetails.feeHead} [ {feeDetails.month} ]</Text>
+                                                <Text style={{ color: 'black', fontWeight: 'bold' }}>{feeDetails.feeHead} [ {feeDetails.month} ]</Text>
                                                 <Text style={{ color: 'black', fontWeight: 'bold' }}>Paid Amt:- {settings.CURRENCY + ' ' + feeDetails.amount}/-</Text>
-                                                {feeDetails.discountAmount > 0 ? <Text style={{ color: 'black', fontWeight: 'bold'}}>Discount Amt:- {settings.CURRENCY + ' ' + feeDetails.discountAmount}/-</Text> : ''}
-                                                {feeDetails.lateFeeAmount > 0 ? <Text style={{ color: 'red', fontWeight: 'bold'}}>Late Fee Amt:- {settings.CURRENCY + ' ' + feeDetails.lateFeeAmount}/-</Text> : ''}
+                                                {feeDetails.discountAmount > 0 ? <Text style={{ color: 'black', fontWeight: 'bold' }}>Discount Amt:- {settings.CURRENCY + ' ' + feeDetails.discountAmount}/-</Text> : ''}
+                                                {feeDetails.lateFeeAmount > 0 ? <Text style={{ color: 'red', fontWeight: 'bold' }}>Late Fee Amt:- {settings.CURRENCY + ' ' + feeDetails.lateFeeAmount}/-</Text> : ''}
                                             </View>
                                         ))}
                                         <Text style={{ color: 'green', fontWeight: 'bold' }}>Total Paid Amt:- {settings.CURRENCY + ' ' + fee.amount}/-</Text>

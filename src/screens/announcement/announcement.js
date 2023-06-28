@@ -37,10 +37,10 @@ const Announcement = ({ navigation }) => {
 
     }
 
-     /**
-       * @desc: A function will get a notification from android 
-      * */
-    const handlePsuhNotifications = () =>  {
+    /**
+      * @desc: A function will get a notification from android 
+     * */
+    const handlePsuhNotifications = () => {
         console.log("i clicke d");
         PushNotification.localNotification({
             channelId: "testChannel",

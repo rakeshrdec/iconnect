@@ -42,7 +42,7 @@ const Notifications = ({ navigation }) => {
 
             });
             setNotifications(tempNotifications);
-           
+
         }
         setShowLoader(false);
     }

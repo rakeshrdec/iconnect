@@ -209,7 +209,7 @@ const ExamMarks = ({ navigation }) => {
                                 borderRadius: 5, padding: 2, marginTop: 10
                             }}>
 
-                                
+
 
                                 <Text style={{ color: 'black', backgroundColor: 'lightblue', fontWeight: 'bold', textAlign: 'center', fontSize: 18, borderWidth: 1 }}>{value}</Text>
                                 <View style={{ color: 'black', flexDirection: 'row', backgroundColor: 'lightblue' }}>

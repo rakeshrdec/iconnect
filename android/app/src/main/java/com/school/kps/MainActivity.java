@@ -1,4 +1,4 @@
-package com.school.iclass1;
+package com.school.kps;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -13,7 +13,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "I Class";
+    return "KPS_Dariyaoganj";
   }
 
   @Override
