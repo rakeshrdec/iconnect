@@ -11,7 +11,7 @@ for changing aap bundle name (package name ) , need to maitaine unique key for e
 
 Follow are the steps contain 
 step 1) cd android && ./gradlew clean
-step 2) cd .. && npx react-native-rename "I-Class" -b "com.school.iclass1"
+step 2) cd .. && npx react-native-rename "I-Class" -b "com.iclass.iclass1"
 step 3) rebuild .apk and test it be confirmed that package name has been changed
 step 4) Once everything is good , create bundle file using command :
         ./gradlew bundleRelease
@@ -21,11 +21,11 @@ step 5) pick file from \android\app\build\outputs\bundle\release
 
 
         Build Details:- 
-iclass:-  npx react-native-rename "I-Class" -b "com.school.iclass"
-KPS_Dariyaoganj:-  npx react-native-rename "KPS_DARIYAOGANJ" -b "com.school.kps"
-LKM_FZD:-  npx react-native-rename "LKM_FZD" -b "com.school.lkm"
-IQRA_FZD:-  npx react-native-rename "IQRA_FZD" -b "com.school.iqra"
-SSD_FZD:-  npx react-native-rename "SSD_FZD" -b "com.school.ssd"
-MSA_FZD:-  npx react-native-rename "MSA_FZD" -b "com.school.msa"
+iclass:-  npx react-native-rename "I-Class" -b "com.iclass.iclass"
+KPS_Dariyaoganj:-  npx react-native-rename "KPS_DARIYAOGANJ" -b "com.iclass.kps"
+LKM_FZD:-  npx react-native-rename "LKM_FZD" -b "com.iclass.lkm"
+IQRA_FZD:-  npx react-native-rename "IQRA_FZD" -b "com.iclass.iqra"
+SSD_FZD:-  npx react-native-rename "SSD_FZD" -b "com.iclass.ssd"
+MSA_FZD:-  npx react-native-rename "MSA_FZD" -b "com.iclass.msa"
 
 

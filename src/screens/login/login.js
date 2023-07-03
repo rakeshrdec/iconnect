@@ -23,7 +23,7 @@ const Login = ({ navigation }) => {
     if (loginFor == 'student') {
       {
         console.log(loginId, password)
-        await fetch('http://13.127.128.192:8081/auth/validateStudentLogin', {
+        await fetch('http://13.127.128.192:8082/auth/validateStudentLogin', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -79,7 +79,7 @@ const Login = ({ navigation }) => {
       </View>
       <View style={{ flex: 1, backgroundColor: '#2E4AA0', justifyContent: 'center', }}>
         <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', fontSize: 20, margin: 0 }}>Krishna Public  School</Text>
-        <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', fontSize: 20, margin: 0, paddingBottom: 10 }}> Dariyaoganj</Text>
+        <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', fontSize: 20, margin: 0, paddingBottom: 10 }}> Thana Dariyaoganj</Text>
 
         <View style={{ backgroundColor: 'white', width: '95%', alignSelf: 'center', borderRadius: 15, minHeight: 450, paddingTop: 5 }}>
           {/* logo section */}

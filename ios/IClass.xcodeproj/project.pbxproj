@@ -449,7 +449,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.school.iclass1";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iclass.kps";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iClass.app/iClass";
 			};
@@ -473,7 +473,7 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.school.iclass1";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iclass.kps";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iClass.app/iClass";
 			};
@@ -488,7 +488,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "iClass/Info.plist";
-             INFOPLIST_KEY_CFBundleDisplayName = "I Class";
+             INFOPLIST_KEY_CFBundleDisplayName = "KPS_DARIYAOGANJ";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -498,7 +498,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.school.iclass1";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iclass.kps";
 				PRODUCT_NAME = "iClass";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -514,7 +514,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = "iClass/Info.plist";
-             INFOPLIST_KEY_CFBundleDisplayName = "I Class";
+             INFOPLIST_KEY_CFBundleDisplayName = "KPS_DARIYAOGANJ";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -524,7 +524,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.school.iclass1";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.iclass.kps";
 				PRODUCT_NAME = "iClass";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

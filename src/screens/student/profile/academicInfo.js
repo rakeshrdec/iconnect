@@ -27,6 +27,10 @@ const AcademicInfo = () => {
                     <Text style={{color: 'black', fontSize: 15, fontWeight: "bold", textAlign: 'left', marginLeft: 10}}>Section Name:  </Text>
                     <Text style={{color: 'black', fontSize: 15, fontWeight: "bold", marginLeft: 0, marginRight: 5}}>{selectedStudent.sectionName}</Text>
                 </View>
+                <View style={{ flexDirection: 'row',backgroundColor: "white", justifyContent: 'flex-start', height: 40,flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
+                    <Text style={{color: 'black', fontSize: 15, fontWeight: "bold", textAlign: 'left', marginLeft: 10}}>Class Teacher Name:  </Text>
+                    <Text style={{color: 'black', fontSize: 15, fontWeight: "bold", marginLeft: 0, marginRight: 5}}>{selectedStudent.sectionTeacherName}</Text>
+                </View>
                 <View style={{ flexDirection: 'row', backgroundColor: "white",justifyContent: 'flex-start',height: 40, flex: 1, borderWidth: 1, margin: 3, borderRadius: 32, alignItems: 'center' }}>
                     <Text style={{color: 'black', fontSize: 15, fontWeight: "bold", textAlign: 'left', marginLeft: 10}}>Roll No.:  </Text>
                     <Text style={{color: 'black', fontSize: 15, fontWeight: "bold", marginLeft: 0, marginRight: 5}}>{selectedStudent.rollNo}</Text>

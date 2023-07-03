@@ -22,14 +22,14 @@ const Notifications = ({ navigation }) => {
     const [notifications, setNotifications] = useState([]);
 
     async function getNotifications() {
-        const response = await fetch(`http://13.127.128.192:8081/user/getAllActiveUsers?sessionYear=${session.id}`);
+        const response = await fetch(`http://13.127.128.192:8082/user/getAllActiveUsers?sessionYear=${session.id}`);
         const data = await response.json();
         const staffsMap = new Map();
         data.forEach((staff, i) => {
             staffsMap.set(staff.id, staff.name);
         })
 
-        const classResponse = await fetch(`http://13.127.128.192:8081/notification/getNotificationDetails?studentId=${selectedStudent.id}`);
+        const classResponse = await fetch(`http://13.127.128.192:8082/notification/getNotificationDetails?studentId=${selectedStudent.id}`);
         const notificationsData = await classResponse.json();
         const tempNotifications = [];
         if (notificationsData != '') {

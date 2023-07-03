@@ -19,7 +19,7 @@ const Holidays = ({ navigation }) => {
     const [holidayList, setHolidayList] = useState([]);
 
     const getHolidays = () => {
-        fetch(`http://13.127.128.192:8081/holiday/getAllHolidays?sessionYear=${session.id}`).then((res) => {
+        fetch(`http://13.127.128.192:8082/holiday/getAllHolidays?sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     setHolidayList(data);

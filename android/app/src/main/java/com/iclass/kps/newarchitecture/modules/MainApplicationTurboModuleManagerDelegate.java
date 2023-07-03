@@ -1,4 +1,4 @@
-package com.school.kps.newarchitecture.modules;
+package com.iclass.kps.newarchitecture.modules;
 
 import com.facebook.jni.HybridData;
 import com.facebook.react.ReactPackage;

@@ -38,7 +38,7 @@ const AttendanceMonth = ({ navigation }) => {
     }, [presentDates, weekelyOffDates, holidaysDates]);
 
     async function getWeeklyOffFromServer(month, year) {
-        const weeklyOffResponse = await fetch(`http://13.127.128.192:8081/utils/getAllWeeklyOff`);
+        const weeklyOffResponse = await fetch(`http://13.127.128.192:8082/utils/getAllWeeklyOff`);
         const weeklyOffData = await weeklyOffResponse.json();
         const weeklyOffMap = new Map();
         weeklyOffData.forEach(element => {
@@ -84,7 +84,7 @@ const AttendanceMonth = ({ navigation }) => {
     async function getTimeTables(month, year) {
         getWeeklyOffCalculation(month - 1, year);
 
-        const holidaysResponse = await fetch(`http://13.127.128.192:8081/holiday/findAllHolidaysByMonthAndYear?month=${month}&year=${year}`);
+        const holidaysResponse = await fetch(`http://13.127.128.192:8082/holiday/findAllHolidaysByMonthAndYear?month=${month}&year=${year}`);
         const holidaysData = await holidaysResponse.json();
         if (holidaysData != '') {
             var holidaysDates = {}
@@ -104,7 +104,7 @@ const AttendanceMonth = ({ navigation }) => {
         var startDate = year + '-' + (month < 10 ? '0' + month : month) + '-01';
         var endDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + daysInMonth;
 
-        const studentAttendanceResponse = await fetch(`http://13.127.128.192:8081/student/getStudentAttendancesByStudentAndSession?studentId=${selectedStudent.id}&startDate=${startDate}&endDate=${endDate}&sessionYear=${session.id}`);
+        const studentAttendanceResponse = await fetch(`http://13.127.128.192:8082/student/getStudentAttendancesByStudentAndSession?studentId=${selectedStudent.id}&startDate=${startDate}&endDate=${endDate}&sessionYear=${session.id}`);
         const studentAttendanceData = await studentAttendanceResponse.json();
         if (studentAttendanceData != '') {
             setTotalWeekend(studentAttendanceData[0].totalWeekend);
@@ -114,7 +114,7 @@ const AttendanceMonth = ({ navigation }) => {
         }
 
         var presentDates = {}
-        const studentApprovedAttendanceResponse = await fetch(`http://13.127.128.192:8081/student/getStudentApprovedAttendances?studentId=${selectedStudent.id}&startDate=${startDate}&endDate=${endDate}`);
+        const studentApprovedAttendanceResponse = await fetch(`http://13.127.128.192:8082/student/getStudentApprovedAttendances?studentId=${selectedStudent.id}&startDate=${startDate}&endDate=${endDate}`);
         const studentApprovedAttendanceData = await studentApprovedAttendanceResponse.json();
         studentApprovedAttendanceData.map((e, i) => {
             var presentDate = { [e.attendanceDate]: { selected: true, marked: true, selectedColor: 'lightgreen' } };

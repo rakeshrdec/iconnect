@@ -7,10 +7,10 @@ const BackgroundScreen = () => {
         <View style={{
             width: SCREEN_WIDTH,
             height: 0,
-            borderTopColor: "#2E4AA0",
+            borderTopColor: "#FB965A",
             borderTopWidth: SCREEN_HEIGHT-50,
             borderRightWidth: SCREEN_WIDTH,
-            borderRightColor: '#F0BA19'
+            borderRightColor: '#5CE2E6'
         }}>
         </View>
     );

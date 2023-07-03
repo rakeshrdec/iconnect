@@ -30,7 +30,7 @@ const UnpaidFees = () => {
     const [recordData, setRecordData] = useState([]);
 
     async function getAllFeeHeads() {
-        const feeHeadsResponse = await fetch(`http://13.127.128.192:8081/fees/getAllFeeHeads`);
+        const feeHeadsResponse = await fetch(`http://13.127.128.192:8082/fees/getAllFeeHeads`);
         const feeHeadData = await feeHeadsResponse.json();
         feeHeadData.forEach(feeHead => {
             feeHeadMap.set(feeHead.id, feeHead);
@@ -49,7 +49,7 @@ const UnpaidFees = () => {
     }
 
     async function getStudentFeeStructure() {
-        const studentFeeResponse = await fetch(`http://13.127.128.192:8081/fees/getStudentFees?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
+        const studentFeeResponse = await fetch(`http://13.127.128.192:8082/fees/getStudentFees?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
         const studentfeeData = await studentFeeResponse.json();
         studentfeeData.forEach(studentfee => {
             studentFeeHeadMap.set(studentfee.feeHeadId, studentfee);
@@ -59,19 +59,24 @@ const UnpaidFees = () => {
 
     async function fetchfeeRecord() {
         let totalAmount = 0;
-        const paidfee = new Map();
+        const paidfees = new Map();
         const recordData = [];
-        const studentFeeResponse = await fetch(`http://13.127.128.192:8081/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
+        const studentFeeResponse = await fetch(`http://13.127.128.192:8082/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
         const studentfeeData = await studentFeeResponse.json();
 
         studentfeeData.forEach(fee => {
             fee.feeDetails.forEach(feeDetail => {
-                let paidDiscountfee = paidfee.get(feeDetail.month);
-                if (paidDiscountfee == null) {
-                    paidDiscountfee = new Map();
+                let paidfee = paidfees.get(feeDetail.month);
+                if (paidfee == null) {
+                    paidfee = new Map();
                 }
-                paidDiscountfee.set(feeDetail.feeHeadId, feeDetail)
-                paidfee.set(feeDetail.month, paidDiscountfee)
+                let feeDetails = paidfee.get(feeDetail.feeHeadId);
+                if (feeDetails == null) {
+                  feeDetails = [];
+                }
+                feeDetails.push(feeDetail);
+                paidfee.set(feeDetail.feeHeadId, feeDetails);
+                paidfees.set(feeDetail.month, paidfee);
             });
         });
         monthMap.forEach((value, key) => {
@@ -83,8 +88,14 @@ const UnpaidFees = () => {
                 allFeeHeadIds.forEach(feeHeadId => {
                     if (studentFeeHeadMap.get(feeHeadId)) {
                         let amt = studentFeeHeadMap.get(feeHeadId).amount;
-                        if (paidfee.get(key) && paidfee.get(key).get(feeHeadId)) {
-                            amt -= (paidfee.get(key).get(feeHeadId).amount + paidfee.get(key).get(feeHeadId).discountAmount);
+                        if (paidfees.get(key) && paidfees.get(key).get(feeHeadId)) {
+                            paidfees.get(key).get(feeHeadId).forEach(feeDetails => {
+                                // paidAmt += feeDetails.amount;
+                                // paidDiscountAmt += feeDetails.discountAmount;
+                                // paidLateFeeAmt += feeDetails.lateFeeAmount;
+                                amt -= (feeDetails.amount +feeDetails.discountAmount);
+                              });
+                            
                         }
                         if (amt > 0) {
                             totalMonthAmt += amt;
