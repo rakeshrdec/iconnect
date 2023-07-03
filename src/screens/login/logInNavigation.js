@@ -23,6 +23,8 @@ import Notifications from '../notifications/notifications';
 import ExamMarks from '../student/examMarks/examMarks';
 import Login from './login';
 import HomePage from '../homepage/userProfile';
+import AboutSchool from '../aboutSchool/aboutSchool';
+import ChangePassword from '../changePassword/changePassword';
 import { Provider } from 'react-redux';
 import store from '../../redux/store'
 
@@ -111,6 +113,14 @@ const LoginNavigation = () => {
           <Stack.Screen
             name='StudentProfile'
             component={studentProfile}
+          />
+          <Stack.Screen
+            name='AboutSchool'
+            component={AboutSchool}
+          />
+            <Stack.Screen
+            name='ChangePassword'
+            component={ChangePassword}
           />
         </Stack.Navigator>
       </NavigationContainer>

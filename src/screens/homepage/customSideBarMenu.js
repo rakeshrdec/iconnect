@@ -58,18 +58,18 @@ const CustomSidebarMenu = (props) => {
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
         <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-          <DrawerItem
+          {/* <DrawerItem
             style={{ width: 200 }}
             label="About"
             onPress={() => {
               Alert.alert('this section is in development mode')
             }}
-          />
+          /> */}
         </View>
         <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
           <DrawerItem
             style={{ width: 200 }}
-            label="LogOut"
+            label="Log Out"
             onPress={() => {
               Alert.alert('Hold on', 'do you want to exit from this app', [
                 {

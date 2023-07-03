@@ -21,6 +21,8 @@ import ViewDocuments from '../student/viewDocuments/viewDocuments';
 import Notifications from '../notifications/notifications';
 import ExamMarks from '../student/examMarks/examMarks';
 import AttendanceIndex from '../student/attendance/attendanceIndex';
+import AboutSchool from '../aboutSchool/aboutSchool';
+import ChangePassword from '../changePassword/changePassword';
 
 import {
   Text,
@@ -45,6 +47,9 @@ const GradientHeader = props => (
       <Icon name="home" type="material" size={30} color="white" onPress={() => {
         props.navigation.jumpTo('Home')
       }} />
+       <Icon name="settings" type="material" size={30} color="white" onPress={() => {
+        props.navigation.jumpTo('ChangePassword')
+      }} /> 
 
       <Icon name="logout" type="Ionicons" size={30} color="white" onPress={() => {
         Alert.alert('Hold on', 'Do you really want to exit?', [
@@ -80,6 +85,8 @@ const HomePage = () => {
             backgroundColor: '#2E4AA0',
           },
         }} />
+
+
         <Drawer.Screen name="Attendance" component={AttendanceIndex}
           options={{
             title: 'Attendance',
@@ -175,6 +182,30 @@ const HomePage = () => {
         <Drawer.Screen name="StudentProfile" component={StudentProfile}
           options={{
             title: 'Student Profile',
+            headerTintColor: 'white',
+            headerShown: 'false',
+            header: props => <GradientHeader {...props} />,
+            headerStyle: {
+              backgroundColor: '#2E4AA0',
+            },
+          }}
+        />
+
+        <Drawer.Screen name="AboutSchool" component={AboutSchool}
+          options={{
+            title: 'About School',
+            headerTintColor: 'white',
+            headerShown: 'false',
+            header: props => <GradientHeader {...props} />,
+            headerStyle: {
+              backgroundColor: '#2E4AA0',
+            },
+          }}
+        />
+
+        <Drawer.Screen name="ChangePassword" component={ChangePassword}
+          options={{
+            title: 'Change Password',
             headerTintColor: 'white',
             headerShown: 'false',
             header: props => <GradientHeader {...props} />,
