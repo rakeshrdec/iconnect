@@ -79,8 +79,8 @@ const Login = ({ navigation }) => {
         />
       </View>
       <View style={{ flex: 1, backgroundColor: '#2E4AA0', justifyContent: 'center', }}>
-        <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', fontSize: 30, margin: 0 }}>St. S. D. Memorial School</Text>
-        <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', fontSize: 20, margin: 0, paddingBottom: 10 }}>Rehna Nala, Bihari Nagar, Firozabad</Text>
+        {/* <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', fontSize: 30, margin: 0 }}>St. S. D. Memorial School</Text>
+        <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', fontSize: 20, margin: 0, paddingBottom: 10 }}>Rehna Nala, Bihari Nagar, Firozabad</Text> */}
 
         <View style={{ backgroundColor: 'white', width: '95%', alignSelf: 'center', borderRadius: 15, minHeight: 450, paddingTop: 5 }}>
           {/* logo section */}

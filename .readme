@@ -14,13 +14,14 @@ Build Details:-
 # apiUrl: 'http://13.127.128.192:8086',   // IQRA_FZD
 # apiUrl: 'http://13.127.128.192:8087',   // MSA_FZD
 
-1. Update All images
-2. Change apiUrl
-3. Change Background Color
+1. Update All images in res
+2. Change apiUrl in data.ts
+3. Change Background Color in backgroundScreen.js
 4. Change AppName
+5. Change School Name and address in login.js
 5. Follow are the steps contain 
      step 1) cd android && ./gradlew clean
-     step 2) cd .. && npx react-native-rename "I-Class" -b "com.iclass.iclass1"
+     step 2) cd .. && npx react-native-rename "I-Class" -b "com.iclass.iclass"
      step 3) rebuild .apk and test it be confirmed that package name has been changed
                ./gradlew assembleDebug       ./gradlew assembleRelease
      step 4) Once everything is good , create bundle file using command :
