@@ -29,7 +29,7 @@ const StudentCard = ({ navigation }) => {
     const [studentList, setStudentList] = useState([]);
 
     getGender = (studentModel) => {
-        fetch(`http://13.127.128.192:8082/utils/getGenders`)
+        fetch(`http://13.127.128.192:8085/utils/getGenders`)
             .then((res) => {
                 res.json().then((data) => {
                     for (const element of data) {
@@ -46,7 +46,7 @@ const StudentCard = ({ navigation }) => {
     }
 
     getCategory = (studentModel) => {
-        fetch(`http://13.127.128.192:8082/utils/getCategory`)
+        fetch(`http://13.127.128.192:8085/utils/getCategory`)
             .then((res) => {
                 res.json().then((data) => {
                     for (const element of data) {
@@ -63,7 +63,7 @@ const StudentCard = ({ navigation }) => {
     }
 
     getStaffs = (studentModel, classTeacherId) => {
-        fetch(`http://13.127.128.192:8082/user/getUser?id=${classTeacherId}`)
+        fetch(`http://13.127.128.192:8085/user/getUser?id=${classTeacherId}`)
             .then((res) => {
                 res.json().then((data) => {
                     console.log(data);
@@ -77,7 +77,7 @@ const StudentCard = ({ navigation }) => {
 
 
     getStudentClassDetails = (studentModel) => {
-        fetch(`http://13.127.128.192:8082/class/getClassById?classId=${studentModel.classId}`)
+        fetch(`http://13.127.128.192:8085/class/getClassById?classId=${studentModel.classId}`)
             .then((res) => {
                 res.json().then((data) => {
                     studentModel.className = data.classDetails.name
@@ -101,7 +101,7 @@ const StudentCard = ({ navigation }) => {
 
     getStudentDetails = (studentId, sessionId) => {
 
-        fetch(`http://13.127.128.192:8082/student/getStudentFullDetails?sessionYear=${sessionId}&studentId=${studentId}`)
+        fetch(`http://13.127.128.192:8085/student/getStudentFullDetails?sessionYear=${sessionId}&studentId=${studentId}`)
             .then((res) => {
                 res.json().then((data) => {
                     var studentModel = {
@@ -159,7 +159,7 @@ const StudentCard = ({ navigation }) => {
                             style={{ elevation: 10, backgroundColor: 'white', minHeight: 120, margin: 10, borderRadius: 15, padding: 5, alignItems: 'center' }}>
                             <View style={{ flex: 1, margin: 10, flexDirection: 'row', alignItems: 'center' }}>
                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                    {e.uploadImg === null ? <Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} /> : <Image source={{ uri: 'http://13.127.128.192:8082/' + e.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
+                                    {e.uploadImg === null ? <Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} /> : <Image source={{ uri: 'http://13.127.128.192:8085/' + e.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
                                 </View>
                                 <View style={{ flex: 2, }}>
                                     <Text style={{ color: 'black', fontWeight: 'bold' }}>{e.name}</Text>

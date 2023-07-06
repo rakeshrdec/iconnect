@@ -24,7 +24,7 @@ const AttendanceYear = ({ navigation }) => {
 
     const getStudentAttendanceByMonth = () => {
 
-        fetch(`http://13.127.128.192:8082/student/getStudentAttendancesByStudentAndSession?studentId=${selectedStudent.id}&startDate=${session.fromDate}&endDate=${session.toDate}&sessionYear=${session.id}`).then((res) => {
+        fetch(`http://13.127.128.192:8085/student/getStudentAttendancesByStudentAndSession?studentId=${selectedStudent.id}&startDate=${session.fromDate}&endDate=${session.toDate}&sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     var atendanceDataMap = new Map();

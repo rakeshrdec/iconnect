@@ -49,7 +49,7 @@ const ExamMarks = ({ navigation }) => {
     const examSubjectMap = new Map();
 
     const getClassById = (classId) => {
-        fetch(`http://13.127.128.192:8082/class/getClassById?classId=${classId}`).then((res) => {
+        fetch(`http://13.127.128.192:8085/class/getClassById?classId=${classId}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     for (const subjects of data.subjects) {
@@ -62,7 +62,7 @@ const ExamMarks = ({ navigation }) => {
 
 
     const getAllSubjects = () => {
-        fetch(`http://13.127.128.192:8082/subject/getAllSubjects`).then((res) => {
+        fetch(`http://13.127.128.192:8085/subject/getAllSubjects`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     data.forEach(element => subjectMap.set(element.id, element.name))
@@ -72,7 +72,7 @@ const ExamMarks = ({ navigation }) => {
     }
 
     const getAllExams = () => {
-        fetch(`http://13.127.128.192:8082/exams/getAllExams?sessionYear=${session.id}`).then((res) => {
+        fetch(`http://13.127.128.192:8085/exams/getAllExams?sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     setExams(data);
@@ -92,7 +92,7 @@ const ExamMarks = ({ navigation }) => {
     }
 
     const getMarksGrades = () => {
-        fetch(`http://13.127.128.192:8082/utils/getMarksGrades`).then((res) => {
+        fetch(`http://13.127.128.192:8085/utils/getMarksGrades`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     getStudentExamsMarks(data);
@@ -102,7 +102,7 @@ const ExamMarks = ({ navigation }) => {
     }
 
     const getStudentExamsMarks = (gradeList) => {
-        fetch(`http://13.127.128.192:8082/student/getStudentExamsMarks?sessionYear=${session.id}&studentId=${selectedStudent.id}`).then((res) => {
+        fetch(`http://13.127.128.192:8085/student/getStudentExamsMarks?sessionYear=${session.id}&studentId=${selectedStudent.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     data.forEach(marks => {

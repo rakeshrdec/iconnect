@@ -36,14 +36,14 @@ const PaidFees = () => {
 
 
     async function getPaymentTypes() {
-        const paymentTypeResponse = await fetch(`http://13.127.128.192:8082/utils/getPaymentTypes`);
+        const paymentTypeResponse = await fetch(`http://13.127.128.192:8085/utils/getPaymentTypes`);
         const paymentTypeData = await paymentTypeResponse.json();
         paymentTypeData.forEach(paymentType => {
             paymentTypeMap.set(paymentType.id, paymentType.name);
         });
     }
     async function getAllFeeHeads() {
-        const feeHeadsResponse = await fetch(`http://13.127.128.192:8082/fees/getAllFeeHeads`);
+        const feeHeadsResponse = await fetch(`http://13.127.128.192:8085/fees/getAllFeeHeads`);
         const feeHeadData = await feeHeadsResponse.json();
         feeHeadData.forEach(feeHead => {
             feeHeadMap.set(feeHead.id, feeHead);
@@ -62,7 +62,7 @@ const PaidFees = () => {
     }
 
     async function getStudentFeeStructure() {
-        const studentFeeResponse = await fetch(`http://13.127.128.192:8082/fees/getStudentFeesMonthWise?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
+        const studentFeeResponse = await fetch(`http://13.127.128.192:8085/fees/getStudentFeesMonthWise?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
         const studentfeeData = await studentFeeResponse.json();
         studentfeeData.forEach(studentfee => {
             studentFeeHeadMap.set(studentfee.feeHeadId, studentfee);
@@ -72,7 +72,7 @@ const PaidFees = () => {
 
 
     async function fetchFeesRecord() {
-        const feeResponse = await fetch(`http://13.127.128.192:8082/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
+        const feeResponse = await fetch(`http://13.127.128.192:8085/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
         const feeData = await feeResponse.json();
 
         var tempTotalPaidAmount = 0;

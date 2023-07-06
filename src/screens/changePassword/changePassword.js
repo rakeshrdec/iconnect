@@ -45,7 +45,7 @@ const ChangePassword = ({ navigation }) => {
     } else {
       {
 
-        await fetch(`http://13.127.128.192:8082/student/changePassword`, {
+        await fetch(`http://13.127.128.192:8085/student/changePassword`, {
           method: 'POST',
           headers: {
             Accept: 'application/json',
@@ -77,7 +77,7 @@ const ChangePassword = ({ navigation }) => {
 
   return (
     <>
-     <BackgroundScreen />
+      <BackgroundScreen />
       <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%', justifyContent: 'center' }}>
         <View style={{ backgroundColor: 'white', width: '95%', alignSelf: 'center', borderRadius: 15, minHeight: 300, paddingTop: 5 }}>
 
@@ -199,7 +199,7 @@ const ChangePassword = ({ navigation }) => {
             <Loader message="Updating Password ......." showLoader={showLoader} />
           </View>
         </View>
-        </SafeAreaView>
+      </SafeAreaView>
     </>
   );
 };

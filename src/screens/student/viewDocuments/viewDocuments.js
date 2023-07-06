@@ -22,7 +22,7 @@ const ViewDocuments = ({ navigation }) => {
     }, [])
 
     const getStudentDouments = () => {
-        fetch(`http://13.127.128.192:8082/student/getStudentDocuments?studentId=${selectedStudent.id}`).then((res) => {
+        fetch(`http://13.127.128.192:8085/student/getStudentDocuments?studentId=${selectedStudent.id}`).then((res) => {
             res.json().then((data) => {
                 console.log(data,);
                 if (data != '') {
@@ -72,7 +72,7 @@ const ViewDocuments = ({ navigation }) => {
                                                     description: 'Image',
                                                 },
                                             };
-                                            let image_URL = `http://13.127.128.192:8082${studentDocument.uploadDocument}`
+                                            let image_URL = `http://13.127.128.192:8085${studentDocument.uploadDocument}`
                                             config(options)
                                                 .fetch('GET', image_URL)
                                                 .then(res => {

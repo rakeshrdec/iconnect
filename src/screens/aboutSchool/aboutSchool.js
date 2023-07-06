@@ -14,7 +14,7 @@ const AboutSchool = ({ navigation }) => {
     const [showLoader, setShowLoader] = useState(true)
 
     const getAcademy = () => {
-        fetch(`http://13.127.128.192:8082/acedemy/getAcedemyDetails`).then((res) => {
+        fetch(`http://13.127.128.192:8085/acedemy/getAcedemyDetails`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     setAcademyDetails(data);
@@ -37,7 +37,7 @@ const AboutSchool = ({ navigation }) => {
                             <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                                 <View style={{ marginHorizontal: 0, alignSelf: 'center', alignItems: 'center' }}>
                                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                        {academyDetails.logoImg === null ? <Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} /> : <Image source={{ uri: 'http://13.127.128.192:8082/' + academyDetails.logoImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
+                                        {academyDetails.logoImg === null ? <Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} /> : <Image source={{ uri: 'http://13.127.128.192:8085/' + academyDetails.logoImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
                                     </View>
                                     <Text style={{ color: 'green', fontWeight: 'bold', alignSelf: 'center', fontSize: 25 }}>{academyDetails.acedemyName}</Text>
                                 </View>

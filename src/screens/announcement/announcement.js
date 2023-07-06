@@ -16,7 +16,7 @@ const Announcement = ({ navigation }) => {
     const [showLoader, setShowLoader] = useState(true)
 
     const getAllAnnouncement = () => {
-        fetch(`http://13.127.128.192:8082/announcement/getAllAnnouncement`).then((res) => {
+        fetch(`http://13.127.128.192:8085/announcement/getAllAnnouncement`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     setAnnouncementList(data);

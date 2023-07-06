@@ -30,7 +30,7 @@ const UnpaidFees = () => {
     const [recordData, setRecordData] = useState([]);
 
     async function getAllFeeHeads() {
-        const feeHeadsResponse = await fetch(`http://13.127.128.192:8082/fees/getAllFeeHeads`);
+        const feeHeadsResponse = await fetch(`http://13.127.128.192:8085/fees/getAllFeeHeads`);
         const feeHeadData = await feeHeadsResponse.json();
         feeHeadData.forEach(feeHead => {
             feeHeadMap.set(feeHead.id, feeHead);
@@ -49,7 +49,7 @@ const UnpaidFees = () => {
     }
 
     async function getStudentFeeStructure() {
-        const studentFeeResponse = await fetch(`http://13.127.128.192:8082/fees/getStudentFees?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
+        const studentFeeResponse = await fetch(`http://13.127.128.192:8085/fees/getStudentFees?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
         const studentfeeData = await studentFeeResponse.json();
         studentfeeData.forEach(studentfee => {
             studentFeeHeadMap.set(studentfee.feeHeadId, studentfee);
@@ -61,7 +61,7 @@ const UnpaidFees = () => {
         let totalAmount = 0;
         const paidfees = new Map();
         const recordData = [];
-        const studentFeeResponse = await fetch(`http://13.127.128.192:8082/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
+        const studentFeeResponse = await fetch(`http://13.127.128.192:8085/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
         const studentfeeData = await studentFeeResponse.json();
 
         studentfeeData.forEach(fee => {
@@ -72,7 +72,7 @@ const UnpaidFees = () => {
                 }
                 let feeDetails = paidfee.get(feeDetail.feeHeadId);
                 if (feeDetails == null) {
-                  feeDetails = [];
+                    feeDetails = [];
                 }
                 feeDetails.push(feeDetail);
                 paidfee.set(feeDetail.feeHeadId, feeDetails);
@@ -93,9 +93,9 @@ const UnpaidFees = () => {
                                 // paidAmt += feeDetails.amount;
                                 // paidDiscountAmt += feeDetails.discountAmount;
                                 // paidLateFeeAmt += feeDetails.lateFeeAmount;
-                                amt -= (feeDetails.amount +feeDetails.discountAmount);
-                              });
-                            
+                                amt -= (feeDetails.amount + feeDetails.discountAmount);
+                            });
+
                         }
                         if (amt > 0) {
                             totalMonthAmt += amt;

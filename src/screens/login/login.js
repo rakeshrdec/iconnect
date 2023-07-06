@@ -23,7 +23,7 @@ const Login = ({ navigation }) => {
     if (loginFor == 'student') {
       {
         console.log(loginId, password)
-        await fetch('http://13.127.128.192:8082/auth/validateStudentLogin', {
+        await fetch('http://13.127.128.192:8085/auth/validateStudentLogin', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
