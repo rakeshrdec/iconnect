@@ -1,5 +1,5 @@
 Build Details:- 
-# iclass:-  npx react-native-rename "I-Class" -b "com.iclass.iclass"
+# iclass:-  npx react-native-rename "I-Class" -b "com.iclass.iclass" --skipGitStatusCheck
 # KPS_Dariyaoganj:-  npx react-native-rename "KPS_DARIYAOGANJ" -b "com.iclass.kps"
 # LKM_FZD:-  npx react-native-rename "LKM_FZD" -b "com.iclass.lkm"
 # IQRA_FZD:-  npx react-native-rename "IQRA_FZD" -b "com.iclass.iqra"
