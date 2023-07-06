@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import BackgroundScreen from "../homepage/backgroundScreen";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Loader from "../homepage/loader";
+import { apiUrl } from '../../models/data';
 
 const Stack = createNativeStackNavigator();
 
@@ -45,7 +46,7 @@ const ChangePassword = ({ navigation }) => {
     } else {
       {
 
-        await fetch(`http://13.127.128.192:8085/student/changePassword`, {
+        await fetch(apiUrl +`/student/changePassword`, {
           method: 'POST',
           headers: {
             Accept: 'application/json',

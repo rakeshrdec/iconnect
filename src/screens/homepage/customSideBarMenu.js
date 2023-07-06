@@ -19,6 +19,7 @@ import RNExitApp from 'react-native-exit-app';
 
 
 import { useSelector } from "react-redux";
+import { apiUrl } from '../../models/data';
 
 const CustomSidebarMenu = (props) => {
 
@@ -34,7 +35,7 @@ const CustomSidebarMenu = (props) => {
       {/*Top Large Image RED SECTION */}
       <View style={{ backgroundColor: '#2E4AA0', height: '25%', justifyContent: 'center' }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }}>
-          {selectedStudent.uploadImg === null ? <Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} /> : <Image source={{ uri: 'http://13.127.128.192:8085/' + selectedStudent.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
+          {selectedStudent.uploadImg === null ? <Image source={require('../../../assets/logo/male_student_avatar.png')} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} /> : <Image source={{ uri: apiUrl + '/' + selectedStudent.uploadImg }} style={{ width: 70, height: 70, resizeMode: 'stretch', borderRadius: 150 }} />}
           <View>
             <View style={{ flexDirection: 'row' }}>
               <Text style={{ color: 'white', fontWeight: 'bold', marginLeft: 10 }}>{selectedStudent.name}</Text>

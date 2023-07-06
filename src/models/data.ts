@@ -19,6 +19,8 @@ export const feeStatus = {
 
 }
 
+export const apiUrl = 'http://13.127.128.192:8081';
+
 export const weekMap: Map<number, FullName> = new Map([
     [0, { short: 'Sun', full: 'Sunday' }],
     [1, { short: 'Mon', full: 'Monday' }],

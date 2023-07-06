@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { monthMap, settings } from '../../../models/data';
 import Loader from "../../homepage/loader";
 import BackgroundScreen from "../../homepage/backgroundScreen";
+import { apiUrl } from '../../../models/data';
 
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -30,7 +31,7 @@ const UnpaidFees = () => {
     const [recordData, setRecordData] = useState([]);
 
     async function getAllFeeHeads() {
-        const feeHeadsResponse = await fetch(`http://13.127.128.192:8085/fees/getAllFeeHeads`);
+        const feeHeadsResponse = await fetch(apiUrl +`/fees/getAllFeeHeads`);
         const feeHeadData = await feeHeadsResponse.json();
         feeHeadData.forEach(feeHead => {
             feeHeadMap.set(feeHead.id, feeHead);
@@ -49,7 +50,7 @@ const UnpaidFees = () => {
     }
 
     async function getStudentFeeStructure() {
-        const studentFeeResponse = await fetch(`http://13.127.128.192:8085/fees/getStudentFees?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
+        const studentFeeResponse = await fetch(apiUrl +`/fees/getStudentFees?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
         const studentfeeData = await studentFeeResponse.json();
         studentfeeData.forEach(studentfee => {
             studentFeeHeadMap.set(studentfee.feeHeadId, studentfee);
@@ -61,7 +62,7 @@ const UnpaidFees = () => {
         let totalAmount = 0;
         const paidfees = new Map();
         const recordData = [];
-        const studentFeeResponse = await fetch(`http://13.127.128.192:8085/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
+        const studentFeeResponse = await fetch(apiUrl +`/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
         const studentfeeData = await studentFeeResponse.json();
 
         studentfeeData.forEach(fee => {

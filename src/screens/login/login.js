@@ -7,6 +7,7 @@ import { Input } from 'react-native-elements';
 import actions from '../../redux/actions';
 import { Overlay } from '@rneui/themed';
 import { Header } from 'react-native-elements';
+import { apiUrl } from '../../models/data';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,7 +24,7 @@ const Login = ({ navigation }) => {
     if (loginFor == 'student') {
       {
         console.log(loginId, password)
-        await fetch('http://13.127.128.192:8085/auth/validateStudentLogin', {
+        await fetch(apiUrl + '/auth/validateStudentLogin', {
           method: 'POST',
           headers: {
             Accept: 'application/json',

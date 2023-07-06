@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import StudentHeader from "../../homepage/studentHeader";
 import Loader from "../../homepage/loader";
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
+import { apiUrl } from '../../../models/data';
 
 const AttendanceYear = ({ navigation }) => {
     const data = useSelector((state) => state)
@@ -24,7 +25,7 @@ const AttendanceYear = ({ navigation }) => {
 
     const getStudentAttendanceByMonth = () => {
 
-        fetch(`http://13.127.128.192:8085/student/getStudentAttendancesByStudentAndSession?studentId=${selectedStudent.id}&startDate=${session.fromDate}&endDate=${session.toDate}&sessionYear=${session.id}`).then((res) => {
+        fetch(apiUrl +`/student/getStudentAttendancesByStudentAndSession?studentId=${selectedStudent.id}&startDate=${session.fromDate}&endDate=${session.toDate}&sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     var atendanceDataMap = new Map();

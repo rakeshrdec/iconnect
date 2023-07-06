@@ -4,6 +4,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import { useSelector } from "react-redux";
 import Loader from "../homepage/loader";
 import BackgroundScreen from "../homepage/backgroundScreen";
+import { apiUrl } from '../../models/data';
 
 
 const Holidays = ({ navigation }) => {
@@ -19,7 +20,7 @@ const Holidays = ({ navigation }) => {
     const [holidayList, setHolidayList] = useState([]);
 
     const getHolidays = () => {
-        fetch(`http://13.127.128.192:8085/holiday/getAllHolidays?sessionYear=${session.id}`).then((res) => {
+        fetch(apiUrl +`/holiday/getAllHolidays?sessionYear=${session.id}`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     setHolidayList(data);

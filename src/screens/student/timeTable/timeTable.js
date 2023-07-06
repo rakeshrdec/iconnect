@@ -7,6 +7,7 @@ import { weekMap } from '../../../models/data';
 import StudentHeader from "../../homepage/studentHeader";
 import Loader from "../../homepage/loader";
 import BackgroundScreen from "../../homepage/backgroundScreen";
+import { apiUrl } from '../../../models/data';
 
 const TimeTable = ({ navigation }) => {
     const [showLoader, setShowLoader] = useState(true)
@@ -29,14 +30,14 @@ const TimeTable = ({ navigation }) => {
     }, [])
 
     async function getTimeTables() {
-        const response = await fetch(`http://13.127.128.192:8085/user/getAllActiveUsers?sessionYear=${session.id}&userType=3`);
+        const response = await fetch(apiUrl +`/user/getAllActiveUsers?sessionYear=${session.id}&userType=3`);
         const data = await response.json();
         const staffsMap = new Map();
         data.forEach((staff, i) => {
             staffsMap.set(staff.id, staff.name);
         })
 
-        const classResponse = await fetch(`http://13.127.128.192:8085/class/getClassById?classId=${selectedStudent.classId}`);
+        const classResponse = await fetch(apiUrl +`/class/getClassById?classId=${selectedStudent.classId}`);
         const classData = await classResponse.json();
         const classSubjectMap = new Map();
         for (const subjects of classData.subjects) {
@@ -44,12 +45,12 @@ const TimeTable = ({ navigation }) => {
         }
 
 
-        const subjectResponse = await fetch(`http://13.127.128.192:8085/subject/getAllSubjects`);
+        const subjectResponse = await fetch(apiUrl +`/subject/getAllSubjects`);
         const subjectData = await subjectResponse.json();
         const subjectMap = new Map();
         subjectData.forEach(element => subjectMap.set(element.id, element.name));
 
-        const weeklyOffResponse = await fetch(`http://13.127.128.192:8085/utils/getAllWeeklyOff`);
+        const weeklyOffResponse = await fetch(apiUrl +`/utils/getAllWeeklyOff`);
         const weeklyOffData = await weeklyOffResponse.json();
         const weeklyOffMap = new Map();
         var daysWithoutOff = days;
@@ -61,14 +62,14 @@ const TimeTable = ({ navigation }) => {
             }
         });
 
-        const timeTableResponse = await fetch(`http://13.127.128.192:8085/timeTable/getAllTimeTable`);
+        const timeTableResponse = await fetch(apiUrl +`/timeTable/getAllTimeTable`);
         const timeTableData = await timeTableResponse.json();
         const timeTablemap = new Map();
         timeTableData.forEach(element => {
             timeTablemap.set(element.id, element);
         });
 
-        const classTimeTableResponse = await fetch(`http://13.127.128.192:8085/class/getAllClassTimetableDetails?sectionId=${selectedStudent.sectionId}`);
+        const classTimeTableResponse = await fetch(apiUrl +`/class/getAllClassTimetableDetails?sectionId=${selectedStudent.sectionId}`);
         const classTimeTableData = await classTimeTableResponse.json();
 
         var tempTimeTableDataMap = new Map();

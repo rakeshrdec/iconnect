@@ -4,6 +4,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import Loader from "../homepage/loader";
 import BackgroundScreen from "../homepage/backgroundScreen";
 import PushNotification from "react-native-push-notification";
+import { apiUrl } from '../../models/data';
 
 
 const Announcement = ({ navigation }) => {
@@ -16,7 +17,7 @@ const Announcement = ({ navigation }) => {
     const [showLoader, setShowLoader] = useState(true)
 
     const getAllAnnouncement = () => {
-        fetch(`http://13.127.128.192:8085/announcement/getAllAnnouncement`).then((res) => {
+        fetch(apiUrl +`/announcement/getAllAnnouncement`).then((res) => {
             res.json().then((data) => {
                 if (data != '') {
                     setAnnouncementList(data);

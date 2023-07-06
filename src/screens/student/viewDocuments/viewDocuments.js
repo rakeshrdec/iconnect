@@ -7,6 +7,7 @@ import StudentHeader from "../../homepage/studentHeader";
 import Loader from "../../homepage/loader";
 import BackgroundScreen from "../../homepage/backgroundScreen";
 import RNFetchBlob from 'rn-fetch-blob';
+import { apiUrl } from '../../../models/data';
 
 const ViewDocuments = ({ navigation }) => {
 
@@ -22,7 +23,7 @@ const ViewDocuments = ({ navigation }) => {
     }, [])
 
     const getStudentDouments = () => {
-        fetch(`http://13.127.128.192:8085/student/getStudentDocuments?studentId=${selectedStudent.id}`).then((res) => {
+        fetch(apiUrl +`/student/getStudentDocuments?studentId=${selectedStudent.id}`).then((res) => {
             res.json().then((data) => {
                 console.log(data,);
                 if (data != '') {
@@ -72,7 +73,7 @@ const ViewDocuments = ({ navigation }) => {
                                                     description: 'Image',
                                                 },
                                             };
-                                            let image_URL = `http://13.127.128.192:8085${studentDocument.uploadDocument}`
+                                            let image_URL = apiUrl +`${studentDocument.uploadDocument}`
                                             config(options)
                                                 .fetch('GET', image_URL)
                                                 .then(res => {

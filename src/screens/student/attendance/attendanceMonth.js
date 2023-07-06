@@ -3,6 +3,7 @@ import { SafeAreaView, View, Text, ActivityIndicator } from "react-native";
 import { Calendar } from "react-native-calendars";
 import { useSelector } from "react-redux";
 import Loader from "../../homepage/loader";
+import { apiUrl } from '../../../models/data';
 
 const AttendanceMonth = ({ navigation }) => {
 
@@ -38,7 +39,7 @@ const AttendanceMonth = ({ navigation }) => {
     }, [presentDates, weekelyOffDates, holidaysDates]);
 
     async function getWeeklyOffFromServer(month, year) {
-        const weeklyOffResponse = await fetch(`http://13.127.128.192:8085/utils/getAllWeeklyOff`);
+        const weeklyOffResponse = await fetch(apiUrl +`/utils/getAllWeeklyOff`);
         const weeklyOffData = await weeklyOffResponse.json();
         const weeklyOffMap = new Map();
         weeklyOffData.forEach(element => {
@@ -84,7 +85,7 @@ const AttendanceMonth = ({ navigation }) => {
     async function getTimeTables(month, year) {
         getWeeklyOffCalculation(month - 1, year);
 
-        const holidaysResponse = await fetch(`http://13.127.128.192:8085/holiday/findAllHolidaysByMonthAndYear?month=${month}&year=${year}`);
+        const holidaysResponse = await fetch(apiUrl +`/holiday/findAllHolidaysByMonthAndYear?month=${month}&year=${year}`);
         const holidaysData = await holidaysResponse.json();
         if (holidaysData != '') {
             var holidaysDates = {}
@@ -104,7 +105,7 @@ const AttendanceMonth = ({ navigation }) => {
         var startDate = year + '-' + (month < 10 ? '0' + month : month) + '-01';
         var endDate = year + '-' + (month < 10 ? '0' + month : month) + '-' + daysInMonth;
 
-        const studentAttendanceResponse = await fetch(`http://13.127.128.192:8085/student/getStudentAttendancesByStudentAndSession?studentId=${selectedStudent.id}&startDate=${startDate}&endDate=${endDate}&sessionYear=${session.id}`);
+        const studentAttendanceResponse = await fetch(apiUrl +`/student/getStudentAttendancesByStudentAndSession?studentId=${selectedStudent.id}&startDate=${startDate}&endDate=${endDate}&sessionYear=${session.id}`);
         const studentAttendanceData = await studentAttendanceResponse.json();
         if (studentAttendanceData != '') {
             setTotalWeekend(studentAttendanceData[0].totalWeekend);
@@ -114,7 +115,7 @@ const AttendanceMonth = ({ navigation }) => {
         }
 
         var presentDates = {}
-        const studentApprovedAttendanceResponse = await fetch(`http://13.127.128.192:8085/student/getStudentApprovedAttendances?studentId=${selectedStudent.id}&startDate=${startDate}&endDate=${endDate}`);
+        const studentApprovedAttendanceResponse = await fetch(apiUrl +`/student/getStudentApprovedAttendances?studentId=${selectedStudent.id}&startDate=${startDate}&endDate=${endDate}`);
         const studentApprovedAttendanceData = await studentApprovedAttendanceResponse.json();
         studentApprovedAttendanceData.map((e, i) => {
             var presentDate = { [e.attendanceDate]: { selected: true, marked: true, selectedColor: 'lightgreen' } };
