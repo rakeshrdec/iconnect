@@ -1,4 +1,4 @@
-package com.iclass.kps.newarchitecture.components;
+package com.iclass.ssd.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

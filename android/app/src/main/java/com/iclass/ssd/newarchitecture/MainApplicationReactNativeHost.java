@@ -1,4 +1,4 @@
-package com.iclass.kps.newarchitecture;
+package com.iclass.ssd.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.iclass.kps.BuildConfig;
-import com.iclass.kps.newarchitecture.components.MainComponentsRegistry;
-import com.iclass.kps.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.iclass.ssd.BuildConfig;
+import com.iclass.ssd.newarchitecture.components.MainComponentsRegistry;
+import com.iclass.ssd.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

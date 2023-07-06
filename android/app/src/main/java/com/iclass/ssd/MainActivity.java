@@ -1,4 +1,4 @@
-package com.iclass.kps;
+package com.iclass.ssd;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -13,7 +13,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "KPS_DARIYAOGANJ";
+    return "SSD_FZD";
   }
 
   @Override
