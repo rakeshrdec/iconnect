@@ -7,7 +7,7 @@ Build Details:-
 # MSA_FZD:-  npx react-native-rename "MSA_FZD" -b "com.iclass.msa"
 
 # apiUrl: 'http://13.127.128.192:8081',   // Iclass
-# apiUrl: 'http://13.127.128.192:8082',      // KPS_Dariyaoganj
+# apiUrl: 'http://13.127.128.192:8082',   // KPS_Dariyaoganj
 # apiUrl: 'http://13.127.128.192:8083',   // NSIC_Ganjdundwara
 # apiUrl: 'http://13.127.128.192:8084',   // LKM_FZD
 # apiUrl: 'http://13.127.128.192:8085',   // SSD_FZD
