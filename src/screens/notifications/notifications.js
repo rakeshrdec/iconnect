@@ -51,10 +51,10 @@ const Notifications = ({ navigation }) => {
     return (
         <>
             <BackgroundScreen />
-            <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%' }}>
+            <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%', padding: 10 }}>
                 <View style={{ flex: 1, justifyContent: "space-between" }}>
                     <View style={{ flex: 1 }}><StudentHeader /></View>
-                    <View style={{ flex: 6, justifyContent: "space-between" }}>
+                    <View style={{ flex: 6, justifyContent: "space-between", paddingTop: 20 }}>
                         <ScrollView>
                             {notifications.map((notification, i) => (
                                 <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
