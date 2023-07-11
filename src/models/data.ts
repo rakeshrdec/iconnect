@@ -19,12 +19,12 @@ export const feeStatus = {
 
 }
 
-// export const apiUrl =  'http://13.127.128.192:8081';   // Iclass
+export const apiUrl =  'http://13.127.128.192:8081';   // Iclass
 // export const apiUrl =  'http://13.127.128.192:8082';   // KPS_Dariyaoganj
 // export const apiUrl =  'http://13.127.128.192:8083';   // NSIC_Ganjdundwara
 // export const apiUrl =  'http://13.127.128.192:8084';   // LKM_FZD
 // export const apiUrl =  'http://13.127.128.192:8085';   // SSD_FZD
-export const apiUrl =  'http://13.127.128.192:8086';   // IQRA_FZD
+// export const apiUrl =  'http://13.127.128.192:8086';   // IQRA_FZD
 // export const apiUrl =  'http://13.127.128.192:8087';   // MSA_FZD
 
 export const weekMap: Map<number, FullName> = new Map([

@@ -17,8 +17,8 @@ const BackgroundScreen = () => {
             width: SCREEN_WIDTH,
             height: SCREEN_HEIGHT,
             borderTopColor: "#030E4F", borderRightColor: '#F49F1C',
-            // borderTopWidth: SCREEN_HEIGHT - 50,
-            // borderRightWidth: SCREEN_WIDTH
+            borderTopWidth: SCREEN_HEIGHT - 50,
+            borderRightWidth: SCREEN_WIDTH
         }}>
             <View>
                 <ImageBackground
