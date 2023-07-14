@@ -25,7 +25,6 @@ const ViewDocuments = ({ navigation }) => {
     const getStudentDouments = () => {
         fetch(apiUrl +`/student/getStudentDocuments?studentId=${selectedStudent.id}`).then((res) => {
             res.json().then((data) => {
-                console.log(data,);
                 if (data != '') {
                     setStudentDocuments(data);
                     setShowLoader(false);

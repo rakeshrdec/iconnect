@@ -23,6 +23,7 @@ import ExamMarks from '../student/examMarks/examMarks';
 import AttendanceIndex from '../student/attendance/attendanceIndex';
 import AboutSchool from '../aboutSchool/aboutSchool';
 import ChangePassword from '../changePassword/changePassword';
+import Transport from '../student/transport/transport';
 
 import {
   Text,
@@ -47,9 +48,9 @@ const GradientHeader = props => (
       <Icon name="home" type="material" size={30} color="white" onPress={() => {
         props.navigation.jumpTo('Home')
       }} />
-       <Icon name="settings" type="material" size={30} color="white" onPress={() => {
+      <Icon name="settings" type="material" size={30} color="white" onPress={() => {
         props.navigation.jumpTo('ChangePassword')
-      }} /> 
+      }} />
 
       <Icon name="logout" type="Ionicons" size={30} color="white" onPress={() => {
         Alert.alert('Hold on', 'Do you really want to exit?', [
@@ -215,6 +216,17 @@ const HomePage = () => {
           }}
         />
 
+        <Drawer.Screen name="Transport" component={Transport}
+          options={{
+            title: 'Transport',
+            headerTintColor: 'white',
+            headerShown: 'false',
+            header: props => <GradientHeader {...props} />,
+            headerStyle: {
+              backgroundColor: '#2E4AA0',
+            },
+          }}
+        />
       </Drawer.Navigator>
     </NavigationContainer>
 

@@ -18,7 +18,6 @@ const StudentDashBoard = ({ navigation }) => {
             <View style={{ flexDirection: 'row', height: 100 }}>
               <Pressable
                 onPress={() => {
-                  // Alert.alert('work in prgres')
                   navigation.navigate('Attendance')
                 }}
                 style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
@@ -37,7 +36,6 @@ const StudentDashBoard = ({ navigation }) => {
             <View style={{ flexDirection: 'row', height: 100, marginTop: 10 }}>
               <Pressable
                 onPress={() => {
-                  // Alert.alert('work in prgres')
                   navigation.navigate('FeeStatus')
                 }}
                 style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
@@ -65,7 +63,6 @@ const StudentDashBoard = ({ navigation }) => {
               </Pressable>
               <Pressable
                 onPress={() => {
-                  // Alert.alert('work in prgres')
                   navigation.navigate('Holidays')
                 }}
                 style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
@@ -76,7 +73,6 @@ const StudentDashBoard = ({ navigation }) => {
             <View style={{ flexDirection: 'row', height: 100, marginTop: 10 }}>
               <Pressable
                 onPress={() => {
-                  // Alert.alert('work in prgres')
                   navigation.navigate('TimeTable')
                 }}
                 style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
@@ -85,7 +81,6 @@ const StudentDashBoard = ({ navigation }) => {
               </Pressable>
               <Pressable
                 onPress={() => {
-                  // Alert.alert('work in prgres')
                   navigation.navigate('StudentProfile')
                 }}
                 style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
@@ -96,12 +91,19 @@ const StudentDashBoard = ({ navigation }) => {
             <View style={{ flexDirection: 'row', height: 100, marginTop: 10 }}>
               <Pressable
                 onPress={() => {
-                  // Alert.alert('work in prgres')
                   navigation.navigate('Announcement')
                 }}
                 style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
                 <Image source={require('../../../assets/logo/megaphone.png')} style={{ height: 50, width: 50 }} />
                 <Text style={{ color: '#2E4AA0', fontSize: 16, alignSelf: 'center', fontWeight: 'bold' }}>Announcement</Text>
+              </Pressable>
+              <Pressable
+                onPress={() => {
+                  navigation.navigate('Transport')
+                }}
+                style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
+                <Image source={require('../../../assets/logo/schoolbus.png')} style={{ height: 50, width: 50 }} />
+                <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center', fontWeight: 'bold' }}>Transport</Text>
               </Pressable>
             </View>
           </ScrollView>

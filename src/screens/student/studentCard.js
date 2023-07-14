@@ -67,8 +67,6 @@ const StudentCard = ({ navigation }) => {
         fetch(apiUrl +`/user/getUser?id=${classTeacherId}`)
             .then((res) => {
                 res.json().then((data) => {
-                    console.log(data);
-                    // setStaff(data);
                     studentModel.sectionTeacherName = data.name;
                 })
             }).catch((e) => {
