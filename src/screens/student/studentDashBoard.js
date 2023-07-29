@@ -99,11 +99,11 @@ const StudentDashBoard = ({ navigation }) => {
               </Pressable>
               <Pressable
                 onPress={() => {
-                  navigation.navigate('Transport')
+                  navigation.navigate('Conveyance')
                 }}
                 style={{ borderRadius: 5, margin: 5, flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center' }}>
                 <Image source={require('../../../assets/logo/schoolbus.png')} style={{ height: 50, width: 50 }} />
-                <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center', fontWeight: 'bold' }}>Transport</Text>
+                <Text style={{ color: '#2E4AA0', fontSize: 20, alignSelf: 'center', fontWeight: 'bold' }}>Conveyance</Text>
               </Pressable>
             </View>
           </ScrollView>

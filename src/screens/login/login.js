@@ -32,8 +32,8 @@ const Login = ({ navigation }) => {
           },
           body: JSON.stringify(
             {
-              "userName": loginId,
-              "password": password,
+              "userName": "2222222222",
+              "password": "2222222222",
               "tokenType": 1,
               "createdAt": "createdAt",
               "expiredAt": "expiredAt"
@@ -60,7 +60,6 @@ const Login = ({ navigation }) => {
           }
         }).catch(function (error) {
           setShowLoader(false)
-          console.log('There has been a problem with your fetch operation: ' + error.message);
         });
       }
     }

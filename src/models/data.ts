@@ -19,6 +19,11 @@ export const feeStatus = {
 
 }
 
+export const feeCategoryType: Map<number, string> = new Map([
+    [0, "OLD"],
+    [1, "NEW"]
+]);
+
 export const apiUrl =  'http://13.127.128.192:8081';   // Iclass
 
 export const weekMap: Map<number, FullName> = new Map([

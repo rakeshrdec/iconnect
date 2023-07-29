@@ -23,7 +23,7 @@ import ExamMarks from '../student/examMarks/examMarks';
 import AttendanceIndex from '../student/attendance/attendanceIndex';
 import AboutSchool from '../aboutSchool/aboutSchool';
 import ChangePassword from '../changePassword/changePassword';
-import Transport from '../student/transport/transport';
+import Conveyance from '../student/conveyance/conveyance';
 
 import {
   Text,
@@ -216,9 +216,9 @@ const HomePage = () => {
           }}
         />
 
-        <Drawer.Screen name="Transport" component={Transport}
+        <Drawer.Screen name="Conveyance" component={Conveyance}
           options={{
-            title: 'Transport',
+            title: 'Conveyance',
             headerTintColor: 'white',
             headerShown: 'false',
             header: props => <GradientHeader {...props} />,

@@ -10,17 +10,19 @@ import { apiUrl } from '../../../models/data';
 import { Icon } from 'react-native-elements';
 import { settings } from '../../../models/data';
 
-const Transport = ({ navigation }) => {
+const Conveyance = ({ navigation }) => {
 
     const data = useSelector((state) => state)
     const selectedStudentData = data.selectedStudentDetails;
     const [selectedStudent, setSelectedStudent] = useState(selectedStudentData.data);
     const sessionData = data.session;
     const [session, setSession] = useState(sessionData.data);
-    const [showLoader, setShowLoader] = useState(true)
-    const [conveyance, setConveyance] = useState([]);
+    const [showLoader, setShowLoader] = useState(true);
+    const [showContent, setShowContent] = useState(0)
 
-    const [stoppage, setStoppage] = useState([]);
+    const [conveyance, setConveyance] = useState({});
+
+    const [stoppage, setStoppage] = useState({});
 
     useEffect(() => {
         getStudentDetails();
@@ -34,26 +36,23 @@ const Transport = ({ navigation }) => {
     }
 
     async function getStudentFeeStructure(conveyanceId, stoppageId) {
-        console.log(conveyanceId, stoppageId);
         const conveyanceResponse = await fetch(apiUrl + `/conveyance/getAllConveyance`);
         const conveyanceData = await conveyanceResponse.json();
-        // console.log(conveyanceData);
         conveyanceData.forEach((conveyance, i) => {
 
             if (conveyance.id == conveyanceId) {
                 setConveyance(conveyance);
-                console.log(conveyance);
+                setShowContent(1);
                 conveyance.stoppages.forEach((stoppage, i) => {
                     if (stoppage.id == stoppageId) {
                         setStoppage(stoppage);
-                        console.log(stoppage);
-                        setShowLoader(false);
                     }
 
                 })
             }
 
-        })
+        });
+        setShowLoader(false);
     }
 
     return (
@@ -63,7 +62,7 @@ const Transport = ({ navigation }) => {
             <SafeAreaView style={{ flex: 1, position: 'absolute', width: '100%', height: '100%', padding: 10 }}>
                 <View style={{ flex: 1 }}><StudentHeader /></View>
                 <View style={{ flex: 6, justifyContent: "space-between", paddingTop: 20 }}>
-                    <ScrollView>
+                    <ScrollView style={showContent == 0 ? { opacity: 0 } : { opacity: 1 }}>
                         <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                             <View style={{ marginHorizontal: 0, alignSelf: 'center', alignItems: 'center' }}>
                                 <Text style={{ color: 'green', fontWeight: 'bold', alignSelf: 'center', fontSize: 20 }}>Driver Name:- {conveyance.driverName}</Text>
@@ -90,7 +89,7 @@ const Transport = ({ navigation }) => {
                         <Pressable style={{ elevation: 15, flexDirection: 'row', width: '90%', alignSelf: 'center', margin: 10, alignItems: 'center', backgroundColor: 'white', borderRadius: 15, padding: 10 }}>
                             <View style={{ marginHorizontal: 10 }}>
                                 <Text style={{ fontWeight: 'bold', marginLeft: 0 }}>Stoppage:  {stoppage.stoppageName} </Text>
-                                <Text style={{ fontWeight: 'bold', marginLeft: 0 }}>Amount:  {settings.CURRENCY + ' ' +stoppage.amount}/-</Text>
+                                <Text style={{ fontWeight: 'bold', marginLeft: 0 }}>Amount:  {settings.CURRENCY + ' '}{stoppage.amount}/-</Text>
 
                             </View>
                         </Pressable>
@@ -104,10 +103,10 @@ const Transport = ({ navigation }) => {
                         </Pressable>
                     </ScrollView>
                 </View>
-                <Loader message="Loading Transport Details ......." showLoader={showLoader} />
+                <Loader message="Loading Conveyance Details ......." showLoader={showLoader} />
             </SafeAreaView>
         </>
     );
 }
 
-export default Transport;
+export default Conveyance;

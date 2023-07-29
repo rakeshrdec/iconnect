@@ -30,7 +30,6 @@ const ChangePassword = ({ navigation }) => {
 
   const onLogin = async () => {
     setShowLoader(true);
-    console.log(oldPassword, newPassword, confirmPassword, selectedStudent.mobile);
     if (oldPassword == undefined || oldPassword.length == 0) {
       Alert.alert("Old Password is Blank")
       setShowLoader(false);
@@ -70,7 +69,6 @@ const ChangePassword = ({ navigation }) => {
           }
         }).catch(function (error) {
           setShowLoader(false)
-          console.log('There has been a problem with your fetch operation: ' + error.message);
         });
       }
     }

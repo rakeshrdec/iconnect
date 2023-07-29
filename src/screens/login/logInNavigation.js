@@ -14,7 +14,7 @@ import StudentDashBoard from '../student/studentDashBoard';
 import AttendanceMonth from '../student/attendance/attendanceMonth';
 import AttendanceYear from '../student/attendance/attendanceYear';
 import TimeTable from '../student/timeTable/timeTable';
-import Transport from '../student/transport/transport';
+import Conveyance from '../student/conveyance/conveyance';
 
 import studentProfile from '../student/profile/profile';
 import Holidays from '../holidays/holidays';
@@ -125,8 +125,8 @@ const LoginNavigation = () => {
             component={ChangePassword}
           />
            <Stack.Screen
-            name='Transport'
-            component={Transport}
+            name='Conveyance'
+            component={Conveyance}
           />
         </Stack.Navigator>
       </NavigationContainer>
