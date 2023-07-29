@@ -79,7 +79,9 @@ const Login = ({ navigation }) => {
           <View style={{ flex: 6, justifyContent: "space-between" }}>
             <View style={{ flex: 1, justifyContent: 'center', }}>
 
-             
+              <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', fontSize: 35, margin: 0 }}>IQRA Convent School</Text>
+              <Text style={{ color: 'white', fontWeight: 'bold', textAlign: 'center', fontSize: 20, margin: 0, paddingBottom: 10 }}>Near Sailai Ki Puliya, Firozabad</Text>
+
               <View style={{ backgroundColor: 'white', width: '95%', alignSelf: 'center', borderRadius: 15, minHeight: 450, paddingTop: 5 }}>
                 {/* logo section */}
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}>

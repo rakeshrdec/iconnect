@@ -1,0 +1,34 @@
+Build Details:- 
+# iclass:-  npx react-native-rename "I-Class" -b "com.iclass.iclass" --skipGitStatusCheck
+# KPS_Dariyaoganj:-  npx react-native-rename "KPS_DARIYAOGANJ" -b "com.iclass.kps"
+# LKM_FZD:-  npx react-native-rename "LKM_FZD" -b "com.iclass.lkm"
+# IQRA_FZD:-  npx react-native-rename "IQRA_FZD" -b "com.iclass.iqra"
+# SSD_FZD:-  npx react-native-rename "SSD_FZD" -b "com.iclass.ssd"
+# MSA_FZD:-  npx react-native-rename "MSA_FZD" -b "com.iclass.msa"
+# GJPS_SKD:-  npx react-native-rename "GJPS_SKD" -b "com.iclass.gjpsskd"
+# LKP_SKD:-  npx react-native-rename "LKP_SKD" -b "com.iclass.lkpskd"
+
+# apiUrl: 'http://13.127.128.192:8081',   // Iclass
+# apiUrl: 'http://13.127.128.192:8082',   // KPS_Dariyaoganj
+# apiUrl: 'http://13.127.128.192:8083',   // NSIC_Ganjdundwara
+# apiUrl: 'http://13.127.128.192:8084',   // LKM_FZD
+# apiUrl: 'http://13.127.128.192:8085',   // SSD_FZD
+# apiUrl: 'http://13.127.128.192:8086',   // IQRA_FZD
+# apiUrl: 'http://13.127.128.192:8087',   // MSA_FZD
+
+1. Update All images in res
+2. Change apiUrl in data.ts
+3. Change Background Color in backgroundScreen.js
+4. Change AppName
+5. Change School Name and address in login.js
+5. Follow are the steps contain 
+     step 1) cd android && ./gradlew clean
+     step 2) cd .. && npx react-native-rename "I-Class" -b "com.iclass.iclass"
+     step 3) rebuild .apk and test it be confirmed that package name has been changed
+               ./gradlew assembleDebug       ./gradlew assembleRelease
+     step 4) Once everything is good , create bundle file using command :
+              ./gradlew bundleRelease
+     step 5) pick file from \android\app\build\outputs\bundle\release
+            with latest updated timestamp 
+
+
