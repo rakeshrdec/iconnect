@@ -19,6 +19,8 @@ const UnpaidFees = () => {
     const [showLoader, setShowLoader] = useState(true)
     const monthFeeHeadMap = new Map();
     const studentFeeHeadMap = new Map();
+    const studentConveyanceFeeHeadMap = new Map();
+
 
 
 
@@ -31,7 +33,7 @@ const UnpaidFees = () => {
     const [recordData, setRecordData] = useState([]);
 
     async function getAllFeeHeads() {
-        const feeHeadsResponse = await fetch(apiUrl +`/fees/getAllFeeHeads`);
+        const feeHeadsResponse = await fetch(apiUrl + `/fees/getAllFeeHeads`);
         const feeHeadData = await feeHeadsResponse.json();
         feeHeadData.forEach(feeHead => {
             feeHeadMap.set(feeHead.id, feeHead);
@@ -46,23 +48,42 @@ const UnpaidFees = () => {
             });
 
         });
-        getStudentFeeStructure();
+        getStudentConveyanceFeeStructure();
     }
 
-    async function getStudentFeeStructure() {
-        const studentFeeResponse = await fetch(apiUrl +`/fees/getStudentFees?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
+    async function getStudentConveyanceFeeStructure() {
+        const studentFeeResponse = await fetch(apiUrl + `/fees/getStudentConveyanceFees?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
+        const studentfeeData = await studentFeeResponse.json();
+        studentfeeData.forEach(studentfee => {
+            studentConveyanceFeeHeadMap.set(studentfee.payMonth, studentfee);
+        });
+        getConveyanceFeeHead();
+    }
+
+    async function getConveyanceFeeHead() {
+        const studentFeeResponse = await fetch(apiUrl + `/fees/getAllFeesHeadByConveyance?isConveyance=true`);
+        const studentfeeData = await studentFeeResponse.json();
+        let conveyanceFeeHeadModel = null;
+        studentfeeData.forEach(feeHead => {
+            conveyanceFeeHeadModel = feeHead;
+        });
+        getStudentFeeStructure(conveyanceFeeHeadModel);
+    }
+
+    async function getStudentFeeStructure(conveyanceFeeHeadModel) {
+        const studentFeeResponse = await fetch(apiUrl + `/fees/getStudentFees?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
         const studentfeeData = await studentFeeResponse.json();
         studentfeeData.forEach(studentfee => {
             studentFeeHeadMap.set(studentfee.feeHeadId, studentfee);
         });
-        fetchfeeRecord();
+        fetchfeeRecord(conveyanceFeeHeadModel);
     }
 
-    async function fetchfeeRecord() {
+    async function fetchfeeRecord(conveyanceFeeHeadModel) {
         let totalAmount = 0;
         const paidfees = new Map();
         const recordData = [];
-        const studentFeeResponse = await fetch(apiUrl +`/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
+        const studentFeeResponse = await fetch(apiUrl + `/fees/getAllFeesDetails?sessionYear=${session.id}&studentId=${selectedStudent.id}`);
         const studentfeeData = await studentFeeResponse.json();
 
         studentfeeData.forEach(fee => {
@@ -80,6 +101,8 @@ const UnpaidFees = () => {
                 paidfees.set(feeDetail.month, paidfee);
             });
         });
+
+        console.log(paidfees)
         monthMap.forEach((value, key) => {
             const allFeeHeadIds = monthFeeHeadMap.get(key);
             if (allFeeHeadIds != null) {
@@ -91,9 +114,6 @@ const UnpaidFees = () => {
                         let amt = studentFeeHeadMap.get(feeHeadId).amount;
                         if (paidfees.get(key) && paidfees.get(key).get(feeHeadId)) {
                             paidfees.get(key).get(feeHeadId).forEach(feeDetails => {
-                                // paidAmt += feeDetails.amount;
-                                // paidDiscountAmt += feeDetails.discountAmount;
-                                // paidLateFeeAmt += feeDetails.lateFeeAmount;
                                 amt -= (feeDetails.amount + feeDetails.discountAmount);
                             });
 
@@ -109,6 +129,25 @@ const UnpaidFees = () => {
 
                 });
 
+                if (studentConveyanceFeeHeadMap.get(key)) {
+
+                    let amt = studentConveyanceFeeHeadMap.get(key).amount;
+                    if (paidfees.get(key) && paidfees.get(key).get(conveyanceFeeHeadModel.id)) {
+                        paidfees.get(key).get(conveyanceFeeHeadModel.id).forEach(feeDetails => {
+                            amt -= (feeDetails.amount + feeDetails.discountAmount);
+                        });
+
+                    }
+
+                    if (amt > 0) {
+                        totalMonthAmt += amt;
+                        feeHeadRow.push({
+                            feeHead: conveyanceFeeHeadModel.name,
+                            amount: studentConveyanceFeeHeadMap.get(key).amount.toString()
+                        });
+                    }
+                }
+
                 if (feeHeadRow.length > 0) {
                     totalAmount += totalMonthAmt;
                     recordData.push({
@@ -119,7 +158,6 @@ const UnpaidFees = () => {
                     });
                 }
             }
-
         });
 
         setTotalAmount(totalAmount);

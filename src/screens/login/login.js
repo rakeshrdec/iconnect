@@ -32,8 +32,8 @@ const Login = ({ navigation }) => {
           },
           body: JSON.stringify(
             {
-              "userName": "2222222222",
-              "password": "2222222222",
+              "userName": loginId,
+              "password": password,
               "tokenType": 1,
               "createdAt": "createdAt",
               "expiredAt": "expiredAt"
